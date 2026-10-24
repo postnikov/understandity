@@ -221,7 +221,7 @@ class Installer:
                 if cached(job):
                     print('CACHED: ' + job['repo'], flush=True)
                 else:
-                    self.run([python, '-B', HERE / 'install.py', 'fetch-hf', '--provider', job['provider']])
+                    self.run([python, '-B', HERE / 'install.py', 'fetch-hf', '--provider', job['provider'], '--repo', self.root])
             self.run(['bash', self.root / 'scripts/demo/start.sh', 'preflight'])
             print('INSTALL COMPLETE — local dependencies and weights verified; no inference performed.')
             print('Start: bash ' + shlex.quote(str(self.root / 'scripts/demo/start.sh')))
@@ -229,10 +229,15 @@ class Installer:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action', choices=('dry-run', 'install', 'fetch-hf'))
+    parser.add_argument('action', choices=('dry-run', 'install', 'fetch-hf', 'daemon'))
     parser.add_argument('--provider', choices=('kokoro', 'mlx-qwen3'))
+    parser.add_argument('--repo', type=Path, default=ROOT)
     args = parser.parse_args()
-    instance = Installer()
+    instance = Installer(args.repo.resolve())
+    if args.action == 'daemon':
+        instance.runtime.mkdir(parents=True, exist_ok=True)
+        ensure_ollama(instance.plan['ollama'], instance.runtime, instance.policy['OLLAMA_SESSION'], instance.run)
+        return
     if args.action == 'fetch-hf':
         require(args.provider, 'Missing HF provider')
         download_hf(next(j for j in instance.plan['hf'] if j['provider'] == args.provider))

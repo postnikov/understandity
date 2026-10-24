@@ -69,9 +69,12 @@ class PolicyTests(unittest.TestCase):
         self.assertEqual(plan['engines']['tts']['provider'], 'by-language')
         self.assertEqual(self.config, original)
 
-    def test_enabled_cloud_is_rejected_even_when_unselected(self):
+    def test_enabled_cloud_catalog_is_allowed_only_when_not_selected(self):
         self.config['providers']['text']['cloud']['enabled'] = True
-        with self.assertRaisesRegex(demo.DemoError, 'Enabled cloud'):
+        demo.make_plan(self.config, self.policy)
+        self.policy['providers']['text'] = 'cloud'
+        self.config['defaults']['engines']['text'] = {'provider': 'cloud', 'model': 'cloud-fixture'}
+        with self.assertRaisesRegex(demo.DemoError, 'cloud; Offline selection refused'):
             demo.make_plan(self.config, self.policy)
 
     def test_external_endpoint_cannot_claim_locality(self):
@@ -141,8 +144,13 @@ class PolicyTests(unittest.TestCase):
             demo.verify_engines(value, plan)
         value['providers'][0]['models'][0]['installed'] = True
         value['providers'][0]['locality'] = 'cloud'
-        with self.assertRaisesRegex(demo.DemoError, 'enabled cloud'):
+        with self.assertRaisesRegex(demo.DemoError, 'active cloud'):
             demo.verify_engines(value, plan)
+
+    def test_voice_route_cannot_hide_a_cloud_provider(self):
+        self.config['providers']['tts']['kokoro']['locality'] = 'cloud'
+        with self.assertRaisesRegex(demo.DemoError, 'not local'):
+            demo.make_plan(self.config, self.policy)
 
     def test_http_redirect_is_never_followed(self):
         class Handler(BaseHTTPRequestHandler):

@@ -137,6 +137,55 @@ class InstallTests(unittest.TestCase):
         self.assertIn('espeakng-loader==', text)
         self.assertNotIn('\ntorch==', text)
 
+    def test_full_fixture_install_then_repeat_skips_all_model_downloads(self):
+        for key in ('kokoro', 'mlx-qwen3'):
+            self.config['providers']['tts'][key]['endpoint'] = 'http://127.0.0.1:0'
+        (self.root / 'config/engines.json').write_text(json.dumps(self.config))
+        original_config = (self.root / 'config/engines.json').read_bytes()
+        with patch.object(install, 'policy_file', return_value=self.policy):
+            instance = install.Installer(self.root)
+        calls = []
+        def execute(args):
+            args = [str(x) for x in args]
+            calls.append(args)
+            if args[:2] == ['uv', 'venv']:
+                python = instance.venv / 'bin/python'
+                python.parent.mkdir(parents=True)
+                python.write_text('fixture executable marker')
+            if args[0] == 'curl':
+                Path(args[args.index('--output') + 1]).write_bytes(self.payload)
+            if 'fetch-hf' in args:
+                provider = args[args.index('--provider') + 1]
+                self.assertEqual(args[args.index('--repo') + 1], str(self.root))
+                job = next(j for j in instance.plan['hf'] if j['provider'] == provider)
+                for name in job['files']:
+                    file = Path(job['snapshot']) / name
+                    file.parent.mkdir(parents=True, exist_ok=True)
+                    file.write_bytes(b'fixture model')
+        with patch.object(instance, 'run', side_effect=execute), patch.object(install, 'ensure_ollama'), patch.object(install, 'read_json', return_value={'serverPort': 0, 'webPort': 0}), patch.object(install, 'request', return_value={'models': []}):
+            instance.install()
+        self.assertEqual(sum('fetch-hf' in c for c in calls), 2)
+        self.assertEqual(sum(c[:2] == ['ollama', 'pull'] for c in calls), 1)
+        calls.clear()
+        with patch.object(instance, 'run', side_effect=execute), patch.object(install, 'ensure_ollama'), patch.object(install, 'read_json', return_value={'serverPort': 0, 'webPort': 0}), patch.object(install, 'request', return_value={'models': [{'name': instance.plan['ollama']['model']}]}):
+            instance.install()
+        self.assertFalse(any('fetch-hf' in c or c[0] == 'curl' or c[:2] == ['ollama', 'pull'] for c in calls))
+        self.assertEqual((self.root / 'config/engines.json').read_bytes(), original_config)
+        self.assertFalse((self.root / 'data').exists())
+
+    def test_healthy_ollama_is_reused_without_spawning_or_pulling(self):
+        calls = []
+        with patch.object(install, 'ollama_status', return_value={'version': '0.40.10'}):
+            install.ensure_ollama(self.plan()['ollama'], self.root, 'fixture-session', calls.append)
+        self.assertEqual(calls, [])
+
+    def test_old_ollama_is_not_restarted_behind_the_users_back(self):
+        calls = []
+        with patch.object(install, 'ollama_status', return_value={'version': '0.1.0'}):
+            with self.assertRaisesRegex(DemoError, 'too old'):
+                install.ensure_ollama(self.plan()['ollama'], self.root, 'fixture-session', calls.append)
+        self.assertEqual(calls, [])
+
     def test_linux_is_rejected_before_bootstrap(self):
         fake = self.root / 'bin'
         fake.mkdir()

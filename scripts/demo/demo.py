@@ -86,13 +86,14 @@ def make_plan(config, policy):
     for modality in MODALITIES:
         for name, provider in config['providers'][modality].items():
             if provider.get('enabled', True):
-                require(provider['locality'] == 'local', f'Enabled cloud provider: {modality}/{name}')
-                endpoint = provider.get('endpoint')
-                require(not endpoint or local_url(endpoint), f'External endpoint: {modality}/{name}')
+                if provider['locality'] == 'local':
+                    endpoint = provider.get('endpoint')
+                    require(not endpoint or local_url(endpoint), f'External endpoint: {modality}/{name}')
     engines = {}
     for modality, name in policy['providers'].items():
         provider = config['providers'][modality].get(name)
         require(provider and provider.get('enabled', True), f'{modality}/{name} is not enabled; main may not be merged')
+        require(provider['locality'] == 'local', f'{modality}/{name} is cloud; Offline selection refused')
         require(not provider.get('secretEnv'), f'{modality}/{name} requires a secret; offline demo cannot use it')
         selected = config['defaults']['engines'][modality]
         require(selected['provider'] == name, f'{modality}: canonical demo defaults have changed; review scripts/demo/demo.json')
@@ -105,6 +106,7 @@ def make_plan(config, policy):
     for lang, route in routes.items():
         target = config['providers']['tts'].get(route['provider'])
         require(target and target.get('enabled', True), f'tts route {lang} → {route["provider"]} is not enabled')
+        require(target['locality'] == 'local' and (not target.get('endpoint') or local_url(target['endpoint'])), f'tts route {lang} is not local')
         require(not target.get('secretEnv'), f'tts route {lang} → {route["provider"]} requires a secret')
         require(route['model'] in target['models'], f'tts route {lang}: model is not configured')
         require(route.get('voice') in target.get('voices', []), f'tts route {lang}: voice is not configured')
@@ -120,12 +122,10 @@ def verify_settings(value, plan):
 
 def verify_engines(value, plan):
     verify_settings(value['settings'], plan)
-    for provider in value['providers']:
-        if provider['enabled']:
-            require(provider['locality'] == 'local' and provider['offlineSafe'], 'Runtime exposes an enabled cloud/external provider')
     for modality, selection in plan['engines'].items():
         provider = next((p for p in value['providers'] if p['modality'] == modality and p['provider'] == selection['provider']), None)
-        require(provider and provider['health'] and provider['health']['state'] == 'ok', f'{modality}: selected provider is not healthy')
+        require(provider and provider['enabled'] and provider['locality'] == 'local' and provider['offlineSafe'], f'{modality}: active cloud/external provider refused')
+        require(provider['health'] and provider['health']['state'] == 'ok', f'{modality}: selected provider is not healthy')
         require(any(m['id'] == selection['model'] and m['installed'] for m in provider['models']), f'{modality}: model is not installed')
 
 
@@ -264,11 +264,13 @@ class Demo:
 
     def check(self):
         require((request(self.web + '/api/health', timeout=30)).get('ok'), 'App health is not OK through the web proxy')
-        verify_engines(request(self.api + '/engines', timeout=30), self.plan)
+        catalog = request(self.api + '/engines', timeout=30)
+        verify_engines(catalog, self.plan)
         html = request(self.web, binary=True).decode()
         require('<html' in html.lower(), 'Web entry did not return HTML')
         require(not re.search(r'(?:src|href)=[\"\']https?://', html), 'Web entry references an external asset')
-        return {'web': self.web, 'offlineProfile': True, 'enabledCloudProviders': 0}
+        return {'web': self.web, 'offlineProfile': True, 'activeCloudProviders': 0,
+                'enabledCloudProviders': sum(p['enabled'] and p['locality'] == 'cloud' for p in catalog['providers'])}
 
     def warmup(self):
         result = {}
@@ -376,6 +378,8 @@ class Demo:
             except BlockingIOError as error:
                 raise DemoError('Another demo start is in progress') from error
             require(not self.tmux_exists(), 'Demo session already exists; use check or stop')
+            # Homebrew Ollama has no GUI login item. Start its local daemon after a reboot, without pulling models.
+            self.command([self.policy['python'], '-B', str(HERE / 'install.py'), 'daemon', '--repo', str(self.repo)])
             self.preflight()
             self.install_node()
             run_id = uuid.uuid4().hex
