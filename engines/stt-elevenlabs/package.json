@@ -1,0 +1,12 @@
+{
+  "name": "@understandity/engine-stt-elevenlabs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@understandity/contracts": "*"
+  }
+}

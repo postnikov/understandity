@@ -7,6 +7,13 @@ import { ttsFake } from '@understandity/engine-tts-fake';
 import { ttsElevenLabs } from '@understandity/engine-tts-elevenlabs';
 import { imageFake } from '@understandity/engine-image-fake';
 
+import { sttGemma } from '../../../engines/stt-gemma-audio/src/index.js';
+import { sttWhisper } from '../../../engines/stt-whisper-cpp/src/index.js';
+import { sttElevenLabs } from '../../../engines/stt-elevenlabs/src/index.js';
+import { ttsSay } from '../../../engines/tts-macos-say/src/index.js';
+import { ttsMlx } from '../../../engines/tts-mlx-qwen3/src/index.js';
+import { imageComfy } from '../../../engines/image-comfyui/src/index.js';
+
 /**
  * Wiring of engine packages. A new provider = its own `engines/<modality>-<provider>` package
  * + ONE line here + its entry in `config/engines.json`. Nothing else in the server changes.
@@ -16,7 +23,13 @@ export const PROVIDERS: ProviderModule<Modality>[] = [
   textGeminiApi,
   textOllama,
   sttFake,
+  sttGemma,
+  sttWhisper,
+  sttElevenLabs,
   ttsFake,
+  ttsSay,
+  ttsMlx,
   ttsElevenLabs,
   imageFake,
+  imageComfy,
 ] as ProviderModule<Modality>[];
