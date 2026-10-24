@@ -4,7 +4,7 @@ An offline-first, open-source tutor for 12–14-year-olds, meant to run at home 
 
 Every lesson card starts with a "wow" question from school science or math. The kid guesses out loud, gets a short explanation of the cause, changes one thing, and then explains a new case by voice. The answer is transcribed on the computer, the kid confirms what was heard, and a local language model judges the explanation against an answer key an adult approved: it confirms a right cause, asks one follow-up question otherwise, and never gives the key away.
 
-A local model also drafts the lessons. Models get facts wrong, so in the ready-made courses an adult reviews every **fact → question → key** before a child can open the card. A course made on the spot with **Make your own course** opens right away, marked "AI-generated · not checked by an adult".
+A local model also drafts the lessons. Models get facts wrong, so the three ready-made demo courses were checked card by card (**fact → question → key**) before the demo. A course made on the spot with **Make your own course** opens right away.
 
 > You can delegate thinking, but you cannot delegate understanding.
 
@@ -34,7 +34,7 @@ On the home screen anyone can type a request in plain words, pick who it is for 
 - **Teaching method.** Curiosity first: every card opens with a "wow" question. Then the kid's own world, and understanding over memorization: predict, find the cause, change one thing, explain a new case. On top sits Max Postnikov's rule that understanding can't be delegated: the kid explains out loud, and the tutor never gives the key away. The method comes from how Max teaches complex topics in his AI Anti-Magic course: start with curiosity, then check that understanding actually happened. The six-step learning cycle was drafted with an AI agent from these principles and approved by Max.
 - **Subject knowledge.** Facts cross-checked against OpenStax University Physics Volume 1, Biology 2e and Prealgebra 2e (CC BY-NC-SA 4.0); source notes and course text are in our own words; no OpenStax text is included. The short source notes in `content/sources/` were written by an AI agent and checked against the cited sections. The model takes facts only from them, and an adult approved every card's fact → question → key before the demo.
 - **Tutoring rules.** Each card carries a typical mistake, a clarifying question and a rubric. The tutor judges the answer by meaning against the key, confirms a right cause, asks "why?" after a bare prediction, answers a wrong cause with a counterexample and gives a small hint after "I don't know"; after two hints it explains directly on a different example. It never grades accent, speed or wording, and a recognition slip never counts as the kid's mistake. The rules live in `apps/server/src/tutor-prompt.ts`.
-- **Why an adult checks the facts.** While planning, we had local models draft five school courses, and every one had mistakes in facts or answer keys. Turning on the models' "thinking" mode didn't fix it.
+- **Why the facts were checked.** While planning, we had local models draft five school courses, and every one had mistakes in facts or answer keys. Turning on the models' "thinking" mode didn't fix it. That is why the demo courses were checked by hand before the demo; an in-app review step exists in the code but is switched off in this build (see Not done yet).
 
 ## Before and after: the same model, without our part
 
@@ -100,7 +100,7 @@ server    127.0.0.1:8787                 Hono on Node 22
 | `packages/course` | course generator, adult review logic, CLI |
 | `engines/<modality>-<provider>` | one package per provider, plus a `fake` for every modality |
 | `apps/server` | Hono API on `127.0.0.1`, the tutor, the engine hub |
-| `apps/web` | world and course choice, Make your own course, the learning cycle with voice states, built-in SVG scene schemes, the adult check, the engines screen with API keys; English UI (the Russian strings stay in the code, switched off in `apps/web/src/app.ts`) |
+| `apps/web` | world and course choice, Make your own course, the learning cycle with voice states, built-in SVG scene schemes, the engines screen with API keys; English UI (the Russian strings stay in the code, switched off in `apps/web/src/app.ts`) |
 | `sidecars/tts-mlx` | Python 3.11 voice sidecars on MLX, one venv with a pinned lock: Qwen3-TTS (`server.py`, a fresh worker per synthesis, so memory is released) and Kokoro-82M (`kokoro_server.py`, stays loaded) |
 | `config/engines.json` | providers, models, endpoints, voices, defaults |
 | `content/` | courses (`*.json`), source notes (`sources/*.md`), pre-made scene pictures (`media/`) |
@@ -148,10 +148,10 @@ For a stock ComfyUI, set `apiMode: native`, `secretEnv: null` and its endpoint i
 
 Optional engines that are off by default (`qwen3.8:27b-mlx`, Claude via the Anthropic API, ComfyUI with Z-Image Turbo, ElevenLabs, Gemini API) come with their own licenses and terms.
 
-## The adult gate and the courses
+## The courses (and the review step, switched off in this build)
 
-- The generator writes every card as `needs_review`. The student screen gets only approved cards (`GET /api/courses/:id/showable`); blocked cards never reach it.
-- The **Adult check** screen shows, for each card, the fact (with its conditions and source), the question, the key (with the typical mistake and a follow-up) and the generator's warnings. Buttons: **Approve**, **Block**, **Fix** (edit the fact, question or key, then save and approve). Writes are atomic.
+- In this build every course opens for the student right away, whatever its review state: the adult review step is switched off with one flag (`ADULT_CHECK` in `apps/web/src/app.ts`, `adultCheck` in `config/features.json`). Its code stays in the repository; the rest of this section describes it for when it is switched back on. The generator writes every card as `needs_review`; with the step on, the student screen gets only approved cards (`GET /api/courses/:id/showable`) and blocked cards never reach it.
+- With the step on, a review screen shows, for each card, the fact (with its conditions and source), the question, the key (with the typical mistake and a follow-up) and the generator's warnings. Buttons: **Approve**, **Block**, **Fix** (edit the fact, question or key, then save and approve). Writes are atomic.
 - The tutor reads the course from disk on every turn, so a fixed key reaches it at once.
 - Generator warnings never approve anything. They flag explanations outside 40–60 words, absolute words (always, only, never), requests to write or choose instead of explaining, questions that ask to recall, voice questions that repeat the hook or the Try step, and the model's own doubts.
 - For development only, `UNDERSTANDITY_ALLOW_DRAFTS=1` (server) and `VITE_ALLOW_DRAFTS=1` (web) show unchecked cards with a "Draft · not checked by an adult" mark. Blocked cards are never shown.
@@ -165,7 +165,7 @@ Demo courses: English, five cards each, four worlds (Fantasy, Anime, Space, Cybe
 | Biology | Where does a tree's weight come from? | `content/light-plant-growth.json` | OpenStax Biology 2e, 8.1 and 8.3 |
 | Math | The Growing Square Mystery | `content/double-side-area.json` | OpenStax Prealgebra 2e, 9.4 |
 
-`content/demo-course.json` is a short hand-written course in Russian that nobody checked: it stays on the home screen as "Waiting for an adult check" and can't be opened as a student.
+`content/demo-course.json` is a short hand-written course in Russian. The UI is English-only in this build, so it is not offered on the home screen.
 
 ## Quick start
 
@@ -204,7 +204,7 @@ npm run course:generate -- --concept "…" --source content/sources/<id>.md --la
 ```
 
 - The source note is Markdown with front matter (`source`, `url`, `subject`); its body holds the subject notes the course is built from, and an adult should check them. The model takes facts only from the note, and every card links back to the source.
-- Five cards took 40–45 seconds with Gemma 4 12B on our Mac Studio. Every card comes out as `needs_review`: open **Adult check** and approve, fix or block each one.
+- Five cards took 40–45 seconds with Gemma 4 12B on our Mac Studio. Every card comes out as `needs_review`; in this build that does not hide anything (the review step is off), so read a generated course before you show it to a child.
 - Heavy models run one at a time: the CLI refuses to start while another model is loaded in Ollama (check with `ollama ps`).
 - `--out` overwrites an existing file without asking. Use a new file name.
 
@@ -243,10 +243,10 @@ Single runs on our Mac Studio with synthetic adult speech. Not a child's voice, 
 As of 24.10.2026, during the hackathon:
 
 - A pass with a live microphone in a real browser is a manual check that is still pending. The voice loop on the real engines (Whisper → Gemma → Qwen3-TTS) has passed end to end with synthetic speech, and the launcher smoke has passed on the demo MacBook.
-- A course made with Make your own course is not checked by an adult; it opens as a draft with a clear mark.
+- A course made with Make your own course is not checked by anyone; in this build it opens like any other course.
 - Evidence per answer is minimal: the tutor model's own verdict against the key (cause, hints used, transfer on the new case). It is not double-checked, the prediction itself is not extracted, and nothing is tracked across cards.
 - Cards go in order; picking the next card from the kid's answer is not built.
-- The adult gate doesn't cover the explanation, the Try step and the scenes (see above).
+- Adult review of generated courses: the code is in the repo behind a flag, off in this build. When on, it covers fact → question → key, not the explanation, the Try step and the scenes.
 - There is no filter yet for what the model says to a child. It is required before real use with children.
 - The installer supports macOS 15+ on Apple Silicon only (see [INSTALL.md](INSTALL.md)).
 - The Gemini API provider is a placeholder. Claude and ElevenLabs were checked live with a handful of calls each, not under load. Live ComfyUI through the app has only been tested against HTTP mocks.
