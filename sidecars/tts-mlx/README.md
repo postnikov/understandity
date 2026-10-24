@@ -47,6 +47,36 @@ node_modules/.bin/tsx engines/tts-mlx-qwen3/scripts/smoke.ts --run-local --outpu
 
 Dependencies were pinned from the working Python 3.11 environment on 2026-10-24. The first live process took 18.735 s; a second fresh process with warm OS/compiler caches took 2.033 s for the same 3.12 s Russian phrase. These are single Studio measurements; warm up before a demonstration. Whisper transcribed the complete synthesized sentence, including its negation; listening quality and a real child microphone were not evaluated.
 
+## Kokoro-82M (English, resident) — `kokoro_server.py`
+
+The demo speaks English through Kokoro and Russian through Qwen3: the app's `by-language` voice in
+`config/engines.json` routes `en → kokoro (af_heart)` and `ru → mlx-qwen3 (Aiden)`.
+
+- Same venv, same HTTP contract, its own port from config (`providers.tts.kokoro.endpoint`, 8791).
+- **Resident**: the model stays loaded after the first request. 82M parameters are cheap; a fresh process per reply
+  would cost seconds of imports. For the same reason the app treats it as a light engine: speaking does not evict Gemma.
+- Weights: `mlx-community/Kokoro-82M-bf16` at the pinned `revision` (config, voices included). Voices are loaded by file
+  path from the snapshot, never through the hub.
+- English G2P: `misaki` + spaCy `en_core_web_sm` (pinned wheel in `requirements.txt`) + espeak fallback. Installed
+  without misaki's `[en]` extra, which would pull torch. If `en_core_web_sm` were missing, misaki would try to download it
+  at runtime — health reports `down` instead.
+- Checked offline on Studio 24.10: synthesis under `sandbox-exec` with all network denied works.
+
+Download the weights once, while online:
+
+```sh
+sidecars/tts-mlx/.venv/bin/python -c "from huggingface_hub import snapshot_download; snapshot_download('mlx-community/Kokoro-82M-bf16', revision='a71e4d38b236d968966a2002c4c895dbd12b1c3c', allow_patterns=['config.json','kokoro-v1_0.safetensors','voices/*.safetensors','VOICES.md'])"
+```
+
+Run (dedicated tmux session, next to the Qwen sidecar):
+
+```sh
+sidecars/tts-mlx/.venv/bin/python sidecars/tts-mlx/kokoro_server.py
+```
+
+Studio, 24.10, same English tutor phrases, sidecar HTTP wall time to a complete WAV: Kokoro warm 84–300 ms for
+3–12 s of speech (first request after start ~1.1 s), Qwen3 2.2–4.0 s. Single runs, not p95.
+
 ## HTTP contract
 
 ### `GET /health` → 200
