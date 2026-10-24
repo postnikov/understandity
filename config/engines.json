@@ -122,6 +122,30 @@
           "beep"
         ]
       },
+      "kokoro": {
+        "enabled": true,
+        "locality": "local",
+        "label": "Kokoro 82M via MLX sidecar (English, resident)",
+        "endpoint": "http://127.0.0.1:8791",
+        "models": [
+          "mlx-community/Kokoro-82M-bf16"
+        ],
+        "voices": [
+          "af_heart",
+          "af_bella",
+          "bf_emma"
+        ],
+        "options": {
+          "revision": "a71e4d38b236d968966a2002c4c895dbd12b1c3c",
+          "sampleRateHz": 24000,
+          "cacheDir": "~/.cache/huggingface/hub",
+          "languages": [
+            "en"
+          ],
+          "speed": 1.0,
+          "timeoutMs": 60000
+        }
+      },
       "mlx-qwen3": {
         "enabled": true,
         "locality": "local",

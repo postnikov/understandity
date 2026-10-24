@@ -1,2 +1,9 @@
 mlx-audio==0.5.4
 soundfile==0.13.1
+# Kokoro English G2P, all offline at runtime (no extras: spacy-curated-transformers would pull torch)
+misaki==0.9.4
+spacy==3.8.16
+num2words==0.5.14
+phonemizer-fork==3.3.2
+espeakng-loader==0.2.4
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
