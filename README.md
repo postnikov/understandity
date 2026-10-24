@@ -1,6 +1,6 @@
 # Understandity
 
-An offline-first, open-source tutor for 12–14-year-olds.
+An offline-first, open-source tutor for 12–14-year-olds, meant to run at home on a parent's computer.
 
 Every lesson card starts with a "wow" question from school science or math. The kid guesses out loud, gets a short explanation of the cause, changes one thing, and then explains a new case by voice. The answer is transcribed on the computer, the kid confirms what was heard, and a local language model judges the explanation against an answer key an adult approved: it confirms a right cause, asks one follow-up question otherwise, and never gives the key away.
 
@@ -8,7 +8,7 @@ A local model also drafts the lessons. Models get facts wrong, so an adult revie
 
 > You can delegate thinking, but you cannot delegate understanding.
 
-Built at Hacktoberfest Hack Day Barcelona on 24.10.2026 by Max Postnikov with a team of AI coding agents. Licensed under Apache-2.0.
+Built at Hacktoberfest Hack Day Barcelona on 24.10.2026 by Max Postnikov with AI coding agents (see [How it was built](#how-it-was-built)). Licensed under Apache-2.0.
 
 ## How a card works
 
@@ -24,6 +24,32 @@ The kid picks a world (Fantasy or Anime in the demo courses, two more worlds in 
 Answering by voice: press the mic, talk for up to 30 seconds, press **Done**. The screen shows **I heard: …** with **Yes, that is it** and **Record again**, because a recognition slip is not the kid's mistake. Silence gives "No answer received", never "did not understand". The tutor's reply appears as text while the model writes it, then a local voice reads it out. The kid can also type a question under the card or press **Just explain**.
 
 For each turn the tutor gets the card's fact and conditions, the adult-approved key (with an instruction not to reveal it before the kid tries), the typical mistake and a clarifying question. It first judges the answer against the key by meaning: a right cause is confirmed out loud and followed by a new case; a bare prediction gets "why?"; a wrong cause gets a counterexample; "I don't know" gets a small hint. It answers in 2–4 short sentences with exactly one question, never states the key itself before the kid does, and never judges accent or wording. Only those guiding replies and **Just explain** count as hints; after two, it explains directly on a different example. It refuses to tutor a card an adult hasn't approved.
+
+## What expertise is inside, and where it comes from
+
+- **Teaching method.** Curiosity first: every card opens with a "wow" question. Then the kid's own world, and understanding over memorization: predict, find the cause, change one thing, explain a new case. On top sits Max Postnikov's rule that understanding can't be delegated: the kid explains out loud, and the tutor never gives the key away. The method comes from how Max teaches complex topics in his AI Anti-Magic course: start with curiosity, then check that understanding actually happened. The six-step learning cycle was drafted with an AI agent from these principles and approved by Max.
+- **Subject knowledge.** OpenStax textbooks (CC BY 4.0): University Physics Volume 1, Biology 2e, Prealgebra 2e. The short source notes in `content/sources/` were written by an AI agent from the cited sections. The model takes facts only from them, and an adult approved every card's fact → question → key before the demo.
+- **Tutoring rules.** Each card carries a typical mistake, a clarifying question and a rubric. The tutor judges the answer by meaning against the key, confirms a right cause, asks "why?" after a bare prediction, answers a wrong cause with a counterexample and gives a small hint after "I don't know"; after two hints it explains directly on a different example. It never grades accent, speed or wording, and a recognition slip never counts as the kid's mistake. The rules live in `apps/server/src/tutor-prompt.ts`.
+- **Why an adult checks the facts.** While planning, we had local models draft five school courses, and every one had mistakes in facts or answer keys. Turning on the models' "thinking" mode didn't fix it.
+
+## Before and after: the same model, without our part
+
+The same model (Gemma 4 12B), the same student answers, two setups. **A** is the Understandity tutor: its prompt, verdict line, hint rule and the adult-approved key. **B** is the same model with a plain prompt, "You are a helpful assistant. Help a school student (12–14 years old) with their question.", given what the kid sees on the card and the kid's answer, with no key, rubric or rules. Measured on 16 scripted answers: two cards (physics and biology), four answer types (right cause, bare prediction, wrong cause, "I don't know"), two runs each, on our Mac Studio.
+
+| | A: Understandity | B: same Gemma, plain prompt |
+|---|---|---|
+| Kid's answer judged right | 16 of 16 | 7 of 16 (6 wrong, 3 debatable) |
+| Cause given away before the kid found it (12 answers that weren't right yet) | 0 clear, 4 debatable | 12 of 12; a ready "summary for your teacher" in 13 of 16 replies |
+| Shape of the reply | one question at the end, 7–51 words | a lecture of 211–432 words, no question to the kid |
+| Markdown or LaTeX in a reply the voice reads out | 0 of 16 | 16 of 16 |
+| Physics mistakes in the explanation | 1 clear, 1 clumsy | 2 clear, 1 confused |
+| Time to a full reply, median | 0.58 s | 5.2 s |
+
+One pair, a bare prediction on the physics card, "The small piece will still sink.": A answers "The small piece will still sink. Why?". B answers "Your answer is **correct**!", explains density itself and adds a ready-made summary for the teacher.
+
+Where B is better: a kid who just wants the full answer gets it from B at once, with more detail; A holds it back on purpose. A's weak spot: on a wrong physics answer its counterexample was once physically wrong and once clumsy.
+
+Limits: the answers were written for the test, not given by children; text only, no voice; English only; one grader who knew which setup was which. B could answer up to 600 tokens and A up to 200; no B reply hit its limit. A prompt like "don't give the answer right away" would make B better, but that would already be our part.
 
 ## Why local
 
@@ -93,6 +119,18 @@ server    127.0.0.1:8787                 Hono on Node 22
 
 Cloud providers are `enabled: false` in the config, and the Offline profile refuses them even when enabled. Using one is explicit: switch to the Online profile, set `enabled: true`, put the key in the environment variable named by `secretEnv` (`GEMINI_API_KEY`, `ELEVENLABS_API_KEY`) and pick the provider on the Engines screen. For a stock ComfyUI, set `apiMode: native`, `secretEnv: null` and its endpoint in `config/engines.json`.
 
+## Models and their licenses
+
+| Model | Used for | License |
+|---|---|---|
+| Gemma 4 12B (Google DeepMind), run as `gemma4:12b-mlx` in Ollama | tutor, course drafts, optional speech-to-text | [Apache 2.0](https://ai.google.dev/gemma/apache_2) |
+| Whisper large-v3-turbo (OpenAI), run with whisper.cpp | speech-to-text | [MIT, see the model card](https://huggingface.co/openai/whisper-large-v3-turbo) |
+| Kokoro-82M, MLX build `mlx-community/Kokoro-82M-bf16` | English voice | [Apache 2.0, see the model card](https://huggingface.co/hexgrad/Kokoro-82M) |
+| Qwen3-TTS 12Hz 1.7B CustomVoice, MLX build `mlx-community/Qwen3-TTS-12Hz-1.7B-CustomVoice-8bit` | Russian voice | [Apache 2.0, see the model card](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice) |
+| Nano Banana Pro (Google), cloud | the 30 scene pictures, drawn in advance; not part of the runtime | proprietary, used under Google's terms |
+
+Optional engines that are off by default (`qwen3.8:27b-mlx`, ComfyUI with Z-Image Turbo, ElevenLabs, Gemini API) come with their own licenses and terms.
+
 ## The adult gate and the courses
 
 - The generator writes every card as `needs_review`. The student screen gets only approved cards (`GET /api/courses/:id/showable`); blocked cards never reach it.
@@ -117,7 +155,7 @@ Demo courses: English, five cards each, Fantasy and Anime worlds with a pre-made
 Default setup: a Mac with Apple Silicon, Node 22 or newer, Ollama 0.40.8 or newer with `gemma4:12b-mlx`, ffmpeg, `whisper-cli` with `~/.cache/whisper-cpp/ggml-large-v3-turbo.bin`, and Python 3.11 with uv for the voice sidecars (the Qwen3-TTS snapshot must already be in the Hugging Face cache; Kokoro is downloaded once with the command below). We run it on Macs with 64 GB of memory; the full set of model weights we use is about 51 GB.
 
 ```sh
-npm install
+npm ci   # installs exactly the versions pinned in package-lock.json
 
 # voice sidecars, once, while online
 uv venv --python 3.11 sidecars/tts-mlx/.venv
@@ -146,7 +184,7 @@ Open http://127.0.0.1:5173 (browsers allow the microphone on localhost) → pick
 npm run course:generate -- --concept "…" --source content/sources/<id>.md --lang en --out content/<id>.json [--cards 5] [--worlds fantasy,anime] [--model qwen3.8:27b-mlx] [--unload]
 ```
 
-- The source note is Markdown with front matter (`source`, `url`, `subject`); its body is the adult-checked subject notes. The model takes facts only from it, and every card links back to the source.
+- The source note is Markdown with front matter (`source`, `url`, `subject`); its body holds the subject notes the course is built from, and an adult should check them. The model takes facts only from the note, and every card links back to the source.
 - Five cards took 40–45 seconds with Gemma 4 12B on our Mac Studio. Every card comes out as `needs_review`: open **Adult check** and approve, fix or block each one.
 - Heavy models run one at a time: the CLI refuses to start while another model is loaded in Ollama (check with `ollama ps`).
 - `--out` overwrites an existing file without asking. Use a new file name.
@@ -171,7 +209,7 @@ Single runs on our Mac Studio with synthetic adult speech. Not a child's voice, 
 - Qwen3-TTS via MLX, now the Russian voice: 18.7 s for the first process in a fresh environment, 2.0 s for the next fresh process, for 3.12 s of speech. Whisper read the generated phrase back correctly. Hence the warm-up in `npm run demo`.
 - macOS `say`: 1.0 s.
 - Course generation with Gemma 4 12B, five English cards: 40.2–44.1 s per course; all three passed validation on the first attempt.
-- Tutor verdicts with Gemma 4 12B, text only: 16 of 16 matched the expected verdict on two cards (physics and biology), four answer types (right cause, bare prediction, wrong cause, "I don't know"), two runs each. The answers were written for the test, not spoken by children.
+- Tutor replies with Gemma 4 12B: 16 of 16 answers judged right, median 0.58 s to a full reply; the comparison with the same model without our part is in [Before and after](#before-and-after-the-same-model-without-our-part).
 
 ## Not done yet
 
@@ -194,20 +232,34 @@ As of 24.10.2026, during the hackathon:
 3. Errors only as `EngineError` with a code from the contract. Silence in speech-to-text is `no_speech`. No hidden fallbacks to the cloud.
 4. One line in `apps/server/src/providers.ts`, `enabled: true` in the config, and a case in `packages/contracts/test`.
 
+## How it was built
+
+**Max Postnikov** brought the idea and the four principles behind it: curiosity first, the kid's own world, understanding over memorization, and "you can delegate thinking, but you cannot delegate understanding". He made the product decisions during the day and acted as the adult reviewer, approving the cards of the three demo courses before a child could see them. He wrote no code.
+
+AI tools, credited as the hackathon rules ask:
+
+- **Claude Code** and **Codex** (AI coding agents) wrote the code, the tests and these docs on 24.10.2026, from scratch. They worked in parallel modules held together by one shared contracts package.
+- **Gemma 4 12B** drafted the three demo courses from the source notes; an adult reviewed every card.
+- **Nano Banana Pro** drew the 30 scene pictures in advance (prompts in `content/media/prompts.json`).
+
+## Libraries and tools
+
+npm packages, exact versions pinned in `package-lock.json`:
+
+- runtime: `hono`, `@hono/node-server`, `zod`, `@fontsource/jetbrains-mono`;
+- build and tests: `vite`, `typescript`, `tsx`, `vitest`, `concurrently`, `@types/node`.
+
+Python packages for the voice sidecars, exact versions pinned in `sidecars/tts-mlx/requirements.lock`: `mlx-audio` (with `mlx`), `soundfile`, `misaki`, `spacy` with the `en_core_web_sm` model, `num2words`, `phonemizer-fork`, `espeakng-loader`, and `huggingface-hub` for the one-time Kokoro download.
+
+Tools: Node.js 22, Python 3.11, uv, Ollama, whisper.cpp (`whisper-cli`), ffmpeg; ComfyUI only for the optional live image engine.
+
 ## License
 
-Apache License 2.0, see [LICENSE](LICENSE). Model weights are not part of this repository and come with their own licenses.
+Apache License 2.0, see [LICENSE](LICENSE). Model weights are not part of this repository and come with their own licenses (see [Models and their licenses](#models-and-their-licenses)).
 
 ## Credits
 
-- **Gemma 4** (Google DeepMind, Apache 2.0): the tutor, course drafts, optional speech-to-text; run with **Ollama**.
-- **Whisper large-v3-turbo** (OpenAI): speech-to-text; run with **whisper.cpp**.
-- **Kokoro-82M** (Apache 2.0): the English voice; run with **MLX**, with **misaki** and spaCy `en_core_web_sm` for pronunciation.
-- **Qwen3-TTS**: the Russian voice; run with **MLX** and **mlx-audio**.
-- **Nano Banana Pro** (Google, cloud): the 30 scene pictures, drawn in advance; no image model runs at lesson time.
-- **ffmpeg**: audio conversion.
 - **OpenStax**, CC BY 4.0: the course sources come from [University Physics Volume 1](https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure) (14.1, 14.4), [Biology 2e](https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis) (8.1, 8.3) and [Prealgebra 2e](https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids) (9.4). The notes in `content/sources/` are short summaries written for this project, with links to these sections.
-- **JetBrains Mono** (SIL Open Font License 1.1).
-- Built with TypeScript, Hono, Vite, zod, Vitest and tsx.
+- **JetBrains Mono** (SIL Open Font License 1.1), bundled through `@fontsource/jetbrains-mono`.
 
 Author: Max Postnikov.
