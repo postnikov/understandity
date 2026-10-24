@@ -77,6 +77,8 @@ def clean_env(runtime, policy):
         'TOKENIZERS_PARALLELISM': 'false', 'NO_PROXY': '127.0.0.1,localhost,::1',
         'UNDERSTANDITY_PORT': str(policy['serverPort']), 'UNDERSTANDITY_WEB_PORT': str(policy['webPort']),
         'UNDERSTANDITY_ALLOW_DRAFTS': '0', 'VITE_ALLOW_DRAFTS': '0',
+        # No live reload in the demo: Syncthing rewrites the working tree and must not reload the page under Max mid-test.
+        'UNDERSTANDITY_WEB_HMR': '0',
     })
     return env
 

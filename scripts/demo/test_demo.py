@@ -126,6 +126,7 @@ class PolicyTests(unittest.TestCase):
             self.assertNotIn('HTTPS_PROXY', env)
             self.assertEqual(env['HF_HUB_OFFLINE'], '1')
             self.assertEqual(env['UNDERSTANDITY_ALLOW_DRAFTS'], '0')
+            self.assertEqual(env['UNDERSTANDITY_WEB_HMR'], '0')
 
     def test_url_policy_rejects_credentials_and_external_hosts(self):
         for url in ('http://127.0.0.1:123', 'http://localhost:123', 'http://[::1]:123'):
