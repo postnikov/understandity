@@ -1,5 +1,6 @@
 /** UI strings. Course content keeps its own language; this only translates the chrome around it. */
 const en = {
+  tagline: 'A little wonder. A lot of understanding.',
   nav: { home: 'Courses', review: 'Adult check', engines: 'Engines' },
   offline: 'Offline',
   online: 'Online',
@@ -146,6 +147,7 @@ const en = {
 export type Dict = typeof en;
 
 const ru: Dict = {
+  tagline: 'Немного чуда. Много понимания.',
   nav: { home: 'Курсы', review: 'Проверка', engines: 'Движки' },
   offline: 'Офлайн',
   online: 'Онлайн',
