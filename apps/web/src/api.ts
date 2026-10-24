@@ -12,6 +12,7 @@ import type {
 } from '@understandity/contracts';
 import { isLangEnabled } from './app.js';
 import { mockCourses } from './mock.js';
+import { isMockCourseId, mockGenerated, mockGeneratedCourse } from './generate.js';
 
 export interface KeyStatus {
   id: string;
@@ -129,10 +130,13 @@ export const api = {
     // Only courses in an enabled language are offered (UI_LANGS): student choice and the adult gate alike.
     if (isMock()) return (items as CourseSummary[]).filter((c) => isLangEnabled(c.language));
     const full = await Promise.all(items.map((c) => api.course(c.id)));
-    return full.filter((c) => isLangEnabled(c.language)).map(summarize);
+    // Courses made on request by the generator mock (until mod/gen lands) live in this tab only.
+    return [...full, ...mockGenerated()].filter((c) => isLangEnabled(c.language)).map(summarize);
   },
-  course: (id: string) =>
-    realOrMock(
+  course: (id: string): Promise<Course> =>
+    isMockCourseId(id)
+      ? Promise.resolve(mockGeneratedCourse(id)).then((c) => c ?? Promise.reject(new ApiFailure('not_found', 'This mock course lived in another tab.', 404)))
+      : realOrMock(
       () => fetch(`/api/courses/${encodeURIComponent(id)}`),
       () => mockCourses.get(id),
     ),

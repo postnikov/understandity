@@ -15,6 +15,7 @@ import type { UiLang } from '../i18n.js';
 import type { View } from '../main.js';
 import { SILENCE_PEAK, VoiceRecorder } from '../recorder.js';
 import { sceneArt } from '../scenes.js';
+import { isOnRequest } from '../generate.js';
 
 /**
  * Learning cycle of one card: hook → predict (voice) → explain → act (voice) → transfer (voice) → feedback.
@@ -323,7 +324,7 @@ function html(): string {
       <section class="lesson">
         <div class="learn-top">
           <div class="eyebrow">${two(s.index + 1)} / ${two(s.cards.length)} · ${esc(c.title)}</div>
-          ${draft ? `<span class="chip chip--amber">${d.draftMark}</span>` : ''}
+          ${isOnRequest(s.course) ? `<span class="chip chip--amber ai-mark">${d.make.aiMark}</span>` : draft ? `<span class="chip chip--amber">${d.draftMark}</span>` : ''}
           <div class="world-toggle" role="group">${worlds
             .map((w) => `<button data-world="${esc(w)}" class="${w === sceneOf(c).world ? 'active' : ''}" aria-pressed="${w === sceneOf(c).world}">${esc(worldLabel(w))}</button>`)
             .join('')}</div>
@@ -608,7 +609,8 @@ export const learnView: View = {
       // Only when more than one UI language is enabled (UI_LANGS); English-only build keeps the chrome in English.
       const cl = course.language.slice(0, 2);
       if (UI_LANGS.length > 1 && isLangEnabled(cl) && cl !== app.lang) setLang(cl as UiLang);
-      s.cards = course.concepts.flatMap((k) => k.cards).filter((c) => isShowable(c, { allowDrafts: app.allowDrafts }));
+      // Courses made on request open right away as drafts (contract); prepared courses still need an adult's approval.
+      s.cards = course.concepts.flatMap((k) => k.cards).filter((c) => isShowable(c, { allowDrafts: app.allowDrafts || isOnRequest(course) }));
       if (s.index >= s.cards.length) s.index = 0;
       s.visited.add(s.index);
       const c = card();
