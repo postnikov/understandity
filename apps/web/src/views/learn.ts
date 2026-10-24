@@ -315,18 +315,18 @@ function html(): string {
   const c = card();
   if (!c || s.allDone)
     return `<main class="page summary"><div class="eyebrow">${esc(s.course.title)}</div><h1>${c ? d.ocean.allDoneTitle : d.home.notReady}</h1>
-      <div class="home-actions"><a class="btn btn--xl" href="#/">${d.ocean.back}</a><a class="text-btn" href="#/review/${encodeURIComponent(s.courseId)}">${d.home.check}</a></div></main>`;
+      <div class="home-actions"><a class="btn btn--xl" href="#/">${d.ocean.back}</a>${app.gateOff ? '' : `<a class="text-btn" href="#/review/${encodeURIComponent(s.courseId)}">${d.home.check}</a>`}</div></main>`;
   const q = heading(c);
   const p = panel(c);
   const worlds = c.worlds.map((w) => w.world);
-  const draft = c.review.state !== 'approved';
+  const draft = !app.gateOff && c.review.state !== 'approved';
   return `<main class="page learn-page" data-voice="${s.voice}">
     <div class="learn-layout">
       ${sidebar()}
       <section class="lesson">
         <div class="learn-top">
           <div class="eyebrow">${two(s.index + 1)} / ${two(s.cards.length)} · ${esc(c.title)}</div>
-          ${isOnRequest(s.course) ? `<span class="chip chip--amber ai-mark">${d.make.aiMark}</span>` : draft ? `<span class="chip chip--amber">${d.draftMark}</span>` : ''}
+          ${isOnRequest(s.course) && !app.gateOff ? `<span class="chip chip--amber ai-mark">${d.make.aiMark}</span>` : draft ? `<span class="chip chip--amber">${d.draftMark}</span>` : ''}
           <div class="world-toggle" role="group">${worlds
             .map((w) => `<button data-world="${esc(w)}" class="${w === sceneOf(c).world ? 'active' : ''}" aria-pressed="${w === sceneOf(c).world}">${esc(worldLabel(w))}</button>`)
             .join('')}</div>
@@ -615,7 +615,7 @@ export const learnView: View = {
       const cl = course.language.slice(0, 2);
       if (UI_LANGS.length > 1 && isLangEnabled(cl) && cl !== app.lang) setLang(cl as UiLang);
       // Courses made on request open right away as drafts (contract); prepared courses still need an adult's approval.
-      s.cards = course.concepts.flatMap((k) => k.cards).filter((c) => isShowable(c, { allowDrafts: app.allowDrafts || isOnRequest(course) }));
+      s.cards = course.concepts.flatMap((k) => k.cards).filter((c) => app.gateOff || isShowable(c, { allowDrafts: app.allowDrafts || isOnRequest(course) }));
       if (s.index >= s.cards.length) s.index = 0;
       s.visited.add(s.index);
       const c = card();

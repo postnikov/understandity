@@ -30,6 +30,8 @@ export interface TutorMeta {
 export interface TutorOptions {
   /** Same rule as the child screen: unreviewed cards are not tutored unless drafts are explicitly allowed. */
   allowDrafts: boolean;
+  /** Adult check off (config/features.json): the tutor works with every card, whatever its review state. */
+  adultCheck?: boolean;
   /** Called with every text delta while the engine streams. */
   onDelta?: (text: string) => void;
   /** Called once with what the dialog log needs and the reply does not carry. */
@@ -121,7 +123,7 @@ export async function tutorTurn(
   const found = findCard(course, req.cardId);
   if (!found) throw new EngineError('bad_input', `card "${req.cardId}" not found in "${req.courseId}"`);
   const { card } = found;
-  if (!isShowable(card, { allowDrafts: opts.allowDrafts || showsDrafts(course) })) {
+  if (opts.adultCheck !== false && !isShowable(card, { allowDrafts: opts.allowDrafts || showsDrafts(course) })) {
     throw new EngineError('bad_input', `card "${card.id}" is not approved by an adult yet`);
   }
 

@@ -19,7 +19,8 @@ const MIC = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 
 const cardsOf = (c: Course) => c.concepts.flatMap((k) => k.cards);
 /** Courses made on request are shown right away as drafts (contract, word of Max); prepared courses need approval. */
-const showableOf = (c: Course) => cardsOf(c).filter((card) => isShowable(card, { allowDrafts: app.allowDrafts || isOnRequest(c) }));
+const showableOf = (c: Course) =>
+  app.gateOff ? cardsOf(c) : cardsOf(c).filter((card) => isShowable(card, { allowDrafts: app.allowDrafts || isOnRequest(c) }));
 
 /** Course title with the last word in the accent colour, as in the prototype hero. */
 function heroTitle(title: string): string {
@@ -47,7 +48,7 @@ function hero(course: Course): string {
   return `<section class="home-hero">
     <div class="home-copy">
       <div class="eyebrow">${d.home.adventure} ${esc(subjectLabel(course.subject))}</div>
-      ${isOnRequest(course) ? `<span class="chip chip--amber ai-mark">${d.make.aiMark}</span>` : ''}
+      ${isOnRequest(course) && !app.gateOff ? `<span class="chip chip--amber ai-mark">${d.make.aiMark}</span>` : ''}
       <h1>${heroTitle(course.title)}</h1>
       <p class="lead">${esc(first?.hook.question ?? course.outcome)}</p>
       <div class="home-actions">
@@ -58,7 +59,7 @@ function hero(course: Course): string {
         }
       </div>
       <p class="home-meta">${all.length} ${d.home.discoveries} <i>·</i> ${d.home.ages} ${course.ageRange[0]}–${course.ageRange[1]} <i>·</i> ${d.home.byTalking}
-        <i>·</i> <a href="#/review/${encodeURIComponent(course.id)}">${d.home.check}</a></p>
+        ${app.gateOff ? '' : `<i>·</i> <a href="#/review/${encodeURIComponent(course.id)}">${d.home.check}</a>`}</p>
     </div>
     <div class="hero-art">${art.html}
       <span class="art-stamp">${d.home.worth}</span>
@@ -110,7 +111,7 @@ export const homeView: View = {
           ? `<section class="module-map">
         <div class="section-head"><span class="label">${d.home.yourDiscoveries}</span><span class="dim">${d.home.nextLeads}</span></div>
         <div class="card-grid">${cardsOf(course)
-          .filter((c) => c.review.state !== 'blocked')
+          .filter((c) => app.gateOff || c.review.state !== 'blocked')
           .map((c, i) => discovery(course, c, i, showIds.indexOf(c.id)))
           .join('')}</div>
         <p class="mic-line">${MIC}<span>${d.home.micLine}</span></p>

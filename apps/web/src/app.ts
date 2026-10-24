@@ -8,6 +8,13 @@ import { dict, type Dict, type UiLang } from './i18n.js';
  */
 export const UI_LANGS: readonly UiLang[] = ['en'];
 
+/**
+ * Adult check (review gate) for this build. Off today (Max, 24.10): no Adult check screen, no "not checked by an
+ * adult" marks, every course opens for the student whatever its review state. The review code stays; set to true
+ * to bring it back (and `adultCheck` in config/features.json for the server).
+ */
+export const ADULT_CHECK = false;
+
 /** Longest spoken answer, seconds (Max, 24.10: up to 60). A card may allow more, never less. */
 export const ANSWER_LIMIT_SEC = 60;
 export const answerLimitSec = (cardMaxSec: number | undefined) => Math.max(cardMaxSec ?? 0, ANSWER_LIMIT_SEC);
@@ -22,6 +29,10 @@ export const app = {
   engines: null as EnginesResponse | null,
   /** Demo opt-in: show `draft`/`needs_review` cards to the student with a visible mark. Blocked never. */
   allowDrafts: import.meta.env.VITE_ALLOW_DRAFTS === '1',
+  /** With the adult check off, every card is open to the student, whatever its review state. */
+  get gateOff() {
+    return !ADULT_CHECK;
+  },
 };
 
 export const t = (): Dict => dict(app.lang);

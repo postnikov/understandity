@@ -12,3 +12,13 @@ export function loadEnginesConfig(path = process.env.UNDERSTANDITY_ENGINES ?? re
 export function loadCourse(path = process.env.UNDERSTANDITY_COURSE ?? resolve(REPO_ROOT, 'content/demo-course.json')): Course {
   return CourseSchema.parse(JSON.parse(readFileSync(path, 'utf8')));
 }
+
+/** Build features from `config/features.json` (not env): today only the adult check. Missing file = gate on. */
+export function loadFeatures(path = resolve(REPO_ROOT, 'config/features.json')): { adultCheck: boolean } {
+  try {
+    const raw = JSON.parse(readFileSync(path, 'utf8')) as { adultCheck?: unknown };
+    return { adultCheck: raw.adultCheck !== false };
+  } catch {
+    return { adultCheck: true };
+  }
+}

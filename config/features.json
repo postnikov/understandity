@@ -1,0 +1,4 @@
+{
+  "adultCheck": false,
+  "note": "Adult check (review gate) for this build. Off (Max, 24.10): every course opens for the student and the tutor works with every card, whatever its review state. The review code and API stay; set true to bring the gate back (and ADULT_CHECK in apps/web/src/app.ts)."
+}

@@ -1,7 +1,7 @@
 import { serve } from '@hono/node-server';
 import { createDispatcher } from '@understandity/dispatcher';
 import { createApp } from './app.js';
-import { REPO_ROOT, loadCourse, loadEnginesConfig } from './config.js';
+import { REPO_ROOT, loadCourse, loadEnginesConfig, loadFeatures } from './config.js';
 import { KeyStore } from './keys.js';
 import { DialogLog } from './dialog-log.js';
 import { resolve } from 'node:path';
@@ -18,6 +18,7 @@ const keys = new KeyStore(process.env.UNDERSTANDITY_KEYS_FILE ?? resolve(REPO_RO
 const hub = new EngineHub(loadEnginesConfig(), PROVIDERS, createDispatcher(), (name) => keys.isSet(name));
 const app = createApp({ hub, course: loadCourse(), allowDrafts: process.env.UNDERSTANDITY_ALLOW_DRAFTS === '1',
   keys,
+  adultCheck: loadFeatures().adultCheck,
   dialogLog: new DialogLog(process.env.UNDERSTANDITY_LOG_DIR ?? resolve(REPO_ROOT, 'data/logs'), process.env.UNDERSTANDITY_DIALOG_LOG !== '0'),
 });
 

@@ -1,6 +1,6 @@
 import './styles.css';
 import { api, isMock } from './api.js';
-import { app, esc, setLang, setRerender, t, UI_LANGS } from './app.js';
+import { ADULT_CHECK, app, esc, setLang, setRerender, t, UI_LANGS } from './app.js';
 import type { UiLang } from './i18n.js';
 import { homeView } from './views/home.js';
 import { learnView } from './views/learn.js';
@@ -22,7 +22,8 @@ export interface View {
   leave?(): void;
 }
 
-const views: Record<string, View> = { '': homeView, learn: learnView, review: reviewView, engines: enginesView };
+// The review screen stays in the code; with the adult check off its route falls back to the course list.
+const views: Record<string, View> = { '': homeView, learn: learnView, ...(ADULT_CHECK ? { review: reviewView } : {}), engines: enginesView };
 const root = document.querySelector<HTMLDivElement>('#app')!;
 let current: View = homeView;
 let routeName = '';
@@ -40,7 +41,7 @@ function bar(): string {
   return `<header class="bar"><div class="bar__in">
     <a class="brand" href="#/" aria-label="Understandity"><img src="/brand/lockup.svg" alt="Understandity"></a>
     <span class="tagline">${d.tagline}</span>
-    <nav class="nav">${link('', d.nav.home)}${link('review', d.nav.review)}${link('engines', d.nav.engines)}</nav>
+    <nav class="nav">${link('', d.nav.home)}${ADULT_CHECK ? link('review', d.nav.review) : ''}${link('engines', d.nav.engines)}</nav>
     <span class="bar__sp"></span>
     ${isMock() ? `<span class="chip chip--amber" title="${esc(d.mockHint)}">${d.mock}</span>` : ''}
     ${profile ? `<span class="chip ${profile === 'offline' ? 'chip--ok' : 'chip--amber'}"><span class="dot"></span>${profile === 'offline' ? d.offline : d.online}</span>` : ''}

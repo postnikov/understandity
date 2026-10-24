@@ -51,9 +51,11 @@ export interface AppDeps {
   keys?: KeyStore;
   /** Local JSONL log of every tutor turn and spoken reply (data/logs). */
   dialogLog?: DialogLog;
+  /** Review gate for students and the tutor; `config/features.json → adultCheck`. Default on. */
+  adultCheck?: boolean;
 }
 
-export function createApp({ hub, course, allowDrafts, contentDir = defaultContentDir(), keys, dialogLog }: AppDeps) {
+export function createApp({ hub, course, allowDrafts, contentDir = defaultContentDir(), keys, dialogLog, adultCheck = true }: AppDeps) {
   const root = new Hono();
   const app = new Hono();
   const lookup: CourseLookup = async (id) => (await scanCourses(contentDir)).get(id)?.course ?? (id === course.id ? course : null);
@@ -109,7 +111,7 @@ export function createApp({ hub, course, allowDrafts, contentDir = defaultConten
   app.get('/course', (c) => {
     const visible = {
       ...course,
-      concepts: course.concepts.map((k) => ({ ...k, cards: k.cards.filter((card) => isShowable(card, { allowDrafts })) })),
+      concepts: course.concepts.map((k) => ({ ...k, cards: k.cards.filter((card) => !adultCheck || isShowable(card, { allowDrafts })) })),
     };
     return c.json(visible);
   });
@@ -150,7 +152,7 @@ export function createApp({ hub, course, allowDrafts, contentDir = defaultConten
       });
     };
     try {
-      const reply = await tutorTurn(hub, lookup, body as never, { allowDrafts, ...extra, onMeta: (m) => (meta = m) });
+      const reply = await tutorTurn(hub, lookup, body as never, { allowDrafts, adultCheck, ...extra, onMeta: (m) => (meta = m) });
       log(reply, null);
       return { ...reply, turnId };
     } catch (err) {
