@@ -63,13 +63,13 @@
               "world": "space",
               "scene": "An astronaut in a greenhouse module watches two identical plants; one is in a chamber with carbon dioxide and water, and the other is in a chamber without carbon dioxide.",
               "illustration": "Two identical plants in separate glass chambers with the same water: the one with normal air is big and bushy, the one in air without carbon dioxide stays small.",
-              "image": null
+              "image": "/media/light-plant-growth/c1-the-invisible-builder-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A hacker monitors two bio-engineered plants in a neon-lit lab, one receiving carbon dioxide and water and the other receiving no carbon dioxide.",
               "illustration": "Two identical plants in separate glass containers with the same water: the one with normal air is big and bushy, the one in air without carbon dioxide stays small.",
-              "image": null
+              "image": "/media/light-plant-growth/c1-the-invisible-builder-cyberpunk.png"
             }
           ],
           "question": {
@@ -172,13 +172,13 @@
               "world": "space",
               "scene": "A scientist on a space station observes two plants with the same water and air, one under a high-intensity grow lamp and the other in a dark storage locker.",
               "illustration": "Two identical plants, one under a bright light and the other in total darkness.",
-              "image": null
+              "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A robot technician places two plants in a neon-lit room, one under a bright grow lamp and the other in a dark corner.",
               "illustration": "Two identical plants, one illuminated by a bright light and the other in total darkness.",
-              "image": null
+              "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-cyberpunk.png"
             }
           ],
           "question": {
@@ -281,13 +281,13 @@
               "world": "space",
               "scene": "An explorer places two sealed glass jars containing a plant and water in a station; one is placed in the light and the other in the dark.",
               "illustration": "Two sealed glass jars, each with a plant and water, one in a bright light and the other in the dark.",
-              "image": null
+              "image": "/media/light-plant-growth/c3-the-sugar-factory-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A street-doc places two sealed glass jars with a plant and water in a laboratory, one under a neon light and the other in a dark compartment.",
               "illustration": "Two sealed glass jars, each with a plant and water, one in a bright light and the other in the dark.",
-              "image": null
+              "image": "/media/light-plant-growth/c3-the-sugar-factory-cyberpunk.png"
             }
           ],
           "question": {
@@ -388,13 +388,13 @@
               "world": "space",
               "scene": "A pilot observes a plant that sat in bright light all day and now sits in a dark cabin during the night cycle.",
               "illustration": "A plant sitting in a dark room after being in bright light all day.",
-              "image": null
+              "image": "/media/light-plant-growth/c4-the-night-shift-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A drone operator watches a plant that was in a bright light-chamber all day and is now in a dark storage unit at night.",
               "illustration": "A plant sitting in a dark room after being in bright light all day.",
-              "image": null
+              "image": "/media/light-plant-growth/c4-the-night-shift-cyberpunk.png"
             }
           ],
           "question": {
@@ -494,13 +494,13 @@
               "world": "space",
               "scene": "An explorer compares a large potato and a tiny seed in a dark storage locker on a spaceship.",
               "illustration": "A large potato and a tiny seed sitting side-by-side in a dark cupboard.",
-              "image": null
+              "image": "/media/light-plant-growth/c5-the-survival-secret-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A hacker compares a large potato and a tiny seed inside a dark, high-tech storage crate.",
               "illustration": "A large potato and a tiny seed sitting side-by-side in a dark cupboard.",
-              "image": null
+              "image": "/media/light-plant-growth/c5-the-survival-secret-cyberpunk.png"
             }
           ],
           "question": {
