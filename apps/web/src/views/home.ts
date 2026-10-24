@@ -1,53 +1,65 @@
-import { isShowable, type Course } from '@understandity/contracts';
+import { isShowable, type Card, type Course } from '@understandity/contracts';
 import { api, isMock, type CourseSummary } from '../api.js';
-import { app, errorText, esc, rerender, setWorld, t, worldLabel } from '../app.js';
+import { app, errorText, esc, rerender, t } from '../app.js';
 import type { View } from '../main.js';
+import { sceneArt } from '../scenes.js';
 
-/** Home: pick your world once, then a course. */
+/** Home (Ocean lab): one big question per course, its scene, and the path of discoveries (cards). */
 const s = {
   loading: true,
   error: null as string | null,
   courses: [] as CourseSummary[],
   full: new Map<string, Course>(),
+  selected: localStorage.getItem('understandity.course') ?? '',
 };
 
-function worlds(): string[] {
-  const set = new Set<string>();
-  for (const c of s.full.values()) for (const k of c.concepts) for (const card of k.cards) for (const w of card.worlds) set.add(w.world);
-  return [...set];
+const MIC = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true"><rect x="9" y="2" width="6" height="13"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8"/></svg>`;
+
+const cardsOf = (c: Course) => c.concepts.flatMap((k) => k.cards);
+const showableOf = (c: Course) => cardsOf(c).filter((card) => isShowable(card, { allowDrafts: app.allowDrafts }));
+
+/** Course title with the last word in the accent colour, as in the prototype hero. */
+function heroTitle(title: string): string {
+  const m = /^(.*?)(\S+)$/.exec(title.trim());
+  return m ? `${esc(m[1])}<em>${esc(m[2])}</em>` : esc(title);
 }
 
-function courseCard(c: CourseSummary): string {
+function discovery(course: Course, card: Card, i: number, learnIndex: number): string {
+  const open = learnIndex >= 0;
+  const art = sceneArt({ course, card, index: i, world: app.world, labels: false, fit: 'meet' });
+  const n = String(i + 1).padStart(2, '0');
+  const inner = `<div class="map-art">${art.html}</div><div class="map-body"><span class="n">${n}</span><span>${esc(card.title)}</span></div>`;
+  return open
+    ? `<a class="map-card" href="#/learn/${encodeURIComponent(course.id)}/${learnIndex}">${inner}</a>`
+    : `<div class="map-card locked" title="${esc(t().home.waiting)}">${inner}<span class="lock">${esc(t().home.waiting)}</span></div>`;
+}
+
+function hero(course: Course): string {
   const d = t();
-  const full = s.full.get(c.id);
-  const counts = c.cards ?? {};
-  const total = counts.total ?? 0;
-  const showable = full ? full.concepts.flatMap((k) => k.cards).filter((card) => isShowable(card, { allowDrafts: app.allowDrafts })).length : total;
-  const approved = counts.approved ?? 0;
-  const pending = (counts.needs_review ?? 0) + (counts.draft ?? 0);
-  const blocked = counts.blocked ?? 0;
-  const seg = (n: number, color: string) => (total && n ? `<span style="width:${(100 * n) / total}%;background:${color}"></span>` : '');
-  return `<article class="course">
-    <div class="meta">
-      <span class="chip">${esc(c.subject)}</span>
-      <span class="chip">${esc(c.language.toUpperCase())}</span>
-      <span class="chip">${d.home.ages} ${c.ageRange[0]}–${c.ageRange[1]}</span>
+  const showable = showableOf(course);
+  const first = showable[0] ?? cardsOf(course)[0] ?? null;
+  const art = sceneArt({ course, card: first, index: 0, world: app.world, labels: course.language.startsWith('en') });
+  const all = cardsOf(course);
+  return `<section class="home-hero">
+    <div class="home-copy">
+      <div class="eyebrow">${d.home.adventure} ${esc(course.subject)}</div>
+      <h1>${heroTitle(course.title)}</h1>
+      <p class="lead">${esc(course.outcome)}</p>
+      <div class="home-actions">
+        ${
+          showable.length
+            ? `<a class="btn btn--xl" href="#/learn/${encodeURIComponent(course.id)}">${d.home.go} <span aria-hidden="true">→</span></a><span class="dim">${d.home.curiosity}</span>`
+            : `<p class="alert"><b>!</b><span>${d.home.notReady}</span></p>`
+        }
+      </div>
+      <p class="home-meta">${all.length} ${d.home.discoveries} <i>·</i> ${d.home.ages} ${course.ageRange[0]}–${course.ageRange[1]} <i>·</i> ${d.home.byTalking}
+        <i>·</i> <a href="#/review/${encodeURIComponent(course.id)}">${d.home.check}</a></p>
     </div>
-    <h3>${esc(c.title)}</h3>
-    <p class="outcome">${esc(c.outcome)}</p>
-    <div class="bar-count" aria-hidden="true">${seg(approved, 'var(--ok)')}${seg(pending, 'var(--amber)')}${seg(blocked, 'var(--danger)')}</div>
-    <div class="meta">
-      ${approved ? `<span class="chip chip--ok">${approved} ${d.review.state.approved}</span>` : ''}
-      ${pending ? `<span class="chip chip--amber">${pending} ${d.review.state.needs_review}</span>` : ''}
-      ${blocked ? `<span class="chip chip--danger">${blocked} ${d.review.state.blocked}</span>` : ''}
+    <div class="hero-art">${art.html}
+      <span class="art-stamp">${d.home.worth}</span>
+      ${first ? `<div class="art-caption"><span>${esc(first.title)}</span></div>` : ''}
     </div>
-    ${!approved && pending && app.allowDrafts ? `<p class="faint" style="font-size:12px">${d.home.draftsShown}</p>` : ''}
-    ${!showable ? `<p class="alert"><b>!</b><span>${d.home.notReady}</span></p>` : ''}
-    <div class="actions">
-      ${showable ? `<a class="btn" href="#/learn/${encodeURIComponent(c.id)}">${d.home.start} →</a>` : ''}
-      <a class="btn btn--ghost" href="#/review/${encodeURIComponent(c.id)}">${d.home.check}</a>
-    </div>
-  </article>`;
+  </section>`;
 }
 
 export const homeView: View = {
@@ -56,11 +68,13 @@ export const homeView: View = {
     s.error = null;
     try {
       s.courses = await api.courses();
-      rerender();
       const full = await Promise.all(s.courses.map((c) => api.course(c.id).catch(() => null)));
       full.forEach((c) => c && s.full.set(c.id, c));
-      const ws = worlds();
-      if (ws.length && !ws.includes(app.world)) setWorld(ws[0]!);
+      if (!s.courses.some((c) => c.id === s.selected)) {
+        // Default: the first course a student can actually open.
+        const open = s.courses.find((c) => s.full.get(c.id) && showableOf(s.full.get(c.id)!).length);
+        s.selected = (open ?? s.courses[0])?.id ?? '';
+      }
     } catch (err) {
       s.error = errorText(err);
     }
@@ -68,36 +82,40 @@ export const homeView: View = {
   },
   html() {
     const d = t();
-    const ws = worlds();
-    return `<main class="page">
-      <section class="hero">
-        <div>
-          <div class="label">${d.home.kicker}</div>
-          <h1 style="margin-top:var(--s-3)">${d.home.title}</h1>
-          <p class="lead">${esc(d.home.lead)}</p>
-        </div>
-        <blockquote class="mantra">${esc(d.home.mantra)}<b>${esc(d.home.mantraEnd)}</b></blockquote>
-      </section>
+    if (s.error) return `<main class="page"><p class="alert alert--err"><b>××</b><span>${esc(s.error)}</span></p></main>`;
+    if (s.loading && !s.courses.length) return `<main class="page"><p class="dim">${d.loading}</p></main>`;
+    if (!s.courses.length) return `<main class="page"><p class="dim">${d.home.empty}</p></main>`;
+    const course = s.full.get(s.selected) ?? null;
+    const showIds = course ? showableOf(course).map((c) => c.id) : [];
+    return `<main class="page home">
       ${
-        ws.length
-          ? `<div class="sec-head"><h2>${d.home.world}</h2><span class="sp"></span><span class="dim" style="font-size:13px">${esc(d.home.worldHint)}</span></div>
-      <div class="worlds">${ws
-        .map((w) => `<button class="world-btn ${w === app.world ? 'on' : ''}" data-world="${esc(w)}" aria-pressed="${w === app.world}">${esc(worldLabel(w))}</button>`)
-        .join('')}</div>`
+        s.courses.length > 1
+          ? `<nav class="course-tabs" aria-label="${esc(d.home.pick)}"><span class="label">${d.home.pick}</span>${s.courses
+              .map((c) => `<button data-course="${esc(c.id)}" class="${c.id === s.selected ? 'on' : ''}" aria-pressed="${c.id === s.selected}">${esc(c.title)}</button>`)
+              .join('')}</nav>`
           : ''
       }
-      <div class="sec-head"><h2>${d.home.courses}</h2><span class="sp"></span><span class="chrome">${s.courses.length}</span></div>
-      ${s.error ? `<p class="alert alert--err"><b>××</b><span>${esc(s.error)}</span></p>` : ''}
-      ${s.loading && !s.courses.length ? `<p class="dim">${d.loading}</p>` : ''}
-      ${!s.loading && !s.error && !s.courses.length ? `<p class="dim">${d.home.empty}</p>` : ''}
-      <div class="courses">${s.courses.map(courseCard).join('')}</div>
+      ${course ? hero(course) : `<p class="dim">${d.loading}</p>`}
+      ${
+        course
+          ? `<section class="module-map">
+        <div class="section-head"><span class="label">${d.home.yourDiscoveries}</span><span class="dim">${d.home.nextLeads}</span></div>
+        <div class="card-grid">${cardsOf(course)
+          .filter((c) => c.review.state !== 'blocked')
+          .map((c, i) => discovery(course, c, i, showIds.indexOf(c.id)))
+          .join('')}</div>
+        <p class="mic-line">${MIC}<span>${d.home.micLine}</span></p>
+      </section>`
+          : ''
+      }
       ${isMock() ? `<p class="faint" style="font-size:12px;margin-top:var(--s-5)">${esc(d.mockHint)}</p>` : ''}
     </main>`;
   },
   bind(root) {
-    root.querySelectorAll<HTMLButtonElement>('[data-world]').forEach((b) =>
+    root.querySelectorAll<HTMLButtonElement>('[data-course]').forEach((b) =>
       b.addEventListener('click', () => {
-        setWorld(b.dataset.world!);
+        s.selected = b.dataset.course!;
+        localStorage.setItem('understandity.course', s.selected);
         rerender();
       }),
     );
