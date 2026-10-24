@@ -1,0 +1,92 @@
+[
+  {
+    "course": "pitch-understandity",
+    "card": "c1-more-than-a-right-answer",
+    "world": "fantasy",
+    "seed": 101,
+    "preset": "landscape",
+    "image": "/media/pitch-understandity/c1-more-than-a-right-answer-fantasy.png",
+    "prompt": "A young apprentice stands before a magical puzzle table, providing an answer while a wizard waits to hear the reasoning. The puzzle outcome is not shown. A waist-up view of the learner speaking and the mentor listening across a table of plain wooden puzzle pieces. Keep the puzzle unresolved; no diagrams or floating symbols. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "pitch-understandity",
+    "card": "c1-more-than-a-right-answer",
+    "world": "anime",
+    "seed": 102,
+    "preset": "landscape",
+    "image": "/media/pitch-understandity/c1-more-than-a-right-answer-anime.png",
+    "prompt": "A young hero in a school uniform gives an answer while a patient teacher waits to hear the reasoning. The puzzle outcome is not shown. A waist-up view of the learner speaking and the mentor listening across a table of plain wooden puzzle pieces. Keep the puzzle unresolved; no diagrams or floating symbols. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "pitch-understandity",
+    "card": "c2-predict-explain-try-transfer",
+    "world": "fantasy",
+    "seed": 103,
+    "preset": "landscape",
+    "image": "/media/pitch-understandity/c2-predict-explain-try-transfer-fantasy.png",
+    "prompt": "A young apprentice has finished examining a wooden puzzle and now faces a differently arranged puzzle while a wizard waits. No solution is visible. An over-the-shoulder view of the learner facing two differently arranged wooden puzzles, with a closed book nearby. Keep both arrangements unresolved; no arrows, labels or solved example. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "pitch-understandity",
+    "card": "c2-predict-explain-try-transfer",
+    "world": "anime",
+    "seed": 104,
+    "preset": "landscape",
+    "image": "/media/pitch-understandity/c2-predict-explain-try-transfer-anime.png",
+    "prompt": "A young hero has finished examining a wooden puzzle and now faces a differently arranged puzzle while a bright, expressive mentor waits. No solution is visible. An over-the-shoulder view of the learner facing two differently arranged wooden puzzles, with a closed book nearby. Keep both arrangements unresolved; no arrows, labels or solved example. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "pitch-understandity",
+    "card": "c3-a-tutor-that-asks-why",
+    "world": "fantasy",
+    "seed": 105,
+    "preset": "landscape",
+    "image": "/media/pitch-understandity/c3-a-tutor-that-asks-why-fantasy.png",
+    "prompt": "A young apprentice speaks toward a microphone beside a laptop while a wizard listens with an open, questioning gesture. The screen is blank and no answer is visible. A close view of the learner speaking toward a microphone beside a laptop; a patient mentor listens with one open hand. The screen is blank; no speech bubbles, answer text or marks. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "pitch-understandity",
+    "card": "c3-a-tutor-that-asks-why",
+    "world": "anime",
+    "seed": 106,
+    "preset": "landscape",
+    "image": "/media/pitch-understandity/c3-a-tutor-that-asks-why-anime.png",
+    "prompt": "A young hero speaks toward a microphone beside a laptop while a bright, expressive mentor listens with an open, questioning gesture. The screen is blank and no answer is visible. A close view of the learner speaking toward a microphone beside a laptop; a patient mentor listens with one open hand. The screen is blank; no speech bubbles, answer text or marks. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "pitch-understandity",
+    "card": "c4-learning-without-a-connection",
+    "world": "fantasy",
+    "seed": 107,
+    "preset": "landscape",
+    "image": "/media/pitch-understandity/c4-learning-without-a-connection-fantasy.png",
+    "prompt": "Inside a quiet cabin, a young apprentice speaks into a microphone beside an ordinary laptop. A disconnected router sits away from the laptop; all objects are local physical objects. A wide view of a cozy cabin table with the learner, laptop and microphone. An unplugged router and its loose cable lie in the background. Blank screen; no wireless icons or magic powering the laptop. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "pitch-understandity",
+    "card": "c4-learning-without-a-connection",
+    "world": "anime",
+    "seed": 108,
+    "preset": "landscape",
+    "image": "/media/pitch-understandity/c4-learning-without-a-connection-anime.png",
+    "prompt": "Inside a quiet cabin, a young hero speaks into a microphone beside an ordinary laptop. A disconnected router sits away from the laptop; all objects are local physical objects. A wide view of a cozy cabin table with the learner, laptop and microphone. An unplugged router and its loose cable lie in the background. Blank screen; no wireless icons or magic powering the laptop. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "pitch-understandity",
+    "card": "c5-who-checks-a-new-course",
+    "world": "fantasy",
+    "seed": 109,
+    "preset": "landscape",
+    "image": "/media/pitch-understandity/c5-who-checks-a-new-course-fantasy.png",
+    "prompt": "An adult and a young apprentice examine a freshly prepared lesson on a laptop beside open reference books. The adult is still comparing the material; there is no approval stamp. A side view of an adult comparing a laptop with open reference books while the learner waits. The review is in progress. Blank pages and screen; no check marks, seals, approval stamps or writing. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "pitch-understandity",
+    "card": "c5-who-checks-a-new-course",
+    "world": "anime",
+    "seed": 110,
+    "preset": "landscape",
+    "image": "/media/pitch-understandity/c5-who-checks-a-new-course-anime.png",
+    "prompt": "An adult and a young hero examine a freshly prepared lesson on a laptop beside open reference books. The adult is still comparing the material; there is no approval stamp. A side view of an adult comparing a laptop with open reference books while the learner waits. The review is in progress. Blank pages and screen; no check marks, seals, approval stamps or writing. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  }
+]

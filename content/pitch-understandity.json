@@ -1,0 +1,539 @@
+{
+  "id": "pitch-understandity",
+  "title": "Why does Understandity ask you to explain?",
+  "outcome": "Explain how Understandity checks reasoning, guides spoken answers, works offline and separates a generated draft from a reviewed course.",
+  "language": "en",
+  "subject": "learning",
+  "ageRange": [
+    12,
+    14
+  ],
+  "concepts": [
+    {
+      "id": "pitch-understandity",
+      "title": "Why does Understandity ask you to explain?",
+      "centralCause": "The learner supplies the reasoning: a prediction, a cause and an unfamiliar application provide evidence beyond recall, while the tutor and course facts still need checks. This describes Understandity's design, not proven learning gains.",
+      "conditions": [
+        "Use a confirmed voice transcript before judging reasoning",
+        "Ask for a cause and a new case without giving away the key",
+        "Offline operation assumes installed local models and a prepared course",
+        "Prepared courses require adult approval; on-request drafts are marked unchecked",
+        "The scripted comparison is not a study of learning outcomes with children"
+      ],
+      "cards": [
+        {
+          "id": "c1-more-than-a-right-answer",
+          "title": "More than a right answer",
+          "fact": {
+            "statement": "A correct answer can come from recall or a guess; asking for the cause and an unfamiliar application gives more evidence of understanding.",
+            "conditions": [
+              "The final answer alone does not reveal how it was reached",
+              "A new case uses the same underlying idea and gives no hints"
+            ],
+            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; The adult gate), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Original summary by Codex; project measurements, not a learning-outcomes study."
+          },
+          "hook": {
+            "question": "Two learners give the same correct answer. What could still be different?",
+            "predictPrompt": "Predict what you could tell about their thinking from the answer alone, and explain your reason."
+          },
+          "explanation": "A correct answer can be a lucky guess or a sentence remembered from earlier. Understandity asks you to explain the cause, then use it in an unfamiliar case. That gives the tutor more evidence than the answer alone. It is the teaching design, not proof of better results for children.",
+          "action": {
+            "instruction": "Thought experiment: a friend gives a correct answer. Compare what you learn when you accept it at once with what you learn when you also ask for the reason.",
+            "changedCondition": "Whether the friend is asked for a reason",
+            "constants": [
+              "Same friend",
+              "Same question",
+              "Same initial correct answer"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A young apprentice stands before a magical puzzle table, providing an answer while a wizard waits to hear the reasoning. The puzzle outcome is not shown.",
+              "illustration": "A waist-up view of the learner speaking and the mentor listening across a table of plain wooden puzzle pieces. Keep the puzzle unresolved; no diagrams or floating symbols.",
+              "image": "/media/pitch-understandity/c1-more-than-a-right-answer-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "A young hero in a school uniform gives an answer while a patient teacher waits to hear the reasoning. The puzzle outcome is not shown.",
+              "illustration": "A waist-up view of the learner speaking and the mentor listening across a table of plain wooden puzzle pieces. Keep the puzzle unresolved; no diagrams or floating symbols.",
+              "image": "/media/pitch-understandity/c1-more-than-a-right-answer-anime.png"
+            }
+          ],
+          "question": {
+            "id": "q-c1-more-than-a-right-answer",
+            "prompt": "At a club demonstration, someone repeats the presenter's answer perfectly. What would you ask next to find out more about their thinking, and why?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c1-more-than-a-right-answer",
+            "expectedCause": "Ask them to explain the cause in their own words or apply it to a new case and explain why. Repeating the presenter could be memory alone, so the repeated answer is not enough evidence.",
+            "acceptable": [
+              "A causal explanation in different words is acceptable",
+              "A new case should preserve the underlying principle",
+              "This gives evidence, not certainty about everything the learner understands"
+            ],
+            "typicalMistake": "Treating a word-perfect repetition as proof of understanding.",
+            "followUp": "What would your question reveal about how they reached the answer?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "I would ask why it happens, or give a different case and ask for the reason. They could have memorized the presenter's words.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "They repeated it perfectly, so they understand it completely.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "I would ask another question.",
+                "tutorMove": "What would your question reveal about how they reached the answer?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Can someone guess correctly and still explain a good reason afterward?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "2026-10-24T13:32:59+00:00 Codex editorial revision, not adult approval: Reworked the Sonnet opening; removed the implication that a cause or one transfer answer proves understanding with certainty.",
+              "2026-10-24T13:33:43.434Z изменено: scenes for world(s) fantasy, anime written by gemma4:12b-mlx",
+              "Codex checked the question, key and both world scenes against the source; image paths are planned deliverables for the designer, not rendered files. Review remains needs_review."
+            ]
+          }
+        },
+        {
+          "id": "c2-predict-explain-try-transfer",
+          "title": "Predict, explain, try, transfer",
+          "fact": {
+            "statement": "Understandity moves from a prediction through a causal explanation and one changed condition to a fresh case, so the learner must use the idea beyond the example shown.",
+            "conditions": [
+              "The prediction comes before the explanation",
+              "The Try step changes one condition",
+              "The new case needs the same cause but arrives without hints",
+              "Changing worlds changes scenes, not facts"
+            ],
+            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; The adult gate), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Original summary by Codex; project measurements, not a learning-outcomes study."
+          },
+          "hook": {
+            "question": "Why does Understandity keep changing the example?",
+            "predictPrompt": "After reading a clear explanation, predict what another task could reveal about your understanding, and why."
+          },
+          "explanation": "You first predict and say why. Then a short explanation shows the cause. You try changing one condition while keeping the others fixed. Finally, a fresh case asks you to use that cause without hints. Fantasy and Anime change the scene, while the facts stay the same. The learner supplies the reasoning.",
+          "action": {
+            "instruction": "Thought experiment: after the same explanation, compare answering the exact example again with answering an unfamiliar example that uses the same cause. Predict what each answer could reveal.",
+            "changedCondition": "Whether the example is repeated or unfamiliar",
+            "constants": [
+              "Same underlying cause",
+              "Same explanation already read",
+              "No hints during the answer"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A young apprentice has finished examining a wooden puzzle and now faces a differently arranged puzzle while a wizard waits. No solution is visible.",
+              "illustration": "An over-the-shoulder view of the learner facing two differently arranged wooden puzzles, with a closed book nearby. Keep both arrangements unresolved; no arrows, labels or solved example.",
+              "image": "/media/pitch-understandity/c2-predict-explain-try-transfer-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "A young hero has finished examining a wooden puzzle and now faces a differently arranged puzzle while a bright, expressive mentor waits. No solution is visible.",
+              "illustration": "An over-the-shoulder view of the learner facing two differently arranged wooden puzzles, with a closed book nearby. Keep both arrangements unresolved; no arrows, labels or solved example.",
+              "image": "/media/pitch-understandity/c2-predict-explain-try-transfer-anime.png"
+            }
+          ],
+          "question": {
+            "id": "q-c2-predict-explain-try-transfer",
+            "prompt": "A learning app shows an explanation, then asks you to repeat the example it just showed. How would you redesign its next task to check something more, and why?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c2-predict-explain-try-transfer",
+            "expectedCause": "Give an unfamiliar situation using the same underlying cause and ask the learner to predict and explain it without hints. Repeating the shown example may use memory; the new case asks them to apply the cause.",
+            "acceptable": [
+              "Changing one relevant condition can create the new case if the result has not already been explained",
+              "Ask for a reason, not merely a final answer",
+              "A different costume around an identical solved example is not enough by itself"
+            ],
+            "typicalMistake": "Repeating the identical solved example more loudly or showing the solution before the learner tries.",
+            "followUp": "What would the learner have to work out for themselves in your task?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "I would give a new situation using the same idea and ask what happens and why. They would have to apply the cause instead of repeat the example.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "I would display the answer again so they can copy it accurately.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "I would use another example.",
+                "tutorMove": "What would the learner have to work out for themselves in your task?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Does choosing Fantasy change the answer to a science question?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "2026-10-24T13:32:59+00:00 Codex editorial revision, not adult approval: Combined prediction, one-condition Try and transfer into one card to match the brief; removed unrelated paper-plane and plant-food claims.",
+              "2026-10-24T13:33:43.434Z изменено: scenes for world(s) fantasy, anime written by gemma4:12b-mlx",
+              "Codex checked the question, key and both world scenes against the source; image paths are planned deliverables for the designer, not rendered files. Review remains needs_review."
+            ]
+          }
+        },
+        {
+          "id": "c3-a-tutor-that-asks-why",
+          "title": "A tutor that asks why",
+          "fact": {
+            "statement": "The learner confirms the voice transcript before judgement; the tutor uses a reviewed key and is instructed to ask for missing reasoning rather than reveal that key.",
+            "conditions": [
+              "Judge the confirmed transcript, not a recognition error",
+              "A bare prediction contains no causal explanation",
+              "The key and the tutor can still contain errors; the reported comparison used scripted text, not children"
+            ],
+            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; The adult gate), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Original summary by Codex; project measurements, not a learning-outcomes study."
+          },
+          "hook": {
+            "question": "Why would a tutor ask another question when your prediction sounds right?",
+            "predictPrompt": "Predict what the tutor should do after hearing a prediction without a reason, and explain why."
+          },
+          "explanation": "You confirm what the computer heard before the tutor judges it. With a bare prediction, the tutor should ask for a reason without revealing the key. On Mac Studio, it judged 16/16 scripted text answers correctly, versus 7/16 with a plain prompt. That was not a test with children; a counterexample was still wrong.",
+          "action": {
+            "instruction": "Thought experiment: the transcript differs from what you said. Compare judging it immediately with asking you to confirm or record again first. Predict which judgement would address your actual answer.",
+            "changedCondition": "Whether the learner confirms the transcript before judgement",
+            "constants": [
+              "Same spoken answer",
+              "Same recognition error",
+              "Same lesson and tutor"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A young apprentice speaks toward a microphone beside a laptop while a wizard listens with an open, questioning gesture. The screen is blank and no answer is visible.",
+              "illustration": "A close view of the learner speaking toward a microphone beside a laptop; a patient mentor listens with one open hand. The screen is blank; no speech bubbles, answer text or marks.",
+              "image": "/media/pitch-understandity/c3-a-tutor-that-asks-why-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "A young hero speaks toward a microphone beside a laptop while a bright, expressive mentor listens with an open, questioning gesture. The screen is blank and no answer is visible.",
+              "illustration": "A close view of the learner speaking toward a microphone beside a laptop; a patient mentor listens with one open hand. The screen is blank; no speech bubbles, answer text or marks.",
+              "image": "/media/pitch-understandity/c3-a-tutor-that-asks-why-anime.png"
+            }
+          ],
+          "question": {
+            "id": "q-c3-a-tutor-that-asks-why",
+            "prompt": "In a different lesson, the confirmed transcript says, \"It will happen again,\" with no reason. What should the tutor do next, and why?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c3-a-tutor-that-asks-why",
+            "expectedCause": "Ask the learner why or request the missing cause, without supplying the hidden answer. The prediction alone does not show the reasoning, and confirmation has already dealt with what was heard.",
+            "acceptable": [
+              "Do not mark the reasoning complete just because the prediction sounds right",
+              "Use one short guiding question",
+              "A correct cause, once supplied, should be confirmed rather than endlessly questioned"
+            ],
+            "typicalMistake": "Giving the full causal answer immediately or treating a bare prediction as a complete causal explanation.",
+            "followUp": "What evidence is still missing from that answer?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "It should ask why. The words are confirmed, but there is no reason yet; giving the reason itself would do the learner's work.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "It should provide the full answer so the learner can repeat it.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "It should ask something.",
+                "tutorMove": "What evidence is still missing from that answer?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "What if the computer heard different words from the ones I said?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "2026-10-24T13:32:59+00:00 Codex editorial revision, not adult approval: Adapted the Sonnet transcript card into the brief's voice-and-tutor card; benchmark numbers retain their text-only, scripted-test limits.",
+              "2026-10-24T13:33:43.434Z изменено: scenes for world(s) fantasy, anime written by gemma4:12b-mlx",
+              "Codex checked the question, key and both world scenes against the source; image paths are planned deliverables for the designer, not rendered files. Review remains needs_review."
+            ]
+          }
+        },
+        {
+          "id": "c4-learning-without-a-connection",
+          "title": "Learning without a connection",
+          "fact": {
+            "statement": "On a configured computer in the Offline profile, the prepared lesson uses local models and files, so spoken answers need no cloud service and the lesson can continue without internet.",
+            "conditions": [
+              "A compatible computer has already been installed and tested",
+              "The course, model weights and pictures are already available locally",
+              "The Offline profile is selected",
+              "Text dialogue logs remain on the computer"
+            ],
+            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; The adult gate), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Original summary by Codex; project measurements, not a learning-outcomes study."
+          },
+          "hook": {
+            "question": "Can a tutor answer you when Wi-Fi disappears?",
+            "predictPrompt": "Imagine a fully installed computer loses its connection during a prepared lesson. Predict what happens next, and why."
+          },
+          "explanation": "Gemma tutors, Whisper transcribes, and Kokoro speaks English on the family computer. Offline blocks cloud calls; installed models and bundled pictures let prepared lessons work without internet. Recordings are deleted, but text logs stay locally. A measured Gemma turn fell from 2.9 to 0.7 seconds on Mac Studio; that is not a complete voice exchange.",
+          "action": {
+            "instruction": "Thought experiment: keep a working installation in Offline and change only whether the router is connected. Predict whether the same prepared lesson and voice exchange can continue.",
+            "changedCondition": "Whether the internet connection is available",
+            "constants": [
+              "Same installed and tested computer",
+              "Same local models and prepared course",
+              "Offline profile in both cases"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "Inside a quiet cabin, a young apprentice speaks into a microphone beside an ordinary laptop. A disconnected router sits away from the laptop; all objects are local physical objects.",
+              "illustration": "A wide view of a cozy cabin table with the learner, laptop and microphone. An unplugged router and its loose cable lie in the background. Blank screen; no wireless icons or magic powering the laptop.",
+              "image": "/media/pitch-understandity/c4-learning-without-a-connection-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "Inside a quiet cabin, a young hero speaks into a microphone beside an ordinary laptop. A disconnected router sits away from the laptop; all objects are local physical objects.",
+              "illustration": "A wide view of a cozy cabin table with the learner, laptop and microphone. An unplugged router and its loose cable lie in the background. Blank screen; no wireless icons or magic powering the laptop.",
+              "image": "/media/pitch-understandity/c4-learning-without-a-connection-anime.png"
+            }
+          ],
+          "question": {
+            "id": "q-c4-learning-without-a-connection",
+            "prompt": "A family takes its fully installed, working laptop and a prepared course to a cabin without internet, and selects Offline. What happens when the learner answers aloud, and where does the answer go?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c4-learning-without-a-connection",
+            "expectedCause": "The prepared voice lesson can continue: local Whisper transcribes, Gemma tutors and Kokoro speaks English. The recording and answer need not leave the laptop because Offline blocks cloud calls. Audio is deleted after transcription, while text dialogue logs remain locally.",
+            "acceptable": [
+              "Model names are optional if the local processing and absence of cloud calls are explained",
+              "Installation requires downloads beforehand",
+              "Local privacy does not mean that no text is saved"
+            ],
+            "typicalMistake": "Saying the answer must be uploaded or that privacy means no local text log exists.",
+            "followUp": "Which parts of the lesson would actually need a remote service here?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "It can transcribe, tutor and speak on the laptop because the models and course are installed. Offline blocks uploads; audio is temporary and text logs stay there.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "The voice must go to a cloud server, so the whole lesson stops.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "It should still work.",
+                "tutorMove": "Which parts of the lesson would actually need a remote service here?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Does offline mean the computer never stores anything I say?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "2026-10-24T13:32:59+00:00 Codex editorial revision, not adult approval: Added from the approved source to restore the missing offline/privacy topic. The 0.7-second number is a Mac Studio tutor turn, not end-to-end voice latency or a laptop guarantee.",
+              "2026-10-24T13:33:43.434Z изменено: scenes for world(s) fantasy, anime written by gemma4:12b-mlx",
+              "Codex checked the question, key and both world scenes against the source; image paths are planned deliverables for the designer, not rendered files. Review remains needs_review."
+            ]
+          }
+        },
+        {
+          "id": "c5-who-checks-a-new-course",
+          "title": "Who checks a new course?",
+          "fact": {
+            "statement": "Prepared courses require an adult to review each fact, question and key. Make your own course opens an unchecked draft immediately, so generation speed is not evidence that its claims are correct.",
+            "conditions": [
+              "Prepared courses and on-request drafts follow different review paths",
+              "Models can invent incorrect facts or keys",
+              "On-request courses carry an unchecked label",
+              "Online generation requires the Online profile, a key and network access"
+            ],
+            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; The adult gate), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Original summary by Codex; project measurements, not a learning-outcomes study."
+          },
+          "hook": {
+            "question": "If a course appears in moments, who has checked its answers?",
+            "predictPrompt": "Predict what a finished generation tells you about the reliability of the lesson, and explain why."
+          },
+          "explanation": "A model can write a convincing lesson with a wrong fact or key. Prepared courses wait for an adult to check fact, question and key. Make your own course opens a draft immediately and labels it unchecked. It can generate locally, or online with a key. Finishing the draft does not verify its claims.",
+          "action": {
+            "instruction": "Thought experiment: compare the same generated lesson before and after an adult checks its facts, questions and keys against sources. Keep the text unchanged for this comparison and explain what the review adds.",
+            "changedCondition": "Whether an adult has checked the draft against sources",
+            "constants": [
+              "Same generated text",
+              "Same model and generation speed",
+              "Same intended learner"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "An adult and a young apprentice examine a freshly prepared lesson on a laptop beside open reference books. The adult is still comparing the material; there is no approval stamp.",
+              "illustration": "A side view of an adult comparing a laptop with open reference books while the learner waits. The review is in progress. Blank pages and screen; no check marks, seals, approval stamps or writing.",
+              "image": "/media/pitch-understandity/c5-who-checks-a-new-course-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "An adult and a young hero examine a freshly prepared lesson on a laptop beside open reference books. The adult is still comparing the material; there is no approval stamp.",
+              "illustration": "A side view of an adult comparing a laptop with open reference books while the learner waits. The review is in progress. Blank pages and screen; no check marks, seals, approval stamps or writing.",
+              "image": "/media/pitch-understandity/c5-who-checks-a-new-course-anime.png"
+            }
+          ],
+          "question": {
+            "id": "q-c5-who-checks-a-new-course",
+            "prompt": "A parent asks Make your own course for a new topic and the lesson opens immediately. What can they conclude about its reliability, and what should they do before relying on it with a child?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c5-who-checks-a-new-course",
+            "expectedCause": "Opening means generation finished, not that the facts are correct. This on-request course is an unchecked draft. The parent should verify its facts, questions and answer keys against sources before relying on it; the model can be wrong even when its wording is convincing.",
+            "acceptable": [
+              "The automatic unchecked label is not an adult approval",
+              "Prepared courses normally wait for adult approval, while this on-request draft opens immediately",
+              "A good-looking lesson or a faster model does not replace checking"
+            ],
+            "typicalMistake": "Assuming immediate availability means an adult or an automatic fact checker has approved the course.",
+            "followUp": "What evidence of a factual check does opening the lesson give you?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "It is ready as a draft, not verified. The parent needs to check the facts and the question-key pairs because the model can invent mistakes.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "If it opened, the system must have approved every fact.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "They should be careful.",
+                "tutorMove": "What evidence of a factual check does opening the lesson give you?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Why does a prepared course wait for review while a requested draft opens now?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "2026-10-24T13:32:59+00:00 Codex editorial revision, not adult approval: Added from the approved source to restore the missing adult-review/on-request topic. Does not claim that on-request drafts are blocked or already approved.",
+              "2026-10-24T13:33:43.434Z изменено: scenes for world(s) fantasy, anime written by gemma4:12b-mlx",
+              "Codex checked the question, key and both world scenes against the source; image paths are planned deliverables for the designer, not rendered files. Review remains needs_review."
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "review": {
+    "state": "needs_review",
+    "reviewer": null,
+    "reviewedAt": null,
+    "notes": [
+      "Generated by claude-sonnet-5-5; nothing is shown to a child before an adult approves each card (fact → question → key).",
+      "Source for verification: Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; The adult gate), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Original summary by Codex; project measurements, not a learning-outcomes study.",
+      "2026-10-24T13:32:59+00:00 Codex restructured the Sonnet draft to cover all five brief topics; added offline and review cards from the source, removed unsupported examples, and kept every review state needs_review. No adult approval granted."
+    ]
+  },
+  "origin": {
+    "generator": "model",
+    "model": "claude-sonnet-5-5",
+    "createdAt": "2026-10-24T13:28:36.796Z"
+  }
+}
