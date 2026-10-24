@@ -12,6 +12,8 @@ describe('warm-up', () => {
     config.providers.tts['by-language']!.options = {
       routes: { en: { provider: 'fake', model: 'fake-tts', voice: 'beep' }, ru: { provider: 'fake', model: 'fake-tts', voice: 'beep' } },
     };
+    // Text on the fake engine: a warm-up test must never load a real model.
+    config.defaults.engines.text = { provider: 'fake', model: 'fake-tutor', voice: null };
     const hub = new EngineHub(config, PROVIDERS, createDispatcher());
     const lines: string[] = [];
     await warmup(hub, (l) => lines.push(l));

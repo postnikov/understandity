@@ -19,6 +19,7 @@ import { TutorTurnRequestSchema } from '@understandity/contracts';
 import { isTurnId, type DialogLog } from './dialog-log.js';
 import type { TutorMeta, TutorOptions } from './tutor.js';
 import { tutorTurn, type CourseLookup } from './tutor.js';
+import { warmText } from './warmup.js';
 import { courseRoutes, defaultContentDir, scanCourses } from './routes/course.js';
 
 const STATUS: Record<EngineErrorCode, 400 | 403 | 409 | 422 | 424 | 499 | 500 | 501 | 503 | 504> = {
@@ -96,7 +97,11 @@ export function createApp({ hub, course, allowDrafts, contentDir = defaultConten
   });
 
   app.put('/settings', async (c) => {
+    const before = hub.getSettings().engines.text;
     const res = hub.updateSettings(await c.req.json());
+    const after = hub.getSettings().engines.text;
+    // A newly picked local tutor model starts loading now, not on the child's first answer.
+    if (res.ok && (before.provider !== after.provider || before.model !== after.model)) void warmText(hub);
     return c.json(res, res.ok ? 200 : 422);
   });
 
