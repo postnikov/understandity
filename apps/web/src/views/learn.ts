@@ -10,7 +10,7 @@ import {
   type TutorTurnReply,
 } from '@understandity/contracts';
 import { api, ApiFailure, isMock } from '../api.js';
-import { app, errorText, esc, isLangEnabled, subjectLabel, rerender, setLang, setWorld, t, UI_LANGS, worldLabel, answerLimitSec } from '../app.js';
+import { app, errorText, esc, isLangEnabled, subjectLabel, rerender, setLang, t, UI_LANGS, worldLabel, answerLimitSec } from '../app.js';
 import type { UiLang } from '../i18n.js';
 import type { View } from '../main.js';
 import { SILENCE_PEAK, VoiceRecorder } from '../recorder.js';
@@ -69,7 +69,8 @@ let streamTimer: ReturnType<typeof setInterval> | null = null;
 
 const card = () => s.cards[s.index] ?? null;
 const courseLang = () => s.course?.language ?? 'en';
-const sceneOf = (c: Card): WorldScene => c.worlds.find((w) => w.world === app.world) ?? c.worlds[0]!;
+/** One world per course (Max, 24.10): the lesson always shows the card's first world; there is no switch inside a course. */
+const sceneOf = (c: Card): WorldScene => c.worlds[0]!;
 const isVoiceStep = () => VOICE_STEPS.includes(s.step);
 
 function voicePrompt(c: Card, step: CycleStep): string {
@@ -318,7 +319,6 @@ function html(): string {
       <div class="home-actions"><a class="btn btn--xl" href="#/">${d.ocean.back}</a>${app.gateOff ? '' : `<a class="text-btn" href="#/review/${encodeURIComponent(s.courseId)}">${d.home.check}</a>`}</div></main>`;
   const q = heading(c);
   const p = panel(c);
-  const worlds = c.worlds.map((w) => w.world);
   const draft = !app.gateOff && c.review.state !== 'approved';
   return `<main class="page learn-page" data-voice="${s.voice}">
     <div class="learn-layout">
@@ -327,9 +327,6 @@ function html(): string {
         <div class="learn-top">
           <div class="eyebrow">${two(s.index + 1)} / ${two(s.cards.length)} · ${esc(c.title)}</div>
           ${isOnRequest(s.course) && !app.gateOff ? `<span class="chip chip--amber ai-mark">${d.make.aiMark}</span>` : draft ? `<span class="chip chip--amber">${d.draftMark}</span>` : ''}
-          <div class="world-toggle" role="group">${worlds
-            .map((w) => `<button data-world="${esc(w)}" class="${w === sceneOf(c).world ? 'active' : ''}" aria-pressed="${w === sceneOf(c).world}">${esc(worldLabel(w))}</button>`)
-            .join('')}</div>
         </div>
         ${stepper()}
         <h1 class="lesson-q ${q.length > 110 ? 'long' : ''}">${esc(q)}</h1>
@@ -619,7 +616,6 @@ export const learnView: View = {
       if (s.index >= s.cards.length) s.index = 0;
       s.visited.add(s.index);
       const c = card();
-      if (c && !c.worlds.some((w) => w.world === app.world)) setWorld(c.worlds[0]!.world);
     } catch (err) {
       s.loadError = errorText(err);
     }
@@ -658,12 +654,6 @@ export const learnView: View = {
       b.addEventListener('click', () => {
         const m = s.dialog[Number(b.dataset.play)];
         if (m?.audio) play(m.audio);
-      }),
-    );
-    root.querySelectorAll<HTMLButtonElement>('[data-world]').forEach((b) =>
-      b.addEventListener('click', () => {
-        setWorld(b.dataset.world!);
-        rerender();
       }),
     );
     root.querySelectorAll<HTMLButtonElement>('[data-card]').forEach((b) => b.addEventListener('click', () => openCard(Number(b.dataset.card))));
