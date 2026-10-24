@@ -1,6 +1,6 @@
 import './styles.css';
 import { api, isMock } from './api.js';
-import { app, esc, setLang, setRerender, t } from './app.js';
+import { app, esc, setLang, setRerender, t, UI_LANGS } from './app.js';
 import type { UiLang } from './i18n.js';
 import { homeView } from './views/home.js';
 import { learnView } from './views/learn.js';
@@ -44,9 +44,13 @@ function bar(): string {
     <span class="bar__sp"></span>
     ${isMock() ? `<span class="chip chip--amber" title="${esc(d.mockHint)}">${d.mock}</span>` : ''}
     ${profile ? `<span class="chip ${profile === 'offline' ? 'chip--ok' : 'chip--amber'}"><span class="dot"></span>${profile === 'offline' ? d.offline : d.online}</span>` : ''}
-    <div class="lang" role="group" aria-label="Language">${(['en', 'ru'] as UiLang[])
-      .map((l) => `<button data-lang="${l}" class="${app.lang === l ? 'on' : ''}" aria-pressed="${app.lang === l}">${l.toUpperCase()}</button>`)
-      .join('')}</div>
+    ${
+      UI_LANGS.length > 1
+        ? `<div class="lang" role="group" aria-label="Language">${UI_LANGS.map(
+            (l) => `<button data-lang="${l}" class="${app.lang === l ? 'on' : ''}" aria-pressed="${app.lang === l}">${l.toUpperCase()}</button>`,
+          ).join('')}</div>`
+        : ''
+    }
   </div></header>`;
 }
 

@@ -10,7 +10,8 @@ import {
   type TutorTurnReply,
 } from '@understandity/contracts';
 import { api, ApiFailure, isMock } from '../api.js';
-import { app, errorText, esc, subjectLabel, rerender, setLang, setWorld, t, worldLabel } from '../app.js';
+import { app, errorText, esc, isLangEnabled, subjectLabel, rerender, setLang, setWorld, t, UI_LANGS, worldLabel } from '../app.js';
+import type { UiLang } from '../i18n.js';
 import type { View } from '../main.js';
 import { SILENCE_PEAK, VoiceRecorder } from '../recorder.js';
 import { sceneArt } from '../scenes.js';
@@ -594,8 +595,9 @@ export const learnView: View = {
       const course = await api.course(courseId);
       s.course = course;
       // A child reads one language on the lesson screen: the chrome follows the course (EN/RU switch still works).
+      // Only when more than one UI language is enabled (UI_LANGS); English-only build keeps the chrome in English.
       const cl = course.language.slice(0, 2);
-      if ((cl === 'en' || cl === 'ru') && cl !== app.lang) setLang(cl);
+      if (UI_LANGS.length > 1 && isLangEnabled(cl) && cl !== app.lang) setLang(cl as UiLang);
       s.cards = course.concepts.flatMap((k) => k.cards).filter((c) => isShowable(c, { allowDrafts: app.allowDrafts }));
       if (s.index >= s.cards.length) s.index = 0;
       s.visited.add(s.index);

@@ -1,9 +1,19 @@
 import type { EnginesResponse } from '@understandity/contracts';
 import { dict, type Dict, type UiLang } from './i18n.js';
 
+/**
+ * Languages the product shows right now — UI and courses. Hackathon build is English only (word of Max, 24.10 14:31);
+ * Russian strings and courses stay in code and content: add 'ru' here to bring the switch, RU courses and the
+ * lesson's follow-the-course-language back in one edit.
+ */
+export const UI_LANGS: readonly UiLang[] = ['en'];
+export const isLangEnabled = (lang: string) => (UI_LANGS as readonly string[]).includes(lang.slice(0, 2));
+
+const storedLang = localStorage.getItem('understandity.lang') as UiLang | null;
+
 /** App-wide state shared by the views. Each view keeps its own local state. */
 export const app = {
-  lang: (localStorage.getItem('understandity.lang') as UiLang | null) ?? 'en',
+  lang: storedLang && UI_LANGS.includes(storedLang) ? storedLang : UI_LANGS[0]!,
   world: localStorage.getItem('understandity.world') ?? '',
   engines: null as EnginesResponse | null,
   /** Demo opt-in: show `draft`/`needs_review` cards to the student with a visible mark. Blocked never. */
@@ -13,6 +23,7 @@ export const app = {
 export const t = (): Dict => dict(app.lang);
 
 export function setLang(lang: UiLang) {
+  if (!UI_LANGS.includes(lang)) lang = UI_LANGS[0]!;
   app.lang = lang;
   localStorage.setItem('understandity.lang', lang);
   document.documentElement.lang = lang;
