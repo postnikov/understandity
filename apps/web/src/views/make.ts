@@ -176,3 +176,13 @@ export function bindMake(root: HTMLElement) {
 export function leaveMake() {
   if (m.phase !== 'running') stopTick();
 }
+
+/** Own screen for the generator (#/make): the home page only links here. */
+export const makeView: import('../main.js').View = {
+  async enter() {
+    await refreshKeys();
+  },
+  html: () => `<main class="page make-page"><a class="back-link" href="#/">${t().ocean.back}</a>${makePanel()}</main>`,
+  bind: (root) => bindMake(root),
+  leave: () => leaveMake(),
+};

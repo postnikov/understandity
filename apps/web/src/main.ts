@@ -6,6 +6,7 @@ import { homeView } from './views/home.js';
 import { learnView } from './views/learn.js';
 import { reviewView } from './views/review.js';
 import { enginesView } from './views/engines.js';
+import { makeView } from './views/make.js';
 
 /**
  * Shell: top bar + hash router. Routes:
@@ -23,7 +24,7 @@ export interface View {
 }
 
 // The review screen stays in the code; with the adult check off its route falls back to the course list.
-const views: Record<string, View> = { '': homeView, learn: learnView, ...(ADULT_CHECK ? { review: reviewView } : {}), engines: enginesView };
+const views: Record<string, View> = { '': homeView, make: makeView, learn: learnView, ...(ADULT_CHECK ? { review: reviewView } : {}), engines: enginesView };
 const root = document.querySelector<HTMLDivElement>('#app')!;
 let current: View = homeView;
 let routeName = '';
