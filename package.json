@@ -14,7 +14,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc -p tsconfig.json",
-    "build": "npm run build -w @understandity/web"
+    "build": "npm run build -w @understandity/web",
+    "course:generate": "tsx packages/course/src/cli.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

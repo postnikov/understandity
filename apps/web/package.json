@@ -8,6 +8,11 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "dependencies": { "@understandity/contracts": "*" },
-  "devDependencies": { "vite": "^8.3.5" }
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@understandity/contracts": "*"
+  },
+  "devDependencies": {
+    "vite": "^8.3.5"
+  }
 }
