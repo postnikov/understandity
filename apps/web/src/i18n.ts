@@ -160,7 +160,7 @@ const en = {
   },
   steps: { hook: 'Wonder', predict: 'Predict', explain: 'Discover', act: 'Try it', transfer: 'New case', feedback: 'Reflect' },
   stepHint: {
-    hook: 'Read the question and look at the picture. What seems strange?',
+    hook: 'Make a guess — you can change your mind later.',
     predict: 'Say what you think will happen — and why. A wrong guess is fine: that’s where discoveries start.',
     explain: 'Here’s the secret.',
     act: 'Try it in your head, then say what you think happens.',
@@ -435,7 +435,7 @@ const ru: Dict = {
   },
   steps: { hook: 'Вау', predict: 'Прогноз', explain: 'Открытие', act: 'Попробуй', transfer: 'Новый случай', feedback: 'Итог' },
   stepHint: {
-    hook: 'Прочитай вопрос и посмотри на картинку. Что здесь странно?',
+    hook: 'Сделай догадку — передумать можно будет потом.',
     predict: 'Скажи, что, по-твоему, будет — и почему. Ошибиться можно: с этого и начинаются открытия.',
     explain: 'Вот в чём секрет.',
     act: 'Попробуй в уме и скажи, что, по-твоему, получится.',

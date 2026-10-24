@@ -242,8 +242,8 @@ function panel(c: Card): { cls: string; html: string } {
     case 'hook':
       return {
         cls: '',
-        html: `<span class="pill">${SPARK}${o.surprising}</span><h2>${o.notAdd}</h2><p class="copy">${esc(d.stepHint.hook)}</p>
-          <p class="quote">${o.guessHint}</p>${panelBottom(`<button id="next" class="btn btn--block">${o.theory} <span aria-hidden="true">→</span></button>`)}`,
+        // The real question of the card, big, and one line on what to do (Max, 24.10: «what is the question here?»).
+        html: `<span class="pill">${SPARK}${o.surprising}</span><h2>${esc(c.hook.question)}</h2><p class="copy">${esc(d.stepHint.hook)}</p>${panelBottom(`<button id="next" class="btn btn--block">${o.theory} <span aria-hidden="true">→</span></button>`)}`,
       };
     case 'explain':
       return {
