@@ -7,7 +7,9 @@ import {
   type TextResult,
   type TutorTurnReply,
   type TutorTurnRequest,
+  type Evidence,
 } from '@understandity/contracts';
+import { tutorPrompt } from './tutor-prompt.js';
 import { EngineError } from '@understandity/contracts';
 import type { EngineHub } from './engines.js';
 
@@ -22,9 +24,77 @@ export interface TutorOptions {
   signal?: AbortSignal;
 }
 
+/** The tutor's own judgement of the last answer, emitted as a first line `VERDICT: …` and stripped before display. */
+export type Verdict = 'correct' | 'partial' | 'wrong' | 'unsure' | 'none';
+const VERDICT_RE = /^\s*\**\s*VERDICT\s*:\s*(correct|partial|wrong|unsure|none)\b[^\n]*\n?/i;
+
 /**
- * One tutor turn: card goal + key + rubric + recent dialogue → one short question or explanation.
- * Prompt and evidence extraction are still the skeleton: `evidence` is null, `next` is coarse.
+ * Strips a leading `VERDICT: x` line from a text stream while passing everything else through as it arrives.
+ * Buffers only until the first line is complete (or clearly not a verdict), so streaming stays live.
+ */
+export function verdictFilter(onDelta?: (text: string) => void) {
+  let head = '';
+  let decided = false;
+  let verdict: Verdict | null = null;
+  const flush = (text: string) => text && onDelta?.(text);
+  return {
+    push(delta: string) {
+      if (decided) return flush(delta);
+      head += delta;
+      const nl = head.indexOf('\n');
+      const h = head.replace(/^\s*\**\s*/, '').toUpperCase();
+      const looksLikeTag = h.length < 7 ? 'VERDICT'.startsWith(h) : h.startsWith('VERDICT');
+      if (nl < 0 && looksLikeTag && head.length < 48) return; // wait for the rest of the tag line
+      decided = true;
+      const m = VERDICT_RE.exec(head);
+      if (m) {
+        verdict = m[1]!.toLowerCase() as Verdict;
+        flush(head.slice(m[0].length).replace(/^\s+/, ''));
+      } else flush(head);
+    },
+    finish(full: string): { text: string; verdict: Verdict | null } {
+      if (!decided) {
+        // the whole reply was shorter than a tag line: release it now
+        decided = true;
+        const mh = VERDICT_RE.exec(head);
+        if (mh) verdict = mh[1]!.toLowerCase() as Verdict;
+        flush(mh ? head.slice(mh[0].length).replace(/^\s+/, '') : head);
+      }
+      const m = VERDICT_RE.exec(full);
+      return m ? { text: full.slice(m[0].length).trim(), verdict: (verdict ?? m[1]!.toLowerCase()) as Verdict } : { text: full.trim(), verdict };
+    },
+  };
+}
+
+/**
+ * A hint is counted only when the student asked for help or the tutor actually guided after a
+ * not-yet-right answer. A correct answer or the student's own question is never a hint.
+ */
+export function countsAsHint(kind: 'answer' | 'question' | 'explain_please', verdict: Verdict | null): boolean {
+  if (kind === 'explain_please') return true;
+  if (kind === 'question') return false;
+  return verdict === 'partial' || verdict === 'wrong' || verdict === 'unsure';
+}
+
+const NEXT: Record<Verdict, NextMove> = {
+  correct: 'deeper',
+  partial: 'ask_why',
+  wrong: 'counterexample',
+  unsure: 'other_metaphor',
+  none: 'ask_why',
+};
+
+function evidenceOf(verdict: Verdict | null, req: { step: string; studentText: string }, hintsUsed: number): Evidence | null {
+  if (!verdict || verdict === 'none') return null;
+  const cause = verdict === 'correct' ? 'correct' : verdict === 'wrong' ? 'incorrect' : 'missing';
+  const transfer =
+    req.step !== 'transfer' ? 'unknown' : verdict !== 'correct' ? 'not_yet' : hintsUsed === 0 ? 'independent' : 'with_hints';
+  return { prediction: null, cause, transfer, hintsUsed, quote: req.studentText.slice(0, 200) };
+}
+
+/**
+ * One tutor turn: card goal + key + recent dialogue → one short question or explanation.
+ * The model also judges the answer (`VERDICT:` line): that drives the hint counter, `next` and a minimal `evidence`.
  */
 export async function tutorTurn(
   hub: EngineHub,
@@ -42,43 +112,41 @@ export async function tutorTurn(
     throw new EngineError('bad_input', `card "${card.id}" is not approved by an adult yet`);
   }
 
-  const system = [
-    `You tutor a 12–14 year old. Answer in language: ${req.language}. Student's world: ${req.world}.`,
-    `Card goal: ${card.fact.statement}`,
-    card.fact.conditions.length ? `Conditions: ${card.fact.conditions.join('; ')}` : '',
-    `Key (never reveal before the student tries): ${card.key.expectedCause}`,
-    `Typical mistake: ${card.key.typicalMistake}`,
-    `Good clarifying question: ${card.key.followUp}`,
-    'Reply in 2–4 short sentences with exactly one question. Do not praise before the cause is checked. Never judge accent or wording style.',
-    req.hintsUsed >= 2 ? 'Two hints were already given: explain directly on a different example, then ask for a new case.' : '',
-  ]
-    .filter(Boolean)
-    .join('\n');
-
+  // Two real hints on this task → direct explanation instead of a third guess. The student's own questions don't count.
+  const kind = req.kind === 'answer' && req.hintsUsed >= 2 ? 'explain_please' : req.kind;
   const messages = [
-    { role: 'system' as const, content: system },
+    { role: 'system' as const, content: tutorPrompt(card, req, kind) },
     ...req.history.map((h) => ({ role: h.role === 'student' ? ('user' as const) : ('assistant' as const), content: h.text })),
     { role: 'user' as const, content: req.studentText },
   ];
 
-  const kind = req.hintsUsed >= 2 ? 'explain_please' : req.kind;
+  const filter = verdictFilter(opts.onDelta);
   const result = await hub.run('text', `tutor ${card.id}`, async (text, model, signal): Promise<TextResult> => {
     const events = text.stream(
       {
         model,
         messages,
-        maxTokens: 160,
+        maxTokens: 200,
         context: { kind, language: req.language, studentText: req.studentText, followUp: card.key.followUp, expectedCause: card.key.expectedCause, cardId: card.id },
       },
       { signal: signal ?? opts.signal },
     );
     for await (const ev of events) {
-      if (ev.type === 'delta') opts.onDelta?.(ev.text);
+      if (ev.type === 'delta') filter.push(ev.text);
       else return { text: ev.text, model: ev.model, usage: ev.usage };
     }
     throw new EngineError('internal', 'text stream ended without a done event', { modality: 'text' });
   });
 
-  const next: NextMove = kind === 'explain_please' ? 'direct_explanation' : kind === 'question' ? 'ask_why' : 'counterexample';
-  return { text: result.text.trim(), evidence: null, next, hintGiven: kind === 'answer', model: result.model };
+  const { text, verdict } = filter.finish(result.text);
+  const hintGiven = countsAsHint(kind, verdict);
+  const hintsAfter = req.hintsUsed + (hintGiven ? 1 : 0);
+  const next: NextMove = kind === 'explain_please' ? 'direct_explanation' : kind === 'question' ? 'ask_why' : NEXT[verdict ?? 'none'];
+  return {
+    text,
+    evidence: kind === 'answer' ? evidenceOf(verdict, req, hintsAfter) : null,
+    next,
+    hintGiven,
+    model: result.model,
+  };
 }

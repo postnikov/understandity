@@ -16,6 +16,16 @@ const sleep = (ms: number, signal?: AbortSignal) =>
     signal?.addEventListener('abort', () => (clearTimeout(t), resolve()), { once: true });
   });
 
+/** Mirrors the tutor prompt's first line so the server's VERDICT parsing runs on fakes too. */
+function fakeVerdict(ctx: Record<string, unknown>): string {
+  const kind = String(ctx.kind ?? 'answer');
+  if (kind !== 'answer') return 'none';
+  const said = String(ctx.studentText ?? '').toLowerCase();
+  if (/плотност|на один кубик|на единицу объ|отношени|density|per cube|per unit/.test(said)) return 'correct';
+  if (/легче|тяжел|тяжёл|масс|light|heav|mass|weigh/.test(said)) return 'wrong';
+  return 'unsure';
+}
+
 function pickReply(ctx: Record<string, unknown>): string {
   const ru = String(ctx.language ?? 'en').startsWith('ru');
   const kind = String(ctx.kind ?? 'answer');
@@ -58,7 +68,8 @@ export const createFakeText: AdapterFactory<'text'> = (config, { providerId }): 
   },
   async *stream(input, opts): AsyncIterable<TextStreamEvent> {
     const req = TextRequestSchema.parse(input);
-    const text = pickReply(req.context ?? {});
+    const ctx = req.context ?? {};
+    const text = `VERDICT: ${fakeVerdict(ctx)}\n${pickReply(ctx)}`;
     let acc = '';
     for (const word of text.split(/(?<= )/)) {
       if (opts?.signal?.aborted) break;
