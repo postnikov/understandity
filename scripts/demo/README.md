@@ -67,8 +67,8 @@ bash scripts/demo/start.sh stop
 ```
 
 `check` reads app health through the web proxy and checks that selected models are installed and
-healthy, runtime settings match the requested Offline profile, and no enabled provider is cloud
-or points outside loopback. The HTML entry is checked for external `src`/`href` assets.
+healthy, runtime settings match the requested Offline profile, and every selected provider is local
+and uses only loopback. Cloud entries may exist in the catalog; an active cloud selection is refused. The HTML entry is checked for external `src`/`href` assets.
 This is a **local execution check**, not a packet capture, real microphone/browser test, full
 JS asset audit or proof of physical network disconnection. Final acceptance on the MacBook must
 include opening the UI and recording an answer after Wi-Fi/Tailscale are disconnected by Max.
@@ -80,9 +80,13 @@ An SSH smoke cannot prove that physical condition.
   to stop someone else's session. Busy ports and any resident Ollama model stop admission.
   Do not stop another application's model just to pass this check.
 - Existing ports: web 5173, server 8787; MLX ports from the configured endpoints (Qwen3 8790, Kokoro 8791).
+  A missing local Ollama daemon is started in `dev-understandity-ollama` (no pull, no login item),
+  so the launch command also works after a reboot. An existing daemon is reused; an old or occupied endpoint
+  gives an error. Stopping the demo unloads its model but leaves this daemon available.
   MC, HQ, launchd and ComfyUI are never started by this launcher.
-- App/sidecar processes receive an exact environment allowlist, offline HF flags and no API keys.
-  Disabled cloud providers remain visible in the app's catalog but cannot be selected in Offline.
+- App/sidecar processes receive an exact environment allowlist and offline HF flags; shell API keys are not forwarded.
+  The app can read keys saved by its Settings screen in `data/keys.local.json`; the launcher never reads or writes them.
+  Cloud catalog entries cannot be selected in Offline. See [INSTALL.md](../../INSTALL.md) for Online mode.
 - Persistent diagnostics: `sidecars/tts-mlx/.venv/demo-runtime/` (`status.json`,
   `dependencies.json`, `supervisor.log`, `npm-ci*.log`, `server.log`, `web.log`, `tts.log`).
   These are ignored by git/Syncthing. Runtime temporary files also stay inside this directory;
