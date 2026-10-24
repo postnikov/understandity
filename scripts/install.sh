@@ -28,6 +28,8 @@ echo 'Homebrew and its Command Line Tools must already be installed: https://bre
 mac_major="$(sw_vers -productVersion)"; mac_major="${mac_major%%.*}"
 ram_bytes="$(/usr/sbin/sysctl -n hw.memsize)"
 free_kib="$(df -Pk "$repo_dir" | awk 'NR==2 {print $4}')"
+cache_free_kib="$(df -Pk "$HOME" | awk 'NR==2 {print $4}')"
+if [ "$cache_free_kib" -lt "$free_kib" ]; then free_kib="$cache_free_kib"; fi
 printf 'Detected: macOS %s, RAM %s GiB, free disk %s GiB.\n' "$mac_major" "$((ram_bytes / 1024 / 1024 / 1024))" "$((free_kib / 1024 / 1024))"
 if [ "$mac_major" -lt "$MIN_MACOS_MAJOR" ] || [ "$ram_bytes" -lt "$((MIN_RAM_GIB * 1024 * 1024 * 1024))" ] || [ "$free_kib" -lt "$((MIN_FREE_GIB * 1024 * 1024))" ]; then
   if [ "$mode" != dry-run ]; then echo 'Requirements not met. No installation performed.' >&2; exit 2; fi

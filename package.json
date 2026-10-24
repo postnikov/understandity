@@ -10,6 +10,7 @@
     "apps/*"
   ],
   "scripts": {
+    "setup": "bash scripts/install.sh",
     "dev": "concurrently -k -n server,web -c blue,magenta \"npm run dev -w @understandity/server\" \"npm run dev -w @understandity/web\"",
     "test": "vitest run",
     "test:watch": "vitest",
