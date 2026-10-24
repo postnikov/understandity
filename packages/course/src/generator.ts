@@ -163,7 +163,7 @@ export function draftToCourse(draft: DraftCourse, req: CourseRequest, meta: { mo
       explanation: c.explanation,
       action: { ...c.action, thoughtExperiment: true },
       worlds: c.worlds.map((w) => ({ world: w.world.toLowerCase(), scene: w.scene, illustration: w.illustration, image: null })),
-      question: { id: qid, prompt: c.voiceQuestion, maxAnswerSec: 30 },
+      question: { id: qid, prompt: c.voiceQuestion, maxAnswerSec: 60 },
       key: { questionId: qid, ...c.key },
       rubric: {
         criteria: [

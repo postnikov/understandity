@@ -10,7 +10,7 @@ import {
   type TutorTurnReply,
 } from '@understandity/contracts';
 import { api, ApiFailure, isMock } from '../api.js';
-import { app, errorText, esc, isLangEnabled, subjectLabel, rerender, setLang, setWorld, t, UI_LANGS, worldLabel } from '../app.js';
+import { app, errorText, esc, isLangEnabled, subjectLabel, rerender, setLang, setWorld, t, UI_LANGS, worldLabel, answerLimitSec } from '../app.js';
 import type { UiLang } from '../i18n.js';
 import type { View } from '../main.js';
 import { SILENCE_PEAK, VoiceRecorder } from '../recorder.js';
@@ -187,7 +187,7 @@ function panel(c: Card): { cls: string; html: string } {
   const d = t();
   const o = d.ocean;
   const v = s.voice;
-  const max = c.question.maxAnswerSec;
+  const max = answerLimitSec(c.question.maxAnswerSec);
   const last = s.dialog[s.dialog.length - 1];
   const hasReply = s.dialog.length > s.stepMark && last?.role === 'tutor';
   const nextBtn = `<button id="next" class="btn btn--block">${s.step === 'feedback' ? (s.index >= s.cards.length - 1 ? d.allDone : d.nextCard) : `${o.nextStep} <span aria-hidden="true">→</span>`}</button>`;
@@ -396,7 +396,7 @@ async function startRecording() {
   rerender();
   // Timer and meter run from the press, even while the browser still asks for the microphone.
   meterLoop();
-  const res = await recorder.start(c.question.maxAnswerSec, () => void stopRecording());
+  const res = await recorder.start(answerLimitSec(c.question.maxAnswerSec), () => void stopRecording());
   if (!res.microphone && s.voice === 'listening') {
     s.notice = res.problem === 'denied' ? `${t().voice.micDenied} ${t().voice.noMic}` : t().voice.noMic;
     rerender();

@@ -7,6 +7,10 @@ import { dict, type Dict, type UiLang } from './i18n.js';
  * lesson's follow-the-course-language back in one edit.
  */
 export const UI_LANGS: readonly UiLang[] = ['en'];
+
+/** Longest spoken answer, seconds (Max, 24.10: up to 60). A card may allow more, never less. */
+export const ANSWER_LIMIT_SEC = 60;
+export const answerLimitSec = (cardMaxSec: number | undefined) => Math.max(cardMaxSec ?? 0, ANSWER_LIMIT_SEC);
 export const isLangEnabled = (lang: string) => (UI_LANGS as readonly string[]).includes(lang.slice(0, 2));
 
 const storedLang = localStorage.getItem('understandity.lang') as UiLang | null;

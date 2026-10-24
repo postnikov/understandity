@@ -96,7 +96,8 @@
           "temperature": 0,
           "seed": 0,
           "maxTokens": 512,
-          "timeoutMs": 90000
+          "timeoutMs": 90000,
+          "note": "maxClipSec stays 30: Gemma 4 audio input is limited to 30 s clips by the model; answers up to 60 s need Whisper (default) or Scribe."
         }
       },
       "whisper-cpp": {
@@ -112,7 +113,7 @@
           "language": "auto",
           "ffmpeg": "ffmpeg",
           "sampleRateHz": 16000,
-          "maxClipSec": 30,
+          "maxClipSec": 60,
           "timeoutMs": 90000
         }
       },
@@ -129,7 +130,7 @@
           "authHeader": "xi-api-key",
           "authScheme": "",
           "ffmpeg": "ffmpeg",
-          "maxClipSec": 30,
+          "maxClipSec": 60,
           "timeoutMs": 90000
         }
       }

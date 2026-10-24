@@ -120,7 +120,7 @@ const en = {
   draftMark: 'Draft · not checked by an adult',
   voice: {
     idle: 'Ready',
-    idleHint: 'Press the mic and talk. Up to 30 seconds.',
+    idleHint: 'Press the mic and talk. Up to 60 seconds.',
     listening: 'Listening',
     listeningHint: 'Press again when you are done.',
     thinking: 'Thinking',
@@ -340,7 +340,7 @@ const ru: Dict = {
   draftMark: 'Черновик · взрослый не проверял',
   voice: {
     idle: 'Готов',
-    idleHint: 'Нажми на микрофон и говори. До 30 секунд.',
+    idleHint: 'Нажми на микрофон и говори. До 60 секунд.',
     listening: 'Слушаю',
     listeningHint: 'Нажми ещё раз, когда закончишь.',
     thinking: 'Думаю',

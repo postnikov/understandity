@@ -63,7 +63,7 @@ export const VoiceQuestionSchema = z.object({
   id: Id,
   /** New neutral situation that needs a prediction and a cause. 15–30 s spoken answer, no choices. */
   prompt: z.string().min(1),
-  maxAnswerSec: z.number().int().positive().max(30).default(30),
+  maxAnswerSec: z.number().int().positive().max(60).default(60),
 });
 
 export const KeySchema = z.object({

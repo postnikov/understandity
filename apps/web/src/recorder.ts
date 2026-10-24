@@ -1,5 +1,5 @@
 /**
- * Voice answer recorder: getUserMedia + MediaRecorder, hard cap from the card (≤ 30 s), explicit stop.
+ * Voice answer recorder: getUserMedia + MediaRecorder, hard cap from the lesson (60 s), explicit stop.
  * A level meter feeds the «listening» state, and the peak level tells silence apart from a real answer
  * before anything is sent: silence is «no answer received», never «did not understand».
  * No microphone (or permission denied) → a silent demo clip so the path still works; the UI says so.
@@ -50,7 +50,7 @@ export class VoiceRecorder {
     return rms;
   }
 
-  async start(maxSec = 30, onAutoStop?: () => void): Promise<{ microphone: boolean; problem: MicProblem }> {
+  async start(maxSec = 60, onAutoStop?: () => void): Promise<{ microphone: boolean; problem: MicProblem }> {
     this.chunks = [];
     this.pendingStart = true;
     this.peakLevel = 0;
