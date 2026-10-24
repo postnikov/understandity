@@ -459,3 +459,17 @@ a.ccard:hover .ccard__go { text-decoration: underline; }
 .ready-box.ok { border-color: var(--ok); background: rgba(14, 122, 85, 0.08); }
 .ready-box .dots { margin-top: var(--s-2); }
 .make-ready .make-actions { margin-top: 0; }
+
+.make-world { display: flex; flex-direction: column; gap: var(--s-2); margin-top: var(--s-4); }
+.seg-group--worlds { flex: 1 1 100%; }
+@media (max-width: 560px) { .seg-group--worlds { flex-wrap: wrap; } .seg-group--worlds .seg { flex: 1 1 50%; } }
+
+/* ---------- landing v2: description left, course form right (Max, 24.10 16:08) ---------- */
+.landing .intro { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: start; gap: var(--s-6); }
+.landing .intro .mantra { margin-top: var(--s-6); }
+.intro__make .make { margin: 0; }
+.intro__make .make-head .dim { display: none; }
+.intro__make .make-head h2 { font-size: 22px; }
+.intro__make .seg-group--worlds .seg { padding: 8px 10px; }
+.intro__make .seg span { font-size: 10px; }
+@media (max-width: 900px) { .landing .intro { grid-template-columns: 1fr; } .landing .intro .mantra { margin-top: var(--s-4); } }

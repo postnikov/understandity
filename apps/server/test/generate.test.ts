@@ -72,6 +72,43 @@ async function waitJob(app: ReturnType<typeof setup>['app'], jobId: string) {
 }
 
 describe('POST /api/courses/generate', () => {
+  it('world: space → scenes and picture prompts only for space; no world → the default pair', async () => {
+    const log: string[] = [];
+    const prompts: string[] = [];
+    // The model answers with the asked world plus a stray one: the route must keep space only.
+    const draft = draftOf(5) as unknown as { cards: Array<{ worlds: Array<{ world: string }> }> };
+    const withSpace = JSON.parse(JSON.stringify(draft));
+    for (const c of withSpace.cards ?? []) c.worlds = [{ ...c.worlds[0], world: 'space' }, { ...c.worlds[0], world: 'fantasy' }];
+    const output = JSON.stringify(withSpace);
+    const text: ProviderModule<'text'> = {
+      ...courseText('fake', { log, output }),
+      create: (cfg, ctx) => {
+        const base = courseText('fake', { log, output }).create(cfg, ctx) as TextAdapter;
+        return {
+          ...base,
+          stream(req: TextRequest) {
+            prompts.push(req.messages.map((m) => m.content).join('\n'));
+            return base.stream(req);
+          },
+        };
+      },
+    };
+    const { app, contentDir } = setup({ text });
+    const res = await post(app, { request: 'why is the sky blue', audience: 'child', lang: 'en', engine: 'local', world: 'space' });
+    expect(res.status).toBe(202);
+    const job = await waitJob(app, (await res.json()).jobId);
+    expect(job.status).toBe('done');
+    const saved = JSON.parse(readFileSync(join(contentDir, `${job.courseId}.json`), 'utf8'));
+    const worlds = saved.concepts.flatMap((k: { cards: Array<{ worlds: Array<{ world: string }> }> }) => k.cards.flatMap((c) => c.worlds.map((w) => w.world)));
+    expect(worlds.length).toBeGreaterThan(0);
+    expect(new Set(worlds)).toEqual(new Set(['space']));
+    expect(prompts.join('\n')).toMatch(/space/i);
+    expect(prompts[0]).not.toMatch(/\bfantasy\b|\banime\b/i);
+
+    const bad = await post(app, { request: 'why is the sky blue', engine: 'local', world: 'underwater' });
+    expect(bad.status).toBe(400);
+  });
+
   it('local: generates, saves content/<slug>.json as on-request and shows it without an adult', async () => {
     const { app, contentDir } = setup();
     const res = await post(app, { request: 'how to solve quadratic equations', audience: 'child', lang: 'en', engine: 'local' });

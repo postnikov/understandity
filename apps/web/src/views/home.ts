@@ -4,6 +4,7 @@ import { app, errorText, esc, subjectLabel, t } from '../app.js';
 import type { View } from '../main.js';
 import { sceneArt } from '../scenes.js';
 import { isOnRequest } from '../generate.js';
+import { bindMake, leaveMake, makePanel, refreshKeys } from './make.js';
 
 /**
  * Home = landing (word of Max, 24.10 15:49): what this is and for whom, a clear «Make your own course» button,
@@ -53,6 +54,7 @@ export const homeView: View = {
     s.loading = true;
     s.error = null;
     try {
+      await refreshKeys();
       s.courses = await api.courses();
       const full = await Promise.all(s.courses.map((c) => api.course(c.id).catch(() => null)));
       full.forEach((c) => c && s.full.set(c.id, c));
@@ -72,12 +74,9 @@ export const homeView: View = {
           <div class="eyebrow">${d.home.kicker}</div>
           <h1>${esc(d.home.landingTitle)}</h1>
           <p class="lead">${esc(d.home.landingLead)}</p>
-          <div class="home-actions">
-            <a class="btn btn--xl" href="#/make">${d.home.makeCta} <span aria-hidden="true">→</span></a>
-            <span class="dim">${d.home.makeHint}</span>
-          </div>
+          <blockquote class="mantra">${esc(d.home.mantra)}<b>${esc(d.home.mantraEnd)}</b></blockquote>
         </div>
-        <blockquote class="mantra">${esc(d.home.mantra)}<b>${esc(d.home.mantraEnd)}</b></blockquote>
+        <div class="intro__make">${makePanel()}</div>
       </section>
       ${s.error ? `<p class="alert alert--err"><b>××</b><span>${esc(s.error)}</span></p>` : ''}
       ${s.loading && !courses.length ? `<p class="dim">${d.loading}</p>` : ''}
@@ -87,5 +86,11 @@ export const homeView: View = {
       ${isMock() ? `<p class="faint" style="font-size:12px;margin-top:var(--s-5)">${esc(d.mockHint)}</p>` : ''}
     </main>`;
   },
-  bind() {},
+  bind(root) {
+    // The form lives right on the landing (Max, 24.10 16:08); progress and the ready screen open on #/make.
+    bindMake(root);
+  },
+  leave() {
+    leaveMake();
+  },
 };
