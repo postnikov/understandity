@@ -5,14 +5,13 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { CourseSchema, type Course } from '@understandity/contracts';
 import { createDispatcher } from '@understandity/dispatcher';
 import { createApp } from '../src/app.js';
-import { loadCourse } from '../src/config.js';
 import { EngineHub } from '../src/engines.js';
 import { PROVIDERS } from '../src/providers.js';
-import { fakeEnginesConfig } from './helpers.js';
+import { draftCourse, fakeEnginesConfig } from './helpers.js';
 
 function setup() {
   const dir = mkdtempSync(join(tmpdir(), 'ud-courses-'));
-  const demo = loadCourse();
+  const demo = draftCourse();
   // file name differs from the id on purpose: the id inside is the key
   writeFileSync(join(dir, 'some-file.json'), JSON.stringify(demo));
   writeFileSync(join(dir, 'not-a-course.json'), '{"hello": 1}');

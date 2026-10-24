@@ -8,12 +8,14 @@ import { createApp } from '../src/app.js';
 import { REPO_ROOT, loadCourse } from '../src/config.js';
 import { EngineHub } from '../src/engines.js';
 import { PROVIDERS } from '../src/providers.js';
-import { fakeEnginesConfig } from './helpers.js';
+import { DRAFT_COURSE_FILE, fakeEnginesConfig } from './helpers.js';
 
 /** Copy of content/ in a temp dir, so reviews in tests never touch the real course files. */
 function makeApp(allowDrafts = false) {
   const contentDir = mkdtempSync(join(tmpdir(), 'ud-content-'));
   cpSync(resolve(REPO_ROOT, 'content'), contentDir, { recursive: true });
+  // The draft course is a fixture: live content changes when an adult approves cards in the gate.
+  cpSync(DRAFT_COURSE_FILE, join(contentDir, 'demo-course.json'));
   const config = fakeEnginesConfig();
   const hub = new EngineHub(config, PROVIDERS, createDispatcher());
   return { contentDir, app: createApp({ hub, course: loadCourse(), allowDrafts, contentDir }) };
