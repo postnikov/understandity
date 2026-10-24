@@ -84,7 +84,7 @@ describe('Online profile and cloud engines', () => {
     const online = await (await app.request('/api/engines')).json();
     expect(online.providers.find((p: { provider: string }) => p.provider === 'anthropic').enabled).toBe(true);
     expect(online.providers.find((p: { modality: string; provider: string }) => p.modality === 'tts' && p.provider === 'elevenlabs').enabled).toBe(false);
-  });
+  }, 20_000); // /api/engines probes every real provider's health; under a parallel run that can pass 5 s
 
   it('a cloud engine without its key fails explicitly, never silently falls back', async () => {
     const { app, hub, env } = makeApp({ ANTHROPIC_API_KEY: SECRET });
