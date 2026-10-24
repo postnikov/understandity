@@ -12,29 +12,34 @@ import { REPO_ROOT } from '../config.js';
  *   GET  /api/courses/:id/showable    → what a child may see: approved cards only (`isShowable`, no drafts)
  *   POST /api/courses/:id/review      → {cardId, status: approved|blocked, edits?: {fact?, question?, key?}, reviewer?, note?}
  */
+export const defaultContentDir = () => process.env.UNDERSTANDITY_CONTENT_DIR ?? resolve(REPO_ROOT, 'content');
+
+/** Every valid course file in `dir`, keyed by course id (first file wins). Read fresh each time: reviews edit files. */
+export async function scanCourses(dir = defaultContentDir()): Promise<Map<string, { path: string; course: Course }>> {
+  const out = new Map<string, { path: string; course: Course }>();
+  const files = (await readdir(dir).catch(() => [] as string[])).filter((f) => f.endsWith('.json')).sort();
+  for (const f of files) {
+    const path = join(dir, f);
+    try {
+      const parsed = CourseSchema.safeParse(JSON.parse(await readFile(path, 'utf8')));
+      if (parsed.success && !out.has(parsed.data.id)) out.set(parsed.data.id, { path, course: parsed.data });
+    } catch {
+      /* not a course file */
+    }
+  }
+  return out;
+}
+
 export interface CourseRoutesOptions {
   contentDir?: string;
 }
 
 export function courseRoutes(opts: CourseRoutesOptions = {}) {
-  const dir = opts.contentDir ?? process.env.UNDERSTANDITY_CONTENT_DIR ?? resolve(REPO_ROOT, 'content');
+  const dir = opts.contentDir ?? defaultContentDir();
   const app = new Hono();
   let writeChain: Promise<unknown> = Promise.resolve();
 
-  async function scan(): Promise<Map<string, { path: string; course: Course }>> {
-    const out = new Map<string, { path: string; course: Course }>();
-    const files = (await readdir(dir).catch(() => [] as string[])).filter((f) => f.endsWith('.json')).sort();
-    for (const f of files) {
-      const path = join(dir, f);
-      try {
-        const parsed = CourseSchema.safeParse(JSON.parse(await readFile(path, 'utf8')));
-        if (parsed.success && !out.has(parsed.data.id)) out.set(parsed.data.id, { path, course: parsed.data });
-      } catch {
-        /* not a course file */
-      }
-    }
-    return out;
-  }
+  const scan = () => scanCourses(dir);
 
   async function load(id: string) {
     const hit = (await scan()).get(id);

@@ -7,7 +7,7 @@ export const app = {
   world: localStorage.getItem('understandity.world') ?? '',
   engines: null as EnginesResponse | null,
   /** Demo opt-in: show `draft`/`needs_review` cards to the student with a visible mark. Blocked never. */
-  allowDrafts: (import.meta.env.VITE_ALLOW_DRAFTS ?? '1') !== '0',
+  allowDrafts: import.meta.env.VITE_ALLOW_DRAFTS === '1',
 };
 
 export const t = (): Dict => dict(app.lang);

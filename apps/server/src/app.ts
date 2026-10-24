@@ -1,4 +1,7 @@
+import { resolve } from 'node:path';
 import { Hono } from 'hono';
+import { streamSSE } from 'hono/streaming';
+import { serveStatic } from '@hono/node-server/serve-static';
 import { ZodError } from 'zod';
 import {
   EngineError,
@@ -10,8 +13,8 @@ import {
   type EnginesResponse,
 } from '@understandity/contracts';
 import type { EngineHub } from './engines.js';
-import { tutorTurn } from './tutor.js';
-import { courseRoutes } from './routes/course.js';
+import { tutorTurn, type CourseLookup } from './tutor.js';
+import { courseRoutes, defaultContentDir, scanCourses } from './routes/course.js';
 
 const STATUS: Record<EngineErrorCode, 400 | 403 | 409 | 422 | 424 | 499 | 500 | 501 | 503 | 504> = {
   bad_input: 400,
@@ -33,12 +36,16 @@ const MAX_AUDIO_BYTES = 8 * 1024 * 1024;
 export interface AppDeps {
   hub: EngineHub;
   course: Course;
-  /** Demo shows `needs_review` cards; production must keep this false. */
+  /** Show and tutor `needs_review` cards. Off by default: the adult gate is part of the product. */
   allowDrafts: boolean;
+  /** Folder with course JSON files and `media/` (pre-rendered scene images). */
+  contentDir?: string;
 }
 
-export function createApp({ hub, course, allowDrafts }: AppDeps) {
-  const app = new Hono().basePath('/api');
+export function createApp({ hub, course, allowDrafts, contentDir = defaultContentDir() }: AppDeps) {
+  const root = new Hono();
+  const app = new Hono();
+  const lookup: CourseLookup = async (id) => (await scanCourses(contentDir)).get(id)?.course ?? (id === course.id ? course : null);
 
   app.onError((err, c) => {
     if (EngineError.is(err)) return c.json({ error: err.toPayload() }, STATUS[err.code] as 400);
@@ -89,9 +96,34 @@ export function createApp({ hub, course, allowDrafts }: AppDeps) {
     return c.json(transcript);
   });
 
-  app.route('/courses', courseRoutes());
+  app.route('/courses', courseRoutes({ contentDir }));
 
-  app.post('/tutor', async (c) => c.json(await tutorTurn(hub, course, await c.req.json())));
+  app.post('/tutor', async (c) => c.json(await tutorTurn(hub, lookup, await c.req.json(), { allowDrafts })));
+
+  /** SSE: `delta` {text} while the engine streams, then one `done` TutorTurnReply, or one `error` {error}. */
+  app.post('/tutor/stream', async (c) => {
+    const body = await c.req.json();
+    return streamSSE(c, async (sse) => {
+      const ctrl = new AbortController();
+      sse.onAbort(() => ctrl.abort());
+      let chain = Promise.resolve();
+      try {
+        const reply = await tutorTurn(hub, lookup, body, {
+          allowDrafts,
+          signal: ctrl.signal,
+          onDelta: (text) => {
+            chain = chain.then(() => sse.writeSSE({ event: 'delta', data: JSON.stringify({ text }) }));
+          },
+        });
+        await chain;
+        await sse.writeSSE({ event: 'done', data: JSON.stringify(reply) });
+      } catch (err) {
+        await chain.catch(() => undefined);
+        const e = EngineError.is(err) ? err : new EngineError('internal', err instanceof Error ? err.message : String(err));
+        await sse.writeSSE({ event: 'error', data: JSON.stringify({ error: e.toPayload() }) });
+      }
+    });
+  });
 
   app.post('/tts', async (c) => {
     const body = TtsHttpRequestSchema.parse(await c.req.json());
@@ -119,5 +151,8 @@ export function createApp({ hub, course, allowDrafts }: AppDeps) {
     return c.json(await adapter.getJob(c.req.param('jobId')));
   });
 
-  return app;
+  root.route('/api', app);
+  // Pre-rendered scene images from the course build step: `worlds[].image` = `/media/<course>/<card>-<world>.png`.
+  root.use('/media/*', serveStatic({ root: resolve(contentDir) }));
+  return root;
 }

@@ -107,21 +107,44 @@ async function realOrMock<T>(real: () => Promise<Response>, mock: () => Promise<
 }
 
 export const api = {
-  courses: () =>
-    realOrMock(
+  /**
+   * The server's list is `{id, title, lang, cards: number, …}` (module «Курс»); the web summary needs outcome,
+   * age and per-state counts, so each entry is summarised from its full course. Local and three courses — cheap.
+   */
+  courses: async (): Promise<CourseSummary[]> => {
+    const list = await realOrMock<Array<{ id: string }> | { courses: Array<{ id: string }> }>(
       () => fetch('/api/courses'),
       () => mockCourses.list(),
-    ).then((r: CourseSummary[] | { courses: CourseSummary[] }) => (Array.isArray(r) ? r : r.courses)),
+    );
+    const items = Array.isArray(list) ? list : list.courses;
+    if (isMock()) return items as CourseSummary[];
+    const full = await Promise.all(items.map((c) => api.course(c.id)));
+    return full.map(summarize);
+  },
   course: (id: string) =>
     realOrMock(
       () => fetch(`/api/courses/${encodeURIComponent(id)}`),
       () => mockCourses.get(id),
     ),
+  /** Server takes plain strings in `edits` and answers `{ok, card, course: summary}` — returned as the Card. */
   review: (courseId: string, req: ReviewRequest) =>
-    realOrMock<Course | Card>(
-      () => post(`/api/courses/${encodeURIComponent(courseId)}/review`, req),
+    realOrMock<Course | Card | { card: Card }>(
+      () =>
+        post(`/api/courses/${encodeURIComponent(courseId)}/review`, {
+          cardId: req.cardId,
+          status: req.status,
+          ...(req.edits
+            ? {
+                edits: {
+                  ...(req.edits.fact ? { fact: req.edits.fact.statement } : {}),
+                  ...(req.edits.question ? { question: req.edits.question.prompt } : {}),
+                  ...(req.edits.key ? { key: req.edits.key.expectedCause } : {}),
+                },
+              }
+            : {}),
+        }),
       () => mockCourses.review(courseId, req),
-    ),
+    ).then((r) => ('card' in r && !('concepts' in r) ? r.card : (r as Course | Card))),
 
   engines: () => fetch('/api/engines').then((r) => json<EnginesResponse>(r)),
   saveSettings: (s: Settings) =>
@@ -137,6 +160,35 @@ export const api = {
       body: audio,
     }).then((r) => json<Transcript>(r)),
   tutor: (req: TutorTurnRequest) => post('/api/tutor', req).then((r) => json<TutorTurnReply>(r)),
+  /** SSE `POST /api/tutor/stream`: `delta` {text}… then `done` TutorTurnReply or `error` {error}. */
+  tutorStream: async (req: TutorTurnRequest, onDelta: (text: string) => void): Promise<TutorTurnReply> => {
+    const res = await post('/api/tutor/stream', req);
+    if (!res.ok || !res.body) return json<TutorTurnReply>(res);
+    const reader = res.body.pipeThrough(new TextDecoderStream()).getReader();
+    let buf = '';
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buf += value;
+      let cut: number;
+      while ((cut = buf.indexOf('\n\n')) >= 0) {
+        const block = buf.slice(0, cut);
+        buf = buf.slice(cut + 2);
+        const event = /^event: ?(.*)$/m.exec(block)?.[1]?.trim() ?? 'message';
+        const data = block
+          .split('\n')
+          .filter((l) => l.startsWith('data:'))
+          .map((l) => l.slice(5).replace(/^ /, ''))
+          .join('\n');
+        if (!data) continue;
+        const payload = JSON.parse(data);
+        if (event === 'delta') onDelta(payload.text);
+        else if (event === 'done') return payload as TutorTurnReply;
+        else if (event === 'error') throw new ApiFailure(payload.error?.code ?? 'internal', payload.error?.message ?? 'tutor failed');
+      }
+    }
+    throw new ApiFailure('internal', 'tutor stream ended without an answer');
+  },
   speak: async (text: string, language: string): Promise<Blob> => {
     const r = await post('/api/tts', { text, language });
     if (!r.ok) await json(r);

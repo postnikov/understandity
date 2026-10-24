@@ -8,8 +8,9 @@ import {
   type CycleStep,
   type Evidence,
   type ImageJob,
+  type TutorTurnReply,
 } from '@understandity/contracts';
-import { api, ApiFailure } from '../api.js';
+import { api, ApiFailure, isMock } from '../api.js';
 import { app, errorText, esc, rerender, setWorld, t, worldLabel } from '../app.js';
 import type { View } from '../main.js';
 import { SILENCE_PEAK, VoiceRecorder } from '../recorder.js';
@@ -360,6 +361,28 @@ function reveal(msg: Msg, onDone: () => void) {
   }, 18);
 }
 
+function acceptReply(reply: TutorTurnReply, _msg: Msg) {
+  if (reply.hintGiven) s.hintsUsed++;
+  if (reply.evidence) s.evidence = reply.evidence;
+}
+
+function fetchVoice(msg: Msg): Promise<string | null> {
+  return api
+    .speak(msg.text, courseLang())
+    .then((b) => (msg.audio = URL.createObjectURL(b)))
+    .catch(() => null);
+}
+
+function speakOrNotice(msg: Msg, url: string | null) {
+  if (s.dialog.indexOf(msg) < 0) return;
+  if (!url) {
+    s.voice = 'idle';
+    s.notice = t().tutor.voiceOff;
+    return rerender();
+  }
+  play(url);
+}
+
 async function askTutor(text: string, kind: 'answer' | 'question' | 'explain_please') {
   const c = card();
   if (!c || !s.course) return;
@@ -371,39 +394,48 @@ async function askTutor(text: string, kind: 'answer' | 'question' | 'explain_ple
   s.error = null;
   s.notice = null;
   rerender();
+  const req = {
+    courseId: s.course.id,
+    cardId: c.id,
+    step: s.step,
+    world: sceneOf(c).world,
+    language: courseLang(),
+    studentText: text,
+    kind,
+    hintsUsed: s.hintsUsed,
+    history: s.dialog.slice(-11, -1).map(({ role, text }) => ({ role, text })),
+  };
   try {
-    const reply = await api.tutor({
-      courseId: s.course.id,
-      cardId: c.id,
-      step: s.step,
-      world: sceneOf(c).world,
-      language: courseLang(),
-      studentText: text,
-      kind,
-      hintsUsed: s.hintsUsed,
-      history: s.dialog.slice(-11, -1).map(({ role, text }) => ({ role, text })),
-    });
-    if (reply.hintGiven) s.hintsUsed++;
-    if (reply.evidence) s.evidence = reply.evidence;
-    const msg: Msg = { role: 'tutor', text: reply.text, evidence: reply.evidence, model: reply.model, shown: 0 };
+    if (isMock()) {
+      const reply = await api.tutor(req);
+      const msg: Msg = { role: 'tutor', text: reply.text, evidence: reply.evidence, model: reply.model, shown: 0 };
+      acceptReply(reply, msg);
+      s.dialog.push(msg);
+      s.voice = 'speaking';
+      rerender();
+      const voice = fetchVoice(msg);
+      reveal(msg, () => void voice.then((url) => speakOrNotice(msg, url)));
+      return;
+    }
+    // Real server: text arrives as the engine streams it; voice is requested once the turn is complete.
+    const msg: Msg = { role: 'tutor', text: '' };
     s.dialog.push(msg);
+    rerender();
+    const reply = await api.tutorStream(req, (delta) => {
+      msg.text += delta;
+      const node = document.querySelector<HTMLElement>(`[data-msg="${s.dialog.indexOf(msg)}"] .txt`);
+      if (node) node.textContent = msg.text;
+      else rerender();
+      const box = document.getElementById('dialog');
+      if (box) box.scrollTop = box.scrollHeight;
+    });
+    msg.text = reply.text;
+    msg.evidence = reply.evidence;
+    msg.model = reply.model;
+    acceptReply(reply, msg);
     s.voice = 'speaking';
     rerender();
-    // Voice is fetched while the text flows; text is always on screen as subtitles.
-    const voice = api
-      .speak(reply.text, courseLang())
-      .then((b) => (msg.audio = URL.createObjectURL(b)))
-      .catch(() => null);
-    reveal(msg, async () => {
-      const url = await voice;
-      if (s.dialog.indexOf(msg) < 0) return;
-      if (!url) {
-        s.voice = 'idle';
-        s.notice = t().tutor.voiceOff;
-        return rerender();
-      }
-      play(url);
-    });
+    speakOrNotice(msg, await fetchVoice(msg));
   } catch (err) {
     s.voice = 'error';
     s.error = errorText(err);
@@ -434,6 +466,11 @@ function loadImage() {
   const token = ++s.image.token;
   s.image = { state: 'wait', src: null, token };
   const scene = sceneOf(c);
+  if (scene.image) {
+    // Pre-rendered at build time (ComfyUI is not live during the demo).
+    s.image = { state: 'done', src: scene.image, token };
+    return;
+  }
   const settle = (job: ImageJob | null) => {
     if (s.image.token !== token) return;
     s.image = { state: job?.state === 'done' ? 'done' : 'failed', src: job?.file ?? null, token };
