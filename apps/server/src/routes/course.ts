@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { readFile, readdir, rename, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { Hono } from 'hono';
@@ -49,9 +50,23 @@ export function courseRoutes(opts: CourseRoutesOptions = {}) {
 
   app.get('/', async (c) => c.json([...(await scan()).values()].map(({ course }) => courseSummary(course))));
 
-  app.get('/:id', async (c) => c.json((await load(c.req.param('id'))).course));
+  /** A scene picture that is not on disk yet (still being drawn) is sent as null, so the web draws the scheme instead of a broken image. */
+  const withExistingImages = (course: Course): Course => ({
+    ...course,
+    concepts: course.concepts.map((k) => ({
+      ...k,
+      cards: k.cards.map((card) => ({
+        ...card,
+        worlds: card.worlds.map((w) =>
+          w.image && w.image.startsWith('/media/') && !existsSync(join(dir, w.image.replace(/^\/+/, '')).replace(/\.\.(\/|$)/g, '')) ? { ...w, image: null } : w,
+        ),
+      })),
+    })),
+  });
 
-  app.get('/:id/showable', async (c) => c.json(showableCourse((await load(c.req.param('id'))).course)));
+  app.get('/:id', async (c) => c.json(withExistingImages((await load(c.req.param('id'))).course)));
+
+  app.get('/:id/showable', async (c) => c.json(showableCourse(withExistingImages((await load(c.req.param('id'))).course))));
 
   app.post('/:id/review', async (c) => {
     const body = ReviewRequestSchema.parse(await c.req.json());
