@@ -35,6 +35,8 @@ export const GenerateRequestSchema = z.object({
   audience: z.enum(['child', 'adult']).default('child'),
   lang: LanguageSchema.default('en'),
   engine: z.enum(['local', 'online']).default('local'),
+  /** One world chosen before generation (Max, 24.10 16:06): scenes and picture prompts only for it. Absent → `worlds` default. */
+  world: z.enum(['fantasy', 'anime', 'space', 'cyberpunk']).optional(),
 });
 export type GenerateRequest = z.infer<typeof GenerateRequestSchema>;
 
@@ -92,7 +94,7 @@ export function generateRoutes({ hub, contentDir, worlds = ['fantasy', 'anime'],
         audience: body.audience,
         language: body.lang,
         ageRange: body.audience === 'adult' ? [18, 99] : [12, 14],
-        worlds,
+        worlds: body.world ? [body.world] : worlds,
         cardCount,
         source: { label: MODEL_KNOWLEDGE_SOURCE, url: null },
         origin: { generator: 'on-request', request: body.request, engine: body.engine, audience: body.audience },
@@ -107,6 +109,13 @@ export function generateRoutes({ hub, contentDir, worlds = ['fantasy', 'anime'],
       },
     );
     job.step = 'saving';
+    // Keep only the worlds that were asked for; a card the model wrote without them keeps what it has (schema needs one).
+    const wanted = body.world ? [body.world] : worlds;
+    for (const concept of course.concepts)
+      for (const card of concept.cards) {
+        const kept = card.worlds.filter((w) => wanted.includes(w.world));
+        if (kept.length) card.worlds = kept;
+      }
     job.courseId = await save(course);
     // Timing and format issues only — never the request text (it is the learner's).
     const tries = report.attempts.map((a) => `${a.ms}ms${a.problems.length ? ` (${a.problems.join('; ')})` : ''}`).join(' → ');
