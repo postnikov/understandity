@@ -8,7 +8,8 @@ export const createWhisperStt: AdapterFactory<'stt'> = (config, { providerId }) 
   const modelFile = () => expand(r.str('modelFile'));
   async function available() { await access(modelFile()); await r.command(r.str('binary', 'whisper-cli'), ['--version']); }
   return {
-    modality: 'stt', provider: providerId, locality: 'local', heavy: true,
+    // `options.heavy: false` (default in config): a short-lived ~1.6 GB process that may run next to the resident tutor model.
+    modality: 'stt', provider: providerId, locality: 'local', heavy: config.options.heavy !== false,
     async health() {
       try { await available(); return { state: 'ok', checkedAt: new Date().toISOString(), loadedModel: null }; }
       catch { return { state: 'down', detail: 'whisper executable or weights unavailable', checkedAt: new Date().toISOString() }; }

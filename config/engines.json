@@ -114,7 +114,8 @@
           "ffmpeg": "ffmpeg",
           "sampleRateHz": 16000,
           "maxClipSec": 60,
-          "timeoutMs": 90000
+          "timeoutMs": 90000,
+          "heavy": false
         }
       },
       "elevenlabs": {
