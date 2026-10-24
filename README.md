@@ -4,7 +4,7 @@ An offline-first, open-source tutor for 12–14-year-olds, meant to run at home 
 
 Every lesson card starts with a "wow" question from school science or math. The kid guesses out loud, gets a short explanation of the cause, changes one thing, and then explains a new case by voice. The answer is transcribed on the computer, the kid confirms what was heard, and a local language model judges the explanation against an answer key an adult approved: it confirms a right cause, asks one follow-up question otherwise, and never gives the key away.
 
-A local model also drafts the lessons. Models get facts wrong, so an adult reviews every **fact → question → key** before a child can open the card.
+A local model also drafts the lessons. Models get facts wrong, so in the ready-made courses an adult reviews every **fact → question → key** before a child can open the card. A course made on the spot with **Make your own course** opens right away, marked "AI-generated · not checked by an adult".
 
 > You can delegate thinking, but you cannot delegate understanding.
 
@@ -12,7 +12,7 @@ Built at Hacktoberfest Hack Day Barcelona on 24.10.2026 by Max Postnikov with AI
 
 ## How a card works
 
-The kid picks a world (Fantasy or Anime in the demo courses, two more worlds in progress) and can switch it on any card. The world changes the scenes and pictures; the facts stay the same. Each card has six steps:
+The kid picks a world (Fantasy, Anime, Space or Cyberpunk in the demo courses) and can switch it on any card. The world changes the scenes and pictures; the facts stay the same. Each card has six steps:
 
 1. **Wow**: a question that shouldn't work but does, with a scene from the kid's world.
 2. **Predict**, by voice: what happens and why. Being wrong here is fine.
@@ -21,9 +21,13 @@ The kid picks a world (Fantasy or Anime in the demo courses, two more worlds in 
 5. **New case**, by voice: a new situation, no hints. Explain how you decided.
 6. **Wrap-up**: the card is done; the next one brings a new situation.
 
-Answering by voice: press the mic, talk for up to 30 seconds, press **Done**. The screen shows **I heard: …** with **Yes, that is it** and **Record again**, because a recognition slip is not the kid's mistake. Silence gives "No answer received", never "did not understand". The tutor's reply appears as text while the model writes it, then a local voice reads it out. The kid can also type a question under the card or press **Just explain**.
+Answering by voice: press the mic, talk for up to 60 seconds, press **Done**. The screen shows **I heard: …** with **Yes, that is it** and **Record again**, because a recognition slip is not the kid's mistake. Silence gives "No answer received", never "did not understand". The tutor's reply appears as text while the model writes it, then a local voice reads it out. The kid can also type a question under the card or press **Just explain**.
 
-For each turn the tutor gets the card's fact and conditions, the adult-approved key (with an instruction not to reveal it before the kid tries), the typical mistake and a clarifying question. It first judges the answer against the key by meaning: a right cause is confirmed out loud and followed by a new case; a bare prediction gets "why?"; a wrong cause gets a counterexample; "I don't know" gets a small hint. It answers in 2–4 short sentences with exactly one question, never states the key itself before the kid does, and never judges accent or wording. Only those guiding replies and **Just explain** count as hints; after two, it explains directly on a different example. It refuses to tutor a card an adult hasn't approved.
+For each turn the tutor gets the card's fact and conditions, the adult-approved key (with an instruction not to reveal it before the kid tries), the typical mistake and a clarifying question. It first judges the answer against the key by meaning: a right cause is confirmed out loud and followed by a new case; a bare prediction gets "why?"; a wrong cause gets a counterexample; "I don't know" gets a small hint. It answers in 2–4 short sentences with exactly one question, never states the key itself before the kid does, and never judges accent or wording. Only those guiding replies and **Just explain** count as hints; after two, it explains directly on a different example. It refuses to tutor a card an adult hasn't approved, except a course made on the spot, which carries its "not checked" mark.
+
+### Make your own course
+
+On the home screen anyone can type a request in plain words, pick who it is for (a kid or an adult) and a model: local Gemma 4, or Claude in the Online profile with a key. The screen shows progress by step (outline, cards, worlds, saving) and opens the course when it is ready; its own estimate is about a minute locally and about 20 seconds online. Such a course skips the adult check and is marked "AI-generated · not checked by an adult". English only for now.
 
 ## What expertise is inside, and where it comes from
 
@@ -60,9 +64,10 @@ What the code does about it:
 - The server listens on `127.0.0.1` only. The web app loads nothing from a CDN; the font (JetBrains Mono) is bundled.
 - The default **Offline** profile refuses cloud providers, non-loopback endpoints and hidden network fallbacks, both when settings are saved and again on every engine call.
 - Recordings are temporary: converted, transcribed and deleted, also when something fails. There is no recording history.
-- The app never downloads models. Whisper and both voice sidecars use weights already on disk, pinned to a snapshot, and fetch nothing at runtime.
-- Scene pictures were drawn in advance by a cloud model (Nano Banana Pro) and ship as image files in `content/media`, so the lesson needs no network for them. A scene without a picture gets a built-in SVG scheme. No model draws anything at lesson time.
-- No keys in the repo. `config/engines.json` holds only the name of an environment variable. Cloud engines are never called on their own: not in health checks and not as a fallback when a local engine fails.
+- The app never downloads models while it runs: the installer fetches them once, and then Whisper and both voice sidecars use weights pinned to a snapshot and fetch nothing.
+- Scene pictures were drawn in advance by cloud models (Nano Banana Pro and Nano Banana 2) and ship as image files in `content/media`, so the lesson needs no network for them. A scene without a picture gets a built-in SVG scheme. No model draws anything at lesson time.
+- No keys in the repo. `config/engines.json` holds only environment variable names; a key added on the Engines screen stays on this computer in `data/keys.local.json` (git-ignored). Cloud engines run only in the Online profile with a key, and never on their own: not in health checks and not as a fallback when a local engine fails.
+- Tutor turns are logged only on this computer, in `data/logs` (git-ignored), without keys or audio.
 
 ## Architecture
 
@@ -72,20 +77,21 @@ The learning loop doesn't know any model or SDK. It talks to four swappable engi
 browser   http://127.0.0.1:5173          Vite + vanilla TS
   │  /api, /media
 server    127.0.0.1:8787                 Hono on Node 22
-  ├─ /api/courses*                       courses and the adult gate (content/*.json)
+  ├─ /api/courses*                       courses, the adult gate, Make your own course (content/*.json)
   ├─ /api/tutor/stream                   one tutor turn, streamed (SSE)
   ├─ /media/*                            pre-made scene pictures (content/media)
   └─ EngineHub                           Offline rule checked on every call
        └─ dispatcher                     one heavy task at a time
             ├─ text    Ollama 127.0.0.1:11434         Gemma 4 12B
-            ├─ stt     whisper-cli                    Whisper large-v3-turbo
+            │          Online profile only            Claude via the Anthropic API
+            ├─ stt     whisper-cli                    Whisper large-v3-turbo (light)
             ├─ tts     voice by language
             │            en  MLX sidecar 127.0.0.1:8791   Kokoro-82M (light, stays loaded)
             │            ru  MLX sidecar 127.0.0.1:8790   Qwen3-TTS (heavy)
             └─ image   fake · ComfyUI 127.0.0.1:8189    optional, not used by the lesson
 ```
 
-**One heavy task at a time.** Gemma, Whisper, the Qwen3 voice and ComfyUI are marked heavy. The dispatcher runs them one after another (FIFO, with a timeout and a `busy` answer) and unloads the previous model before the next one starts. Unloading is a barrier: the slot isn't freed just because an HTTP wait ended, because the model may still be working. Kokoro and macOS `say` are light: an English voice turn goes Whisper → Gemma → Kokoro, and speaking doesn't unload Gemma.
+**One heavy task at a time.** Gemma, the Qwen3 voice and ComfyUI are marked heavy. The dispatcher runs them one after another (FIFO, with a timeout and a `busy` answer) and unloads the previous model before the next one starts. Unloading is a barrier: the slot isn't freed just because an HTTP wait ended, because the model may still be working. Whisper, Kokoro and macOS `say` are light, so the tutor model stays loaded between turns: an English voice turn goes Whisper → Gemma → Kokoro without unloading anything. Making Whisper light cut a Gemma tutor turn from 2.9 s to 0.7 s in our test.
 
 | Path | What |
 |---|---|
@@ -94,7 +100,7 @@ server    127.0.0.1:8787                 Hono on Node 22
 | `packages/course` | course generator, adult review logic, CLI |
 | `engines/<modality>-<provider>` | one package per provider, plus a `fake` for every modality |
 | `apps/server` | Hono API on `127.0.0.1`, the tutor, the engine hub |
-| `apps/web` | world and course choice, the learning cycle with voice states, built-in SVG scene schemes, the adult check, the engines screen; English UI, Russian available |
+| `apps/web` | world and course choice, Make your own course, the learning cycle with voice states, built-in SVG scene schemes, the adult check, the engines screen with API keys; English UI (the Russian strings stay in the code, switched off in `apps/web/src/app.ts`) |
 | `sidecars/tts-mlx` | Python 3.11 voice sidecars on MLX, one venv with a pinned lock: Qwen3-TTS (`server.py`, a fresh worker per synthesis, so memory is released) and Kokoro-82M (`kokoro_server.py`, stays loaded) |
 | `config/engines.json` | providers, models, endpoints, voices, defaults |
 | `content/` | courses (`*.json`), source notes (`sources/*.md`), pre-made scene pictures (`media/`) |
@@ -114,7 +120,7 @@ server    127.0.0.1:8787                 Hono on Node 22
 | Text → speech | Qwen3-TTS 1.7B (8-bit MLX), voice Aiden | local | default for Russian (voice by language) | live |
 | Text → speech | macOS `say` | local | emergency, picked on the Engines screen | live |
 | Text → speech | ElevenLabs Multilingual v2 (sends the text) | cloud | Online only, with a key | live: 1 call on 24.10 |
-| Pictures | 30 scene pictures drawn in advance by Nano Banana Pro (cloud), shipped as files in `content/media` | files | default for Fantasy and Anime | in the repository |
+| Pictures | 60 scene pictures drawn in advance (Fantasy and Anime by Nano Banana Pro, Space and Cyberpunk by Nano Banana 2; cloud), shipped as files in `content/media` | files | default, all four worlds | in the repository |
 | Pictures | built-in SVG scene schemes, drawn in the browser | local | fallback when a scene has no picture | in use |
 | Pictures | ComfyUI with Z-Image Turbo, live | local | optional, not used by the lesson | HTTP mocks only |
 
@@ -138,9 +144,9 @@ For a stock ComfyUI, set `apiMode: native`, `secretEnv: null` and its endpoint i
 | Whisper large-v3-turbo (OpenAI), run with whisper.cpp | speech-to-text | [MIT, see the model card](https://huggingface.co/openai/whisper-large-v3-turbo) |
 | Kokoro-82M, MLX build `mlx-community/Kokoro-82M-bf16` | English voice | [Apache 2.0, see the model card](https://huggingface.co/hexgrad/Kokoro-82M) |
 | Qwen3-TTS 12Hz 1.7B CustomVoice, MLX build `mlx-community/Qwen3-TTS-12Hz-1.7B-CustomVoice-8bit` | Russian voice | [Apache 2.0, see the model card](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice) |
-| Nano Banana Pro (Google), cloud | the 30 scene pictures, drawn in advance; not part of the runtime | proprietary, used under Google's terms |
+| Nano Banana Pro and Nano Banana 2 (Google), cloud | the 60 scene pictures, drawn in advance; not part of the runtime | proprietary, used under Google's terms |
 
-Optional engines that are off by default (`qwen3.8:27b-mlx`, ComfyUI with Z-Image Turbo, ElevenLabs, Gemini API) come with their own licenses and terms.
+Optional engines that are off by default (`qwen3.8:27b-mlx`, Claude via the Anthropic API, ComfyUI with Z-Image Turbo, ElevenLabs, Gemini API) come with their own licenses and terms.
 
 ## The adult gate and the courses
 
@@ -151,7 +157,7 @@ Optional engines that are off by default (`qwen3.8:27b-mlx`, ComfyUI with Z-Imag
 - For development only, `UNDERSTANDITY_ALLOW_DRAFTS=1` (server) and `VITE_ALLOW_DRAFTS=1` (web) show unchecked cards with a "Draft · not checked by an adult" mark. Blocked cards are never shown.
 - Limit: the gate covers fact → question → key. It doesn't show or edit the explanation, the Try step or the world scenes yet; an adult can only block the whole card.
 
-Demo courses: English, five cards each, Fantasy and Anime worlds with a pre-made picture for every card in both, drafted on 24.10 by Gemma 4 12B from short source notes and approved by Max Postnikov. The picture prompts are in `content/media/prompts.json`.
+Demo courses: English, five cards each, four worlds (Fantasy, Anime, Space, Cyberpunk) with a pre-made picture for every card in each, drafted on 24.10 by Gemma 4 12B from short source notes and approved by Max Postnikov. The picture prompts are in `content/media/prompts.json`.
 
 | Subject | Course | File | Source |
 |---|---|---|---|
@@ -233,12 +239,12 @@ Single runs on our Mac Studio with synthetic adult speech. Not a child's voice, 
 As of 24.10.2026, during the hackathon:
 
 - A pass with a live microphone in a real browser is a manual check that is still pending. The voice loop on the real engines (Whisper → Gemma → Qwen3-TTS) has passed end to end with synthetic speech, and the launcher smoke has passed on the demo MacBook.
-- Two more worlds are in progress; the demo courses have scenes and pictures for Fantasy and Anime only.
+- A course made with Make your own course is not checked by an adult; it opens as a draft with a clear mark.
 - Evidence per answer is minimal: the tutor model's own verdict against the key (cause, hints used, transfer on the new case). It is not double-checked, the prediction itself is not extracted, and nothing is tracked across cards.
 - Cards go in order; picking the next card from the kid's answer is not built.
 - The adult gate doesn't cover the explanation, the Try step and the scenes (see above).
 - There is no filter yet for what the model says to a child. It is required before real use with children.
-- No installer: models are installed by hand.
+- The installer supports macOS 15+ on Apple Silicon only (see [INSTALL.md](INSTALL.md)).
 - The Gemini API provider is a placeholder. Claude and ElevenLabs were checked live with a handful of calls each, not under load. Live ComfyUI through the app has only been tested against HTTP mocks.
 - Not tested with real children's voices. Minimum hardware is not measured.
 
@@ -257,7 +263,7 @@ AI tools, credited as the hackathon rules ask:
 
 - **Claude Code** and **Codex** (AI coding agents) wrote the code, the tests and these docs on 24.10.2026, from scratch. They worked in parallel modules held together by one shared contracts package.
 - **Gemma 4 12B** drafted the three demo courses from the source notes; an adult reviewed every card.
-- **Nano Banana Pro** drew the 30 scene pictures in advance (prompts in `content/media/prompts.json`).
+- **Nano Banana Pro** (Fantasy, Anime) and **Nano Banana 2** (Space, Cyberpunk) drew the 60 scene pictures in advance (prompts in `content/media/prompts.json`).
 
 ## Libraries and tools
 
@@ -268,7 +274,7 @@ npm packages, exact versions pinned in `package-lock.json`:
 
 Python packages for the voice sidecars, exact versions pinned in `sidecars/tts-mlx/requirements.lock`: `mlx-audio` (with `mlx`), `soundfile`, `misaki`, `spacy` with the `en_core_web_sm` model, `num2words`, `phonemizer-fork`, `espeakng-loader`, and `huggingface-hub` for the one-time Kokoro download.
 
-Tools: Node.js 22, Python 3.11, uv, Ollama, whisper.cpp (`whisper-cli`), ffmpeg; ComfyUI only for the optional live image engine.
+Tools: Node.js 22, Python 3.11, uv, Ollama, whisper.cpp (`whisper-cli`), ffmpeg; Homebrew for the installer; ComfyUI only for the optional live image engine.
 
 ## License
 
