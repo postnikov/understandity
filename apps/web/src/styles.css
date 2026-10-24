@@ -448,3 +448,14 @@ a.ccard:hover .ccard__go { text-decoration: underline; }
   .landing .intro h1 { font-size: 34px; }
   .course-grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- make: ready screen ---------- */
+.make-ready { display: flex; flex-direction: column; gap: var(--s-4); align-items: flex-start; }
+.make-ready .make-steps { width: 100%; }
+.make-steps--done li { border-top-color: var(--accent); color: var(--fg); }
+.ready-box { width: 100%; display: flex; flex-direction: column; gap: var(--s-1); padding: var(--s-4); border: 1px solid var(--amber); background: var(--amber-soft); }
+.ready-box b { color: var(--ink); font-size: 16px; }
+.ready-box span { font-size: 13px; color: var(--fg-dim); }
+.ready-box.ok { border-color: var(--ok); background: rgba(14, 122, 85, 0.08); }
+.ready-box .dots { margin-top: var(--s-2); }
+.make-ready .make-actions { margin-top: 0; }
