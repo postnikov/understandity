@@ -1,0 +1,40 @@
+import type { EnginesResponse } from '@understandity/contracts';
+import { dict, type Dict, type UiLang } from './i18n.js';
+
+/** App-wide state shared by the views. Each view keeps its own local state. */
+export const app = {
+  lang: (localStorage.getItem('understandity.lang') as UiLang | null) ?? 'en',
+  world: localStorage.getItem('understandity.world') ?? '',
+  engines: null as EnginesResponse | null,
+  /** Demo opt-in: show `draft`/`needs_review` cards to the student with a visible mark. Blocked never. */
+  allowDrafts: (import.meta.env.VITE_ALLOW_DRAFTS ?? '1') !== '0',
+};
+
+export const t = (): Dict => dict(app.lang);
+
+export function setLang(lang: UiLang) {
+  app.lang = lang;
+  localStorage.setItem('understandity.lang', lang);
+  document.documentElement.lang = lang;
+}
+
+export function setWorld(world: string) {
+  app.world = world;
+  localStorage.setItem('understandity.world', world);
+}
+
+export const esc = (v: unknown) => String(v ?? '').replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+
+export const worldLabel = (w: string) => t().worlds[w] ?? w.charAt(0).toUpperCase() + w.slice(1);
+
+/** Re-render hook set by the shell; views call it after state changes. */
+export let rerender: () => void = () => undefined;
+export function setRerender(fn: () => void) {
+  rerender = fn;
+}
+
+export function errorText(err: unknown): string {
+  const e = err as { code?: string; message?: string };
+  if (e?.message?.includes('Failed to fetch')) return t().apiDown;
+  return e?.code ? `${e.code}: ${e.message}` : String(e?.message ?? err);
+}
