@@ -16,6 +16,7 @@ import type { EngineHub } from './engines.js';
 import type { KeyStore } from './keys.js';
 import { tutorTurn, type CourseLookup } from './tutor.js';
 import { courseRoutes, defaultContentDir, scanCourses } from './routes/course.js';
+import { generateRoutes } from './routes/generate.js';
 
 const STATUS: Record<EngineErrorCode, 400 | 403 | 409 | 422 | 424 | 499 | 500 | 501 | 503 | 504> = {
   bad_input: 400,
@@ -114,6 +115,8 @@ export function createApp({ hub, course, allowDrafts, contentDir = defaultConten
     return c.json(transcript);
   });
 
+  // Before `/courses/:id`: a course on the learner's request (local or online model), shown without an adult.
+  app.route('/courses/generate', generateRoutes({ hub, contentDir }));
   app.route('/courses', courseRoutes({ contentDir }));
 
   app.post('/tutor', async (c) => c.json(await tutorTurn(hub, lookup, await c.req.json(), { allowDrafts })));

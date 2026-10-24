@@ -2,6 +2,7 @@ import {
   TutorTurnRequestSchema,
   findCard,
   isShowable,
+  showsDrafts,
   type Course,
   type NextMove,
   type TextResult,
@@ -108,7 +109,7 @@ export async function tutorTurn(
   const found = findCard(course, req.cardId);
   if (!found) throw new EngineError('bad_input', `card "${req.cardId}" not found in "${req.courseId}"`);
   const { card } = found;
-  if (!isShowable(card, { allowDrafts: opts.allowDrafts })) {
+  if (!isShowable(card, { allowDrafts: opts.allowDrafts || showsDrafts(course) })) {
     throw new EngineError('bad_input', `card "${card.id}" is not approved by an adult yet`);
   }
 

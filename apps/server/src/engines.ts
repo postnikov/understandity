@@ -145,6 +145,18 @@ export class EngineHub {
     return { ...this.config, providers };
   }
 
+  /**
+   * A text engine picked by name, outside the active settings (course on request: local or online toggle).
+   * Cloud needs its key; `null` when the provider is not configured, not wired or has no key.
+   */
+  textEngine(providerId: string): { adapter: AdapterByModality['text']; config: EnginesConfig['providers']['text'][string] } | null {
+    const cfg = this.config.providers.text[providerId];
+    const adapter = this.adapters.get(key('text', providerId));
+    if (!cfg || !adapter) return null;
+    if (cfg.locality === 'cloud' && (!cfg.secretEnv || !this.keySet(cfg.secretEnv))) return null;
+    return { adapter: adapter as unknown as AdapterByModality['text'], config: cfg };
+  }
+
   anyKey(): boolean {
     return MODALITIES.some((m) => Object.values(this.config.providers[m]).some((c) => c.locality === 'cloud' && !!c.secretEnv && this.keySet(c.secretEnv)));
   }
