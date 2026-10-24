@@ -15,7 +15,19 @@ export interface CourseRequest {
   /** Course id / file slug; derived from the title when absent. */
   id?: string;
   subject?: string;
+  /** `child` (default, 12–14) or `adult`: decides the voice of every learner-facing string. */
+  audience?: 'child' | 'adult';
+  /**
+   * The learner's own words: what they do not understand. Set for on-request courses — there are no
+   * adult notes, the model draws facts from its own knowledge and the course says so in `fact.source`.
+   */
+  request?: string;
+  /** Overrides the course `origin` (on-request courses record the request and the engine). */
+  origin?: { generator: 'on-request'; request: string; engine: 'local' | 'online' };
 }
+
+/** Coarse progress of one generation, for the UI. */
+export type GenerationStep = 'outline' | 'cards' | 'worlds' | 'saving';
 
 export interface CourseGenerationDeps {
   text: TextAdapter;
@@ -26,6 +38,8 @@ export interface CourseGenerationDeps {
   maxTokens?: number;
   timeoutMs?: number;
   temperature?: number;
+  /** Called when the generation moves to the next coarse step. */
+  onStep?: (step: GenerationStep) => void;
 }
 
 export interface GenerationAttempt {

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { CourseSchema, findCard, isShowable, type Course } from '@understandity/contracts';
+import { CourseSchema, findCard, isShowable, showsDrafts, type Course } from '@understandity/contracts';
 
 /**
  * Adult review gate (contract for the UI, fixed by the course module):
@@ -35,6 +35,8 @@ export interface CourseSummary {
   blocked: number;
   source: string | null;
   model: string | null;
+  /** Who made the course; `generator: 'on-request'` = a learner's request, shown without an adult (UI marks it). */
+  origin: Course['origin'];
 }
 
 export function courseSummary(course: Course): CourseSummary {
@@ -52,6 +54,7 @@ export function courseSummary(course: Course): CourseSummary {
     blocked: count('blocked'),
     source: cards.find((c) => c.fact.source)?.fact.source ?? null,
     model: course.origin.model,
+    origin: course.origin,
   };
 }
 
@@ -91,12 +94,16 @@ export function applyReview(course: Course, req: ReviewRequest, now = new Date()
   return CourseSchema.parse(next);
 }
 
-/** What a child may see: approved cards only (no drafts), concepts without cards dropped. */
+/**
+ * What a child may see, concepts without cards dropped: approved cards only — except a course made on the
+ * learner's own request, which is shown at once (not blocked cards) and marked as not checked (`origin`).
+ */
 export function showableCourse(course: Course): Course {
+  const allowDrafts = showsDrafts(course);
   return {
     ...course,
     concepts: course.concepts
-      .map((k) => ({ ...k, cards: k.cards.filter((c) => isShowable(c, { allowDrafts: false })) }))
+      .map((k) => ({ ...k, cards: k.cards.filter((c) => isShowable(c, { allowDrafts })) }))
       .filter((k) => k.cards.length > 0),
   };
 }
