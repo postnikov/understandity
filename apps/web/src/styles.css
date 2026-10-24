@@ -327,7 +327,8 @@ a.map-card:hover { border-color: var(--accent); }
   .lesson-card { grid-template-columns: 1fr; }
   .lesson-panel { border-left: 0; border-top: 1px solid var(--border); }
   .scene-col .scene { min-height: 260px; }
-  .learn-page[data-voice='listening'] .lesson-panel, .learn-page[data-voice='confirm'] .lesson-panel, .learn-page[data-voice='speaking'] .lesson-panel { order: -1; border-top: 0; border-bottom: 1px solid var(--border); }
+  /* Voice states and the tutor's reply come first on a phone; the scene follows. */
+  .lesson-card.panel-first .lesson-panel { order: -1; border-top: 0; border-bottom: 1px solid var(--border); }
   .chain, .rcard__edit { grid-template-columns: 1fr; }
   .chain > div { border-right: 0; border-bottom: 1px solid var(--border); }
   .chain > div:not(:last-child)::after { content: '↓'; right: var(--s-4); top: auto; bottom: -9px; }

@@ -307,7 +307,7 @@ function html(): string {
         </div>
         ${stepper()}
         <h1 class="lesson-q ${q.length > 110 ? 'long' : ''}">${esc(q)}</h1>
-        <div class="lesson-card">${sceneCol(c)}<div class="lesson-panel ${p.cls}" aria-live="polite">${p.html}</div></div>
+        <div class="lesson-card ${p.cls ? 'panel-first' : ''}">${sceneCol(c)}<div class="lesson-panel ${p.cls}" aria-live="polite">${p.html}</div></div>
         <div class="lesson-foot"><span>${d.ocean.noScore}</span><button class="text-btn" data-ask-open>${CHAT}<span>${d.ocean.ask}</span></button></div>
         ${s.askOpen ? askBox() : ''}
         ${earlier()}

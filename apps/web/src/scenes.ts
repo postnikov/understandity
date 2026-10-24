@@ -95,8 +95,8 @@ function art(kind: Kind, labels: boolean): string {
       a +=
         '<path d="M320 330V190" stroke="#0E7A55" stroke-width="8"/><path d="M320 250q-70-10-90-60 60 0 90 50Z" fill="#3E9A6B"/><path d="M320 220q70-10 95-60-65 0-95 50Z" fill="#3E9A6B"/><path d="M320 190q-20-40 0-70 20 30 0 70Z" fill="#52B07F"/>';
       a += '<path d="M320 330v50m0-30-28 36m28-20 30 40" stroke="#805F43" stroke-width="4" fill="none"/>';
-      a += '<path d="M490 135 410 185" stroke="#C2571A" stroke-width="3" stroke-dasharray="6 6"/><path d="M150 170 245 205" stroke="#0E7C86" stroke-width="3"/><path d="M215 395 292 368" stroke="#0E7C86" stroke-width="3"/>';
-      if (labels) a += T(150, 160, 'CO₂', 16, '#085762', 'middle') + T(195, 420, 'WATER', 14, '#085762', 'middle') + T(520, 175, 'LIGHT', 14, '#C2571A', 'middle');
+      a += '<path d="M490 135 410 185" stroke="#C2571A" stroke-width="3" stroke-dasharray="6 6"/><path d="M150 170 245 205" stroke="#0E7C86" stroke-width="3"/><path d="M420 372 345 358" stroke="#0E7C86" stroke-width="3"/>';
+      if (labels) a += T(150, 160, 'CO₂', 16, '#085762', 'middle') + T(470, 380, 'WATER', 14, '#085762', 'middle') + T(545, 215, 'LIGHT', 14, '#C2571A', 'middle');
       return a;
     }
     case 'water':
