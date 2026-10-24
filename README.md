@@ -2,7 +2,7 @@
 
 An offline-first, open-source tutor for 12–14-year-olds.
 
-Every lesson card starts with a "wow" question from school science or math. The kid guesses out loud, gets a short explanation of the cause, changes one thing, and then explains a new case by voice. The answer is transcribed on the computer, the kid confirms what was heard, and a local language model checks the explanation against an answer key an adult approved, replying with one follow-up question.
+Every lesson card starts with a "wow" question from school science or math. The kid guesses out loud, gets a short explanation of the cause, changes one thing, and then explains a new case by voice. The answer is transcribed on the computer, the kid confirms what was heard, and a local language model judges the explanation against an answer key an adult approved: it confirms a right cause, asks one follow-up question otherwise, and never gives the key away.
 
 A local model also drafts the lessons. Models get facts wrong, so an adult reviews every **fact → question → key** before a child can open the card.
 
@@ -34,7 +34,8 @@ What the code does about it:
 - The server listens on `127.0.0.1` only. The web app loads nothing from a CDN; the font (JetBrains Mono) is bundled.
 - The default **Offline** profile refuses cloud providers, non-loopback endpoints and hidden network fallbacks, both when settings are saved and again on every engine call.
 - Recordings are temporary: converted, transcribed and deleted, also when something fails. There is no recording history.
-- The app never downloads models. Whisper and the voice sidecar use weights already on disk; the sidecar runs in Hugging Face offline mode with a pinned snapshot.
+- The app never downloads models. Whisper and both voice sidecars use weights already on disk, pinned to a snapshot, and fetch nothing at runtime.
+- Scene pictures are prepared in advance and ship as image files; until a picture is in place, the app draws a built-in SVG scheme. No model draws anything at lesson time.
 - No keys in the repo. `config/engines.json` holds only the name of an environment variable. Cloud engines are never called on their own: not in health checks and not as a fallback when a local engine fails.
 
 ## Architecture
@@ -47,16 +48,18 @@ browser   http://127.0.0.1:5173          Vite + vanilla TS
 server    127.0.0.1:8787                 Hono on Node 22
   ├─ /api/courses*                       courses and the adult gate (content/*.json)
   ├─ /api/tutor/stream                   one tutor turn, streamed (SSE)
-  ├─ /media/*                            pre-rendered scene images (content/media)
+  ├─ /media/*                            pre-made scene pictures (content/media)
   └─ EngineHub                           Offline rule checked on every call
        └─ dispatcher                     one heavy task at a time
             ├─ text    Ollama 127.0.0.1:11434         Gemma 4 12B
             ├─ stt     whisper-cli                    Whisper large-v3-turbo
-            ├─ tts     MLX sidecar 127.0.0.1:8790     Qwen3-TTS
-            └─ image   fake SVG scheme · ComfyUI 127.0.0.1:8189 (optional)
+            ├─ tts     voice by language
+            │            en  MLX sidecar 127.0.0.1:8791   Kokoro-82M (light, stays loaded)
+            │            ru  MLX sidecar 127.0.0.1:8790   Qwen3-TTS (heavy)
+            └─ image   fake · ComfyUI 127.0.0.1:8189    optional, not used by the lesson
 ```
 
-**One heavy task at a time.** Gemma, Whisper, the MLX voice and ComfyUI are marked heavy. The dispatcher runs them one after another (FIFO, with a timeout and a `busy` answer) and unloads the previous model before the next one starts. Unloading is a barrier: the slot isn't freed just because an HTTP wait ended, because the model may still be working. A voice turn goes Whisper → Gemma → voice. macOS `say` is light and doesn't take the slot.
+**One heavy task at a time.** Gemma, Whisper, the Qwen3 voice and ComfyUI are marked heavy. The dispatcher runs them one after another (FIFO, with a timeout and a `busy` answer) and unloads the previous model before the next one starts. Unloading is a barrier: the slot isn't freed just because an HTTP wait ended, because the model may still be working. Kokoro and macOS `say` are light: an English voice turn goes Whisper → Gemma → Kokoro, and speaking doesn't unload Gemma.
 
 | Path | What |
 |---|---|
@@ -65,10 +68,10 @@ server    127.0.0.1:8787                 Hono on Node 22
 | `packages/course` | course generator, adult review logic, CLI |
 | `engines/<modality>-<provider>` | one package per provider, plus a `fake` for every modality |
 | `apps/server` | Hono API on `127.0.0.1`, the tutor, the engine hub |
-| `apps/web` | world and course choice, the learning cycle with voice states, the adult check, the engines screen; English UI, Russian available |
-| `sidecars/tts-mlx` | Python 3.11 voice sidecar (`mlx-audio` 0.5.4, pinned lock); a fresh worker per synthesis, so memory is released |
+| `apps/web` | world and course choice, the learning cycle with voice states, built-in SVG scene schemes, the adult check, the engines screen; English UI, Russian available |
+| `sidecars/tts-mlx` | Python 3.11 voice sidecars on MLX, one venv with a pinned lock: Qwen3-TTS (`server.py`, a fresh worker per synthesis, so memory is released) and Kokoro-82M (`kokoro_server.py`, stays loaded) |
 | `config/engines.json` | providers, models, endpoints, voices, defaults |
-| `content/` | courses (`*.json`), source notes (`sources/*.md`), pre-rendered images (`media/`) |
+| `content/` | courses (`*.json`), source notes (`sources/*.md`), pre-made scene pictures (`media/`) |
 
 ## What runs by default
 
@@ -80,12 +83,13 @@ server    127.0.0.1:8787                 Hono on Node 22
 | Speech → text | Whisper large-v3-turbo via whisper.cpp | local | default | live |
 | Speech → text | Gemma 4 12B audio input via Ollama | local | alternative | live |
 | Speech → text | ElevenLabs Scribe v2 (sends the recording) | cloud | off | HTTP mocks only |
-| Text → speech | Qwen3-TTS 1.7B (8-bit MLX), voice Aiden, via the sidecar | local | default | live |
+| Text → speech | Kokoro-82M (bf16, MLX), voice `af_heart` | local | default for English (voice by language) | live and offline on the Mac Studio |
+| Text → speech | Qwen3-TTS 1.7B (8-bit MLX), voice Aiden | local | default for Russian (voice by language) | live |
 | Text → speech | macOS `say` | local | emergency, picked on the Engines screen | live |
 | Text → speech | ElevenLabs Multilingual v2 (sends the text) | cloud | off | HTTP mocks only |
-| Pictures | scene images pre-rendered with Z-Image Turbo in ComfyUI | local files | default | being generated on 24.10 |
-| Pictures | `fake`: an SVG scheme when a scene has no image | local | fallback | tests |
-| Pictures | ComfyUI with Z-Image Turbo, live | local | optional | HTTP mocks only |
+| Pictures | scene pictures made beforehand with Nano Banana Pro (cloud), shipped as files in `content/media` | files | shown when present | not in the repository yet |
+| Pictures | built-in SVG scene schemes, drawn in the browser | local | until a picture is in place | in use |
+| Pictures | ComfyUI with Z-Image Turbo, live | local | optional, not used by the lesson | HTTP mocks only |
 
 Cloud providers are `enabled: false` in the config, and the Offline profile refuses them even when enabled. Using one is explicit: switch to the Online profile, set `enabled: true`, put the key in the environment variable named by `secretEnv` (`GEMINI_API_KEY`, `ELEVENLABS_API_KEY`) and pick the provider on the Engines screen. For a stock ComfyUI, set `apiMode: native`, `secretEnv: null` and its endpoint in `config/engines.json`.
 
@@ -110,17 +114,19 @@ Demo courses: English, five cards each, Fantasy and Anime worlds, drafted on 24.
 
 ## Quick start
 
-Default setup: a Mac with Apple Silicon, Node 22 or newer, Ollama 0.40.8 or newer with `gemma4:12b-mlx`, ffmpeg, `whisper-cli` with `~/.cache/whisper-cpp/ggml-large-v3-turbo.bin`, and Python 3.11 with uv for the voice sidecar (the Qwen3-TTS snapshot must already be in the Hugging Face cache). We run it on Macs with 64 GB of memory; the full set of model weights we use is about 51 GB.
+Default setup: a Mac with Apple Silicon, Node 22 or newer, Ollama 0.40.8 or newer with `gemma4:12b-mlx`, ffmpeg, `whisper-cli` with `~/.cache/whisper-cpp/ggml-large-v3-turbo.bin`, and Python 3.11 with uv for the voice sidecars (the Qwen3-TTS snapshot must already be in the Hugging Face cache; Kokoro is downloaded once with the command below). We run it on Macs with 64 GB of memory; the full set of model weights we use is about 51 GB.
 
 ```sh
 npm install
 
-# voice sidecar, once (online; the weights must already be cached)
+# voice sidecars, once, while online
 uv venv --python 3.11 sidecars/tts-mlx/.venv
 uv pip sync --python sidecars/tts-mlx/.venv/bin/python sidecars/tts-mlx/requirements.lock
+sidecars/tts-mlx/.venv/bin/python -c "from huggingface_hub import snapshot_download; snapshot_download('mlx-community/Kokoro-82M-bf16', revision='a71e4d38b236d968966a2002c4c895dbd12b1c3c', allow_patterns=['config.json','kokoro-v1_0.safetensors','voices/*.safetensors','VOICES.md'])"
 
-# keep the voice sidecar running in its own terminal
-sidecars/tts-mlx/.venv/bin/python sidecars/tts-mlx/server.py
+# keep both voice sidecars running, each in its own terminal
+sidecars/tts-mlx/.venv/bin/python sidecars/tts-mlx/kokoro_server.py   # English
+sidecars/tts-mlx/.venv/bin/python sidecars/tts-mlx/server.py          # Russian
 
 # in another terminal
 npm run demo
@@ -128,7 +134,7 @@ npm run demo
 
 Open http://127.0.0.1:5173 (browsers allow the microphone on localhost) → pick a world and a course → **Start** → **Next** → **Answer by voice** → talk → **Done** → **Yes, that is it**.
 
-- `npm run demo` is `npm run dev` with `UNDERSTANDITY_WARMUP=1`: the server makes one voice synthesis at start, so the first spoken reply isn't a cold start. Plain `npm run dev` loads nothing heavy at start.
+- `npm run demo` is `npm run dev` with `UNDERSTANDITY_WARMUP=1`: the server makes one short synthesis per voice at start, English first, so the first spoken reply isn't a cold start. Plain `npm run dev` loads nothing heavy at start.
 - The server runs on `127.0.0.1:8787`, the web app on `127.0.0.1:5173`. Check: `curl -s http://127.0.0.1:5173/api/health` returns `"ok":true` when every active engine is up.
 - No microphone: the recorder sends a silent demo clip and says so.
 - No models: on the **Engines** screen pick `fake` for every modality and press **Apply** to click through the loop with placeholder data.
@@ -154,7 +160,7 @@ npm run build       # web bundle
 sidecars/tts-mlx/.venv/bin/python -m unittest discover -s sidecars/tts-mlx -p 'test_*.py' -v
 ```
 
-The Vitest suite covers the contracts, the dispatcher (timeouts, cancellation, unload as a barrier), every engine adapter against HTTP or CLI fakes, the course generator on a scripted model (valid run, one repair, failure), the review API and the server end to end. Server tests pin fake engines (`apps/server/test/helpers.ts`), so they don't depend on the demo defaults. A separate regression test runs speech-to-text → text → voice → speech-to-text through the dispatcher. The Python tests cover the voice sidecar: snapshot checks, cleanup, killing and reaping its own worker, refusing browser origins.
+The Vitest suite covers the contracts, the dispatcher (timeouts, cancellation, unload as a barrier), every engine adapter against HTTP or CLI fakes, the course generator on a scripted model (valid run, one repair, failure), the tutor's verdict line and hint rule, the review API and the server end to end. Server tests pin fake engines (`apps/server/test/helpers.ts`), so they don't depend on the demo defaults. A separate regression test runs speech-to-text → text → voice → speech-to-text through the dispatcher. The Python tests cover both voice sidecars, including snapshot checks, cleanup, killing and reaping the Qwen3 worker, and refusing browser origins.
 
 ## Measured
 
@@ -162,16 +168,17 @@ Single runs on our Mac Studio with synthetic adult speech. Not a child's voice, 
 
 - Whisper large-v3-turbo: 1.08 s for a 4.76 s phrase; the meaning and the number in it were kept.
 - Gemma 4 12B audio input: 2.50 s including the first load, 0.26 s with the model loaded, but it misheard the first word. That's why Whisper is the default and the kid always confirms the transcript.
-- Qwen3-TTS via MLX: 18.7 s for the first process in a fresh environment, 2.0 s for the next fresh process, for 3.12 s of speech. Whisper read the generated phrase back correctly. Hence the warm-up in `npm run demo`.
+- Qwen3-TTS via MLX, now the Russian voice: 18.7 s for the first process in a fresh environment, 2.0 s for the next fresh process, for 3.12 s of speech. Whisper read the generated phrase back correctly. Hence the warm-up in `npm run demo`.
 - macOS `say`: 1.0 s.
 - Course generation with Gemma 4 12B, five English cards: 40.2–44.1 s per course; all three passed validation on the first attempt.
+- Tutor verdicts with Gemma 4 12B, text only: 16 of 16 matched the expected verdict on two cards (physics and biology), four answer types (right cause, bare prediction, wrong cause, "I don't know"), two runs each. The answers were written for the test, not spoken by children.
 
 ## Not done yet
 
 As of 24.10.2026, during the hackathon:
 
 - A pass with a live microphone in a real browser is a manual check that is still pending. The voice loop on the real engines (Whisper → Gemma → Qwen3-TTS) has passed end to end with synthetic speech, and the launcher smoke has passed on the demo MacBook.
-- Scene images are being generated. A scene without one shows the SVG scheme.
+- Scene pictures made with Nano Banana Pro are not in the repository yet. Until a picture is in place, the scene shows a built-in SVG scheme.
 - Evidence per answer is minimal: the tutor model's own verdict against the key (cause, hints used, transfer on the new case). It is not double-checked, the prediction itself is not extracted, and nothing is tracked across cards.
 - Cards go in order; picking the next card from the kid's answer is not built.
 - The adult gate doesn't cover the explanation, the Try step and the scenes (see above).
@@ -195,8 +202,8 @@ Apache License 2.0, see [LICENSE](LICENSE). Model weights are not part of this r
 
 - **Gemma 4** (Google DeepMind, Apache 2.0): the tutor, course drafts, optional speech-to-text; run with **Ollama**.
 - **Whisper large-v3-turbo** (OpenAI): speech-to-text; run with **whisper.cpp**.
-- **Qwen3-TTS**: the tutor's voice; run with **MLX** and **mlx-audio**.
-- **Z-Image Turbo**: scene images; run in **ComfyUI**.
+- **Kokoro-82M** (Apache 2.0): the English voice; run with **MLX**, with **misaki** and spaCy `en_core_web_sm` for pronunciation.
+- **Qwen3-TTS**: the Russian voice; run with **MLX** and **mlx-audio**.
 - **ffmpeg**: audio conversion.
 - **OpenStax**, CC BY 4.0: the course sources come from [University Physics Volume 1](https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure) (14.1, 14.4), [Biology 2e](https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis) (8.1, 8.3) and [Prealgebra 2e](https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids) (9.4). The notes in `content/sources/` are short summaries written for this project, with links to these sections.
 - **JetBrains Mono** (SIL Open Font License 1.1).
