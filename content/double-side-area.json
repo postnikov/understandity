@@ -61,13 +61,13 @@
               "world": "space",
               "scene": "An astronaut places 9 square tiles in a 3x3 grid on a lunar base floor. They observe how many tiles are needed to cover a 6x6 area.",
               "illustration": "A 3x3 grid of square tiles on a grey floor.",
-              "image": null
+              "image": "/media/double-side-area/c1-counting-the-squares-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A hacker places 9 glowing neon tiles in a 3x3 grid on a metallic workbench. They observe how many tiles cover a 6x6 grid.",
               "illustration": "A 3x3 grid of glowing neon squares on a workbench.",
-              "image": null
+              "image": "/media/double-side-area/c1-counting-the-squares-cyberpunk.png"
             }
           ],
           "question": {
@@ -167,13 +167,13 @@
               "world": "space",
               "scene": "An astronaut observes a square solar panel that is replaced by a square panel 3 times wider and 3 times longer.",
               "illustration": "A small square solar panel next to a much larger square solar panel.",
-              "image": null
+              "image": "/media/double-side-area/c2-the-two-way-growth-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A robot observes a square holographic display that is replaced by a square display 3 times wider and 3 times longer.",
               "illustration": "A small square holographic display next to a much larger square display.",
-              "image": null
+              "image": "/media/double-side-area/c2-the-two-way-growth-cyberpunk.png"
             }
           ],
           "question": {
@@ -274,13 +274,13 @@
               "world": "space",
               "scene": "An astronaut stretches a rectangular fabric sheet, making it twice as long while the width remains the same.",
               "illustration": "A rectangular fabric sheet being pulled to become twice as long.",
-              "image": null
+              "image": "/media/double-side-area/c3-the-rectangle-exception-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A hacker stretches a rectangular data strip, making it twice as long while the width remains the same.",
               "illustration": "A rectangular strip of data being stretched to twice its length.",
-              "image": null
+              "image": "/media/double-side-area/c3-the-rectangle-exception-cyberpunk.png"
             }
           ],
           "question": {
@@ -329,15 +329,16 @@
           },
           "askTutor": "So, for a square, both sides must change to get the 4x increase?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T12:19:00.000Z",
             "notes": [
               "absolute word \"only\" in key — check that it holds under the stated conditions",
               "absolute word \"only\" in fact — check that it holds under the stated conditions",
               "2026-10-24T12:11:02.421Z изменено после одобрения: predict (было: Predict if the area will double, triple, or quadruple. Explain why.); changedCondition (было: Length changed from 3 to 6); constants (было: Width (2); Shape type (rectangle)) — predict and transfer offered answer options (double/triple/quadruple) — the transfer has no options now, key unchanged",
               "2026-10-24T12:11:02.421Z на переодобрение (course module, by designer copy review): question/transfer (было: You have a rectangular rug that is 2 meters by 3 meters. If you buy a new rug that is 2 meters by 6 meters, did the area double or quadruple? Why?) — predict and transfer offered answer options (double/triple/quadruple) — the transfer has no options now, key unchanged",
-              "2026-10-24T12:11:14.519Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+              "2026-10-24T12:11:14.519Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)"
             ]
           }
         },
@@ -382,13 +383,13 @@
               "world": "space",
               "scene": "An astronaut builds a fence around a square garden on a space station; the side length of the square garden doubles.",
               "illustration": "A square garden with a fence around it, showing the fence and the grass inside.",
-              "image": null
+              "image": "/media/double-side-area/c4-paint-vs-fences-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A drone builds a fence around a square garden in a neon city; the side length of the square garden doubles.",
               "illustration": "A square garden with a fence around it, showing the fence and the grass inside.",
-              "image": null
+              "image": "/media/double-side-area/c4-paint-vs-fences-cyberpunk.png"
             }
           ],
           "question": {
@@ -437,16 +438,17 @@
           },
           "askTutor": "Does this mean a circle's area also grows by 4 if the radius doubles?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T12:19:00.000Z",
             "notes": [
               "absolute word \"only\" in voice question — check that it holds under the stated conditions",
               "absolute word \"only\" in key — check that it holds under the stated conditions",
               "voice question repeats the hook/action (61% word overlap) — transfer needs a new situation",
               "2026-10-24T12:11:02.421Z изменено после одобрения: hook (было: If you double the sides of a square garden, do you need 2 times as much fence or 4 times as much grass seed?); predict (было: Predict which one needs more and explain why.); changedCondition (было: Side length doubled); constants (было: Shape type (square)) — hook and transfer gave the answer (2× fence, 4× seed) — new case (picture frame and paint) with its key",
               "2026-10-24T12:11:02.421Z на переодобрение (course module, by designer copy review): question/transfer (было: If you have a square garden and you double the length of each side, why do you need four times as much grass seed but only twice as much fencing?); key.expectedCause (было: Because the fence is a perimeter (length) and only grows in one direction, while the grass covers the area which grows in two directions.); key.acceptable (было: Fence is a line (perimeter) and grass is a surface (area).; Perimeter only doubles, but area quadruples because it grows in two directions.); key.typicalMistake (было: Because the fence is smaller than the grass.); key.followUp (было: What if the garden was a circle? Would the same rule apply?) — hook and transfer gave the answer (2× fence, 4× seed) — new case (picture frame and paint) with its key",
-              "2026-10-24T12:11:14.519Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+              "2026-10-24T12:11:14.519Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)"
             ]
           }
         },
@@ -492,13 +494,13 @@
               "world": "space",
               "scene": "An astronaut designs a square landing pad where both the length and width are multiplied by 5.",
               "illustration": "A small square landing pad next to a much larger square landing pad.",
-              "image": null
+              "image": "/media/double-side-area/c5-the-master-architect-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A robot designs a square plaza in a neon city where both the length and width are multiplied by 5.",
               "illustration": "A small square plaza next to a much larger square plaza.",
-              "image": null
+              "image": "/media/double-side-area/c5-the-master-architect-cyberpunk.png"
             }
           ],
           "question": {
@@ -547,14 +549,15 @@
           },
           "askTutor": "If I had a 3D cube, would the volume also increase by 25?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T12:19:00.000Z",
             "notes": [
               "voice question repeats the hook/action (75% word overlap) — transfer needs a new situation",
               "2026-10-24T12:11:02.421Z изменено после одобрения: predict (было: Predict the multiplier for the area and explain the reason.); changedCondition (было: Scaling factor from 2x to 5x); constants (было: Shape type (square); Initial size (1x1)) — transfer repeated the hook — new case (poster) with its key; kid language",
               "2026-10-24T12:11:02.421Z на переодобрение (course module, by designer copy review): question/transfer (было: If you have a square plaza and you make both the length and the width 5 times longer, how many times larger will the area become? Explain why.); key.expectedCause (было: The area will be 25 times larger because both the length and width were multiplied by 5 (5 times 5).); key.acceptable (было: It becomes 25 times larger because it grows in two directions.); key.typicalMistake (было: It will be 5 times larger because the sides are 5 times longer.); key.followUp (было: What if the plaza was a 3D cube? Would the volume also be 25 times larger?) — transfer repeated the hook — new case (poster) with its key; kid language",
-              "2026-10-24T12:11:14.519Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+              "2026-10-24T12:11:14.519Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)"
             ]
           }
         }
