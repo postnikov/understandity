@@ -7,13 +7,13 @@ import {
   type Course,
   type CycleStep,
   type Evidence,
-  type ImageJob,
   type TutorTurnReply,
 } from '@understandity/contracts';
 import { api, ApiFailure, isMock } from '../api.js';
 import { app, errorText, esc, rerender, setWorld, t, worldLabel } from '../app.js';
 import type { View } from '../main.js';
 import { SILENCE_PEAK, VoiceRecorder } from '../recorder.js';
+import { sceneArt } from '../scenes.js';
 
 /**
  * Learning cycle of one card: hook → predict (voice) → explain → act (voice) → transfer (voice) → feedback.
@@ -45,10 +45,13 @@ const s = {
   hintsUsed: 0,
   answers: 0,
   evidence: null as Evidence | null,
-  image: { state: 'none' as 'none' | 'wait' | 'done' | 'failed', src: null as string | null, token: 0 },
   allDone: false,
   listenStarted: 0,
   quiet: false,
+  /** Dialog length when the current step began: replies after it belong to this step. */
+  stepMark: 0,
+  visited: new Set<number>(),
+  askOpen: false,
 };
 type WorldScene = Card['worlds'][number];
 const recorder = new VoiceRecorder();
@@ -67,54 +70,20 @@ function voicePrompt(c: Card, step: CycleStep): string {
   return c.question.prompt;
 }
 
-function safeImage(src: string | null): string | null {
-  if (!src) return null;
-  return /^(data:image\/|blob:|\/media\/)/.test(src) ? src : null;
-}
-
 /* ------------------------------------------------------------------ */
-/* rendering                                                           */
+/* rendering (Ocean lab: sidebar path · stepper · big question ·       */
+/* scene + panel). Logic below the rendering block is unchanged.        */
 /* ------------------------------------------------------------------ */
 
-function stepsBar(): string {
-  const d = t();
-  const cur = CYCLE_STEPS.indexOf(s.step);
-  return `<ol class="steps" aria-label="steps">${CYCLE_STEPS.map((st, i) => {
-    const cls = i === cur ? 'on' : i < cur ? 'past' : '';
-    return `<li class="${cls}" ${i === cur ? 'aria-current="step"' : ''}><span class="n">${String(i + 1).padStart(2, '0')}</span>${d.steps[st]}</li>`;
-  }).join('')}</ol>`;
-}
+const MIC = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true"><rect x="9" y="2" width="6" height="13"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8"/></svg>`;
+const STOP = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12"/></svg>`;
+const SPARK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m12 2 2.7 7.3L22 12l-7.3 2.7L12 22l-2.7-7.3L2 12l7.3-2.7Z"/></svg>`;
+const CHAT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3h18v14H9l-6 4Z"/></svg>`;
+const GUIDE = `<img class="guide-mark" src="/brand/icon.svg" alt="" aria-hidden="true">`;
+const BARS = 32;
 
-function stepBody(c: Card): string {
-  const d = t();
-  const scene = sceneOf(c);
-  switch (s.step) {
-    case 'hook':
-      return `<p class="hook">${esc(c.hook.question)}</p>
-        <div class="scene"><span class="label">${d.scene} · ${esc(worldLabel(scene.world))}</span>${esc(scene.scene)}</div>`;
-    case 'predict':
-      return `<p class="prompt">${esc(c.hook.predictPrompt)}</p>`;
-    case 'explain': {
-      const img = safeImage(s.image.src);
-      return `<p class="text">${esc(c.explanation)}</p>
-        ${
-          img
-            ? `<img class="scheme" alt="${esc(scene.illustration)}" src="${esc(img)}">`
-            : s.image.state === 'wait'
-              ? `<div class="scheme-ph">${d.imageWait}</div>`
-              : ''
-        }`;
-    }
-    case 'act':
-      return `<p class="prompt">${esc(c.action.instruction)}</p>
-        <dl class="vars"><dt>${d.changed}</dt><dd>${esc(c.action.changedCondition)}</dd>
-        ${c.action.constants.length ? `<dt>${d.same}</dt><dd>${esc(c.action.constants.join(' · '))}</dd>` : ''}</dl>`;
-    case 'transfer':
-      return `<p class="prompt">${esc(c.question.prompt)}</p>`;
-    case 'feedback':
-      return `<p class="text">${esc(s.answers ? d.wrap : d.wrapNone)}</p>${s.evidence ? `<div class="evidence" style="margin-top:var(--s-4)">${evidenceChips(s.evidence)}</div>` : ''}`;
-  }
-}
+const two = (n: number) => String(n).padStart(2, '0');
+const clock = (sec: number) => `${Math.floor(sec / 60)}:${two(sec % 60)}`;
 
 function evidenceChips(e: Evidence): string {
   const d = t().evidence;
@@ -129,81 +98,188 @@ function evidenceChips(e: Evidence): string {
   ].join('');
 }
 
-const MIC = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><rect x="9" y="3" width="6" height="11"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8 21h8"/></svg>`;
-const STOP = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12"/></svg>`;
-
-function voiceBlock(): string {
-  const d = t().voice;
-  const v = s.voice;
-  const busy = v === 'transcribing' || v === 'thinking' || v === 'speaking';
-  const cls = v === 'confirm' ? 'speaking' : v === 'listening' ? 'listening' : v === 'transcribing' || v === 'thinking' ? 'thinking' : v === 'speaking' ? 'speaking' : v === 'error' || v === 'silence' ? 'error' : '';
-  const title =
-    v === 'confirm' ? d.check : v === 'listening' ? d.listening : v === 'transcribing' || v === 'thinking' ? d.thinking : v === 'speaking' ? d.speaking : v === 'silence' ? d.silence : v === 'error' ? d.error : d.idle;
-  const hint =
-    v === 'listening'
-      ? s.quiet
-        ? d.quiet
-        : d.listeningHint
-      : v === 'confirm'
-        ? d.checkHint
-      : v === 'transcribing'
-        ? d.transcribing
-        : v === 'thinking'
-          ? d.tutorThinking
-          : v === 'speaking'
-            ? d.speakingHint
-            : v === 'silence'
-              ? d.silenceHint
-              : v === 'error'
-                ? (s.error ?? '')
-                : d.idleHint;
-  const max = card()?.question.maxAnswerSec ?? 30;
-  return `<section class="voice" aria-live="polite">
-    <div class="voice__row">
-      <button id="mic" class="mic ${v === 'listening' ? 'rec' : ''}" ${busy || v === 'confirm' ? 'disabled' : ''} aria-label="${v === 'listening' ? d.stop : d.start}">${v === 'listening' ? STOP : MIC}</button>
-      <div class="vstate ${cls}">
-        <span class="st"><span class="dot"></span>${title}${v === 'listening' ? ` <span class="timer chrome" id="vtimer">0 / ${max}s</span>` : ''}${v === 'speaking' ? ' <span class="speakbars"><i></i><i></i><i></i><i></i></span>' : ''}</span>
-        <span class="dim" style="font-size:13px">${esc(hint)}</span>
-      </div>
-      ${v === 'listening' ? `<div class="meter on" id="meter">${'<i></i>'.repeat(12)}</div>` : ''}
-      ${v === 'speaking' ? `<button id="stop-audio" class="btn btn--ghost btn--sm">${t().tutor.stopPlay}</button>` : ''}
-    </div>
-    ${
-      v === 'confirm' && s.heard !== null
-        ? `<div class="heard"><span class="label">${d.heard}</span><q>${esc(s.heard)}</q>
-          <div class="row"><button id="confirm" class="btn">${d.confirm}</button><button id="rerecord" class="btn btn--ghost">${d.rerecord}</button></div></div>`
-        : ''
-    }
-    ${s.notice ? `<p class="faint" style="font-size:12px;margin-top:var(--s-3)">${esc(s.notice)}</p>` : ''}
-  </section>`;
+function heading(c: Card): string {
+  switch (s.step) {
+    case 'hook':
+      return c.hook.question;
+    case 'predict':
+      return c.hook.predictPrompt;
+    case 'explain':
+      return c.title;
+    case 'act':
+      return c.action.instruction;
+    case 'transfer':
+      return c.question.prompt;
+    case 'feedback':
+      return t().ocean.reflectTitle;
+  }
 }
 
-function dialogPanel(): string {
+function sidebar(): string {
+  const d = t().ocean;
+  const n = s.cards.length;
+  return `<aside class="sidebar">
+    <a class="back" href="#/">${d.back}</a>
+    <div class="eyebrow">${esc(s.course!.subject)} / ${two(s.index + 1)}</div>
+    <h2>${esc(s.course!.title)}</h2>
+    <div class="course-progress"><span>${d.discoveries}</span><span>${s.visited.size} / ${n} ${d.explored}</span></div>
+    <div class="progress-track">${s.cards.map((_, i) => `<i class="${s.visited.has(i) ? 'on' : ''}"></i>`).join('')}</div>
+    <nav class="side-cards">${s.cards
+      .map((c, i) => `<button data-card="${i}" class="side-card ${i === s.index ? 'current' : ''}" ${i === s.index ? 'aria-current="true"' : ''}><span class="n">${two(i + 1)}</span><span>${esc(c.title)}</span></button>`)
+      .join('')}</nav>
+    <div class="side-note"><b>${d.noWords}</b><p>${d.noWordsText}</p></div>
+  </aside>`;
+}
+
+function stepper(): string {
+  const d = t();
+  const cur = CYCLE_STEPS.indexOf(s.step);
+  return `<ol class="stepper" aria-label="steps">${CYCLE_STEPS.map(
+    (st, i) =>
+      `<li><button data-step="${st}" class="cycle-step ${i === cur ? 'active' : i < cur ? 'done' : ''}" ${i === cur ? 'aria-current="step"' : ''}><span class="n">${two(i + 1)}</span><span class="nm">${d.steps[st]}</span></button></li>`,
+  ).join('')}</ol>`;
+}
+
+function sceneCol(c: Card): string {
+  const d = t().ocean;
+  const scene = sceneOf(c);
+  const art = sceneArt({ course: s.course, card: c, index: s.index, world: scene.world, labels: courseLang().startsWith('en') });
+  return `<div class="scene-col">
+    <div class="scene">${art.html}<span class="art-stamp">${esc(worldLabel(scene.world))} / ${esc(s.course!.subject)}</span>
+      <div class="art-caption"><span>${d.observe}</span></div></div>
+    <div class="world-text"><span class="eyebrow eyebrow--plain">${esc(d.yourWorld(worldLabel(scene.world)))}</span><p>${esc(scene.scene)}</p></div>
+  </div>`;
+}
+
+/** Tutor reply of the current step, if any: `data-msg`/`.txt` stay, the SSE stream writes into them. */
+function tutorBlock(): string {
+  const d = t();
+  const v = s.voice;
+  const i = s.dialog.length - 1;
+  const m = s.dialog[i]!;
+  const student = [...s.dialog.slice(s.stepMark)].reverse().find((x) => x.role === 'student');
+  const text = m.shown !== undefined ? m.text.slice(0, m.shown) : m.text;
+  const streaming = (m.shown !== undefined && m.shown < m.text.length) || (v === 'thinking' && !m.model);
+  return `<div class="guide">
+      <div class="guide-head">${GUIDE}<div><b>${d.ocean.guide}</b><span>${
+        v === 'speaking' ? `${d.voice.speaking} <span class="speakbars"><i></i><i></i><i></i><i></i></span>` : m.model ? `${d.tutor.model} · ${esc(m.model)}` : d.voice.tutorThinking
+      }</span></div></div>
+      ${student ? `<p class="you-said"><b>${d.ocean.youSaid}:</b> ${esc(student.text)}</p>` : ''}
+      <div class="msg tutor ${streaming ? 'streaming' : ''}" data-msg="${i}"><span class="txt">${esc(text)}</span></div>
+      ${m.evidence && !streaming ? `<div class="evidence">${evidenceChips(m.evidence)}</div>` : ''}
+      <div class="guide-tools">
+        ${v === 'speaking' ? `<button id="stop-audio" class="btn btn--ghost btn--sm">${d.tutor.stopPlay}</button>` : ''}
+        ${m.audio && v !== 'speaking' && !streaming ? `<button class="btn btn--ghost btn--sm" data-play="${i}">${d.tutor.play}</button>` : ''}
+      </div>
+    </div>`;
+}
+
+function panelBottom(primary: string, extra = ''): string {
+  return `<div class="panel-bottom">${primary}${extra}</div>`;
+}
+
+function panel(c: Card): { cls: string; html: string } {
+  const d = t();
+  const o = d.ocean;
+  const v = s.voice;
+  const max = c.question.maxAnswerSec;
+  const last = s.dialog[s.dialog.length - 1];
+  const hasReply = s.dialog.length > s.stepMark && last?.role === 'tutor';
+  const nextBtn = `<button id="next" class="btn btn--block">${s.step === 'feedback' ? (s.index >= s.cards.length - 1 ? d.allDone : d.nextCard) : `${o.nextStep} <span aria-hidden="true">→</span>`}</button>`;
+  const typing = `<button class="text-btn" data-ask-open>${o.typing}</button>`;
+  const notice = s.notice ? `<p class="small dim">${esc(s.notice)}</p>` : '';
+
+  if (v === 'listening') {
+    return {
+      cls: 'voice-panel',
+      html: `<div class="eyebrow">${o.yourTurn}</div><h2>${o.listening}</h2>
+        <p class="voice-caption">${esc(s.quiet ? d.voice.quiet : d.voice.listeningHint)}</p>
+        <div class="waveform" id="meter" aria-hidden="true">${'<i></i>'.repeat(BARS)}</div>
+        <p class="timer"><b id="vtimer">0:00</b> / ${clock(max)}</p>${notice}
+        ${panelBottom(`<button id="mic" class="btn btn--block">${STOP}<span>${o.done}</span></button>`)}`,
+    };
+  }
+  if (v === 'confirm' && s.heard !== null) {
+    return {
+      cls: 'voice-panel',
+      html: `<div class="eyebrow">${d.voice.heard}</div><h2>${o.heardTitle}</h2>
+        <q class="heard-q">${esc(s.heard)}</q><p class="voice-caption">${d.voice.checkHint}</p>${notice}
+        ${panelBottom(`<button id="confirm" class="btn btn--block">${d.voice.confirm}</button>`, `<button id="rerecord" class="btn btn--ghost btn--block">${MIC}<span>${d.voice.rerecord}</span></button>`)}`,
+    };
+  }
+  if (v === 'transcribing' || (v === 'thinking' && !hasReply)) {
+    return {
+      cls: 'voice-panel',
+      html: `<div class="eyebrow">${d.voice.thinking}</div><h2>${o.thinking}</h2>
+        <p class="voice-caption">${v === 'transcribing' ? d.voice.transcribing : d.voice.tutorThinking}</p><div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>`,
+    };
+  }
+  const alert =
+    v === 'silence'
+      ? `<p class="alert"><b>!</b><span><strong>${d.voice.silence}.</strong> ${d.voice.silenceHint}</span></p>`
+      : v === 'error'
+        ? `<p class="alert alert--err"><b>××</b><span><strong>${d.voice.error}.</strong> ${esc(s.error ?? '')}</span></p>`
+        : '';
+  if (hasReply) {
+    return {
+      cls: 'tutor-panel',
+      html: `${tutorBlock()}${alert}${notice}${panelBottom(
+        nextBtn,
+        isVoiceStep() && v !== 'speaking' && v !== 'thinking' ? `<button id="mic" class="btn btn--ghost btn--block">${MIC}<span>${o.answerAgain}</span></button>` : '',
+      )}`,
+    };
+  }
+  switch (s.step) {
+    case 'hook':
+      return {
+        cls: '',
+        html: `<span class="pill">${SPARK}${o.surprising}</span><h2>${o.notAdd}</h2><p class="copy">${esc(d.stepHint.hook)}</p>
+          <p class="quote">${o.guessHint}</p>${panelBottom(`<button id="next" class="btn btn--block">${o.theory} <span aria-hidden="true">→</span></button>`)}`,
+      };
+    case 'explain':
+      return {
+        cls: '',
+        html: `<span class="pill">${SPARK}${o.cause}</span><p class="copy">${esc(c.explanation)}</p>
+          <p class="formula">${esc(c.fact.statement)}</p>${panelBottom(`<button id="next" class="btn btn--block">${o.gotIt} <span aria-hidden="true">→</span></button>`)}`,
+      };
+    case 'feedback':
+      return {
+        cls: '',
+        html: `<span class="pill">${SPARK}${d.steps.feedback}</span><p class="copy">${esc(s.answers ? d.wrap : d.wrapNone)}</p>
+          ${s.evidence ? `<div class="evidence">${evidenceChips(s.evidence)}</div>` : ''}
+          ${panelBottom(nextBtn, `<button id="back-transfer" class="btn btn--ghost btn--block">${d.backToTransfer}</button>`)}`,
+      };
+    default: {
+      const vars =
+        s.step === 'act'
+          ? `<dl class="vars"><dt>${d.changed}</dt><dd>${esc(c.action.changedCondition)}</dd>${c.action.constants.length ? `<dt>${d.same}</dt><dd>${esc(c.action.constants.join(' · '))}</dd>` : ''}</dl>`
+          : '';
+      return {
+        cls: '',
+        html: `<span class="pill accent">${MIC}${o.yourTurn}</span><h2>${o.sayIt}</h2><p class="copy">${esc(d.stepHint[s.step])}</p>${vars}${alert}${notice}
+          ${panelBottom(`<button id="mic" class="btn btn--block btn--mic">${MIC}<span>${d.voice.start}</span></button>`, `<div class="row-split">${typing}<button id="skip" class="text-btn text-btn--dim">${d.voice.skip}</button></div>`)}`,
+      };
+    }
+  }
+}
+
+function askBox(): string {
   const d = t().tutor;
-  const lastModel = [...s.dialog].reverse().find((m) => m.model)?.model;
   const busy = s.voice === 'thinking' || s.voice === 'transcribing' || s.voice === 'listening';
-  return `<aside class="side"><section class="tutor">
-    <div class="tutor__head"><span class="label">${d.title}</span><span class="sp"></span>${lastModel ? `<span class="chip">${d.model} · ${esc(lastModel)}</span>` : ''}</div>
-    <div class="dialog" id="dialog">${
-      s.dialog.length
-        ? s.dialog
-            .map((m, i) => {
-              const text = m.shown !== undefined ? m.text.slice(0, m.shown) : m.text;
-              const streaming = m.shown !== undefined && m.shown < m.text.length;
-              return `<div class="msg ${m.role} ${streaming ? 'streaming' : ''}" data-msg="${i}">
-                <span class="who label">${m.role === 'student' ? d.you : d.tutor}</span><span class="txt">${esc(text)}</span>
-                ${m.evidence && !streaming ? `<div class="evidence">${evidenceChips(m.evidence)}</div>` : ''}
-                ${m.audio && !streaming ? `<div class="play"><button class="btn btn--ghost btn--sm" data-play="${i}">${d.play}</button></div>` : ''}
-              </div>`;
-            })
-            .join('')
-        : `<p class="empty">${esc(d.empty)}</p>`
-    }</div>
-    <form id="ask" class="ask">
-      <input type="text" name="q" placeholder="${esc(d.placeholder)}" autocomplete="off" ${busy ? 'disabled' : ''}/>
-      <div class="row"><button class="btn btn--outline btn--sm" ${busy ? 'disabled' : ''}>${d.ask}</button><button type="button" id="explain" class="btn btn--ghost btn--sm" ${busy ? 'disabled' : ''}>${d.explain}</button></div>
-    </form>
-  </section></aside>`;
+  return `<form id="ask" class="ask-box">
+    <input type="text" name="q" placeholder="${esc(d.placeholder)}" autocomplete="off" ${busy ? 'disabled' : ''}/>
+    <button class="btn btn--sm" ${busy ? 'disabled' : ''}>${d.ask}</button>
+    <button type="button" id="explain" class="btn btn--ghost btn--sm" ${busy ? 'disabled' : ''}>${d.explain}</button>
+  </form>`;
+}
+
+function earlier(): string {
+  const prior = s.dialog.slice(0, s.stepMark);
+  if (!prior.length) return '';
+  const d = t();
+  return `<details class="earlier"><summary>${d.ocean.earlier} · ${prior.length}</summary>${prior
+    .map((m) => `<p class="${m.role}"><b>${m.role === 'student' ? d.tutor.you : d.tutor.tutor}:</b> ${esc(m.text)}</p>`)
+    .join('')}</details>`;
 }
 
 function html(): string {
@@ -212,37 +288,30 @@ function html(): string {
   if (!s.course) return `<main class="page"><p class="dim">${d.loading}</p></main>`;
   const c = card();
   if (!c || s.allDone)
-    return `<main class="page"><div class="stage"><p class="text">${c ? d.allDone : d.home.notReady}</p>
-      <div class="stage__foot"><a class="btn" href="#/">${d.review.back}</a><a class="btn btn--ghost" href="#/review/${encodeURIComponent(s.courseId)}">${d.home.check}</a></div></div></main>`;
-  const draft = c.review.state !== 'approved';
+    return `<main class="page summary"><div class="eyebrow">${esc(s.course.title)}</div><h1>${c ? d.ocean.allDoneTitle : d.home.notReady}</h1>
+      <div class="home-actions"><a class="btn btn--xl" href="#/">${d.ocean.back}</a><a class="text-btn" href="#/review/${encodeURIComponent(s.courseId)}">${d.home.check}</a></div></main>`;
+  const q = heading(c);
+  const p = panel(c);
   const worlds = c.worlds.map((w) => w.world);
-  const last = s.index === s.cards.length - 1;
-  return `<main class="page">
-    <div class="crumbs">
-      <a class="label" href="#/">${esc(s.course.title)}</a>
-      <span class="chrome">${String(s.index + 1).padStart(2, '0')} / ${String(s.cards.length).padStart(2, '0')}</span>
-      ${draft ? `<span class="chip chip--amber">${d.draftMark}</span>` : `<span class="chip chip--ok">🔒 ${d.review.state.approved}</span>`}
-      <span style="flex:1"></span>
-      ${worlds
-        .map((w) => `<button class="world-btn btn--sm ${w === sceneOf(c).world ? 'on' : ''}" style="min-height:34px;padding:6px 10px;font-size:12px" data-world="${esc(w)}">${esc(worldLabel(w))}</button>`)
-        .join('')}
-    </div>
-    ${stepsBar()}
-    <div class="learn">
-      <section class="stage">
-        <div class="kicker label">${d.steps[s.step]} · <span class="dim" style="letter-spacing:0.04em;text-transform:none;font-weight:500">${esc(d.stepHint[s.step])}</span></div>
-        <h1>${esc(c.title)}</h1>
-        ${stepBody(c)}
-        ${isVoiceStep() ? voiceBlock() : ''}
-        ${!isVoiceStep() && s.voice === 'speaking' ? voiceBlock() : ''}
-        <div class="stage__foot">
-          ${s.step === 'feedback' ? `<button id="back-transfer" class="btn btn--ghost">${d.backToTransfer}</button>` : ''}
-          ${isVoiceStep() && s.voice !== 'listening' ? `<button id="skip" class="btn btn--ghost btn--sm">${d.voice.skip}</button>` : ''}
-          <span class="sp"></span>
-          ${s.step === 'feedback' ? `<button id="next" class="btn">${last ? d.allDone.split('.')[0] + ' ✓' : d.nextCard}</button>` : `<button id="next" class="btn" ${s.voice === 'listening' ? 'disabled' : ''}>${d.next}</button>`}
+  const draft = c.review.state !== 'approved';
+  return `<main class="page learn-page" data-voice="${s.voice}">
+    <div class="learn-layout">
+      ${sidebar()}
+      <section class="lesson">
+        <div class="learn-top">
+          <div class="eyebrow">${two(s.index + 1)} / ${two(s.cards.length)} · ${esc(c.title)}</div>
+          ${draft ? `<span class="chip chip--amber">${d.draftMark}</span>` : ''}
+          <div class="world-toggle" role="group">${worlds
+            .map((w) => `<button data-world="${esc(w)}" class="${w === sceneOf(c).world ? 'active' : ''}" aria-pressed="${w === sceneOf(c).world}">${esc(worldLabel(w))}</button>`)
+            .join('')}</div>
         </div>
+        ${stepper()}
+        <h1 class="lesson-q ${q.length > 110 ? 'long' : ''}">${esc(q)}</h1>
+        <div class="lesson-card">${sceneCol(c)}<div class="lesson-panel ${p.cls}" aria-live="polite">${p.html}</div></div>
+        <div class="lesson-foot"><span>${d.ocean.noScore}</span><button class="text-btn" data-ask-open>${CHAT}<span>${d.ocean.ask}</span></button></div>
+        ${s.askOpen ? askBox() : ''}
+        ${earlier()}
       </section>
-      ${dialogPanel()}
     </div>
   </main>`;
 }
@@ -274,11 +343,12 @@ function meterLoop() {
     const bars = document.querySelectorAll<HTMLElement>('#meter i');
     bars.forEach((b, i) => {
       const jitter = 0.6 + 0.4 * Math.abs(Math.sin(performance.now() / 120 + i * 1.7));
-      b.style.height = `${Math.max(4, Math.min(28, level * 160 * jitter))}px`;
+      // Waveform: live level when the meter works, a calm idle wave otherwise.
+      b.style.height = `${Math.max(8, Math.min(72, 10 + level * 520 * jitter + 10 * jitter))}px`;
     });
     const el = document.getElementById('vtimer');
     const sec = Math.floor((performance.now() - s.listenStarted) / 1000);
-    if (el) el.textContent = `${sec} / ${card()?.question.maxAnswerSec ?? 30}s`;
+    if (el) el.textContent = clock(sec);
     quietFrames = level < SILENCE_PEAK ? quietFrames + 1 : 0;
     const quiet = recorder.recording && sec >= 3 && quietFrames > 90;
     if (quiet !== s.quiet && recorder.problem === null) {
@@ -460,37 +530,6 @@ function play(url: string) {
   a.play().catch(done);
 }
 
-function loadImage() {
-  const c = card();
-  if (!c) return;
-  const token = ++s.image.token;
-  s.image = { state: 'wait', src: null, token };
-  const scene = sceneOf(c);
-  if (scene.image) {
-    // Pre-rendered at build time (ComfyUI is not live during the demo).
-    s.image = { state: 'done', src: scene.image, token };
-    return;
-  }
-  const settle = (job: ImageJob | null) => {
-    if (s.image.token !== token) return;
-    s.image = { state: job?.state === 'done' ? 'done' : 'failed', src: job?.file ?? null, token };
-    rerender();
-  };
-  (async () => {
-    try {
-      let job = await api.illustrate(scene.illustration, scene.world);
-      for (let i = 0; i < 90 && (job.state === 'queued' || job.state === 'running'); i++) {
-        await new Promise((r) => setTimeout(r, 1000));
-        if (s.image.token !== token) return;
-        job = await api.imageJob(job.jobId);
-      }
-      settle(job);
-    } catch {
-      settle(null);
-    }
-  })();
-}
-
 function goStep(step: CycleStep) {
   recorder.cancel();
   cancelAnimationFrame(raf);
@@ -500,8 +539,20 @@ function goStep(step: CycleStep) {
   s.heard = null;
   s.notice = null;
   s.error = null;
-  if (step === 'explain' && s.image.state === 'none') loadImage();
+  s.stepMark = s.dialog.length;
+  s.visited.add(s.index);
   rerender();
+}
+
+function openCard(index: number) {
+  stopStream();
+  s.index = index;
+  s.allDone = false;
+  s.dialog = [];
+  s.hintsUsed = 0;
+  s.answers = 0;
+  s.evidence = null;
+  goStep('hook');
 }
 
 function nextCard() {
@@ -510,27 +561,23 @@ function nextCard() {
     s.allDone = true;
     return rerender();
   }
-  s.index++;
-  s.dialog = [];
-  s.hintsUsed = 0;
-  s.answers = 0;
-  s.evidence = null;
-  s.image = { state: 'none', src: null, token: s.image.token + 1 };
-  goStep('hook');
+  openCard(s.index + 1);
 }
 
 export const learnView: View = {
-  async enter([courseId]) {
+  async enter([courseId, cardIndex]) {
     if (!courseId) return;
-    if (s.courseId !== courseId || !s.course) {
-      Object.assign(s, { courseId, course: null, cards: [], index: 0, step: 'hook', dialog: [], hintsUsed: 0, answers: 0, evidence: null, allDone: false, loadError: null });
-      s.image = { state: 'none', src: null, token: s.image.token + 1 };
+    const wanted = cardIndex !== undefined && /^\d+$/.test(cardIndex) ? Number(cardIndex) : null;
+    if (s.courseId !== courseId || !s.course || (wanted !== null && wanted !== s.index)) {
+      Object.assign(s, { courseId, course: null, cards: [], index: wanted ?? 0, step: 'hook', dialog: [], hintsUsed: 0, answers: 0, evidence: null, allDone: false, loadError: null, stepMark: 0, askOpen: false });
+      s.visited = new Set<number>();
     }
     try {
       const course = await api.course(courseId);
       s.course = course;
       s.cards = course.concepts.flatMap((k) => k.cards).filter((c) => isShowable(c, { allowDrafts: app.allowDrafts }));
       if (s.index >= s.cards.length) s.index = 0;
+      s.visited.add(s.index);
       const c = card();
       if (c && !c.worlds.some((w) => w.world === app.world)) setWorld(c.worlds[0]!.world);
     } catch (err) {
@@ -576,13 +623,22 @@ export const learnView: View = {
     root.querySelectorAll<HTMLButtonElement>('[data-world]').forEach((b) =>
       b.addEventListener('click', () => {
         setWorld(b.dataset.world!);
-        s.image = { state: 'none', src: null, token: s.image.token + 1 };
-        if (s.step === 'explain') loadImage();
         rerender();
       }),
     );
-    const box = root.querySelector<HTMLElement>('#dialog');
-    if (box) box.scrollTop = box.scrollHeight;
+    root.querySelectorAll<HTMLButtonElement>('[data-card]').forEach((b) => b.addEventListener('click', () => openCard(Number(b.dataset.card))));
+    root.querySelectorAll<HTMLButtonElement>('[data-step]').forEach((b) =>
+      b.addEventListener('click', () => {
+        if (s.voice !== 'listening') goStep(b.dataset.step as CycleStep);
+      }),
+    );
+    root.querySelectorAll<HTMLButtonElement>('[data-ask-open]').forEach((b) =>
+      b.addEventListener('click', () => {
+        s.askOpen = !s.askOpen;
+        rerender();
+        if (s.askOpen) root.querySelector<HTMLInputElement>('#ask input')?.focus();
+      }),
+    );
   },
   leave() {
     recorder.cancel();
