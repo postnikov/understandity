@@ -236,8 +236,9 @@ export const enginesView: View = {
         if (!value) return;
         try {
           s.keys = await api.setKey(id, value);
-          s.keyMsg = t().engines.keySaved;
           await load();
+          // A saved key does not switch the profile: in Offline the cloud row stays struck through, so say what to do next.
+          s.keyMsg = s.engines?.settings.profile === 'offline' ? t().engines.keySavedOffline : t().engines.keySaved;
         } catch (err) {
           s.keyMsg = errorText(err);
         }
