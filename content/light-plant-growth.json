@@ -29,20 +29,20 @@
               "Presence of carbon dioxide",
               "Presence of water"
             ],
-            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+            "source": "Facts cross-checked against OpenStax Biology 2e, sections 8.1 Overview of Photosynthesis and 8.3 Using Light Energy to Make Organic Molecules (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
           },
           "hook": {
             "question": "If you weigh a plant and then weigh the soil it grows in, why doesn't the soil get lighter as the plant gets heavier?",
-            "predictPrompt": "Predict what the plant's main source of 'stuff' is and explain why, then tell me your reasoning."
+            "predictPrompt": "The soil hardly gets lighter, but the plant gets much heavier. Where do you think the plant's new stuff comes from? Guess, and say why."
           },
           "explanation": "Plants are like tiny factories. They take in carbon dioxide (a gas) through tiny holes in their leaves called stomata and water through their roots. While minerals help, the actual 'stuff' that makes up the wood and leaves comes mostly from the air and water, not the soil.",
           "action": {
-            "instruction": "Imagine a thought experiment: You have two identical plants. One is grown in soil with plenty of water and CO2. The other is grown in soil but the CO2 is removed from the air. Predict which will grow larger and why.",
-            "changedCondition": "Availability of carbon dioxide",
+            "instruction": "Picture two identical plants with the same water, light and soil. One gets normal air, the other gets air with no carbon dioxide. Guess which one grows bigger, then compare the two.",
+            "changedCondition": "air: normal → no carbon dioxide",
             "constants": [
-              "Amount of water",
-              "Amount of light",
-              "Soil type"
+              "the same water",
+              "the same light",
+              "the same soil"
             ],
             "thoughtExperiment": true
           },
@@ -58,6 +58,18 @@
               "scene": "A scientist in a high-tech lab uses a scanner to show a student the atoms moving from the air into a leaf.",
               "illustration": "A magnifying glass over a leaf showing CO2 molecules.",
               "image": "/media/light-plant-growth/c1-the-invisible-builder-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "An astronaut in a greenhouse module watches two identical plants; one is in a chamber with carbon dioxide and water, and the other is in a chamber without carbon dioxide.",
+              "illustration": "Two identical plants in separate glass chambers with the same water: the one with normal air is big and bushy, the one in air without carbon dioxide stays small.",
+              "image": "/media/light-plant-growth/c1-the-invisible-builder-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A hacker monitors two bio-engineered plants in a neon-lit lab, one receiving carbon dioxide and water and the other receiving no carbon dioxide.",
+              "illustration": "Two identical plants in separate glass containers with the same water: the one with normal air is big and bushy, the one in air without carbon dioxide stays small.",
+              "image": "/media/light-plant-growth/c1-the-invisible-builder-cyberpunk.png"
             }
           ],
           "question": {
@@ -109,7 +121,13 @@
             "state": "approved",
             "reviewer": "adult",
             "reviewedAt": "2026-10-24T10:42:03.654Z",
-            "notes": []
+            "notes": [
+              "2026-10-24T12:10:03.168Z изменено после одобрения: predict (было: Predict what the plant's main source of 'stuff' is and explain why, then tell me your reasoning.); act (было: Imagine a thought experiment: You have two identical plants. One is grown in soil with plenty of water and CO2. The other is grown in soil but the CO2 is removed from the air. Predict which will grow larger and why.); changedCondition (было: Availability of carbon dioxide); constants (было: Amount of water; Amount of light; Soil type) — predict repeated itself; act without the methodology prefix; kid language",
+              "2026-10-24T12:10:16.534Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:10:31.000Z изменено после одобрения: space illustration поправлен вручную после Gemma (было: Two identical plants in separate glass chambers, one with a visible water source and the other with no carbon dioxide source.)",
+              "2026-10-24T12:10:31.000Z изменено после одобрения: cyberpunk illustration поправлен вручную после Gemma (было: Two identical plants in separate containers, one with a water source and the other without carbon dioxide.)",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
+            ]
           }
         },
         {
@@ -122,19 +140,19 @@
               "Presence of carbon dioxide",
               "Presence of water"
             ],
-            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+            "source": "Facts cross-checked against OpenStax Biology 2e, sections 8.1 Overview of Photosynthesis and 8.3 Using Light Energy to Make Organic Molecules (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
           },
           "hook": {
             "question": "Does light actually turn into wood?",
-            "predictPrompt": "Predict what happens if you have plenty of light but no carbon dioxide. Explain your reasoning."
+            "predictPrompt": "Plants need light. Do you think light turns into the plant's body, or does it do a different job? Guess, and say why."
           },
           "explanation": "Think of a car: gasoline is the fuel (energy), but the car's body is made of metal. In plants, light is like the fuel. It provides the energy to turn carbon dioxide and water into sugar (glucose). Light itself doesn't turn into wood; it just powers the construction.",
           "action": {
-            "instruction": "Imagine a thought experiment: You have two plants. One gets lots of light but no carbon dioxide. The other gets no light but plenty of carbon dioxide. Predict which will grow and why.",
-            "changedCondition": "Availability of light",
+            "instruction": "Picture two plants with the same water and the same air. One stands in the light, the other in total darkness. Guess which one can make new sugar, then compare.",
+            "changedCondition": "light: on → off",
             "constants": [
-              "Amount of water",
-              "Amount of carbon dioxide"
+              "the same water",
+              "the same air with carbon dioxide"
             ],
             "thoughtExperiment": true
           },
@@ -150,6 +168,18 @@
               "scene": "A robot explains that light is like a battery for the plant's internal factory.",
               "illustration": "A battery icon next to a sun and a plant.",
               "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "A scientist on a space station observes two plants with the same water and air, one under a high-intensity grow lamp and the other in a dark storage locker.",
+              "illustration": "Two identical plants, one under a bright light and the other in total darkness.",
+              "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A robot technician places two plants in a neon-lit room, one under a bright grow lamp and the other in a dark corner.",
+              "illustration": "Two identical plants, one illuminated by a bright light and the other in total darkness.",
+              "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-cyberpunk.png"
             }
           ],
           "question": {
@@ -201,7 +231,12 @@
             "state": "approved",
             "reviewer": "adult",
             "reviewedAt": "2026-10-24T10:42:03.656Z",
-            "notes": []
+            "notes": [
+              "2026-10-24T12:10:03.168Z изменено после одобрения: predict (было: Predict what happens if you have plenty of light but no carbon dioxide. Explain your reasoning.); act (было: Imagine a thought experiment: You have two plants. One gets lots of light but no carbon dioxide. The other gets no light but plenty of carbon dioxide. Predict which will grow and why.); changedCondition (было: Availability of light); constants (было: Amount of water; Amount of carbon dioxide) — act changed two things at once (light and CO2) — now only light; kid language",
+              "2026-10-24T12:10:16.534Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:10:31.000Z изменено после одобрения: cyberpunk scene поправлен вручную после Gemma (было: A robot technician places two plants in a neon-lit room, one under a powerful UV lamp and the other in a dark corner.)",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
+            ]
           }
         },
         {
@@ -214,20 +249,20 @@
               "Presence of carbon dioxide",
               "Presence of water"
             ],
-            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+            "source": "Facts cross-checked against OpenStax Biology 2e, sections 8.1 Overview of Photosynthesis and 8.3 Using Light Energy to Make Organic Molecules (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
           },
           "hook": {
             "question": "What is the 'food' that plants create for themselves?",
-            "predictPrompt": "Predict what a plant produces when it captures light, and explain what it releases into the air."
+            "predictPrompt": "When a plant makes its food in the light, what do you think it lets out into the air? Guess, and say why."
           },
           "explanation": "Photosynthesis is the name for the process of making food. The plant takes in carbon dioxide and water, uses light energy to rearrange them into sugar (glucose), and then releases oxygen as a byproduct. This sugar is the plant's primary source of energy and building material.",
           "action": {
-            "instruction": "Imagine a thought experiment: You have a plant in a sealed glass jar. You provide light and water. Predict what gas will build up inside the jar and why.",
-            "changedCondition": "Presence of oxygen (removed/sealed)",
+            "instruction": "Picture two closed glass jars, each with the same plant and water. One jar stands in the light, the other in the dark. Guess in which jar oxygen builds up, then compare.",
+            "changedCondition": "light: jar in the light → jar in the dark",
             "constants": [
-              "Amount of light",
-              "Amount of water",
-              "Amount of CO2"
+              "the same plant",
+              "the same water",
+              "the same closed jar"
             ],
             "thoughtExperiment": true
           },
@@ -243,6 +278,18 @@
               "scene": "A girl discovers a hidden laboratory inside a leaf where sugar is being manufactured.",
               "illustration": "A diagram showing CO2 + Water + Light -> Sugar + Oxygen.",
               "image": "/media/light-plant-growth/c3-the-sugar-factory-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "An explorer places two sealed glass jars containing a plant and water in a station; one is placed in the light and the other in the dark.",
+              "illustration": "Two sealed glass jars, each with a plant and water, one in a bright light and the other in the dark.",
+              "image": "/media/light-plant-growth/c3-the-sugar-factory-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A street-doc places two sealed glass jars with a plant and water in a laboratory, one under a neon light and the other in a dark compartment.",
+              "illustration": "Two sealed glass jars, each with a plant and water, one in a bright light and the other in the dark.",
+              "image": "/media/light-plant-growth/c3-the-sugar-factory-cyberpunk.png"
             }
           ],
           "question": {
@@ -295,7 +342,10 @@
             "reviewer": "adult",
             "reviewedAt": "2026-10-24T10:42:03.657Z",
             "notes": [
-              "voice question may ask for recall (list/define), not a prediction with a cause in a new situation"
+              "voice question may ask for recall (list/define), not a prediction with a cause in a new situation",
+              "2026-10-24T12:10:03.168Z изменено после одобрения: predict (было: Predict what a plant produces when it captures light, and explain what it releases into the air.); act (было: Imagine a thought experiment: You have a plant in a sealed glass jar. You provide light and water. Predict what gas will build up inside the jar and why.); changedCondition (было: Presence of oxygen (removed/sealed)); constants (было: Amount of light; Amount of water; Amount of CO2) — changedCondition did not match the act — the act now compares light and dark jars; kid language",
+              "2026-10-24T12:10:16.534Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -307,20 +357,20 @@
             "conditions": [
               "Presence of sugar (stored reserves)"
             ],
-            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+            "source": "Facts cross-checked against OpenStax Biology 2e, sections 8.1 Overview of Photosynthesis and 8.3 Using Light Energy to Make Organic Molecules (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
           },
           "hook": {
             "question": "Do plants only 'work' when the sun is shining?",
-            "predictPrompt": "Predict what a plant does at night when there is no light, and explain why."
+            "predictPrompt": "What do you think a plant does at night, when there is no light? Guess, and say why."
           },
           "explanation": "Plants also perform a process called respiration. Just like humans, plants need to break down food to get energy for their cells to grow and stay alive. They do this 24 hours a day. While photosynthesis makes the 'food' (sugar), respiration 'burns' that food for energy.",
           "action": {
-            "instruction": "Imagine a thought experiment: You have a plant that has been growing in bright light all day. You put it in a dark room at night. Predict if the plant's cells will still have energy. Explain your reasoning.",
-            "changedCondition": "Presence of light",
+            "instruction": "Picture a plant that stood in bright light all day and then spends the night in a dark room. Guess: do its cells still get energy in the dark? Say where it would come from.",
+            "changedCondition": "light: day → night",
             "constants": [
-              "Amount of water",
-              "Amount of CO2",
-              "Presence of stored sugar"
+              "the same plant",
+              "the same water",
+              "the sugar it made during the day"
             ],
             "thoughtExperiment": true
           },
@@ -336,6 +386,18 @@
               "scene": "A character watches a plant's internal energy flow during a night-time scene.",
               "illustration": "A split screen: Day (Photosynthesis) and Night (Respiration).",
               "image": "/media/light-plant-growth/c4-the-night-shift-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "A pilot observes a plant that sat in bright light all day and now sits in a dark cabin during the night cycle.",
+              "illustration": "A plant sitting in a dark room after being in bright light all day.",
+              "image": "/media/light-plant-growth/c4-the-night-shift-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A drone operator watches a plant that was in a bright light-chamber all day and is now in a dark storage unit at night.",
+              "illustration": "A plant sitting in a dark room after being in bright light all day.",
+              "image": "/media/light-plant-growth/c4-the-night-shift-cyberpunk.png"
             }
           ],
           "question": {
@@ -388,7 +450,10 @@
             "reviewer": "adult",
             "reviewedAt": "2026-10-24T10:42:03.658Z",
             "notes": [
-              "absolute word \"all\" in fact — check that it holds under the stated conditions"
+              "absolute word \"all\" in fact — check that it holds under the stated conditions",
+              "2026-10-24T12:10:03.168Z изменено после одобрения: predict (было: Predict what a plant does at night when there is no light, and explain why.); act (было: Imagine a thought experiment: You have a plant that has been growing in bright light all day. You put it in a dark room at night. Predict if the plant's cells will still have energy. Explain your reasoning.); changedCondition (было: Presence of light); constants (было: Amount of water; Amount of CO2; Presence of stored sugar) — act without the methodology prefix; kid language",
+              "2026-10-24T12:10:16.534Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -400,20 +465,19 @@
             "conditions": [
               "Presence of stored sugar"
             ],
-            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+            "source": "Facts cross-checked against OpenStax Biology 2e, sections 8.1 Overview of Photosynthesis and 8.3 Using Light Energy to Make Organic Molecules (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
           },
           "hook": {
             "question": "Can a plant grow in total darkness forever?",
-            "predictPrompt": "Predict what happens if you put a potato in a dark cupboard. Explain why it can still sprout."
+            "predictPrompt": "A potato lies in a dark cupboard. Can it grow shoots there — and could it keep growing forever? Guess, and say why."
           },
           "explanation": "Plants can survive without light for a short time because they store extra sugar (like in a potato). This is like a pantry of food. However, for long-term growth and to make new parts, the plant eventually needs light to create new sugar. Without light, the 'pantry' eventually runs out.",
           "action": {
-            "instruction": "Imagine a thought experiment: You have two plants. One is kept in a dark room with a large potato nearby. The other is kept in a dark room with no stored reserves. Predict which will sprout first and why.",
-            "changedCondition": "Presence of stored reserves",
+            "instruction": "Picture two things in the same dark cupboard: a big potato and a tiny seed with almost no stored food. Guess which one can grow longer pale shoots, and why.",
+            "changedCondition": "stored food: big potato → tiny seed",
             "constants": [
-              "Amount of water",
-              "Amount of CO2",
-              "Lack of light"
+              "the same dark cupboard",
+              "the same water"
             ],
             "thoughtExperiment": true
           },
@@ -429,6 +493,18 @@
               "scene": "A student observes a potato sprouting in a dark room and learns about stored energy.",
               "illustration": "A potato sprouting in a dark room.",
               "image": "/media/light-plant-growth/c5-the-survival-secret-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "An explorer compares a large potato and a tiny seed in a dark storage locker on a spaceship.",
+              "illustration": "A large potato and a tiny seed sitting side-by-side in a dark cupboard.",
+              "image": "/media/light-plant-growth/c5-the-survival-secret-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A hacker compares a large potato and a tiny seed inside a dark, high-tech storage crate.",
+              "illustration": "A large potato and a tiny seed sitting side-by-side in a dark cupboard.",
+              "image": "/media/light-plant-growth/c5-the-survival-secret-cyberpunk.png"
             }
           ],
           "question": {
@@ -481,7 +557,10 @@
             "reviewer": "adult",
             "reviewedAt": "2026-10-24T10:42:03.660Z",
             "notes": [
-              "voice question repeats the hook/action (60% word overlap) — transfer needs a new situation"
+              "voice question repeats the hook/action (60% word overlap) — transfer needs a new situation",
+              "2026-10-24T12:10:03.168Z изменено после одобрения: predict (было: Predict what happens if you put a potato in a dark cupboard. Explain why it can still sprout.); act (было: Imagine a thought experiment: You have two plants. One is kept in a dark room with a large potato nearby. The other is kept in a dark room with no stored reserves. Predict which will sprout first and why.); changedCondition (было: Presence of stored reserves); constants (было: Amount of water; Amount of CO2; Lack of light) — act made no sense (a plant next to a potato) — now a big store of food vs a tiny one, both in the dark; predict linked to the hook",
+              "2026-10-24T12:10:16.534Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         }
@@ -494,7 +573,7 @@
     "reviewedAt": "2026-10-24T10:42:03.660Z",
     "notes": [
       "Generated by gemma4:12b-mlx; nothing is shown to a child before an adult approves each card (fact → question → key).",
-      "Source for verification: OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+      "Source for verification: Facts cross-checked against OpenStax Biology 2e, sections 8.1 Overview of Photosynthesis and 8.3 Using Light Energy to Make Organic Molecules (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
     ]
   },
   "origin": {

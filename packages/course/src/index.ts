@@ -4,7 +4,7 @@
  * every card starts as `needs_review` — adult approval is separate (`/api/courses/:id/review`).
  */
 export * from './types.js';
-export { buildPrompt, buildRepairPrompt, languageName } from './prompt.js';
+export { buildPrompt, buildRepairPrompt, languageName, WORLD_HINTS, worldsInstruction } from './prompt.js';
 export {
   DraftCardSchema,
   DraftCourseSchema,
@@ -19,4 +19,18 @@ export {
   type DraftCard,
   type DraftCourse,
 } from './generator.js';
-export { applyReview, courseSummary, showableCourse, ReviewRequestSchema, type CourseSummary, type ReviewRequest } from './review.js';
+export {
+  applyReview,
+  courseSummary,
+  markRevised,
+  reviseCard,
+  showableCourse,
+  syncCourseReview,
+  ReviewRequestSchema,
+  type CardPatch,
+  type CourseSummary,
+  type ReviewRequest,
+  type RevisionResult,
+} from './review.js';
+export { addWorlds, buildWorldsPrompt, mergeWorlds, parseWorlds, WorldsDraftSchema } from './worlds.js';
+export { buildImagePrompts, withoutNumbers, type ImagePromptEntry, type MediaStyles } from './media.js';

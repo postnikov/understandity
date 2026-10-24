@@ -16,7 +16,8 @@
     "typecheck": "tsc -p tsconfig.json",
     "build": "npm run build -w @understandity/web",
     "course:generate": "tsx packages/course/src/cli.ts",
-    "demo": "UNDERSTANDITY_WARMUP=1 npm run dev"
+    "demo": "UNDERSTANDITY_WARMUP=1 npm run dev",
+    "course:worlds": "tsx packages/course/src/worlds-cli.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

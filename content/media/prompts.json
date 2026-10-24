@@ -268,5 +268,275 @@
     "preset": "landscape",
     "image": "/media/double-side-area/c5-the-master-architect-anime.png",
     "prompt": "Straight top-down view of a futuristic plaza that is a perfect square, covered with exactly twenty-five identical big glowing teal floor panels: five panels across and five panels down, with clear dark seams between them. Beside the plaza, a small cute robot holds up one single panel of the same size for comparison. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c1-weight-vs-density",
+    "world": "space",
+    "seed": 131,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c1-weight-vs-density-space.png",
+    "prompt": "An astronaut on a space station with artificial gravity places a large wooden block and a small wood chip into a tank of still water. A large wooden block and a small wood chip both floating on the surface of water in a tank. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c1-weight-vs-density",
+    "world": "cyberpunk",
+    "seed": 132,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c1-weight-vs-density-cyberpunk.png",
+    "prompt": "A hacker in a neon-lit lab drops a large wooden block and a small wood chip into a container of still water. A large wooden block and a small wood chip both floating on the surface of water. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c2-the-rule-of-1-g-cm3",
+    "world": "space",
+    "seed": 133,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-space.png",
+    "prompt": "A scientist on a lunar base observes a piece of stone and a piece of wood fully submerged in a tank of water. A stone sinking to the bottom of a water tank while a piece of wood floats on the surface. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c2-the-rule-of-1-g-cm3",
+    "world": "cyberpunk",
+    "seed": 134,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-cyberpunk.png",
+    "prompt": "A robot in a high-tech laboratory observes a piece of stone and a piece of wood fully submerged in a tank of water. A stone sinking to the bottom of a water tank while a piece of wood floats on the surface. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c3-cutting-the-stone",
+    "world": "space",
+    "seed": 135,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c3-cutting-the-stone-space.png",
+    "prompt": "An astronaut takes a sinking stone and cuts it in half, observing both pieces in a tank of water. Two halves of a stone both sinking to the bottom of a water tank. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c3-cutting-the-stone",
+    "world": "cyberpunk",
+    "seed": 136,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c3-cutting-the-stone-cyberpunk.png",
+    "prompt": "A cyborg in a laboratory cuts a sinking stone in half and observes both pieces in a tank of water. Two halves of a stone both sinking to the bottom of a water tank. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c4-the-secret-of-the-ship",
+    "world": "space",
+    "seed": 137,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-space.png",
+    "prompt": "An astronaut places an empty plastic bottle into a tank of water, then fills it with water and observes the difference. An empty plastic bottle floating on water next to a water-filled bottle sinking to the bottom. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c4-the-secret-of-the-ship",
+    "world": "cyberpunk",
+    "seed": 138,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-cyberpunk.png",
+    "prompt": "A hacker places an empty plastic bottle into a tank of water, then fills it with water and observes the difference. An empty plastic bottle floating on water next to a water-filled bottle sinking to the bottom. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c5-the-density-challenge",
+    "world": "space",
+    "seed": 139,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c5-the-density-challenge-space.png",
+    "prompt": "An astronaut compares two objects, in a tank of water. One object floating on the surface of water and another object sinking to the bottom. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c5-the-density-challenge",
+    "world": "cyberpunk",
+    "seed": 140,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c5-the-density-challenge-cyberpunk.png",
+    "prompt": "A robot compares two objects, in a tank of water. One object floating on the surface of water and another object sinking to the bottom. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c1-the-invisible-builder",
+    "world": "space",
+    "seed": 141,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c1-the-invisible-builder-space.png",
+    "prompt": "An astronaut in a greenhouse module watches two identical plants; one is in a chamber with carbon dioxide and water, and the other is in a chamber without carbon dioxide. Two identical plants in separate glass chambers with the same water: the one with normal air is big and bushy, the one in air without carbon dioxide stays small. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c1-the-invisible-builder",
+    "world": "cyberpunk",
+    "seed": 142,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c1-the-invisible-builder-cyberpunk.png",
+    "prompt": "A hacker monitors two bio-engineered plants in a neon-lit lab, one receiving carbon dioxide and water and the other receiving no carbon dioxide. Two identical plants in separate glass containers with the same water: the one with normal air is big and bushy, the one in air without carbon dioxide stays small. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c2-light-is-the-engine-not-the-fuel",
+    "world": "space",
+    "seed": 143,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-space.png",
+    "prompt": "A scientist on a space station observes two plants with the same water and air, one under a high-intensity grow lamp and the other in a dark storage locker. Two identical plants, one under a bright light and the other in total darkness. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c2-light-is-the-engine-not-the-fuel",
+    "world": "cyberpunk",
+    "seed": 144,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-cyberpunk.png",
+    "prompt": "A robot technician places two plants in a neon-lit room, one under a bright grow lamp and the other in a dark corner. Two identical plants, one illuminated by a bright light and the other in total darkness. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c3-the-sugar-factory",
+    "world": "space",
+    "seed": 145,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c3-the-sugar-factory-space.png",
+    "prompt": "An explorer places two sealed glass jars containing a plant and water in a station; one is placed in the light and the other in the dark. Two sealed glass jars, each with a plant and water, one in a bright light and the other in the dark. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c3-the-sugar-factory",
+    "world": "cyberpunk",
+    "seed": 146,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c3-the-sugar-factory-cyberpunk.png",
+    "prompt": "A street-doc places two sealed glass jars with a plant and water in a laboratory, one under a neon light and the other in a dark compartment. Two sealed glass jars, each with a plant and water, one in a bright light and the other in the dark. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c4-the-night-shift",
+    "world": "space",
+    "seed": 147,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c4-the-night-shift-space.png",
+    "prompt": "A pilot observes a plant that sat in bright light all day and now sits in a dark cabin during the night cycle. A plant sitting in a dark room after being in bright light all day. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c4-the-night-shift",
+    "world": "cyberpunk",
+    "seed": 148,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c4-the-night-shift-cyberpunk.png",
+    "prompt": "A drone operator watches a plant that was in a bright light-chamber all day and is now in a dark storage unit at night. A plant sitting in a dark room after being in bright light all day. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c5-the-survival-secret",
+    "world": "space",
+    "seed": 149,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c5-the-survival-secret-space.png",
+    "prompt": "An explorer compares a large potato and a tiny seed in a dark storage locker on a spaceship. A large potato and a tiny seed sitting side-by-side in a dark cupboard. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c5-the-survival-secret",
+    "world": "cyberpunk",
+    "seed": 150,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c5-the-survival-secret-cyberpunk.png",
+    "prompt": "A hacker compares a large potato and a tiny seed inside a dark, high-tech storage crate. A large potato and a tiny seed sitting side-by-side in a dark cupboard. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c1-counting-the-squares",
+    "world": "space",
+    "seed": 151,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c1-counting-the-squares-space.png",
+    "prompt": "An astronaut places nine square tiles in a three-by-three grid on a lunar base floor. They observe how many tiles are needed to cover a six-by-six area. A three-by-three grid of square tiles on a grey floor. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c1-counting-the-squares",
+    "world": "cyberpunk",
+    "seed": 152,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c1-counting-the-squares-cyberpunk.png",
+    "prompt": "A hacker places nine glowing neon tiles in a three-by-three grid on a metallic workbench. They observe how many tiles cover a six-by-six grid. A three-by-three grid of glowing neon squares on a workbench. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c2-the-two-way-growth",
+    "world": "space",
+    "seed": 153,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c2-the-two-way-growth-space.png",
+    "prompt": "An astronaut observes a square solar panel that is replaced by a square panel three times wider and three times longer. A small square solar panel next to a much larger square solar panel. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c2-the-two-way-growth",
+    "world": "cyberpunk",
+    "seed": 154,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c2-the-two-way-growth-cyberpunk.png",
+    "prompt": "A robot observes a square holographic display that is replaced by a square display three times wider and three times longer. A small square holographic display next to a much larger square display. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c3-the-rectangle-exception",
+    "world": "space",
+    "seed": 155,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c3-the-rectangle-exception-space.png",
+    "prompt": "An astronaut stretches a rectangular fabric sheet, making it twice as long while the width remains the same. A rectangular fabric sheet being pulled to become twice as long. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c3-the-rectangle-exception",
+    "world": "cyberpunk",
+    "seed": 156,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c3-the-rectangle-exception-cyberpunk.png",
+    "prompt": "A hacker stretches a rectangular data strip, making it twice as long while the width remains the same. A rectangular strip of data being stretched to twice its length. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c4-paint-vs-fences",
+    "world": "space",
+    "seed": 157,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c4-paint-vs-fences-space.png",
+    "prompt": "An astronaut builds a fence around a square garden on a space station; the side length of the square garden doubles. A square garden with a fence around it, showing the fence and the grass inside. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c4-paint-vs-fences",
+    "world": "cyberpunk",
+    "seed": 158,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c4-paint-vs-fences-cyberpunk.png",
+    "prompt": "A drone builds a fence around a square garden in a neon city; the side length of the square garden doubles. A square garden with a fence around it, showing the fence and the grass inside. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c5-the-master-architect",
+    "world": "space",
+    "seed": 159,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c5-the-master-architect-space.png",
+    "prompt": "An astronaut designs a square landing pad where both the length and width are multiplied by five. A small square landing pad next to a much larger square landing pad. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c5-the-master-architect",
+    "world": "cyberpunk",
+    "seed": 160,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c5-the-master-architect-cyberpunk.png",
+    "prompt": "A robot designs a square plaza in a neon city where both the length and width are multiplied by five. A small square plaza next to a much larger square plaza. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
   }
 ]

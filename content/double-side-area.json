@@ -28,19 +28,19 @@
               "Flat shapes",
               "Consistent unit size"
             ],
-            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+            "source": "Facts cross-checked against OpenStax Prealgebra 2e, section 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
           },
           "hook": {
             "question": "If you have a 3x3 square made of 9 tiles, what happens if you double the length of every side?",
-            "predictPrompt": "Predict how many tiles you would need for the new shape and explain why."
+            "predictPrompt": "How many tiles do you think the new square needs? Guess, and say why."
           },
           "explanation": "Area measures the surface space inside a boundary. Think of a square as a grid. A 3x3 square uses 9 small squares. When you double the sides to 6x6, you aren't just adding a row; you are adding rows and columns simultaneously. This creates a much larger space than just doubling the original count.",
           "action": {
             "instruction": "Take 9 sticky notes and arrange them in a 3x3 square. Imagine doubling the side length to 6. Predict how many notes you'd need to fill the new 6x6 area, then count how many fit in a 6x6 grid.",
-            "changedCondition": "Side length from 3 to 6",
+            "changedCondition": "side: 3 → 6",
             "constants": [
-              "Shape type (square)",
-              "Unit size (sticky note)"
+              "still a square",
+              "the same sticky notes"
             ],
             "thoughtExperiment": true
           },
@@ -56,6 +56,18 @@
               "scene": "A robot builder is designing a square power core. They need to calculate the surface area for cooling plates.",
               "illustration": "A square divided into 9 smaller squares.",
               "image": "/media/double-side-area/c1-counting-the-squares-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "An astronaut places 9 square tiles in a 3x3 grid on a lunar base floor. They observe how many tiles are needed to cover a 6x6 area.",
+              "illustration": "A 3x3 grid of square tiles on a grey floor.",
+              "image": "/media/double-side-area/c1-counting-the-squares-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A hacker places 9 glowing neon tiles in a 3x3 grid on a metallic workbench. They observe how many tiles cover a 6x6 grid.",
+              "illustration": "A 3x3 grid of glowing neon squares on a workbench.",
+              "image": "/media/double-side-area/c1-counting-the-squares-cyberpunk.png"
             }
           ],
           "question": {
@@ -107,7 +119,11 @@
             "state": "approved",
             "reviewer": "adult",
             "reviewedAt": "2026-10-24T10:42:03.636Z",
-            "notes": []
+            "notes": [
+              "2026-10-24T12:11:02.421Z изменено после одобрения: predict (было: Predict how many tiles you would need for the new shape and explain why.); changedCondition (было: Side length from 3 to 6); constants (было: Shape type (square); Unit size (sticky note)) — kid language",
+              "2026-10-24T12:11:14.519Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
+            ]
           }
         },
         {
@@ -119,19 +135,19 @@
               "Both sides scaled by the same factor",
               "Flat shape"
             ],
-            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+            "source": "Facts cross-checked against OpenStax Prealgebra 2e, section 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
           },
           "hook": {
             "question": "Why does a 6x6 square hold four times as much as a 3x3 square?",
-            "predictPrompt": "Predict what happens to the area if you triple the sides of a 3x3 square. Explain your reasoning."
+            "predictPrompt": "What if every side gets three times longer? Guess how many times bigger the area gets, and say why."
           },
           "explanation": "When you scale a square, you are stretching it in two directions: length and width. If you triple the sides, the length becomes 3 times longer AND the width becomes 3 times wider. The total area grows by 3 times 3, which is 9. This is why scaling is not a simple 1-to-1 increase.",
           "action": {
             "instruction": "Imagine a 3x3 square. In your mind, triple the side length to 9. Predict how many times larger the area becomes compared to the original 3x3, then think about how many 3x3 squares fit into a 9x9 square.",
-            "changedCondition": "Scaling factor from 2x to 3x",
+            "changedCondition": "side: 3 → 9",
             "constants": [
-              "Shape type (square)",
-              "Initial size (3x3)"
+              "still a square",
+              "we start from 3 × 3"
             ],
             "thoughtExperiment": true
           },
@@ -147,6 +163,18 @@
               "scene": "A mecha pilot expands the shield's reach. The square shield grows 3 times in both directions.",
               "illustration": "A diagram showing a 3x3 grid expanding into a 9x9 grid.",
               "image": "/media/double-side-area/c2-the-two-way-growth-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "An astronaut observes a square solar panel that is replaced by a square panel 3 times wider and 3 times longer.",
+              "illustration": "A small square solar panel next to a much larger square solar panel.",
+              "image": "/media/double-side-area/c2-the-two-way-growth-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A robot observes a square holographic display that is replaced by a square display 3 times wider and 3 times longer.",
+              "illustration": "A small square holographic display next to a much larger square display.",
+              "image": "/media/double-side-area/c2-the-two-way-growth-cyberpunk.png"
             }
           ],
           "question": {
@@ -199,7 +227,10 @@
             "reviewer": "adult",
             "reviewedAt": "2026-10-24T10:42:03.638Z",
             "notes": [
-              "voice question repeats the hook/action (64% word overlap) — transfer needs a new situation"
+              "voice question repeats the hook/action (64% word overlap) — transfer needs a new situation",
+              "2026-10-24T12:11:02.421Z изменено после одобрения: predict (было: Predict what happens to the area if you triple the sides of a 3x3 square. Explain your reasoning.); changedCondition (было: Scaling factor from 2x to 3x); constants (было: Shape type (square); Initial size (3x3)) — kid language",
+              "2026-10-24T12:11:14.519Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -212,19 +243,19 @@
               "Only one dimension is scaled",
               "Flat shape"
             ],
-            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+            "source": "Facts cross-checked against OpenStax Prealgebra 2e, section 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
           },
           "hook": {
             "question": "What happens if you double the length of a rectangle but keep the width exactly the same?",
-            "predictPrompt": "Predict if the area will double, triple, or quadruple. Explain why."
+            "predictPrompt": "Only the length gets twice as long, the width stays the same. How much bigger does the area get? Guess, and say why."
           },
           "explanation": "Area is length times width. If you only change one dimension, like the length, the width stays constant. Therefore, the area only grows by that single change. This is different from a square where both sides change at once. To double the area of a rectangle, you only need to double one side.",
           "action": {
             "instruction": "Imagine a rectangle that is 2 units wide and 3 units long. Imagine doubling only the length to 6 units while keeping the width at 2. Predict the new area, then calculate it.",
-            "changedCondition": "Length changed from 3 to 6",
+            "changedCondition": "length: 3 → 6",
             "constants": [
-              "Width (2)",
-              "Shape type (rectangle)"
+              "width stays 2",
+              "still a rectangle"
             ],
             "thoughtExperiment": true
           },
@@ -240,11 +271,23 @@
               "scene": "A futuristic train car is extended. It gets longer but stays the same width.",
               "illustration": "A 2x3 rectangle becoming a 2x6 rectangle.",
               "image": "/media/double-side-area/c3-the-rectangle-exception-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "An astronaut stretches a rectangular fabric sheet, making it twice as long while the width remains the same.",
+              "illustration": "A rectangular fabric sheet being pulled to become twice as long.",
+              "image": "/media/double-side-area/c3-the-rectangle-exception-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A hacker stretches a rectangular data strip, making it twice as long while the width remains the same.",
+              "illustration": "A rectangular strip of data being stretched to twice its length.",
+              "image": "/media/double-side-area/c3-the-rectangle-exception-cyberpunk.png"
             }
           ],
           "question": {
             "id": "q-c3-the-rectangle-exception",
-            "prompt": "You have a rectangular rug that is 2 meters by 3 meters. If you buy a new rug that is 2 meters by 6 meters, did the area double or quadruple? Why?",
+            "prompt": "A rug is 2 m by 3 m. A new rug is 2 m by 6 m. How did the floor it covers change, and why?",
             "maxAnswerSec": 30
           },
           "key": {
@@ -290,10 +333,15 @@
           "review": {
             "state": "approved",
             "reviewer": "adult",
-            "reviewedAt": "2026-10-24T10:42:03.640Z",
+            "reviewedAt": "2026-10-24T12:19:00.000Z",
             "notes": [
               "absolute word \"only\" in key — check that it holds under the stated conditions",
-              "absolute word \"only\" in fact — check that it holds under the stated conditions"
+              "absolute word \"only\" in fact — check that it holds under the stated conditions",
+              "2026-10-24T12:11:02.421Z изменено после одобрения: predict (было: Predict if the area will double, triple, or quadruple. Explain why.); changedCondition (было: Length changed from 3 to 6); constants (было: Width (2); Shape type (rectangle)) — predict and transfer offered answer options (double/triple/quadruple) — the transfer has no options now, key unchanged",
+              "2026-10-24T12:11:02.421Z на переодобрение (course module, by designer copy review): question/transfer (было: You have a rectangular rug that is 2 meters by 3 meters. If you buy a new rug that is 2 meters by 6 meters, did the area double or quadruple? Why?) — predict and transfer offered answer options (double/triple/quadruple) — the transfer has no options now, key unchanged",
+              "2026-10-24T12:11:14.519Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -306,18 +354,18 @@
               "Flat shapes",
               "Same thickness/coverage"
             ],
-            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+            "source": "Facts cross-checked against OpenStax Prealgebra 2e, section 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
           },
           "hook": {
-            "question": "If you double the sides of a square garden, do you need 2 times as much fence or 4 times as much grass seed?",
-            "predictPrompt": "Predict which one needs more and explain why."
+            "question": "You make a square garden with every side twice as long. Do you need more fence or more grass seed — and how much more of each?",
+            "predictPrompt": "Guess how much more fence and how much more grass seed the bigger garden needs, and say why."
           },
           "explanation": "Perimeter is the distance around the outside (a line). Area is the space inside (a surface). When you double the sides of a square, the perimeter (the fence) only doubles because it's a 1D measurement. However, the area (the grass) quadruples because it grows in two directions. Paint and tiles also follow the area rule.",
           "action": {
             "instruction": "Imagine a square garden with a fence around it. If you double the side length, predict if the fence length doubles or quadruples. Then, think about the grass inside.",
-            "changedCondition": "Side length doubled",
+            "changedCondition": "side: 1 → 2 times as long",
             "constants": [
-              "Shape type (square)"
+              "still a square"
             ],
             "thoughtExperiment": true
           },
@@ -333,22 +381,33 @@
               "scene": "A city planner builds a square park. They need to know how much grass to lay down.",
               "illustration": "A square with a border (fence) and a filled interior (grass).",
               "image": "/media/double-side-area/c4-paint-vs-fences-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "An astronaut builds a fence around a square garden on a space station; the side length of the square garden doubles.",
+              "illustration": "A square garden with a fence around it, showing the fence and the grass inside.",
+              "image": "/media/double-side-area/c4-paint-vs-fences-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A drone builds a fence around a square garden in a neon city; the side length of the square garden doubles.",
+              "illustration": "A square garden with a fence around it, showing the fence and the grass inside.",
+              "image": "/media/double-side-area/c4-paint-vs-fences-cyberpunk.png"
             }
           ],
           "question": {
             "id": "q-c4-paint-vs-fences",
-            "prompt": "If you have a square garden and you double the length of each side, why do you need four times as much grass seed but only twice as much fencing?",
+            "prompt": "You make a square picture with every side twice as long. How much longer is its frame, and how much more paint does the picture need? Why?",
             "maxAnswerSec": 30
           },
           "key": {
             "questionId": "q-c4-paint-vs-fences",
-            "expectedCause": "Because the fence is a perimeter (length) and only grows in one direction, while the grass covers the area which grows in two directions.",
+            "expectedCause": "The frame goes around the edge, so it only gets 2 times longer; the paint covers the whole surface, which grows in length and width at once, so it needs 4 times as much.",
             "acceptable": [
-              "Fence is a line (perimeter) and grass is a surface (area).",
-              "Perimeter only doubles, but area quadruples because it grows in two directions."
+              "Frame is the perimeter and doubles, paint is the area and becomes 2 × 2 = 4 times bigger."
             ],
-            "typicalMistake": "Because the fence is smaller than the grass.",
-            "followUp": "What if the garden was a circle? Would the same rule apply?"
+            "typicalMistake": "Both double, because the sides doubled.",
+            "followUp": "How many copies of the old picture fit into the new one?"
           },
           "rubric": {
             "criteria": [
@@ -384,11 +443,16 @@
           "review": {
             "state": "approved",
             "reviewer": "adult",
-            "reviewedAt": "2026-10-24T10:42:03.642Z",
+            "reviewedAt": "2026-10-24T12:19:00.000Z",
             "notes": [
               "absolute word \"only\" in voice question — check that it holds under the stated conditions",
               "absolute word \"only\" in key — check that it holds under the stated conditions",
-              "voice question repeats the hook/action (61% word overlap) — transfer needs a new situation"
+              "voice question repeats the hook/action (61% word overlap) — transfer needs a new situation",
+              "2026-10-24T12:11:02.421Z изменено после одобрения: hook (было: If you double the sides of a square garden, do you need 2 times as much fence or 4 times as much grass seed?); predict (было: Predict which one needs more and explain why.); changedCondition (было: Side length doubled); constants (было: Shape type (square)) — hook and transfer gave the answer (2× fence, 4× seed) — new case (picture frame and paint) with its key",
+              "2026-10-24T12:11:02.421Z на переодобрение (course module, by designer copy review): question/transfer (было: If you have a square garden and you double the length of each side, why do you need four times as much grass seed but only twice as much fencing?); key.expectedCause (было: Because the fence is a perimeter (length) and only grows in one direction, while the grass covers the area which grows in two directions.); key.acceptable (было: Fence is a line (perimeter) and grass is a surface (area).; Perimeter only doubles, but area quadruples because it grows in two directions.); key.typicalMistake (было: Because the fence is smaller than the grass.); key.followUp (было: What if the garden was a circle? Would the same rule apply?) — hook and transfer gave the answer (2× fence, 4× seed) — new case (picture frame and paint) with its key",
+              "2026-10-24T12:11:14.519Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -401,19 +465,19 @@
               "Both sides scaled by the same factor",
               "Flat shapes"
             ],
-            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+            "source": "Facts cross-checked against OpenStax Prealgebra 2e, section 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
           },
           "hook": {
             "question": "You are an architect designing a square plaza. If you want to make the plaza 5 times wider and 5 times longer, how many times larger will the area be?",
-            "predictPrompt": "Predict the multiplier for the area and explain the reason."
+            "predictPrompt": "If the plaza gets 5 times wider and 5 times longer, how many times more stone tiles will it need? Guess, and say why."
           },
           "explanation": "Since the plaza is a flat shape, when you multiply both the length and the width by 5, the area grows by 5 times 5. This is because the growth happens in both directions simultaneously. The area is always the product of the two sides. If both sides are multiplied by 5, the total area is multiplied by 25.",
           "action": {
             "instruction": "Imagine a square plaza. If you multiply both sides by 5, predict how many times the area increases. Then, calculate the area of a 1x1 square and a 5x5 square to verify.",
-            "changedCondition": "Scaling factor from 2x to 5x",
+            "changedCondition": "side: 1 → 5",
             "constants": [
-              "Shape type (square)",
-              "Initial size (1x1)"
+              "still a square",
+              "we start from 1 × 1"
             ],
             "thoughtExperiment": true
           },
@@ -429,21 +493,33 @@
               "scene": "A futuristic city planner designs a square plaza for a new robot district.",
               "illustration": "A 1x1 square compared to a 5x5 square.",
               "image": "/media/double-side-area/c5-the-master-architect-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "An astronaut designs a square landing pad where both the length and width are multiplied by 5.",
+              "illustration": "A small square landing pad next to a much larger square landing pad.",
+              "image": "/media/double-side-area/c5-the-master-architect-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A robot designs a square plaza in a neon city where both the length and width are multiplied by 5.",
+              "illustration": "A small square plaza next to a much larger square plaza.",
+              "image": "/media/double-side-area/c5-the-master-architect-cyberpunk.png"
             }
           ],
           "question": {
             "id": "q-c5-the-master-architect",
-            "prompt": "If you have a square plaza and you make both the length and the width 5 times longer, how many times larger will the area become? Explain why.",
+            "prompt": "A square photo is printed as a poster with every side 10 times longer. How many times more paper does the poster need? Why?",
             "maxAnswerSec": 30
           },
           "key": {
             "questionId": "q-c5-the-master-architect",
-            "expectedCause": "The area will be 25 times larger because both the length and width were multiplied by 5 (5 times 5).",
+            "expectedCause": "100 times more paper: both the length and the width are 10 times longer, so the area grows 10 × 10.",
             "acceptable": [
-              "It becomes 25 times larger because it grows in two directions."
+              "10 rows of 10 photos fit into the poster, so it is 100 photos big."
             ],
-            "typicalMistake": "It will be 5 times larger because the sides are 5 times longer.",
-            "followUp": "What if the plaza was a 3D cube? Would the volume also be 25 times larger?"
+            "typicalMistake": "10 times more, because the sides are 10 times longer.",
+            "followUp": "How many small photos fit along one side of the poster, and how many rows are there?"
           },
           "rubric": {
             "criteria": [
@@ -479,9 +555,14 @@
           "review": {
             "state": "approved",
             "reviewer": "adult",
-            "reviewedAt": "2026-10-24T10:42:03.643Z",
+            "reviewedAt": "2026-10-24T12:19:00.000Z",
             "notes": [
-              "voice question repeats the hook/action (75% word overlap) — transfer needs a new situation"
+              "voice question repeats the hook/action (75% word overlap) — transfer needs a new situation",
+              "2026-10-24T12:11:02.421Z изменено после одобрения: predict (было: Predict the multiplier for the area and explain the reason.); changedCondition (было: Scaling factor from 2x to 5x); constants (было: Shape type (square); Initial size (1x1)) — transfer repeated the hook — new case (poster) with its key; kid language",
+              "2026-10-24T12:11:02.421Z на переодобрение (course module, by designer copy review): question/transfer (было: If you have a square plaza and you make both the length and the width 5 times longer, how many times larger will the area become? Explain why.); key.expectedCause (было: The area will be 25 times larger because both the length and width were multiplied by 5 (5 times 5).); key.acceptable (было: It becomes 25 times larger because it grows in two directions.); key.typicalMistake (было: It will be 5 times larger because the sides are 5 times longer.); key.followUp (было: What if the plaza was a 3D cube? Would the volume also be 25 times larger?) — transfer repeated the hook — new case (poster) with its key; kid language",
+              "2026-10-24T12:11:14.519Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         }
@@ -489,12 +570,12 @@
     }
   ],
   "review": {
-    "state": "approved",
+    "state": "needs_review",
     "reviewer": "adult",
     "reviewedAt": "2026-10-24T10:42:03.643Z",
     "notes": [
       "Generated by gemma4:12b-mlx; nothing is shown to a child before an adult approves each card (fact → question → key).",
-      "Source for verification: OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+      "Source for verification: Facts cross-checked against OpenStax Prealgebra 2e, section 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
     ]
   },
   "origin": {

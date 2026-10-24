@@ -100,3 +100,76 @@ export function showableCourse(course: Course): Course {
       .filter((k) => k.cards.length > 0),
   };
 }
+
+type Card = Course['concepts'][number]['cards'][number];
+
+/**
+ * Record a change that does not touch what the adult verifies (fact, question, key): approval stays,
+ * the change is written into `review.notes` so the adult can see what moved after approval.
+ */
+export function markRevised(card: Card, what: string, opts: { at?: Date } = {}): void {
+  const at = (opts.at ?? new Date()).toISOString();
+  const prefix = card.review.state === 'approved' ? 'изменено после одобрения' : 'изменено';
+  card.review.notes.push(`${at} ${prefix}: ${what}`);
+}
+
+/** Learner-facing edits of a card. Gated fields (fact, question, key) send the card back to `needs_review`. */
+export interface CardPatch {
+  hookQuestion?: string;
+  predictPrompt?: string;
+  explanation?: string;
+  actionInstruction?: string;
+  changedCondition?: string;
+  constants?: string[];
+  /** Gated: the adult re-checks the card. */
+  factStatement?: string;
+  questionPrompt?: string;
+  key?: Partial<Pick<Card['key'], 'expectedCause' | 'acceptable' | 'typicalMistake' | 'followUp'>>;
+}
+
+export interface RevisionResult {
+  cardId: string;
+  reapproval: boolean;
+  changed: string[];
+}
+
+export function reviseCard(card: Card, patch: CardPatch, opts: { at?: Date; who?: string; why?: string } = {}): RevisionResult {
+  const at = (opts.at ?? new Date()).toISOString();
+  const free: string[] = [];
+  const gated: string[] = [];
+  const set = <T>(label: string, before: T, after: T | undefined, apply: (v: T) => void, bucket: string[]) => {
+    if (after === undefined || JSON.stringify(after) === JSON.stringify(before)) return;
+    bucket.push(`${label} (было: ${Array.isArray(before) ? before.join('; ') : String(before)})`);
+    apply(after);
+  };
+  set('hook', card.hook.question, patch.hookQuestion, (v) => (card.hook.question = v), free);
+  set('predict', card.hook.predictPrompt, patch.predictPrompt, (v) => (card.hook.predictPrompt = v), free);
+  set('explanation', card.explanation, patch.explanation, (v) => (card.explanation = v), free);
+  set('act', card.action.instruction, patch.actionInstruction, (v) => (card.action.instruction = v), free);
+  set('changedCondition', card.action.changedCondition, patch.changedCondition, (v) => (card.action.changedCondition = v), free);
+  set('constants', card.action.constants, patch.constants, (v) => (card.action.constants = v), free);
+  set('fact', card.fact.statement, patch.factStatement, (v) => (card.fact.statement = v), gated);
+  set('question/transfer', card.question.prompt, patch.questionPrompt, (v) => (card.question.prompt = v), gated);
+  for (const k of ['expectedCause', 'acceptable', 'typicalMistake', 'followUp'] as const) {
+    set(`key.${k}`, card.key[k] as never, patch.key?.[k] as never, (v) => ((card.key as Record<string, unknown>)[k] = v), gated);
+  }
+  const why = opts.why ? ` — ${opts.why}` : '';
+  if (free.length) markRevised(card, `${free.join('; ')}${why}`, { at: opts.at });
+  if (gated.length) {
+    card.review = {
+      state: 'needs_review',
+      reviewer: null,
+      reviewedAt: null,
+      notes: [...card.review.notes, `${at} на переодобрение (${opts.who ?? 'course module'}): ${gated.join('; ')}${why}`],
+    };
+  }
+  return { cardId: card.id, reapproval: gated.length > 0, changed: [...free, ...gated].map((s) => s.split(' (')[0]!) };
+}
+
+/** Course-level review follows the cards: any card back in review → the course needs review. */
+export function syncCourseReview(course: Course): void {
+  const cards = course.concepts.flatMap((k) => k.cards);
+  if (cards.some((c) => c.review.state === 'draft' || c.review.state === 'needs_review')) {
+    course.review = { ...course.review, state: 'needs_review' };
+  }
+}

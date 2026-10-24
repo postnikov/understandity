@@ -14,6 +14,24 @@ export function languageName(lang: string): string {
   return LANG_NAMES[lang.toLowerCase().split('-')[0] ?? ''] ?? lang;
 }
 
+/** One world scene. Shared by course generation and by adding worlds to an existing course. */
+export const WORLD_SCENE_SHAPE =
+  '{ "world": "<world id>", "scene": "short version of the scene in this world; heroes and look change, cause, conditions and the right answer stay", "illustration": "simple scheme for an illustration, no text in the picture" }';
+
+/** What a world id means for the model. Unknown ids are passed as is. */
+export const WORLD_HINTS: Record<string, string> = {
+  fantasy: 'fantasy: wizards, dragons, castles, magic',
+  anime: 'anime: a young hero, school or adventure, bright and expressive',
+  space:
+    'space: sci-fi about space — astronauts, spaceships, stations, other planets; scenes with water, weight or plants happen where gravity and air work as on Earth (on a planet, inside a station with artificial gravity) unless the card says otherwise',
+  cyberpunk: 'cyberpunk: a neon megacity at night, hackers, robots, drones, implants',
+};
+
+export function worldsInstruction(worlds: string[]): string {
+  const hints = worlds.map((w) => WORLD_HINTS[w.toLowerCase()] ?? w);
+  return `Worlds: give exactly one scene for each of these worlds: ${hints.join('; ')}. Use the world id before the colon as "world". Knowing a specific series is not required.`;
+}
+
 /** JSON shape the model fills. Ids, review status, sources and rubric moves are added by code. */
 export const DRAFT_SHAPE = `{
   "title": "course title, a short surprising question",
@@ -27,7 +45,7 @@ export const DRAFT_SHAPE = `{
       "hook": { "question": "surprising but true question; do not reveal the answer", "predictPrompt": "invitation to predict the result WITH a reason, answered by voice" },
       "explanation": "40-60 words: how it works; explain a term before using it; metaphor separated from mechanism; name the conditions",
       "action": { "instruction": "one safe thought experiment or action with everyday room-temperature objects; change exactly one condition; predict first, then compare two results", "changedCondition": "the one condition that changes", "constants": ["conditions kept the same"] },
-      "worlds": [ { "world": "<world id>", "scene": "short version of the scene in this world; heroes and look change, cause, conditions and the right answer stay", "illustration": "simple scheme for an illustration, no text in the picture" } ],
+      "worlds": [ ${WORLD_SCENE_SHAPE} ],
       "voiceQuestion": "ONE question about a NEW neutral situation that needs a prediction and a cause; answered in own words in 15-30 seconds; no writing, formulas or multiple choice; not a request to repeat a term",
       "key": { "expectedCause": "what a causal answer to THIS voiceQuestion must contain", "acceptable": ["acceptable refinement of conditions"], "typicalMistake": "typical wrong reasoning", "followUp": "one clarifying question for the tutor" },
       "rubric": { "showsCause": "example answer that shows the cause", "wrongUse": "example: familiar words used wrongly", "notEnough": "example: not enough yet" },
@@ -63,7 +81,7 @@ Create exactly ${req.cardCount} connected cards, from the first observation to a
 
 First define ONE central causal relation of the course and list the conditions where it applies. If conditions are missing, do not invent a single definite outcome. Never turn "may" into "always" in a question or key. In a thought experiment change exactly one condition and name the others as constant. Check that the title and the worlds do not contradict the explanation and do not turn a metaphor into the mechanism.
 
-Worlds: give exactly one scene for each of these worlds: ${req.worlds.join(', ')}. Knowing a specific series is not required.
+${worldsInstruction(req.worlds)}
 
 The key belongs to the card and answers exactly that card's voiceQuestion: the causal answer to it, an acceptable refinement of conditions and an example of wrong reasoning. Do not reveal the key to the child in advance. If you doubt a fact or a key, set "needsAdultCheck": true and write the doubt; do not guess. Actions are only thought experiments or actions with ordinary room-temperature objects: no fire, freezer, hot surfaces, tasting substances, complex equipment, or depriving a living plant or animal of vital conditions in practice.
 

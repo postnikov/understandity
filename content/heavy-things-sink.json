@@ -30,19 +30,19 @@
               "The body is in still water",
               "The body is not dissolving"
             ],
-            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+            "source": "Facts cross-checked against OpenStax University Physics Volume 1, sections 14.1 Fluids, Density, and Pressure and 14.4 Archimedes' Principle and Buoyancy (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
           },
           "hook": {
             "question": "Can a giant ship made of heavy steel float while a tiny pebble sinks?",
-            "predictPrompt": "Predict what happens if we keep the material the same but change the size. Tell me why."
+            "predictPrompt": "The ship weighs thousands of tons, the pebble just a few grams. So why could the heavy one float and the light one sink? Guess, and say why you think so."
           },
           "explanation": "Density is a measure of how 'crowded' the atoms are inside an object. It is calculated by dividing mass by volume. A heavy object might float if it takes up a huge amount of space, making its density lower than water.",
           "action": {
-            "instruction": "Imagine a large block of wood and a small piece of wood. If you keep the material the same but change the size, does the smaller piece sink?",
-            "changedCondition": "The size (volume) of the wood",
+            "instruction": "Picture a big wooden block and a small chip cut from it. Before you drop the chip in: will it sink or float? Then compare it with the big block.",
+            "changedCondition": "size: big block → small chip",
             "constants": [
-              "The type of material",
-              "The liquid it is placed in"
+              "the same wood",
+              "the same water"
             ],
             "thoughtExperiment": true
           },
@@ -58,6 +58,18 @@
               "scene": "A hero discovers a floating fortress. They realize it stays up because of its density compared to the sea.",
               "illustration": "A floating fortress over a blue ocean.",
               "image": "/media/heavy-things-sink/c1-weight-vs-density-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "An astronaut on a space station with artificial gravity places a large wooden block and a small wood chip into a tank of still water.",
+              "illustration": "A large wooden block and a small wood chip both floating on the surface of water in a tank.",
+              "image": "/media/heavy-things-sink/c1-weight-vs-density-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A hacker in a neon-lit lab drops a large wooden block and a small wood chip into a container of still water.",
+              "illustration": "A large wooden block and a small wood chip both floating on the surface of water.",
+              "image": "/media/heavy-things-sink/c1-weight-vs-density-cyberpunk.png"
             }
           ],
           "question": {
@@ -109,7 +121,11 @@
             "state": "approved",
             "reviewer": "adult",
             "reviewedAt": "2026-10-24T10:42:03.646Z",
-            "notes": []
+            "notes": [
+              "2026-10-24T12:06:39.348Z изменено после одобрения: predict (было: Predict what happens if we keep the material the same but change the size. Tell me why.); act (было: Imagine a large block of wood and a small piece of wood. If you keep the material the same but change the size, does the smaller piece sink?); changedCondition (было: The size (volume) of the wood); constants (было: The type of material; The liquid it is placed in) — predict was not about the hook (ship vs pebble); kid language",
+              "2026-10-24T12:08:10.737Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
+            ]
           }
         },
         {
@@ -121,19 +137,19 @@
               "Ordinary fresh water",
               "The body is fully submerged"
             ],
-            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+            "source": "Facts cross-checked against OpenStax University Physics Volume 1, sections 14.1 Fluids, Density, and Pressure and 14.4 Archimedes' Principle and Buoyancy (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
           },
           "hook": {
-            "question": "Why does a stone sink but a piece of wood floats?",
-            "predictPrompt": "Predict which will sink if we know the stone's density is 2 g/cm3. Explain your reasoning."
+            "question": "Why does a small stone sink but a big piece of wood float?",
+            "predictPrompt": "A small stone sinks, a big log floats. What do you think the water is \"checking\" when it decides? Guess, and say why."
           },
           "explanation": "To see if something floats, we compare it to water. If an object's density is greater than 1 g/cm3, it is 'heavier' for its size than water is, so it sinks. If it is less, it floats.",
           "action": {
-            "instruction": "Think of a stone with a density of 2 g/cm3 and a piece of wood with a density of 0.6 g/cm3. Predict which sinks.",
-            "changedCondition": "The density of the object",
+            "instruction": "Every cubic centimetre of stone weighs 2 g, of wood 0.6 g, of water 1 g. Guess which one sinks, then compare each with the same amount of water.",
+            "changedCondition": "material: wood → stone",
             "constants": [
-              "The liquid (water)",
-              "The comparison to 1 g/cm3"
+              "the same water",
+              "we compare one cubic centimetre of each"
             ],
             "thoughtExperiment": true
           },
@@ -149,6 +165,18 @@
               "scene": "A character tests different magical stones in a lake to see which ones have a density higher than water.",
               "illustration": "A character dropping stones into a lake.",
               "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "A scientist on a lunar base observes a piece of stone and a piece of wood fully submerged in a tank of water.",
+              "illustration": "A stone sinking to the bottom of a water tank while a piece of wood floats on the surface.",
+              "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A robot in a high-tech laboratory observes a piece of stone and a piece of wood fully submerged in a tank of water.",
+              "illustration": "A stone sinking to the bottom of a water tank while a piece of wood floats on the surface.",
+              "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-cyberpunk.png"
             }
           ],
           "question": {
@@ -201,7 +229,10 @@
             "reviewer": "adult",
             "reviewedAt": "2026-10-24T10:42:03.648Z",
             "notes": [
-              "explanation is 37 words (expected 40–60)"
+              "explanation is 37 words (expected 40–60)",
+              "2026-10-24T12:06:39.348Z изменено после одобрения: hook (было: Why does a stone sink but a piece of wood floats?); predict (было: Predict which will sink if we know the stone's density is 2 g/cm3. Explain your reasoning.); act (было: Think of a stone with a density of 2 g/cm3 and a piece of wood with a density of 0.6 g/cm3. Predict which sinks.); changedCondition (было: The density of the object); constants (было: The liquid (water); The comparison to 1 g/cm3) — predict gave the density number before Discover; kid language",
+              "2026-10-24T12:08:10.737Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -214,19 +245,19 @@
               "The body is uniform",
               "The body does not soak up water"
             ],
-            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+            "source": "Facts cross-checked against OpenStax University Physics Volume 1, sections 14.1 Fluids, Density, and Pressure and 14.4 Archimedes' Principle and Buoyancy (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
           },
           "hook": {
             "question": "If you cut a sinking stone in half, will the halves still sink?",
-            "predictPrompt": "Predict what happens to the sinking behavior of the halves. Explain why."
+            "predictPrompt": "Will both halves still sink? Guess, and say why."
           },
           "explanation": "Density is a property of the material. When you cut an object, you reduce its mass and its volume by the same proportion. Because both mass and volume change together, the density stays the same.",
           "action": {
-            "instruction": "Imagine a stone that sinks. If you cut it in half, does the density change?",
-            "changedCondition": "The size of the object",
+            "instruction": "Picture a stone that sinks. Cut it in half in your head. Did each cubic centimetre of stone get any lighter? Guess, then compare a half with the whole stone.",
+            "changedCondition": "size: whole stone → half",
             "constants": [
-              "The material of the stone",
-              "The liquid"
+              "the same stone",
+              "the same water"
             ],
             "thoughtExperiment": true
           },
@@ -242,21 +273,34 @@
               "scene": "A scientist splits a sinking crystal into two pieces to study its properties.",
               "illustration": "A scientist splitting a crystal.",
               "image": "/media/heavy-things-sink/c3-cutting-the-stone-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "An astronaut takes a sinking stone and cuts it in half, observing both pieces in a tank of water.",
+              "illustration": "Two halves of a stone both sinking to the bottom of a water tank.",
+              "image": "/media/heavy-things-sink/c3-cutting-the-stone-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A cyborg in a laboratory cuts a sinking stone in half and observes both pieces in a tank of water.",
+              "illustration": "Two halves of a stone both sinking to the bottom of a water tank.",
+              "image": "/media/heavy-things-sink/c3-cutting-the-stone-cyberpunk.png"
             }
           ],
           "question": {
             "id": "q-c3-cutting-the-stone",
-            "prompt": "If a large sinking stone is cut into two smaller pieces, will they still sink? Why?",
+            "prompt": "A candle floats in water. You cut it into ten thin slices and drop them in. What happens to each slice, and why?",
             "maxAnswerSec": 30
           },
           "key": {
             "questionId": "q-c3-cutting-the-stone",
-            "expectedCause": "Yes, they will still sink because the density remains the same.",
+            "expectedCause": "Every slice still floats: cutting makes the mass and the volume smaller by the same share, so each slice has the same density as the whole candle, and that is less than water.",
             "acceptable": [
-              "Yes, because cutting it doesn't change the density of the material."
+              "Slices float because the wax is the same, cutting does not change how heavy each cubic centimetre is.",
+              "If a slice has an air bubble or a metal wick holder, it may behave differently."
             ],
-            "typicalMistake": "No, because they are smaller now.",
-            "followUp": "Does the weight of the stone change when it is cut?"
+            "typicalMistake": "Thin slices are lighter so they float better — or they are small so they sink.",
+            "followUp": "Did cutting change how much one cubic centimetre of wax weighs?"
           },
           "rubric": {
             "criteria": [
@@ -292,9 +336,14 @@
           "review": {
             "state": "approved",
             "reviewer": "adult",
-            "reviewedAt": "2026-10-24T10:42:03.649Z",
+            "reviewedAt": "2026-10-24T12:19:00.000Z",
             "notes": [
-              "explanation is 35 words (expected 40–60)"
+              "explanation is 35 words (expected 40–60)",
+              "2026-10-24T12:06:39.348Z изменено после одобрения: predict (было: Predict what happens to the sinking behavior of the halves. Explain why.); act (было: Imagine a stone that sinks. If you cut it in half, does the density change?); changedCondition (было: The size of the object); constants (было: The material of the stone; The liquid) — transfer repeated the hook — a new case (candle slices) with its key; kid language",
+              "2026-10-24T12:06:39.348Z на переодобрение (course module, by designer copy review): question/transfer (было: If a large sinking stone is cut into two smaller pieces, will they still sink? Why?); key.expectedCause (было: Yes, they will still sink because the density remains the same.); key.acceptable (было: Yes, because cutting it doesn't change the density of the material.); key.typicalMistake (было: No, because they are smaller now.); key.followUp (было: Does the weight of the stone change when it is cut?) — transfer repeated the hook — a new case (candle slices) with its key; kid language",
+              "2026-10-24T12:08:10.737Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -307,19 +356,19 @@
               "The body is hollow",
               "The body does not soak up water"
             ],
-            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+            "source": "Facts cross-checked against OpenStax University Physics Volume 1, sections 14.1 Fluids, Density, and Pressure and 14.4 Archimedes' Principle and Buoyancy (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
           },
           "hook": {
             "question": "How can a massive steel ship float while a small piece of steel sinks?",
-            "predictPrompt": "Predict what happens if the ship's hull fills with water. Explain why."
+            "predictPrompt": "What if the ship's hull filled up with water? Guess what happens, and say why."
           },
           "explanation": "A ship is hollow. When we calculate its average density, we include the air inside. Because the air is very light, the average density of the whole ship becomes less than the density of water.",
           "action": {
-            "instruction": "Imagine a hollow plastic bottle. If you fill it with water, does its average density change?",
-            "changedCondition": "The contents of the bottle",
+            "instruction": "Put an empty plastic bottle with the cap on into a bowl of water. Guess what happens, then fill it with water, close it and try again.",
+            "changedCondition": "inside the bottle: air → water",
             "constants": [
-              "The size of the bottle",
-              "The liquid outside"
+              "the same bottle",
+              "the same bowl of water"
             ],
             "thoughtExperiment": true
           },
@@ -335,6 +384,18 @@
               "scene": "A character builds a boat and realizes the air inside keeps it from sinking.",
               "illustration": "A character building a boat.",
               "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "An astronaut places an empty plastic bottle into a tank of water, then fills it with water and observes the difference.",
+              "illustration": "An empty plastic bottle floating on water next to a water-filled bottle sinking to the bottom.",
+              "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A hacker places an empty plastic bottle into a tank of water, then fills it with water and observes the difference.",
+              "illustration": "An empty plastic bottle floating on water next to a water-filled bottle sinking to the bottom.",
+              "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-cyberpunk.png"
             }
           ],
           "question": {
@@ -388,7 +449,10 @@
             "reviewedAt": "2026-10-24T10:42:03.651Z",
             "notes": [
               "explanation is 35 words (expected 40–60)",
-              "voice question repeats the hook/action (70% word overlap) — transfer needs a new situation"
+              "voice question repeats the hook/action (70% word overlap) — transfer needs a new situation",
+              "2026-10-24T12:06:39.348Z изменено после одобрения: predict (было: Predict what happens if the ship's hull fills with water. Explain why.); act (было: Imagine a hollow plastic bottle. If you fill it with water, does its average density change?); changedCondition (было: The contents of the bottle); constants (было: The size of the bottle; The liquid outside) — kid language; act made a real safe action",
+              "2026-10-24T12:08:10.737Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -401,19 +465,19 @@
               "The body is uniform",
               "The body does not soak up water"
             ],
-            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+            "source": "Facts cross-checked against OpenStax University Physics Volume 1, sections 14.1 Fluids, Density, and Pressure and 14.4 Archimedes' Principle and Buoyancy (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
           },
           "hook": {
             "question": "Can you predict which objects will float without seeing them?",
-            "predictPrompt": "Predict which objects will float and explain your reasoning for each."
+            "predictPrompt": "If you only know how heavy something is and how much space it takes up, can you tell whether it floats? Guess how, and say why."
           },
           "explanation": "To solve any floating problem, find the density. Divide the mass by the volume. If the result is less than 1 g/cm3, it floats. If it is more, it sinks.",
           "action": {
-            "instruction": "Think of Object A (400 g, 500 cm3) and Object B (150 g, 100 cm3). Predict which floats.",
-            "changedCondition": "The mass and volume of the objects",
+            "instruction": "Object A: 400 g, takes up 500 cm³. Object B: 150 g, takes up 100 cm³. Guess which one floats, then work out how many grams fit into each cubic centimetre.",
+            "changedCondition": "object: A → B",
             "constants": [
-              "The liquid (water)",
-              "The comparison to 1 g/cm3"
+              "the same water",
+              "water: 1 g in every cubic centimetre"
             ],
             "thoughtExperiment": true
           },
@@ -429,21 +493,34 @@
               "scene": "A student competes in a science challenge to predict which objects will float using only their measurements.",
               "illustration": "A student looking at measurements of two objects.",
               "image": "/media/heavy-things-sink/c5-the-density-challenge-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "An astronaut compares two objects, one with a density of 0.8 g/cm3 and one with 1.5 g/cm3, in a tank of water.",
+              "illustration": "One object floating on the surface of water and another object sinking to the bottom.",
+              "image": "/media/heavy-things-sink/c5-the-density-challenge-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A robot compares two objects, one with a density of 0.8 g/cm3 and one with 1.5 g/cm3, in a tank of water.",
+              "illustration": "One object floating on the surface of water and another object sinking to the bottom.",
+              "image": "/media/heavy-things-sink/c5-the-density-challenge-cyberpunk.png"
             }
           ],
           "question": {
             "id": "q-c5-the-density-challenge",
-            "prompt": "Object A has a mass of 400 g and a volume of 500 cm3. Object B has a mass of 150 g and a volume of 100 cm3. Which one floats and why?",
+            "prompt": "A toy weighs 90 g and takes up 100 cm³. A bolt weighs only 80 g but takes up 10 cm³. Which one floats, and how did you decide?",
             "maxAnswerSec": 30
           },
           "key": {
             "questionId": "q-c5-the-density-challenge",
-            "expectedCause": "Object A floats because its density is 0.8 g/cm3 (less than 1). Object B sinks because its density is 1.5 g/cm3 (greater than 1).",
+            "expectedCause": "The toy floats: 90 g in 100 cm³ is 0.9 g per cubic centimetre, less than water. The bolt sinks: 80 g in 10 cm³ is 8 g per cubic centimetre, more than water. The lighter bolt sinks because its mass is packed into a small space.",
             "acceptable": [
-              "A floats because 400/500 is 0.8. B sinks because 150/100 is 1.5."
+              "The toy is lighter than the same amount of water, the bolt is heavier than the same amount of water.",
+              "If the toy is hollow and leaks, it could fill with water."
             ],
-            "typicalMistake": "Object B floats because it is lighter.",
-            "followUp": "How would the result change if Object A's volume was only 300 cm3?"
+            "typicalMistake": "The bolt is lighter, so it floats.",
+            "followUp": "How much would 10 cm³ of water weigh, compared with the bolt?"
           },
           "rubric": {
             "criteria": [
@@ -479,10 +556,15 @@
           "review": {
             "state": "approved",
             "reviewer": "adult",
-            "reviewedAt": "2026-10-24T10:42:03.652Z",
+            "reviewedAt": "2026-10-24T12:19:00.000Z",
             "notes": [
               "explanation is 30 words (expected 40–60)",
-              "voice question repeats the hook/action (71% word overlap) — transfer needs a new situation"
+              "voice question repeats the hook/action (71% word overlap) — transfer needs a new situation",
+              "2026-10-24T12:06:39.348Z изменено после одобрения: predict (было: Predict which objects will float and explain your reasoning for each.); act (было: Think of Object A (400 g, 500 cm3) and Object B (150 g, 100 cm3). Predict which floats.); changedCondition (было: The mass and volume of the objects); constants (было: The liquid (water); The comparison to 1 g/cm3) — transfer used the same numbers as act — new objects with their key; kid language",
+              "2026-10-24T12:06:39.348Z на переодобрение (course module, by designer copy review): question/transfer (было: Object A has a mass of 400 g and a volume of 500 cm3. Object B has a mass of 150 g and a volume of 100 cm3. Which one floats and why?); key.expectedCause (было: Object A floats because its density is 0.8 g/cm3 (less than 1). Object B sinks because its density is 1.5 g/cm3 (greater than 1).); key.acceptable (было: A floats because 400/500 is 0.8. B sinks because 150/100 is 1.5.); key.typicalMistake (было: Object B floats because it is lighter.); key.followUp (было: How would the result change if Object A's volume was only 300 cm3?) — transfer used the same numbers as act — new objects with their key; kid language",
+              "2026-10-24T12:08:10.737Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         }
@@ -490,12 +572,12 @@
     }
   ],
   "review": {
-    "state": "approved",
+    "state": "needs_review",
     "reviewer": "adult",
     "reviewedAt": "2026-10-24T10:42:03.652Z",
     "notes": [
       "Generated by gemma4:12b-mlx; nothing is shown to a child before an adult approves each card (fact → question → key).",
-      "Source for verification: OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+      "Source for verification: Facts cross-checked against OpenStax University Physics Volume 1, sections 14.1 Fluids, Density, and Pressure and 14.4 Archimedes' Principle and Buoyancy (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
     ]
   },
   "origin": {

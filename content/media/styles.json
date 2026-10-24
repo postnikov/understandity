@@ -1,0 +1,14 @@
+{
+  "note": "Blocks for illustration prompts. prompt = card illustration + course camera + world style + noText. fantasy/anime copied verbatim from the existing prompts.json.",
+  "preset": "landscape",
+  "noText": "No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark.",
+  "worlds": {
+    "fantasy": "Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old.",
+    "anime": "Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old.",
+    "space": "Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old.",
+    "cyberpunk": "Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old."
+  },
+  "courses": {
+    "heavy-things-sink": "Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible."
+  }
+}
