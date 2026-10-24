@@ -5,21 +5,31 @@
       "fake": {
         "locality": "local",
         "label": "Fake tutor (no model)",
-        "models": ["fake-tutor"]
+        "models": [
+          "fake-tutor"
+        ]
       },
       "ollama": {
         "enabled": true,
         "locality": "local",
         "label": "Ollama (MLX)",
         "endpoint": "http://127.0.0.1:11434",
-        "models": ["gemma4:12b-mlx", "qwen3.8:27b-mlx"],
+        "models": [
+          "gemma4:12b-mlx",
+          "qwen3.8:27b-mlx"
+        ],
         "options": {
           "minVersion": "0.40.8",
           "think": false,
           "keepAlive": "10m",
           "probeTimeoutMs": 3000,
           "contextWindow": 32768,
-          "languages": ["en", "ru", "es", "ca"],
+          "languages": [
+            "en",
+            "ru",
+            "es",
+            "ca"
+          ],
           "courseNumPredict": 6000,
           "courseTimeoutMs": 240000,
           "note": "numCtx is not sent: a whole course needs about 6k of context and changing num_ctx forces a model reload"
@@ -30,9 +40,13 @@
         "locality": "cloud",
         "label": "Gemini API (cloud fallback)",
         "endpoint": "https://generativelanguage.googleapis.com",
-        "models": ["gemini-flash-latest"],
+        "models": [
+          "gemini-flash-latest"
+        ],
         "secretEnv": "GEMINI_API_KEY",
-        "options": { "note": "stub; model id to be confirmed by the module owner" }
+        "options": {
+          "note": "stub; model id to be confirmed by the module owner"
+        }
       }
     },
     "stt": {
@@ -275,13 +289,26 @@
   },
   "defaults": {
     "profile": "offline",
-    "language": "ru",
+    "language": "en",
     "world": "fantasy",
     "engines": {
-      "text": { "provider": "fake", "model": "fake-tutor" },
-      "stt": { "provider": "fake", "model": "fake-stt" },
-      "tts": { "provider": "fake", "model": "fake-tts", "voice": "beep" },
-      "image": { "provider": "fake", "model": "fake-image" }
+      "text": {
+        "provider": "ollama",
+        "model": "gemma4:12b-mlx"
+      },
+      "stt": {
+        "provider": "whisper-cpp",
+        "model": "large-v3-turbo"
+      },
+      "tts": {
+        "provider": "mlx-qwen3",
+        "model": "mlx-community/Qwen3-TTS-12Hz-1.7B-CustomVoice-8bit",
+        "voice": "Aiden"
+      },
+      "image": {
+        "provider": "fake",
+        "model": "fake-image"
+      }
     }
   }
 }

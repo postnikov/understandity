@@ -5,20 +5,16 @@ import { describe, expect, it } from 'vitest';
 import { TutorTurnReplySchema } from '@understandity/contracts';
 import { createDispatcher } from '@understandity/dispatcher';
 import { createApp } from '../src/app.js';
-import { REPO_ROOT, loadCourse, loadEnginesConfig } from '../src/config.js';
+import { REPO_ROOT, loadCourse } from '../src/config.js';
 import { EngineHub } from '../src/engines.js';
 import { PROVIDERS } from '../src/providers.js';
+import { fakeEnginesConfig } from './helpers.js';
 
 /** Copy of content/ in a temp dir, so reviews in tests never touch the real course files. */
 function makeApp(allowDrafts = false) {
   const contentDir = mkdtempSync(join(tmpdir(), 'ud-content-'));
   cpSync(resolve(REPO_ROOT, 'content'), contentDir, { recursive: true });
-  const config = loadEnginesConfig();
-  // Tests run on fakes whatever the demo defaults are.
-  for (const m of ['text', 'stt', 'tts', 'image'] as const) {
-    const fake = config.providers[m].fake!;
-    config.defaults.engines[m] = { provider: 'fake', model: fake.models[0]!, voice: fake.voices[0] ?? null };
-  }
+  const config = fakeEnginesConfig();
   const hub = new EngineHub(config, PROVIDERS, createDispatcher());
   return { contentDir, app: createApp({ hub, course: loadCourse(), allowDrafts, contentDir }) };
 }

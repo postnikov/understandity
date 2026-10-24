@@ -2,12 +2,13 @@ import { describe, expect, it } from 'vitest';
 import { CourseSchema, EnginesResponseSchema, TranscriptSchema, TutorTurnReplySchema } from '@understandity/contracts';
 import { createDispatcher } from '@understandity/dispatcher';
 import { createApp } from '../src/app.js';
-import { loadCourse, loadEnginesConfig } from '../src/config.js';
+import { loadCourse } from '../src/config.js';
 import { EngineHub } from '../src/engines.js';
 import { PROVIDERS } from '../src/providers.js';
+import { fakeEnginesConfig } from './helpers.js';
 
 function makeApp() {
-  const hub = new EngineHub(loadEnginesConfig(), PROVIDERS, createDispatcher());
+  const hub = new EngineHub(fakeEnginesConfig(), PROVIDERS, createDispatcher());
   return { hub, app: createApp({ hub, course: loadCourse(), allowDrafts: true }) };
 }
 

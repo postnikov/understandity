@@ -5,9 +5,10 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { CourseSchema, type Course } from '@understandity/contracts';
 import { createDispatcher } from '@understandity/dispatcher';
 import { createApp } from '../src/app.js';
-import { loadCourse, loadEnginesConfig } from '../src/config.js';
+import { loadCourse } from '../src/config.js';
 import { EngineHub } from '../src/engines.js';
 import { PROVIDERS } from '../src/providers.js';
+import { fakeEnginesConfig } from './helpers.js';
 
 function setup() {
   const dir = mkdtempSync(join(tmpdir(), 'ud-courses-'));
@@ -16,7 +17,7 @@ function setup() {
   writeFileSync(join(dir, 'some-file.json'), JSON.stringify(demo));
   writeFileSync(join(dir, 'not-a-course.json'), '{"hello": 1}');
   process.env.UNDERSTANDITY_CONTENT_DIR = dir;
-  const hub = new EngineHub(loadEnginesConfig(), PROVIDERS, createDispatcher());
+  const hub = new EngineHub(fakeEnginesConfig(), PROVIDERS, createDispatcher());
   const app = createApp({ hub, course: demo, allowDrafts: true });
   return { dir, app, demo };
 }
