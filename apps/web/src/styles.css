@@ -459,3 +459,7 @@ a.ccard:hover .ccard__go { text-decoration: underline; }
 .ready-box.ok { border-color: var(--ok); background: rgba(14, 122, 85, 0.08); }
 .ready-box .dots { margin-top: var(--s-2); }
 .make-ready .make-actions { margin-top: 0; }
+
+.make-world { display: flex; flex-direction: column; gap: var(--s-2); margin-top: var(--s-4); }
+.seg-group--worlds { flex: 1 1 100%; }
+@media (max-width: 560px) { .seg-group--worlds { flex-wrap: wrap; } .seg-group--worlds .seg { flex: 1 1 50%; } }

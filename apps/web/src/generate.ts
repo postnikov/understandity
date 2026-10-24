@@ -11,12 +11,16 @@ import { ApiFailure } from './api.js';
  */
 export type Audience = 'child' | 'adult';
 export type GenEngine = 'local' | 'online';
+export const GEN_WORLDS = ['fantasy', 'anime', 'space', 'cyberpunk'] as const;
+export type GenWorld = (typeof GEN_WORLDS)[number];
 export type GenStep = 'outline' | 'cards' | 'worlds' | 'saving';
 export interface GenRequest {
   request: string;
   audience: Audience;
   lang: 'en';
   engine: GenEngine;
+  /** One world for scenes and pictures, chosen before generation. */
+  world?: GenWorld;
 }
 export interface GenJob {
   status: 'queued' | 'running' | 'done' | 'failed';
@@ -105,6 +109,7 @@ async function buildMockCourse(job: MockJob) {
       card.review = { state: 'needs_review', reviewer: null, reviewedAt: null, notes: [] };
       // Like the real generator: scenes come without pictures (image: null), the web draws the scheme.
       for (const w of card.worlds) w.image = null;
+      if (job.body.world) card.worlds = [{ ...card.worlds[0]!, world: job.body.world, image: null }];
     }
   (course as unknown as { origin: Record<string, unknown> }).origin = {
     generator: 'on-request',

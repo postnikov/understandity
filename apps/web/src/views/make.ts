@@ -1,6 +1,6 @@
-import { errorText, esc, rerender, t } from '../app.js';
+import { errorText, esc, rerender, t, worldLabel } from '../app.js';
 import { api, ApiFailure } from '../api.js';
-import { generationStatus, isGenMock, startGeneration, type Audience, type GenEngine, type GenRequest, type GenStep } from '../generate.js';
+import { GEN_WORLDS, generationStatus, isGenMock, startGeneration, type Audience, type GenEngine, type GenRequest, type GenStep, type GenWorld } from '../generate.js';
 
 /**
  * «Make your own course» on the home screen: a request in plain words, who it is for, local or online model,
@@ -13,6 +13,7 @@ const m = {
   request: '',
   audience: 'child' as Audience,
   engine: 'local' as GenEngine,
+  world: 'fantasy' as GenWorld,
   onlineReady: false,
   step: null as string | null,
   queued: false,
@@ -46,6 +47,10 @@ function form(): string {
   return `<form class="make-form" id="make-form">
     <label class="make-q"><span class="label">${d.question}</span>
       <input type="text" name="request" value="${esc(m.request)}" placeholder="${esc(d.placeholder)}" maxlength="200" autocomplete="off" required /></label>
+    <div class="make-world"><span class="label">${d.worldPick}</span>
+      <div class="seg-group seg-group--worlds" role="group" aria-label="${esc(d.worldPick)}">${GEN_WORLDS.map(
+        (w) => `<button type="button" class="seg ${w === m.world ? 'on' : ''}" data-world-pick="${w}" aria-pressed="${w === m.world}"><b>${esc(worldLabel(w))}</b><span>${d.worldHint[w]}</span></button>`,
+      ).join('')}</div></div>
     <div class="make-row">
       <div class="seg-group" role="group" aria-label="${esc(d.forWho)}">
         ${seg('audience', 'child', m.audience, d.child, d.childHint)}
@@ -69,7 +74,7 @@ function progress(): string {
   const elapsed = Math.round((performance.now() - m.startedAt) / 1000);
   const cur = m.step ? STEPS.indexOf(m.step as GenStep) : -1;
   return `<div class="make-progress" aria-live="polite">
-    <p class="make-req">«${esc(m.request)}» <span class="dim">· ${m.audience === 'child' ? d.child : d.adult} · ${m.engine === 'local' ? d.local : d.online}</span></p>
+    <p class="make-req">«${esc(m.request)}» <span class="dim">· ${m.audience === 'child' ? d.child : d.adult} · ${esc(worldLabel(m.world))} · ${m.engine === 'local' ? d.local : d.online}</span></p>
     <ol class="make-steps">${STEPS.map((st, i) => `<li class="${i < cur ? 'done' : i === cur ? 'on' : ''}">${d.steps[st]}</li>`).join('')}</ol>
     <p class="make-time"><b id="make-elapsed">${elapsed}s</b> <span id="make-est">${elapsed > est * 2 ? d.slow : m.queued ? d.queued : d.estimate[m.engine]}</span></p>
   </div>`;
@@ -193,6 +198,13 @@ export function bindMake(root: HTMLElement) {
       rerender();
     }),
   );
+  root.querySelectorAll<HTMLButtonElement>('[data-world-pick]').forEach((b) =>
+    b.addEventListener('click', () => {
+      m.world = b.dataset.worldPick as GenWorld;
+      m.request = (root.querySelector<HTMLInputElement>('#make-form input[name=request]')?.value ?? m.request).trim();
+      rerender();
+    }),
+  );
   root.querySelectorAll<HTMLButtonElement>('[data-engine]').forEach((b) =>
     b.addEventListener('click', () => {
       m.engine = b.dataset.engine as GenEngine;
@@ -205,7 +217,7 @@ export function bindMake(root: HTMLElement) {
     const request = new FormData(e.target as HTMLFormElement).get('request')?.toString().trim() ?? '';
     if (!request) return;
     m.request = request;
-    void run({ request, audience: m.audience, lang: 'en', engine: m.engine });
+    void run({ request, audience: m.audience, lang: 'en', engine: m.engine, world: m.world });
   });
   root.querySelector('#make-another')?.addEventListener('click', () => {
     m.phase = 'form';
