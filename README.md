@@ -12,7 +12,7 @@ Built at Hacktoberfest Hack Day Barcelona on 24.10.2026 by Max Postnikov with a 
 
 ## How a card works
 
-The kid picks a world (Fantasy or Anime in the demo courses) and can switch it on any card. The world changes the scenes and pictures; the facts stay the same. Each card has six steps:
+The kid picks a world (Fantasy or Anime in the demo courses, two more worlds in progress) and can switch it on any card. The world changes the scenes and pictures; the facts stay the same. Each card has six steps:
 
 1. **Wow**: a question that shouldn't work but does, with a scene from the kid's world.
 2. **Predict**, by voice: what happens and why. Being wrong here is fine.
@@ -35,7 +35,7 @@ What the code does about it:
 - The default **Offline** profile refuses cloud providers, non-loopback endpoints and hidden network fallbacks, both when settings are saved and again on every engine call.
 - Recordings are temporary: converted, transcribed and deleted, also when something fails. There is no recording history.
 - The app never downloads models. Whisper and both voice sidecars use weights already on disk, pinned to a snapshot, and fetch nothing at runtime.
-- Scene pictures are prepared in advance and ship as image files; until a picture is in place, the app draws a built-in SVG scheme. No model draws anything at lesson time.
+- Scene pictures were drawn in advance by a cloud model (Nano Banana Pro) and ship as image files in `content/media`, so the lesson needs no network for them. A scene without a picture gets a built-in SVG scheme. No model draws anything at lesson time.
 - No keys in the repo. `config/engines.json` holds only the name of an environment variable. Cloud engines are never called on their own: not in health checks and not as a fallback when a local engine fails.
 
 ## Architecture
@@ -87,8 +87,8 @@ server    127.0.0.1:8787                 Hono on Node 22
 | Text → speech | Qwen3-TTS 1.7B (8-bit MLX), voice Aiden | local | default for Russian (voice by language) | live |
 | Text → speech | macOS `say` | local | emergency, picked on the Engines screen | live |
 | Text → speech | ElevenLabs Multilingual v2 (sends the text) | cloud | off | HTTP mocks only |
-| Pictures | scene pictures made beforehand with Nano Banana Pro (cloud), shipped as files in `content/media` | files | shown when present | not in the repository yet |
-| Pictures | built-in SVG scene schemes, drawn in the browser | local | until a picture is in place | in use |
+| Pictures | 30 scene pictures drawn in advance by Nano Banana Pro (cloud), shipped as files in `content/media` | files | default for Fantasy and Anime | in the repository |
+| Pictures | built-in SVG scene schemes, drawn in the browser | local | fallback when a scene has no picture | in use |
 | Pictures | ComfyUI with Z-Image Turbo, live | local | optional, not used by the lesson | HTTP mocks only |
 
 Cloud providers are `enabled: false` in the config, and the Offline profile refuses them even when enabled. Using one is explicit: switch to the Online profile, set `enabled: true`, put the key in the environment variable named by `secretEnv` (`GEMINI_API_KEY`, `ELEVENLABS_API_KEY`) and pick the provider on the Engines screen. For a stock ComfyUI, set `apiMode: native`, `secretEnv: null` and its endpoint in `config/engines.json`.
@@ -102,7 +102,7 @@ Cloud providers are `enabled: false` in the config, and the Offline profile refu
 - For development only, `UNDERSTANDITY_ALLOW_DRAFTS=1` (server) and `VITE_ALLOW_DRAFTS=1` (web) show unchecked cards with a "Draft · not checked by an adult" mark. Blocked cards are never shown.
 - Limit: the gate covers fact → question → key. It doesn't show or edit the explanation, the Try step or the world scenes yet; an adult can only block the whole card.
 
-Demo courses: English, five cards each, Fantasy and Anime worlds, drafted on 24.10 by Gemma 4 12B from short source notes and approved by Max Postnikov.
+Demo courses: English, five cards each, Fantasy and Anime worlds with a pre-made picture for every card in both, drafted on 24.10 by Gemma 4 12B from short source notes and approved by Max Postnikov. The picture prompts are in `content/media/prompts.json`.
 
 | Subject | Course | File | Source |
 |---|---|---|---|
@@ -178,7 +178,7 @@ Single runs on our Mac Studio with synthetic adult speech. Not a child's voice, 
 As of 24.10.2026, during the hackathon:
 
 - A pass with a live microphone in a real browser is a manual check that is still pending. The voice loop on the real engines (Whisper → Gemma → Qwen3-TTS) has passed end to end with synthetic speech, and the launcher smoke has passed on the demo MacBook.
-- Scene pictures made with Nano Banana Pro are not in the repository yet. Until a picture is in place, the scene shows a built-in SVG scheme.
+- Two more worlds are in progress; the demo courses have scenes and pictures for Fantasy and Anime only.
 - Evidence per answer is minimal: the tutor model's own verdict against the key (cause, hints used, transfer on the new case). It is not double-checked, the prediction itself is not extracted, and nothing is tracked across cards.
 - Cards go in order; picking the next card from the kid's answer is not built.
 - The adult gate doesn't cover the explanation, the Try step and the scenes (see above).
@@ -204,6 +204,7 @@ Apache License 2.0, see [LICENSE](LICENSE). Model weights are not part of this r
 - **Whisper large-v3-turbo** (OpenAI): speech-to-text; run with **whisper.cpp**.
 - **Kokoro-82M** (Apache 2.0): the English voice; run with **MLX**, with **misaki** and spaCy `en_core_web_sm` for pronunciation.
 - **Qwen3-TTS**: the Russian voice; run with **MLX** and **mlx-audio**.
+- **Nano Banana Pro** (Google, cloud): the 30 scene pictures, drawn in advance; no image model runs at lesson time.
 - **ffmpeg**: audio conversion.
 - **OpenStax**, CC BY 4.0: the course sources come from [University Physics Volume 1](https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure) (14.1, 14.4), [Biology 2e](https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis) (8.1, 8.3) and [Prealgebra 2e](https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids) (9.4). The notes in `content/sources/` are short summaries written for this project, with links to these sections.
 - **JetBrains Mono** (SIL Open Font License 1.1).
