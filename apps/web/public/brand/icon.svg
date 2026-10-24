@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="2236.52" height="2236.52" viewBox="0 0 2236.52 2236.52" role="img" aria-label="Voice">
-  <title>Voice</title>
-  <desc>Wordmark outlines set from JetBrains Mono ExtraBold, SIL OFL 1.1. The font is not embedded.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="2243.23" height="2243.23" viewBox="0 0 2243.23 2243.23" role="img" aria-label="Yield">
+  <title>Yield</title>
+  <desc>Understandity mark v3. Wordmark outlines set from JetBrains Mono ExtraBold, SIL OFL 1.1. The font is not embedded.</desc>
   <g id="mark">
-    <path d="M357.84 753.26L631.59 753.26L966.18 1118.26L631.59 1483.26L357.84 1483.26L662.01 1118.26Z" fill="#6D55C8" fill-opacity="0.55"/>
-    <rect x="1148.68" y="966.18" width="182.5" height="304.17" fill="#6D55C8"/>
-    <rect x="1422.43" y="753.26" width="182.5" height="730" fill="#6D55C8"/>
-    <rect x="1696.18" y="874.93" width="182.5" height="486.67" fill="#6D55C8"/>
+    <path d="M224.32 756.61L498.07 756.61L832.66 1121.61L498.07 1486.61L224.32 1486.61L528.49 1121.61Z" fill="#6D55C8" fill-opacity="0.5"/>
+    <path d="M1015.16 756.61L1288.91 756.61L1167.24 1486.61L893.49 1486.61Z" fill="#6D55C8" fill-opacity="0.78"/>
+    <path d="M1410.57 756.61L1684.32 756.61L2018.91 1121.61L1684.32 1486.61L1410.57 1486.61L1714.74 1121.61Z" fill="#6D55C8"/>
   </g>
 </svg>
