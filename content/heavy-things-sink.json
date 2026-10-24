@@ -63,13 +63,13 @@
               "world": "space",
               "scene": "An astronaut on a space station with artificial gravity places a large wooden block and a small wood chip into a tank of still water.",
               "illustration": "A large wooden block and a small wood chip both floating on the surface of water in a tank.",
-              "image": null
+              "image": "/media/heavy-things-sink/c1-weight-vs-density-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A hacker in a neon-lit lab drops a large wooden block and a small wood chip into a container of still water.",
               "illustration": "A large wooden block and a small wood chip both floating on the surface of water.",
-              "image": null
+              "image": "/media/heavy-things-sink/c1-weight-vs-density-cyberpunk.png"
             }
           ],
           "question": {
@@ -169,13 +169,13 @@
               "world": "space",
               "scene": "A scientist on a lunar base observes a piece of stone and a piece of wood fully submerged in a tank of water.",
               "illustration": "A stone sinking to the bottom of a water tank while a piece of wood floats on the surface.",
-              "image": null
+              "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A robot in a high-tech laboratory observes a piece of stone and a piece of wood fully submerged in a tank of water.",
               "illustration": "A stone sinking to the bottom of a water tank while a piece of wood floats on the surface.",
-              "image": null
+              "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-cyberpunk.png"
             }
           ],
           "question": {
@@ -276,13 +276,13 @@
               "world": "space",
               "scene": "An astronaut takes a sinking stone and cuts it in half, observing both pieces in a tank of water.",
               "illustration": "Two halves of a stone both sinking to the bottom of a water tank.",
-              "image": null
+              "image": "/media/heavy-things-sink/c3-cutting-the-stone-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A cyborg in a laboratory cuts a sinking stone in half and observes both pieces in a tank of water.",
               "illustration": "Two halves of a stone both sinking to the bottom of a water tank.",
-              "image": null
+              "image": "/media/heavy-things-sink/c3-cutting-the-stone-cyberpunk.png"
             }
           ],
           "question": {
@@ -332,14 +332,15 @@
           },
           "askTutor": "Does the shape of the stone change its density?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T12:19:00.000Z",
             "notes": [
               "explanation is 35 words (expected 40–60)",
               "2026-10-24T12:06:39.348Z изменено после одобрения: predict (было: Predict what happens to the sinking behavior of the halves. Explain why.); act (было: Imagine a stone that sinks. If you cut it in half, does the density change?); changedCondition (было: The size of the object); constants (было: The material of the stone; The liquid) — transfer repeated the hook — a new case (candle slices) with its key; kid language",
               "2026-10-24T12:06:39.348Z на переодобрение (course module, by designer copy review): question/transfer (было: If a large sinking stone is cut into two smaller pieces, will they still sink? Why?); key.expectedCause (было: Yes, they will still sink because the density remains the same.); key.acceptable (было: Yes, because cutting it doesn't change the density of the material.); key.typicalMistake (было: No, because they are smaller now.); key.followUp (было: Does the weight of the stone change when it is cut?) — transfer repeated the hook — a new case (candle slices) with its key; kid language",
-              "2026-10-24T12:08:10.737Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+              "2026-10-24T12:08:10.737Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)"
             ]
           }
         },
@@ -385,13 +386,13 @@
               "world": "space",
               "scene": "An astronaut places an empty plastic bottle into a tank of water, then fills it with water and observes the difference.",
               "illustration": "An empty plastic bottle floating on water next to a water-filled bottle sinking to the bottom.",
-              "image": null
+              "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A hacker places an empty plastic bottle into a tank of water, then fills it with water and observes the difference.",
               "illustration": "An empty plastic bottle floating on water next to a water-filled bottle sinking to the bottom.",
-              "image": null
+              "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-cyberpunk.png"
             }
           ],
           "question": {
@@ -493,13 +494,13 @@
               "world": "space",
               "scene": "An astronaut compares two objects, one with a density of 0.8 g/cm3 and one with 1.5 g/cm3, in a tank of water.",
               "illustration": "One object floating on the surface of water and another object sinking to the bottom.",
-              "image": null
+              "image": "/media/heavy-things-sink/c5-the-density-challenge-space.png"
             },
             {
               "world": "cyberpunk",
               "scene": "A robot compares two objects, one with a density of 0.8 g/cm3 and one with 1.5 g/cm3, in a tank of water.",
               "illustration": "One object floating on the surface of water and another object sinking to the bottom.",
-              "image": null
+              "image": "/media/heavy-things-sink/c5-the-density-challenge-cyberpunk.png"
             }
           ],
           "question": {
@@ -549,15 +550,16 @@
           },
           "askTutor": "Why do we divide mass by volume to get density?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T12:19:00.000Z",
             "notes": [
               "explanation is 30 words (expected 40–60)",
               "voice question repeats the hook/action (71% word overlap) — transfer needs a new situation",
               "2026-10-24T12:06:39.348Z изменено после одобрения: predict (было: Predict which objects will float and explain your reasoning for each.); act (было: Think of Object A (400 g, 500 cm3) and Object B (150 g, 100 cm3). Predict which floats.); changedCondition (было: The mass and volume of the objects); constants (было: The liquid (water); The comparison to 1 g/cm3) — transfer used the same numbers as act — new objects with their key; kid language",
               "2026-10-24T12:06:39.348Z на переодобрение (course module, by designer copy review): question/transfer (было: Object A has a mass of 400 g and a volume of 500 cm3. Object B has a mass of 150 g and a volume of 100 cm3. Which one floats and why?); key.expectedCause (было: Object A floats because its density is 0.8 g/cm3 (less than 1). Object B sinks because its density is 1.5 g/cm3 (greater than 1).); key.acceptable (было: A floats because 400/500 is 0.8. B sinks because 150/100 is 1.5.); key.typicalMistake (было: Object B floats because it is lighter.); key.followUp (было: How would the result change if Object A's volume was only 300 cm3?) — transfer used the same numbers as act — new objects with their key; kid language",
-              "2026-10-24T12:08:10.737Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+              "2026-10-24T12:08:10.737Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)"
             ]
           }
         }
