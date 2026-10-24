@@ -86,16 +86,15 @@ const two = (n: number) => String(n).padStart(2, '0');
 const clock = (sec: number) => `${Math.floor(sec / 60)}:${two(sec % 60)}`;
 
 function evidenceChips(e: Evidence): string {
+  // What the tutor noticed, as short sentences a 12-year-old reads at a glance (no tags, no scores).
   const d = t().evidence;
-  const causeCls = e.cause === 'correct' ? 'chip--ok' : e.cause === 'incorrect' ? 'chip--amber' : '';
-  const trCls = e.transfer === 'independent' ? 'chip--ok' : e.transfer === 'with_hints' ? 'chip--accent' : '';
-  return [
-    e.prediction ? `<span class="chip">${d.prediction}: ${esc(e.prediction)}</span>` : '',
-    `<span class="chip ${causeCls}">${esc(d.cause[e.cause] ?? e.cause)}</span>`,
-    `<span class="chip ${trCls}">${esc(d.transfer[e.transfer] ?? e.transfer)}</span>`,
-    `<span class="chip">${e.hintsUsed} ${d.hints}</span>`,
-    e.quote ? `<span class="chip" title="quote">«${esc(e.quote)}»</span>` : '',
-  ].join('');
+  const items = [
+    e.prediction ? `${d.prediction}: «${esc(e.prediction)}»` : '',
+    d.cause[e.cause] ? `<b class="${e.cause === 'correct' ? 'ok' : ''}">${esc(d.cause[e.cause])}</b>` : '',
+    d.transfer[e.transfer] ? `<b class="${e.transfer === 'independent' ? 'ok' : ''}">${esc(d.transfer[e.transfer])}</b>` : '',
+    e.hintsUsed ? `${d.hints}: ${e.hintsUsed}` : '',
+  ].filter(Boolean);
+  return `<ul class="evidence-list">${items.map((i) => `<li>${i}</li>`).join('')}</ul>`;
 }
 
 function heading(c: Card): string {
@@ -167,7 +166,7 @@ function tutorBlock(): string {
       }</span></div></div>
       ${student ? `<p class="you-said"><b>${d.ocean.youSaid}:</b> ${esc(student.text)}</p>` : ''}
       <div class="msg tutor ${streaming ? 'streaming' : ''}" data-msg="${i}"><span class="txt">${esc(text)}</span></div>
-      ${m.evidence && !streaming ? `<div class="evidence">${evidenceChips(m.evidence)}</div>` : ''}
+      ${m.evidence && !streaming ? `${evidenceChips(m.evidence)}` : ''}
       <div class="guide-tools">
         ${v === 'speaking' ? `<button id="stop-audio" class="btn btn--ghost btn--sm">${d.tutor.stopPlay}</button>` : ''}
         ${m.audio && v !== 'speaking' && !streaming ? `<button class="btn btn--ghost btn--sm" data-play="${i}">${d.tutor.play}</button>` : ''}
@@ -241,19 +240,20 @@ function panel(c: Card): { cls: string; html: string } {
       return {
         cls: '',
         html: `<span class="pill">${SPARK}${o.cause}</span><p class="copy">${esc(c.explanation)}</p>
-          <p class="formula">${esc(c.fact.statement)}</p>${panelBottom(`<button id="next" class="btn btn--block">${o.gotIt} <span aria-hidden="true">→</span></button>`)}`,
+          <div class="formula"><span class="label">${o.oneSentence}</span>${esc(c.fact.statement)}</div>${panelBottom(`<button id="next" class="btn btn--block">${o.gotIt} <span aria-hidden="true">→</span></button>`)}`,
       };
     case 'feedback':
       return {
         cls: '',
         html: `<span class="pill">${SPARK}${d.steps.feedback}</span><p class="copy">${esc(s.answers ? d.wrap : d.wrapNone)}</p>
-          ${s.evidence ? `<div class="evidence">${evidenceChips(s.evidence)}</div>` : ''}
+          ${s.evidence ? evidenceChips(s.evidence) : ''}
+          ${yourWords()}
           ${panelBottom(nextBtn, `<button id="back-transfer" class="btn btn--ghost btn--block">${d.backToTransfer}</button>`)}`,
       };
     case 'act':
       // «Try it»: the child-facing instruction is the main text; what changes and what stays are a quiet hint.
       return {
-        cls: '',
+        cls: 'voice-idle',
         html: `<span class="pill accent">${SPARK}${o.tryPill}</span><p class="lead-text">${esc(c.action.instruction)}</p>
           <p class="copy dim">${o.tryHint}</p>
           <details class="vars-hint"><summary>${o.varsSummary}</summary><dl class="vars">
@@ -263,13 +263,22 @@ function panel(c: Card): { cls: string; html: string } {
           ${panelBottom(`<button id="mic" class="btn btn--block btn--mic">${MIC}<span>${o.tryAnswer}</span></button>`, `<div class="row-split">${typing}<button id="skip" class="text-btn text-btn--dim">${d.voice.skip}</button></div>`)}`,
       };
     default: {
+      // predict / transfer: the question is the big heading; the panel says how to answer, in plain words.
+      const guess = s.step === 'predict';
       return {
-        cls: '',
-        html: `<span class="pill accent">${MIC}${o.yourTurn}</span><h2>${o.sayIt}</h2><p class="copy">${esc(d.stepHint[s.step])}</p>${alert}${notice}
-          ${panelBottom(`<button id="mic" class="btn btn--block btn--mic">${MIC}<span>${d.voice.start}</span></button>`, `<div class="row-split">${typing}<button id="skip" class="text-btn text-btn--dim">${d.voice.skip}</button></div>`)}`,
+        cls: 'voice-idle',
+        html: `<span class="pill accent">${MIC}${guess ? o.yourTurn : o.newCasePill}</span><h2>${guess ? o.guessTitle : o.newCaseTitle}</h2><p class="copy">${esc(d.stepHint[s.step])}</p>${alert}${notice}
+          ${panelBottom(`<button id="mic" class="btn btn--block btn--mic">${MIC}<span>${guess ? o.guessAnswer : o.newCaseAnswer}</span></button>`, `<div class="row-split">${typing}<button id="skip" class="text-btn text-btn--dim">${d.voice.skip}</button></div>`)}`,
       };
     }
   }
+}
+
+/** The student's own words in this card — the point of the cycle is explaining it yourself. */
+function yourWords(): string {
+  const words = s.dialog.filter((m) => m.role === 'student' && m.text !== t().tutor.explain).map((m) => m.text);
+  if (!words.length) return '';
+  return `<div class="your-words"><span class="label">${t().ocean.yourWords}</span>${words.map((w) => `<q>${esc(w)}</q>`).join('')}</div>`;
 }
 
 function askBox(): string {
