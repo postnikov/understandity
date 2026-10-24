@@ -448,5 +448,95 @@
     "preset": "landscape",
     "image": "/media/light-plant-growth/c5-the-survival-secret-cyberpunk.png",
     "prompt": "A hacker compares a large potato and a tiny seed inside a dark, high-tech storage crate. A large potato and a tiny seed sitting side-by-side in a dark cupboard. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c1-counting-the-squares",
+    "world": "space",
+    "seed": 151,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c1-counting-the-squares-space.png",
+    "prompt": "An astronaut places nine square tiles in a three-by-three grid on a lunar base floor. They observe how many tiles are needed to cover a six-by-six area. A three-by-three grid of square tiles on a grey floor. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c1-counting-the-squares",
+    "world": "cyberpunk",
+    "seed": 152,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c1-counting-the-squares-cyberpunk.png",
+    "prompt": "A hacker places nine glowing neon tiles in a three-by-three grid on a metallic workbench. They observe how many tiles cover a six-by-six grid. A three-by-three grid of glowing neon squares on a workbench. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c2-the-two-way-growth",
+    "world": "space",
+    "seed": 153,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c2-the-two-way-growth-space.png",
+    "prompt": "An astronaut observes a square solar panel that is replaced by a square panel three times wider and three times longer. A small square solar panel next to a much larger square solar panel. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c2-the-two-way-growth",
+    "world": "cyberpunk",
+    "seed": 154,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c2-the-two-way-growth-cyberpunk.png",
+    "prompt": "A robot observes a square holographic display that is replaced by a square display three times wider and three times longer. A small square holographic display next to a much larger square display. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c3-the-rectangle-exception",
+    "world": "space",
+    "seed": 155,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c3-the-rectangle-exception-space.png",
+    "prompt": "An astronaut stretches a rectangular fabric sheet, making it twice as long while the width remains the same. A rectangular fabric sheet being pulled to become twice as long. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c3-the-rectangle-exception",
+    "world": "cyberpunk",
+    "seed": 156,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c3-the-rectangle-exception-cyberpunk.png",
+    "prompt": "A hacker stretches a rectangular data strip, making it twice as long while the width remains the same. A rectangular strip of data being stretched to twice its length. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c4-paint-vs-fences",
+    "world": "space",
+    "seed": 157,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c4-paint-vs-fences-space.png",
+    "prompt": "An astronaut builds a fence around a square garden on a space station; the side length of the square garden doubles. A square garden with a fence around it, showing the fence and the grass inside. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c4-paint-vs-fences",
+    "world": "cyberpunk",
+    "seed": 158,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c4-paint-vs-fences-cyberpunk.png",
+    "prompt": "A drone builds a fence around a square garden in a neon city; the side length of the square garden doubles. A square garden with a fence around it, showing the fence and the grass inside. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c5-the-master-architect",
+    "world": "space",
+    "seed": 159,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c5-the-master-architect-space.png",
+    "prompt": "An astronaut designs a square landing pad where both the length and width are multiplied by five. A small square landing pad next to a much larger square landing pad. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "double-side-area",
+    "card": "c5-the-master-architect",
+    "world": "cyberpunk",
+    "seed": 160,
+    "preset": "landscape",
+    "image": "/media/double-side-area/c5-the-master-architect-cyberpunk.png",
+    "prompt": "A robot designs a square plaza in a neon city where both the length and width are multiplied by five. A small square plaza next to a much larger square plaza. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
   }
 ]

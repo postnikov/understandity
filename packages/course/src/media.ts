@@ -23,13 +23,22 @@ const sentence = (s: string) => {
   return /[.!?]$/.test(t) ? t : `${t}.`;
 };
 
-/** Measured numbers ("0.8 g/cm3", "3x3") are drawn as text by image models: drop the comma-clause that carries them. */
+const WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+const word = (n: string) => WORDS[Number(n)] ?? n;
+const MEASURE = /\d+(?:[.,]\d+)?\s*(?:g\/cm3|g\/cm³|cm3|cm³|kg|g|m)\b/i;
+
+/**
+ * Image models draw digits as text. A comma-clause with a measured value ("0.8 g/cm3", "400 g") is dropped,
+ * small counts become words ("3x3" → "three-by-three", "3 times" → "three times").
+ */
 export function withoutNumbers(text: string): string {
   const clauses = text.split(',');
-  const kept = clauses.filter((c, i) => i === 0 || !/\d/.test(c));
+  const kept = clauses.filter((c, i) => i === 0 || !MEASURE.test(c));
   return kept
     .join(',')
-    .replace(/\d+(?:[.,]\d+)?\s*(?:x\s*\d+|g\/cm3|g\/cm³|cm3|cm³|kg|g|m)?/gi, '')
+    .replace(new RegExp(MEASURE.source, 'gi'), '')
+    .replace(/\b(\d+)\s*[x×]\s*(\d+)\b/g, (_, a: string, b: string) => `${word(a)}-by-${word(b)}`)
+    .replace(/\b(\d+)\b/g, (_, a: string) => word(a))
     .replace(/\s+([,.])/g, '$1')
     .replace(/\s{2,}/g, ' ')
     .trim();

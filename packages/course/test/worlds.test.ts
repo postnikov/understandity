@@ -109,6 +109,6 @@ describe('illustration prompts', () => {
     expect(withoutNumbers('An astronaut compares two objects, one with a density of 0.8 g/cm3 and one with 1.5 g/cm3, in a tank of water.')).toBe(
       'An astronaut compares two objects, in a tank of water.',
     );
-    expect(withoutNumbers('A 6x6 square of tiles')).toBe('A square of tiles');
+    expect(withoutNumbers('A hacker places 9 glowing tiles in a 3x3 grid, 3 times wider.')).toBe('A hacker places nine glowing tiles in a three-by-three grid, three times wider.');
   });
 });
