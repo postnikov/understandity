@@ -1,5 +1,5 @@
 ---
-source: "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0)"
+source: "Facts cross-checked against OpenStax Biology 2e, sections 8.1 Overview of Photosynthesis and 8.3 Using Light Energy to Make Organic Molecules (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included"
 url: https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis
 subject: biology
 ---

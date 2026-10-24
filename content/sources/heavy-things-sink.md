@@ -1,11 +1,11 @@
 ---
-source: "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0)"
+source: "Facts cross-checked against OpenStax University Physics Volume 1, sections 14.1 Fluids, Density, and Pressure and 14.4 Archimedes' Principle and Buoyancy (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included"
 url: https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy
 subject: physics
 ---
-Concept: density is mass per unit volume (density = mass / volume). Reference: 14.1 https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure
+Concept: density tells how much mass is packed into each cubic centimetre of a body (mass divided by volume). Reference: 14.1 https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure
 
-Buoyant force (Archimedes' principle): a body in a fluid is pushed up by a force equal to the weight of the fluid it displaces. A fully submerged body displaces fluid of its own full volume.
+Buoyant force (Archimedes' principle) in our words: water pushes a body up as hard as the water the body pushes aside would weigh. A body that is completely under water pushes aside water of exactly its own volume.
 
 Floating vs sinking for a solid uniform body released in still water: it sinks if its average density is greater than the density of water, and floats if its average density is less. Mass alone does not decide it; compare the body with water of the same volume. Water density for school problems: 1 g/cm3.
 

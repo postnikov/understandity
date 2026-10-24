@@ -1,9 +1,9 @@
 ---
-source: "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0)"
+source: "Facts cross-checked against OpenStax Prealgebra 2e, section 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included"
 url: https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids
 subject: math
 ---
-Concept: why doubling the side of a square does not double its area. Area of a rectangle = length x width; a square has equal sides, so area = side x side. Area is measured in square units (how many unit squares cover the shape); perimeter is the length around it.
+Concept: why doubling the side of a square does not double its area. To get the area of a rectangle, multiply its length by its width; all sides of a square are equal, so its area is side times side. Area counts how many little unit squares cover the shape; perimeter is the distance all the way around its edge.
 
 Scaling: if every side of a square is multiplied by k, the area is multiplied by k x k. Doubling the side gives 4 times the area (a 6 x 6 square splits into four 3 x 3 squares); tripling gives 9 times; the perimeter only doubles or triples.
 
