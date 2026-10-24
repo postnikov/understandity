@@ -163,7 +163,9 @@ Demo courses: English, five cards each, Fantasy and Anime worlds with a pre-made
 
 ## Quick start
 
-Default setup: a Mac with Apple Silicon, Node 22 or newer, Ollama 0.40.8 or newer with `gemma4:12b-mlx`, ffmpeg, `whisper-cli` with `~/.cache/whisper-cpp/ggml-large-v3-turbo.bin`, and Python 3.11 with uv for the voice sidecars (the Qwen3-TTS snapshot must already be in the Hugging Face cache; Kokoro is downloaded once with the command below). We run it on Macs with 64 GB of memory; the full set of model weights we use is about 51 GB.
+Default setup: a Mac with Apple Silicon, Node 22 or newer, Ollama 0.40.8 or newer with `gemma4:12b-mlx`, ffmpeg, `whisper-cli` with `~/.cache/whisper-cpp/ggml-large-v3-turbo.bin`, and Python 3.11 with uv for the voice sidecars (the Qwen3-TTS snapshot must already be in the Hugging Face cache; Kokoro is downloaded once with the command below). We run it on Macs with 64 GB of memory; the default models are about 12.8 GB to download (the optional Qwen 3.8 27B tutor adds about 18 GB).
+
+**Easiest: one command.** `npm run setup` (or `bash scripts/install.sh`) installs and checks everything on an Apple Silicon Mac — see [INSTALL.md](INSTALL.md) for what it downloads, the disk it needs and how to add API keys. The manual steps are below.
 
 ```sh
 npm ci   # installs exactly the versions pinned in package-lock.json
