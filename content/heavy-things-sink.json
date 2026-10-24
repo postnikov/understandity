@@ -1,0 +1,506 @@
+{
+  "id": "heavy-things-sink",
+  "title": "Why do some heavy things float?",
+  "outcome": "The student will explain that floating depends on density (mass per unit volume) compared to water, not just weight.",
+  "language": "en",
+  "subject": "physics",
+  "ageRange": [
+    12,
+    14
+  ],
+  "concepts": [
+    {
+      "id": "heavy-things-sink",
+      "title": "Why do some heavy things float?",
+      "centralCause": "An object floats if its average density is less than the density of water (1 g/cm3) and sinks if it is greater.",
+      "conditions": [
+        "The body is uniform and has no hidden cavities (unless specified)",
+        "The body does not soak up water or dissolve",
+        "The body is in ordinary fresh water",
+        "Surface tension is ignored",
+        "The body is not held by any external force"
+      ],
+      "cards": [
+        {
+          "id": "c1-weight-vs-density",
+          "title": "Weight vs. Density",
+          "fact": {
+            "statement": "Whether an object sinks depends on its density, which is how much mass is packed into a specific volume.",
+            "conditions": [
+              "The body is in still water",
+              "The body is not dissolving"
+            ],
+            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+          },
+          "hook": {
+            "question": "Can a giant ship made of heavy steel float while a tiny pebble sinks?",
+            "predictPrompt": "Predict what happens if we keep the material the same but change the size. Tell me why."
+          },
+          "explanation": "Density is a measure of how 'crowded' the atoms are inside an object. It is calculated by dividing mass by volume. A heavy object might float if it takes up a huge amount of space, making its density lower than water.",
+          "action": {
+            "instruction": "Imagine a large block of wood and a small piece of wood. If you keep the material the same but change the size, does the smaller piece sink?",
+            "changedCondition": "The size (volume) of the wood",
+            "constants": [
+              "The type of material",
+              "The liquid it is placed in"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A wizard tries to float a massive enchanted stone. He realizes the stone's magic depends on its density, not its weight.",
+              "illustration": "A wizard looking at a large stone and a small stone floating in a magical pond.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A hero discovers a floating fortress. They realize it stays up because of its density compared to the sea.",
+              "illustration": "A floating fortress over a blue ocean.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c1-weight-vs-density",
+            "prompt": "If you have a huge piece of cork and a small piece of cork, which one will float? Explain why.",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c1-weight-vs-density",
+            "expectedCause": "Both will float because they are made of the same material with the same density.",
+            "acceptable": [
+              "Both float because cork is less dense than water"
+            ],
+            "typicalMistake": "The big one floats because it is bigger.",
+            "followUp": "Does the size of the object change its density if the material stays the same?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "Both float because they have the same density, which is lower than water.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "The big one floats because it is bigger.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "They both float.",
+                "tutorMove": "Does the size of the object change its density if the material stays the same?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Does a bigger object always have more mass?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": []
+          }
+        },
+        {
+          "id": "c2-the-rule-of-1-g-cm3",
+          "title": "The Rule of 1 g/cm3",
+          "fact": {
+            "statement": "Water has a density of 1 g/cm3. Objects with a density higher than 1 g/cm3 sink.",
+            "conditions": [
+              "Ordinary fresh water",
+              "The body is fully submerged"
+            ],
+            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+          },
+          "hook": {
+            "question": "Why does a stone sink but a piece of wood floats?",
+            "predictPrompt": "Predict which will sink if we know the stone's density is 2 g/cm3. Explain your reasoning."
+          },
+          "explanation": "To see if something floats, we compare it to water. If an object's density is greater than 1 g/cm3, it is 'heavier' for its size than water is, so it sinks. If it is less, it floats.",
+          "action": {
+            "instruction": "Think of a stone with a density of 2 g/cm3 and a piece of wood with a density of 0.6 g/cm3. Predict which sinks.",
+            "changedCondition": "The density of the object",
+            "constants": [
+              "The liquid (water)",
+              "The comparison to 1 g/cm3"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A dragon guards a treasure. Some gems sink to the bottom, others float on the surface.",
+              "illustration": "A dragon guarding a chest with sinking and floating gems.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A character tests different magical stones in a lake to see which ones have a density higher than water.",
+              "illustration": "A character dropping stones into a lake.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c2-the-rule-of-1-g-cm3",
+            "prompt": "If an object has a density of 1.5 g/cm3, will it sink or float? Why?",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c2-the-rule-of-1-g-cm3",
+            "expectedCause": "It will sink because 1.5 g/cm3 is greater than the density of water (1 g/cm3).",
+            "acceptable": [
+              "It sinks because its density is higher than water."
+            ],
+            "typicalMistake": "It sinks because it is heavy.",
+            "followUp": "What would happen if the density was exactly 1 g/cm3?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "It sinks because 1.5 is greater than 1.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "It sinks because it is heavy.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "It sinks.",
+                "tutorMove": "What would happen if the density was exactly 1 g/cm3?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Can an object have the same density as water?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "explanation is 37 words (expected 40–60)"
+            ]
+          }
+        },
+        {
+          "id": "c3-cutting-the-stone",
+          "title": "Cutting the Stone",
+          "fact": {
+            "statement": "Cutting a uniform object in half keeps its density the same.",
+            "conditions": [
+              "The body is uniform",
+              "The body does not soak up water"
+            ],
+            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+          },
+          "hook": {
+            "question": "If you cut a sinking stone in half, will the halves still sink?",
+            "predictPrompt": "Predict what happens to the sinking behavior of the halves. Explain why."
+          },
+          "explanation": "Density is a property of the material. When you cut an object, you reduce its mass and its volume by the same proportion. Because both mass and volume change together, the density stays the same.",
+          "action": {
+            "instruction": "Imagine a stone that sinks. If you cut it in half, does the density change?",
+            "changedCondition": "The size of the object",
+            "constants": [
+              "The material of the stone",
+              "The liquid"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A sculptor cuts a sinking magical stone into two pieces. He notices they still sink.",
+              "illustration": "A sculptor cutting a stone in half.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A scientist splits a sinking crystal into two pieces to study its properties.",
+              "illustration": "A scientist splitting a crystal.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c3-cutting-the-stone",
+            "prompt": "If a large sinking stone is cut into two smaller pieces, will they still sink? Why?",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c3-cutting-the-stone",
+            "expectedCause": "Yes, they will still sink because the density remains the same.",
+            "acceptable": [
+              "Yes, because cutting it doesn't change the density of the material."
+            ],
+            "typicalMistake": "No, because they are smaller now.",
+            "followUp": "Does the weight of the stone change when it is cut?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "Yes, because the density stays the same.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "No, because they are smaller.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "Yes, they still sink.",
+                "tutorMove": "Does the weight of the stone change when it is cut?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Does the shape of the stone change its density?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "explanation is 35 words (expected 40–60)"
+            ]
+          }
+        },
+        {
+          "id": "c4-the-secret-of-the-ship",
+          "title": "The Secret of the Ship",
+          "fact": {
+            "statement": "Hollow bodies float because the air inside lowers their average density.",
+            "conditions": [
+              "The body is hollow",
+              "The body does not soak up water"
+            ],
+            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+          },
+          "hook": {
+            "question": "How can a massive steel ship float while a small piece of steel sinks?",
+            "predictPrompt": "Predict what happens if the ship's hull fills with water. Explain why."
+          },
+          "explanation": "A ship is hollow. When we calculate its average density, we include the air inside. Because the air is very light, the average density of the whole ship becomes less than the density of water.",
+          "action": {
+            "instruction": "Imagine a hollow plastic bottle. If you fill it with water, does its average density change?",
+            "changedCondition": "The contents of the bottle",
+            "constants": [
+              "The size of the bottle",
+              "The liquid outside"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A pirate ship floats on a magical sea because of the air trapped in its hull.",
+              "illustration": "A pirate ship on the ocean.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A character builds a boat and realizes the air inside keeps it from sinking.",
+              "illustration": "A character building a boat.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c4-the-secret-of-the-ship",
+            "prompt": "Why does a hollow steel ship float? What would happen if the hull filled with water?",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c4-the-secret-of-the-ship",
+            "expectedCause": "It floats because the air makes the average density lower than water. If it fills with water, the average density rises and it sinks.",
+            "acceptable": [
+              "The air makes it less dense. If it fills with water, it becomes denser than water and sinks."
+            ],
+            "typicalMistake": "It floats because it is big.",
+            "followUp": "Does the weight of the ship change when it fills with water?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "The air makes the average density lower than water.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "It's big so it floats.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "Because of the air.",
+                "tutorMove": "Does the weight of the ship change when it fills with water?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Does the shape of the hull affect the density?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "explanation is 35 words (expected 40–60)",
+              "voice question repeats the hook/action (70% word overlap) — transfer needs a new situation"
+            ]
+          }
+        },
+        {
+          "id": "c5-the-density-challenge",
+          "title": "The Density Challenge",
+          "fact": {
+            "statement": "To predict if an object floats, calculate its density (mass/volume) and compare it to 1 g/cm3.",
+            "conditions": [
+              "The body is uniform",
+              "The body does not soak up water"
+            ],
+            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+          },
+          "hook": {
+            "question": "Can you predict which objects will float without seeing them?",
+            "predictPrompt": "Predict which objects will float and explain your reasoning for each."
+          },
+          "explanation": "To solve any floating problem, find the density. Divide the mass by the volume. If the result is less than 1 g/cm3, it floats. If it is more, it sinks.",
+          "action": {
+            "instruction": "Think of Object A (400 g, 500 cm3) and Object B (150 g, 100 cm3). Predict which floats.",
+            "changedCondition": "The mass and volume of the objects",
+            "constants": [
+              "The liquid (water)",
+              "The comparison to 1 g/cm3"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A wizard's apprentice must identify which magical stones will float in a pond of enchanted water.",
+              "illustration": "An apprentice looking at two stones.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A student competes in a science challenge to predict which objects will float using only their measurements.",
+              "illustration": "A student looking at measurements of two objects.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c5-the-density-challenge",
+            "prompt": "Object A has a mass of 400 g and a volume of 500 cm3. Object B has a mass of 150 g and a volume of 100 cm3. Which one floats and why?",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c5-the-density-challenge",
+            "expectedCause": "Object A floats because its density is 0.8 g/cm3 (less than 1). Object B sinks because its density is 1.5 g/cm3 (greater than 1).",
+            "acceptable": [
+              "A floats because 400/500 is 0.8. B sinks because 150/100 is 1.5."
+            ],
+            "typicalMistake": "Object B floats because it is lighter.",
+            "followUp": "How would the result change if Object A's volume was only 300 cm3?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "A floats because 0.8 is less than 1. B sinks because 1.5 is more than 1.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "B floats because it is lighter.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "A floats, B sinks.",
+                "tutorMove": "How would the result change if Object A's volume was only 300 cm3?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Why do we divide mass by volume to get density?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "explanation is 30 words (expected 40–60)",
+              "voice question repeats the hook/action (71% word overlap) — transfer needs a new situation"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "review": {
+    "state": "needs_review",
+    "reviewer": null,
+    "reviewedAt": null,
+    "notes": [
+      "Generated by gemma4:12b-mlx; nothing is shown to a child before an adult approves each card (fact → question → key).",
+      "Source for verification: OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+    ]
+  },
+  "origin": {
+    "generator": "model",
+    "model": "gemma4:12b-mlx",
+    "createdAt": "2026-10-24T10:26:25.788Z"
+  }
+}

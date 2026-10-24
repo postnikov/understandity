@@ -1,0 +1,505 @@
+{
+  "id": "double-side-area",
+  "title": "The Growing Square Mystery",
+  "outcome": "The student will explain why doubling the sides of a square quadruples its area because growth happens in two dimensions simultaneously.",
+  "language": "en",
+  "subject": "math",
+  "ageRange": [
+    12,
+    14
+  ],
+  "concepts": [
+    {
+      "id": "double-side-area",
+      "title": "The Growing Square Mystery",
+      "centralCause": "When both dimensions of a flat shape are multiplied by a factor k, the area increases by k squared because the shape grows in both length and width at once.",
+      "conditions": [
+        "The shape must be flat (2D)",
+        "Both dimensions (length and width) must be scaled by the same factor",
+        "The thickness or coverage per unit remains constant"
+      ],
+      "cards": [
+        {
+          "id": "c1-counting-the-squares",
+          "title": "Counting the Squares",
+          "fact": {
+            "statement": "Area is the number of unit squares needed to cover a shape's surface.",
+            "conditions": [
+              "Flat shapes",
+              "Consistent unit size"
+            ],
+            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+          },
+          "hook": {
+            "question": "If you have a 3x3 square made of 9 tiles, what happens if you double the length of every side?",
+            "predictPrompt": "Predict how many tiles you would need for the new shape and explain why."
+          },
+          "explanation": "Area measures the surface space inside a boundary. Think of a square as a grid. A 3x3 square uses 9 small squares. When you double the sides to 6x6, you aren't just adding a row; you are adding rows and columns simultaneously. This creates a much larger space than just doubling the original count.",
+          "action": {
+            "instruction": "Take 9 sticky notes and arrange them in a 3x3 square. Imagine doubling the side length to 6. Predict how many notes you'd need to fill the new 6x6 area, then count how many fit in a 6x6 grid.",
+            "changedCondition": "Side length from 3 to 6",
+            "constants": [
+              "Shape type (square)",
+              "Unit size (sticky note)"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A wizard is enchanting a magic tile. He needs to know how many tiles cover the floor of a square room.",
+              "illustration": "A grid of 9 squares forming a large square.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A robot builder is designing a square power core. They need to calculate the surface area for cooling plates.",
+              "illustration": "A square divided into 9 smaller squares.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c1-counting-the-squares",
+            "prompt": "If you have a square garden that is 2 meters wide and 2 meters long, and you decide to make it 4 meters wide and 4 meters long, how much more space will you have for plants?",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c1-counting-the-squares",
+            "expectedCause": "The area becomes 4 times larger because both the width and the length doubled.",
+            "acceptable": [
+              "It becomes 16 square meters because 4 times 4 is 16"
+            ],
+            "typicalMistake": "The area will double because the sides doubled.",
+            "followUp": "Why doesn't doubling the sides only double the area?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "Because both the width and length are doubling, the total space grows in two directions at once.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "Because it's a bigger square.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "It will be 8 square meters.",
+                "tutorMove": "Why doesn't doubling the sides only double the area?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Does the area change if I only make it longer but not wider?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": []
+          }
+        },
+        {
+          "id": "c2-the-two-way-growth",
+          "title": "The Two-Way Growth",
+          "fact": {
+            "statement": "Scaling a square's sides by a factor of k multiplies the area by k squared.",
+            "conditions": [
+              "Both sides scaled by the same factor",
+              "Flat shape"
+            ],
+            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+          },
+          "hook": {
+            "question": "Why does a 6x6 square hold four times as much as a 3x3 square?",
+            "predictPrompt": "Predict what happens to the area if you triple the sides of a 3x3 square. Explain your reasoning."
+          },
+          "explanation": "When you scale a square, you are stretching it in two directions: length and width. If you triple the sides, the length becomes 3 times longer AND the width becomes 3 times wider. The total area grows by 3 times 3, which is 9. This is why scaling is not a simple 1-to-1 increase.",
+          "action": {
+            "instruction": "Imagine a 3x3 square. In your mind, triple the side length to 9. Predict how many times larger the area becomes compared to the original 3x3, then think about how many 3x3 squares fit into a 9x9 square.",
+            "changedCondition": "Scaling factor from 2x to 3x",
+            "constants": [
+              "Shape type (square)",
+              "Initial size (3x3)"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A dragon's hoard grows. A square gold coin is replaced by a square that is 3 times wider.",
+              "illustration": "A 3x3 grid showing how 9 small squares fit into a 9x9 grid.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A mecha pilot expands the shield's reach. The square shield grows 3 times in both directions.",
+              "illustration": "A diagram showing a 3x3 grid expanding into a 9x9 grid.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c2-the-two-way-growth",
+            "prompt": "If you have a square piece of paper and you triple the length of each side, how many times larger will the area of the paper become? Why?",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c2-the-two-way-growth",
+            "expectedCause": "It becomes 9 times larger because both the length and width are tripled (3 times 3).",
+            "acceptable": [
+              "The area is 9 times larger because it grows in two directions."
+            ],
+            "typicalMistake": "It will be 3 times larger because the sides are 3 times longer.",
+            "followUp": "What would happen if we only tripled the length but kept the width the same?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "It becomes 9 times larger because both dimensions are multiplied by 3.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "It becomes 3 times larger because the sides are 3 times longer.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "It will be 9 times bigger.",
+                "tutorMove": "What would happen if we only tripled the length but kept the width the same?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Is this the same for a rectangle?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "voice question repeats the hook/action (64% word overlap) — transfer needs a new situation"
+            ]
+          }
+        },
+        {
+          "id": "c3-the-rectangle-exception",
+          "title": "The Rectangle Exception",
+          "fact": {
+            "statement": "If only one side of a rectangle is doubled, the area only doubles.",
+            "conditions": [
+              "Only one dimension is scaled",
+              "Flat shape"
+            ],
+            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+          },
+          "hook": {
+            "question": "What happens if you double the length of a rectangle but keep the width exactly the same?",
+            "predictPrompt": "Predict if the area will double, triple, or quadruple. Explain why."
+          },
+          "explanation": "Area is length times width. If you only change one dimension, like the length, the width stays constant. Therefore, the area only grows by that single change. This is different from a square where both sides change at once. To double the area of a rectangle, you only need to double one side.",
+          "action": {
+            "instruction": "Imagine a rectangle that is 2 units wide and 3 units long. Imagine doubling only the length to 6 units while keeping the width at 2. Predict the new area, then calculate it.",
+            "changedCondition": "Length changed from 3 to 6",
+            "constants": [
+              "Width (2)",
+              "Shape type (rectangle)"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A wizard's scroll is stretched. He makes it twice as long but it stays the same width.",
+              "illustration": "A 2x3 rectangle becoming a 2x6 rectangle.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A futuristic train car is extended. It gets longer but stays the same width.",
+              "illustration": "A 2x3 rectangle becoming a 2x6 rectangle.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c3-the-rectangle-exception",
+            "prompt": "You have a rectangular rug that is 2 meters by 3 meters. If you buy a new rug that is 2 meters by 6 meters, did the area double or quadruple? Why?",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c3-the-rectangle-exception",
+            "expectedCause": "The area doubled because only one dimension (length) was changed while the other stayed the same.",
+            "acceptable": [
+              "It doubled because only the length was doubled."
+            ],
+            "typicalMistake": "It quadrupled because the length was doubled.",
+            "followUp": "How would the area change if we doubled both the length and the width?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "It doubled because only one side changed, so the area only grows by that amount.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "It quadrupled because the side is twice as long.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "It doubled.",
+                "tutorMove": "How would the area change if we doubled both the length and the width?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "So, for a square, both sides must change to get the 4x increase?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "absolute word \"only\" in key — check that it holds under the stated conditions",
+              "absolute word \"only\" in fact — check that it holds under the stated conditions"
+            ]
+          }
+        },
+        {
+          "id": "c4-paint-vs-fences",
+          "title": "Paint vs. Fences",
+          "fact": {
+            "statement": "Flat surfaces (paint, tiles) scale with area, while edges (fences, frames) scale with perimeter.",
+            "conditions": [
+              "Flat shapes",
+              "Same thickness/coverage"
+            ],
+            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+          },
+          "hook": {
+            "question": "If you double the sides of a square garden, do you need 2 times as much fence or 4 times as much grass seed?",
+            "predictPrompt": "Predict which one needs more and explain why."
+          },
+          "explanation": "Perimeter is the distance around the outside (a line). Area is the space inside (a surface). When you double the sides of a square, the perimeter (the fence) only doubles because it's a 1D measurement. However, the area (the grass) quadruples because it grows in two directions. Paint and tiles also follow the area rule.",
+          "action": {
+            "instruction": "Imagine a square garden with a fence around it. If you double the side length, predict if the fence length doubles or quadruples. Then, think about the grass inside.",
+            "changedCondition": "Side length doubled",
+            "constants": [
+              "Shape type (square)"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A knight builds a fence around a square castle. The castle grows in size.",
+              "illustration": "A square with a border (fence) and a filled interior (grass).",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A city planner builds a square park. They need to know how much grass to lay down.",
+              "illustration": "A square with a border (fence) and a filled interior (grass).",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c4-paint-vs-fences",
+            "prompt": "If you have a square garden and you double the length of each side, why do you need four times as much grass seed but only twice as much fencing?",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c4-paint-vs-fences",
+            "expectedCause": "Because the fence is a perimeter (length) and only grows in one direction, while the grass covers the area which grows in two directions.",
+            "acceptable": [
+              "Fence is a line (perimeter) and grass is a surface (area).",
+              "Perimeter only doubles, but area quadruples because it grows in two directions."
+            ],
+            "typicalMistake": "Because the fence is smaller than the grass.",
+            "followUp": "What if the garden was a circle? Would the same rule apply?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "The fence is a perimeter and only grows in one direction, while the grass covers the area which grows in two directions.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "Because the fence is just the outside.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "Because the grass is bigger.",
+                "tutorMove": "What if the garden was a circle? Would the same rule apply?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Does this mean a circle's area also grows by 4 if the radius doubles?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "absolute word \"only\" in voice question — check that it holds under the stated conditions",
+              "absolute word \"only\" in key — check that it holds under the stated conditions",
+              "voice question repeats the hook/action (61% word overlap) — transfer needs a new situation"
+            ]
+          }
+        },
+        {
+          "id": "c5-the-master-architect",
+          "title": "The Master Architect",
+          "fact": {
+            "statement": "Scaling a 2D shape by factor k results in an area multiplied by k squared.",
+            "conditions": [
+              "Both sides scaled by the same factor",
+              "Flat shapes"
+            ],
+            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+          },
+          "hook": {
+            "question": "You are an architect designing a square plaza. If you want to make the plaza 5 times wider and 5 times longer, how many times larger will the area be?",
+            "predictPrompt": "Predict the multiplier for the area and explain the reason."
+          },
+          "explanation": "Since the plaza is a flat shape, when you multiply both the length and the width by 5, the area grows by 5 times 5. This is because the growth happens in both directions simultaneously. The area is always the product of the two sides. If both sides are multiplied by 5, the total area is multiplied by 25.",
+          "action": {
+            "instruction": "Imagine a square plaza. If you multiply both sides by 5, predict how many times the area increases. Then, calculate the area of a 1x1 square and a 5x5 square to verify.",
+            "changedCondition": "Scaling factor from 2x to 5x",
+            "constants": [
+              "Shape type (square)",
+              "Initial size (1x1)"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "An architect designs a square plaza for a royal palace.",
+              "illustration": "A 1x1 square compared to a 5x5 square.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A futuristic city planner designs a square plaza for a new robot district.",
+              "illustration": "A 1x1 square compared to a 5x5 square.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c5-the-master-architect",
+            "prompt": "If you have a square plaza and you make both the length and the width 5 times longer, how many times larger will the area become? Explain why.",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c5-the-master-architect",
+            "expectedCause": "The area will be 25 times larger because both the length and width were multiplied by 5 (5 times 5).",
+            "acceptable": [
+              "It becomes 25 times larger because it grows in two directions."
+            ],
+            "typicalMistake": "It will be 5 times larger because the sides are 5 times longer.",
+            "followUp": "What if the plaza was a 3D cube? Would the volume also be 25 times larger?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "It becomes 25 times larger because both the length and width were multiplied by 5.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "It will be 5 times larger because the sides are 5 times longer.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "It will be 25 times bigger.",
+                "tutorMove": "What if the plaza was a 3D cube? Would the volume also be 25 times larger?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "If I had a 3D cube, would the volume also increase by 25?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "voice question repeats the hook/action (75% word overlap) — transfer needs a new situation"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "review": {
+    "state": "needs_review",
+    "reviewer": null,
+    "reviewedAt": null,
+    "notes": [
+      "Generated by gemma4:12b-mlx; nothing is shown to a child before an adult approves each card (fact → question → key).",
+      "Source for verification: OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+    ]
+  },
+  "origin": {
+    "generator": "model",
+    "model": "gemma4:12b-mlx",
+    "createdAt": "2026-10-24T10:28:23.326Z"
+  }
+}

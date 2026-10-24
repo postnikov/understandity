@@ -1,0 +1,505 @@
+{
+  "id": "light-plant-growth",
+  "title": "Where does a tree's weight come from?",
+  "outcome": "The student will explain that plants build their bodies from air and water using light as energy.",
+  "language": "en",
+  "subject": "biology",
+  "ageRange": [
+    12,
+    14
+  ],
+  "concepts": [
+    {
+      "id": "light-plant-growth",
+      "title": "Where does a tree's weight come from?",
+      "centralCause": "Plants use light energy to convert carbon dioxide and water into sugar (glucose) for growth, provided there is enough water, CO2, and suitable temperature.",
+      "conditions": [
+        "Presence of light",
+        "Availability of water",
+        "Availability of carbon dioxide",
+        "Suitable temperature"
+      ],
+      "cards": [
+        {
+          "id": "c1-the-invisible-builder",
+          "title": "The Invisible Builder",
+          "fact": {
+            "statement": "Plants get the physical material to grow from carbon dioxide in the air and water from the soil.",
+            "conditions": [
+              "Presence of carbon dioxide",
+              "Presence of water"
+            ],
+            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+          },
+          "hook": {
+            "question": "If you weigh a plant and then weigh the soil it grows in, why doesn't the soil get lighter as the plant gets heavier?",
+            "predictPrompt": "Predict what the plant's main source of 'stuff' is and explain why, then tell me your reasoning."
+          },
+          "explanation": "Plants are like tiny factories. They take in carbon dioxide (a gas) through tiny holes in their leaves called stomata and water through their roots. While minerals help, the actual 'stuff' that makes up the wood and leaves comes mostly from the air and water, not the soil.",
+          "action": {
+            "instruction": "Imagine a thought experiment: You have two identical plants. One is grown in soil with plenty of water and CO2. The other is grown in soil but the CO2 is removed from the air. Predict which will grow larger and why.",
+            "changedCondition": "Availability of carbon dioxide",
+            "constants": [
+              "Amount of water",
+              "Amount of light",
+              "Soil type"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A forest spirit explains to a young apprentice how trees pull invisible magic from the breeze to build their trunks.",
+              "illustration": "A tree with arrows pointing from the air and ground into the trunk.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A scientist in a high-tech lab uses a scanner to show a student the atoms moving from the air into a leaf.",
+              "illustration": "A magnifying glass over a leaf showing CO2 molecules.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c1-the-invisible-builder",
+            "prompt": "If a plant is growing in a pot, where does the actual wood of the stem come from?",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c1-the-invisible-builder",
+            "expectedCause": "The material comes from carbon dioxide in the air and water from the soil.",
+            "acceptable": [
+              "It takes carbon from the air and water from the roots."
+            ],
+            "typicalMistake": "The plant eats the soil to grow.",
+            "followUp": "Does the soil provide the bulk of the plant's mass?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "The plant gets its material from carbon dioxide and water.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "The plant eats the dirt to get big.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "It gets it from the air.",
+                "tutorMove": "Does the soil provide the bulk of the plant's mass?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Does the plant need to eat soil to stay healthy?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": []
+          }
+        },
+        {
+          "id": "c2-light-is-the-engine-not-the-fuel",
+          "title": "Light is the Engine, Not the Fuel",
+          "fact": {
+            "statement": "Light provides the energy for chemical reactions but does not become the physical matter of the plant.",
+            "conditions": [
+              "Presence of light",
+              "Presence of carbon dioxide",
+              "Presence of water"
+            ],
+            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+          },
+          "hook": {
+            "question": "Does light actually turn into wood?",
+            "predictPrompt": "Predict what happens if you have plenty of light but no carbon dioxide. Explain your reasoning."
+          },
+          "explanation": "Think of a car: gasoline is the fuel (energy), but the car's body is made of metal. In plants, light is like the fuel. It provides the energy to turn carbon dioxide and water into sugar (glucose). Light itself doesn't turn into wood; it just powers the construction.",
+          "action": {
+            "instruction": "Imagine a thought experiment: You have two plants. One gets lots of light but no carbon dioxide. The other gets no light but plenty of carbon dioxide. Predict which will grow and why.",
+            "changedCondition": "Availability of light",
+            "constants": [
+              "Amount of water",
+              "Amount of carbon dioxide"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A wizard uses a sun-crystal to power a magical forge that shapes trees.",
+              "illustration": "A sun-crystal beaming light onto a plant.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A robot explains that light is like a battery for the plant's internal factory.",
+              "illustration": "A battery icon next to a sun and a plant.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c2-light-is-the-engine-not-the-fuel",
+            "prompt": "If a plant has plenty of water and CO2 but is kept in total darkness, can it still make new sugar?",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c2-light-is-the-engine-not-the-fuel",
+            "expectedCause": "No, because it needs light energy to power the reaction that turns CO2 and water into sugar.",
+            "acceptable": [
+              "No, because light is the energy source needed for the reaction."
+            ],
+            "typicalMistake": "Yes, because it has all the other ingredients.",
+            "followUp": "Can a plant grow without any light at all?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "No, because it needs light energy to make sugar.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "Yes, it just needs water and CO2.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "No, it's too dark.",
+                "tutorMove": "Can a plant grow without any light at all?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "If light isn't the material, what is the material?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": []
+          }
+        },
+        {
+          "id": "c3-the-sugar-factory",
+          "title": "The Sugar Factory",
+          "fact": {
+            "statement": "Photosynthesis is the process where plants use light to turn carbon dioxide and water into sugar (glucose) and release oxygen.",
+            "conditions": [
+              "Presence of light",
+              "Presence of carbon dioxide",
+              "Presence of water"
+            ],
+            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+          },
+          "hook": {
+            "question": "What is the 'food' that plants create for themselves?",
+            "predictPrompt": "Predict what a plant produces when it captures light, and explain what it releases into the air."
+          },
+          "explanation": "Photosynthesis is the name for the process of making food. The plant takes in carbon dioxide and water, uses light energy to rearrange them into sugar (glucose), and then releases oxygen as a byproduct. This sugar is the plant's primary source of energy and building material.",
+          "action": {
+            "instruction": "Imagine a thought experiment: You have a plant in a sealed glass jar. You provide light and water. Predict what gas will build up inside the jar and why.",
+            "changedCondition": "Presence of oxygen (removed/sealed)",
+            "constants": [
+              "Amount of light",
+              "Amount of water",
+              "Amount of CO2"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "An alchemist shows a bubbling potion that turns sunlight into sweet nectar.",
+              "illustration": "A leaf with a 'factory' icon inside it.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A girl discovers a hidden laboratory inside a leaf where sugar is being manufactured.",
+              "illustration": "A diagram showing CO2 + Water + Light -> Sugar + Oxygen.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c3-the-sugar-factory",
+            "prompt": "What are the three main ingredients a plant needs to perform photosynthesis?",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c3-the-sugar-factory",
+            "expectedCause": "It needs light, carbon dioxide, and water.",
+            "acceptable": [
+              "Light, water, and CO2."
+            ],
+            "typicalMistake": "Soil, water, and light.",
+            "followUp": "What does the plant release during this process?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "It needs light, water, and carbon dioxide.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "It needs soil, water, and light.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "Water and light.",
+                "tutorMove": "What does the plant release during this process?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Does the plant use all the sugar it makes?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "voice question may ask for recall (list/define), not a prediction with a cause in a new situation"
+            ]
+          }
+        },
+        {
+          "id": "c4-the-night-shift",
+          "title": "The Night Shift",
+          "fact": {
+            "statement": "Plants respire all the time, day and night, breaking down sugars to release energy for their cells.",
+            "conditions": [
+              "Presence of sugar (stored reserves)"
+            ],
+            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+          },
+          "hook": {
+            "question": "Do plants only 'work' when the sun is shining?",
+            "predictPrompt": "Predict what a plant does at night when there is no light, and explain why."
+          },
+          "explanation": "Plants also perform a process called respiration. Just like humans, plants need to break down food to get energy for their cells to grow and stay alive. They do this 24 hours a day. While photosynthesis makes the 'food' (sugar), respiration 'burns' that food for energy.",
+          "action": {
+            "instruction": "Imagine a thought experiment: You have a plant that has been growing in bright light all day. You put it in a dark room at night. Predict if the plant's cells will still have energy. Explain your reasoning.",
+            "changedCondition": "Presence of light",
+            "constants": [
+              "Amount of water",
+              "Amount of CO2",
+              "Presence of stored sugar"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A forest guardian explains how trees breathe even while the moon watches.",
+              "illustration": "A plant with a glowing heart representing energy.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A character watches a plant's internal energy flow during a night-time scene.",
+              "illustration": "A split screen: Day (Photosynthesis) and Night (Respiration).",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c4-the-night-shift",
+            "prompt": "Why do plants need to respire even when it is dark outside?",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c4-the-night-shift",
+            "expectedCause": "Because they need to break down sugars to release energy for their cells to survive and grow.",
+            "acceptable": [
+              "They need to turn sugar into energy for their cells."
+            ],
+            "typicalMistake": "They only respire to make more sugar.",
+            "followUp": "Does respiration happen only at night?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "They need to break down sugar to get energy for their cells.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "They do it to make more sugar.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "To stay alive.",
+                "tutorMove": "Does respiration happen only at night?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Is respiration the opposite of photosynthesis?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "absolute word \"all\" in fact — check that it holds under the stated conditions"
+            ]
+          }
+        },
+        {
+          "id": "c5-the-survival-secret",
+          "title": "The Survival Secret",
+          "fact": {
+            "statement": "Without light, a plant cannot make new sugar, but it can survive for a while using stored reserves.",
+            "conditions": [
+              "Presence of stored sugar"
+            ],
+            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+          },
+          "hook": {
+            "question": "Can a plant grow in total darkness forever?",
+            "predictPrompt": "Predict what happens if you put a potato in a dark cupboard. Explain why it can still sprout."
+          },
+          "explanation": "Plants can survive without light for a short time because they store extra sugar (like in a potato). This is like a pantry of food. However, for long-term growth and to make new parts, the plant eventually needs light to create new sugar. Without light, the 'pantry' eventually runs out.",
+          "action": {
+            "instruction": "Imagine a thought experiment: You have two plants. One is kept in a dark room with a large potato nearby. The other is kept in a dark room with no stored reserves. Predict which will sprout first and why.",
+            "changedCondition": "Presence of stored reserves",
+            "constants": [
+              "Amount of water",
+              "Amount of CO2",
+              "Lack of light"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A gardener shows how a magical root stores energy for a long winter.",
+              "illustration": "A potato with a 'storage' label.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A student observes a potato sprouting in a dark room and learns about stored energy.",
+              "illustration": "A potato sprouting in a dark room.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c5-the-survival-secret",
+            "prompt": "Why can a potato sprout in a dark cupboard even though there is no light?",
+            "maxAnswerSec": 30
+          },
+          "key": {
+            "questionId": "q-c5-the-survival-secret",
+            "expectedCause": "Because it has stored reserves of sugar that it can use to grow for a while.",
+            "acceptable": [
+              "It uses stored sugar to grow without needing light immediately."
+            ],
+            "typicalMistake": "It doesn't need light to grow at all.",
+            "followUp": "Can it grow forever without light?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "It uses stored sugar/reserves to grow.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "It doesn't need light to grow.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "Because it's a potato.",
+                "tutorMove": "Can it grow forever without light?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "How long can a plant survive without light?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "voice question repeats the hook/action (60% word overlap) — transfer needs a new situation"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "review": {
+    "state": "needs_review",
+    "reviewer": null,
+    "reviewedAt": null,
+    "notes": [
+      "Generated by gemma4:12b-mlx; nothing is shown to a child before an adult approves each card (fact → question → key).",
+      "Source for verification: OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+    ]
+  },
+  "origin": {
+    "generator": "model",
+    "model": "gemma4:12b-mlx",
+    "createdAt": "2026-10-24T10:27:22.658Z"
+  }
+}
