@@ -10,6 +10,7 @@ import type {
   TutorTurnReply,
   TutorTurnRequest,
 } from '@understandity/contracts';
+import { isLangEnabled } from './app.js';
 import { mockCourses } from './mock.js';
 
 export interface KeyStatus {
@@ -125,9 +126,10 @@ export const api = {
       () => mockCourses.list(),
     );
     const items = Array.isArray(list) ? list : list.courses;
-    if (isMock()) return items as CourseSummary[];
+    // Only courses in an enabled language are offered (UI_LANGS): student choice and the adult gate alike.
+    if (isMock()) return (items as CourseSummary[]).filter((c) => isLangEnabled(c.language));
     const full = await Promise.all(items.map((c) => api.course(c.id)));
-    return full.map(summarize);
+    return full.filter((c) => isLangEnabled(c.language)).map(summarize);
   },
   course: (id: string) =>
     realOrMock(
