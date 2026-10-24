@@ -112,7 +112,7 @@ describe('tutor prompt', () => {
   it('asks to confirm a correct cause and to judge by meaning', async () => {
     const course = JSON.parse((await import('node:fs')).readFileSync(resolve(REPO_ROOT, 'content/heavy-things-sink.json'), 'utf8'));
     const card = course.concepts[0].cards[0];
-    const p = tutorPrompt(card, { language: 'en', world: 'fantasy', step: 'predict' }, 'answer');
+    const p = tutorPrompt(card, { language: 'en', world: 'fantasy', step: 'transfer' }, 'answer');
     expect(p).toMatch(/VERDICT: correct/);
     expect(p).toMatch(/confirming plainly that they are right/);
     expect(p).toMatch(/by meaning, not by words/);
@@ -158,5 +158,25 @@ describe('tutor prompt: what is on screen (c-b3311f86)', () => {
     expect(tutorPrompt(card, { language: 'en', world: scene.world, step: 'predict' }, 'answer')).toContain(`the question: ${card.hook.predictPrompt}`);
     expect(tutorPrompt(card, { language: 'en', world: scene.world, step: 'act' }, 'answer')).toContain(`the question: ${card.action.instruction}`);
     expect(tutorPrompt(card, { language: 'en', world: scene.world, step: 'transfer' }, 'answer')).toContain(`the question: ${card.question.prompt}`);
+  });
+});
+
+describe('tutor prompt: the key only on transfer (c-b3311f86)', () => {
+  it('gives the transfer key on transfer and only the card goal and conditions before it', async () => {
+    const course = JSON.parse((await import('node:fs')).readFileSync(resolve(REPO_ROOT, 'content/critical-thinking.json'), 'utf8'));
+    const card = course.concepts[0].cards[0];
+    const world = card.worlds[0].world;
+    for (const step of ['hook', 'predict', 'explain', 'act'] as const) {
+      const p = tutorPrompt(card, { language: 'en', world, step }, 'answer');
+      expect(p).toContain(card.fact.statement);
+      expect(p).toContain(card.fact.conditions[0]);
+      expect(p).not.toContain(card.key.expectedCause);
+      expect(p).not.toContain(card.key.typicalMistake);
+      expect(p).not.toContain(card.key.followUp);
+    }
+    const t = tutorPrompt(card, { language: 'en', world, step: 'transfer' }, 'answer');
+    expect(t).toContain(card.key.expectedCause);
+    expect(t).toContain(card.key.typicalMistake);
+    expect(t).toContain(card.key.followUp);
   });
 });

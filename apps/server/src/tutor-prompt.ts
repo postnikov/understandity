@@ -21,6 +21,7 @@ export function questionOf(card: Card, step: string): string {
 export function tutorPrompt(card: Card, req: Pick<TutorTurnRequest, 'language' | 'world' | 'step'>, kind: Kind): string {
   // The scene the student actually sees: the requested world, else the card's first (one world per course).
   const scene = card.worlds.find((w) => w.world === req.world) ?? card.worlds[0];
+  const transfer = req.step === 'transfer';
   const lines = [
     `You are a warm Socratic tutor for a 12–14 year old. Write in language: ${req.language}. Plain words, no lists, no markdown.`,
     'What the student sees on screen right now:',
@@ -34,11 +35,17 @@ export function tutorPrompt(card: Card, req: Pick<TutorTurnRequest, 'language' |
     'Internal reference — for your judgement only; do not quote it to the student:',
     `Card goal (verified by an adult): ${card.fact.statement}`,
     card.fact.conditions.length ? `Conditions: ${card.fact.conditions.join('; ')}` : '',
-    `Key — what a causal answer contains (never reveal before the student tries): ${card.key.expectedCause}`,
-    card.key.acceptable.length ? `Also acceptable: ${card.key.acceptable.join('; ')}` : '',
-    `Typical mistake: ${card.key.typicalMistake}`,
+    // The key answers the transfer question (c-b3311f86): earlier steps get only the card goal and conditions,
+    // so the tutor never mixes the transfer case into the question on screen.
+    ...(transfer
+      ? [
+          `Key — what a causal answer contains (never reveal before the student tries): ${card.key.expectedCause}`,
+          card.key.acceptable.length ? `Also acceptable: ${card.key.acceptable.join('; ')}` : '',
+          `Typical mistake: ${card.key.typicalMistake}`,
+        ]
+      : ['Key for this step — the cause in the card goal above, applied to the question on screen (never reveal before the student tries).']),
     'Every example you give must be physically true under the card conditions; stick to the card conditions (for example solid, uniform objects) unless the student asks about something else.',
-    `A good clarifying question: ${card.key.followUp}`,
+    transfer ? `A good clarifying question: ${card.key.followUp}` : "A good clarifying question: ask why, in the scene's terms.",
     '',
     'OUTPUT FORMAT: the first line is exactly one of',
     'VERDICT: correct | VERDICT: partial | VERDICT: wrong | VERDICT: unsure | VERDICT: none',
