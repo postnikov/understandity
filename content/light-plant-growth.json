@@ -29,7 +29,7 @@
               "Presence of carbon dioxide",
               "Presence of water"
             ],
-            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+            "source": "Facts cross-checked against OpenStax Biology 2e, sections 8.1 Overview of Photosynthesis and 8.3 Using Light Energy to Make Organic Molecules (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
           },
           "hook": {
             "question": "If you weigh a plant and then weigh the soil it grows in, why doesn't the soil get lighter as the plant gets heavier?",
@@ -125,7 +125,8 @@
               "2026-10-24T12:10:03.168Z изменено после одобрения: predict (было: Predict what the plant's main source of 'stuff' is and explain why, then tell me your reasoning.); act (было: Imagine a thought experiment: You have two identical plants. One is grown in soil with plenty of water and CO2. The other is grown in soil but the CO2 is removed from the air. Predict which will grow larger and why.); changedCondition (было: Availability of carbon dioxide); constants (было: Amount of water; Amount of light; Soil type) — predict repeated itself; act without the methodology prefix; kid language",
               "2026-10-24T12:10:16.534Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
               "2026-10-24T12:10:31.000Z изменено после одобрения: space illustration поправлен вручную после Gemma (было: Two identical plants in separate glass chambers, one with a visible water source and the other with no carbon dioxide source.)",
-              "2026-10-24T12:10:31.000Z изменено после одобрения: cyberpunk illustration поправлен вручную после Gemma (было: Two identical plants in separate containers, one with a water source and the other without carbon dioxide.)"
+              "2026-10-24T12:10:31.000Z изменено после одобрения: cyberpunk illustration поправлен вручную после Gemma (было: Two identical plants in separate containers, one with a water source and the other without carbon dioxide.)",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -139,7 +140,7 @@
               "Presence of carbon dioxide",
               "Presence of water"
             ],
-            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+            "source": "Facts cross-checked against OpenStax Biology 2e, sections 8.1 Overview of Photosynthesis and 8.3 Using Light Energy to Make Organic Molecules (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
           },
           "hook": {
             "question": "Does light actually turn into wood?",
@@ -233,7 +234,8 @@
             "notes": [
               "2026-10-24T12:10:03.168Z изменено после одобрения: predict (было: Predict what happens if you have plenty of light but no carbon dioxide. Explain your reasoning.); act (было: Imagine a thought experiment: You have two plants. One gets lots of light but no carbon dioxide. The other gets no light but plenty of carbon dioxide. Predict which will grow and why.); changedCondition (было: Availability of light); constants (было: Amount of water; Amount of carbon dioxide) — act changed two things at once (light and CO2) — now only light; kid language",
               "2026-10-24T12:10:16.534Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "2026-10-24T12:10:31.000Z изменено после одобрения: cyberpunk scene поправлен вручную после Gemma (было: A robot technician places two plants in a neon-lit room, one under a powerful UV lamp and the other in a dark corner.)"
+              "2026-10-24T12:10:31.000Z изменено после одобрения: cyberpunk scene поправлен вручную после Gemma (было: A robot technician places two plants in a neon-lit room, one under a powerful UV lamp and the other in a dark corner.)",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -247,7 +249,7 @@
               "Presence of carbon dioxide",
               "Presence of water"
             ],
-            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+            "source": "Facts cross-checked against OpenStax Biology 2e, sections 8.1 Overview of Photosynthesis and 8.3 Using Light Energy to Make Organic Molecules (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
           },
           "hook": {
             "question": "What is the 'food' that plants create for themselves?",
@@ -342,7 +344,8 @@
             "notes": [
               "voice question may ask for recall (list/define), not a prediction with a cause in a new situation",
               "2026-10-24T12:10:03.168Z изменено после одобрения: predict (было: Predict what a plant produces when it captures light, and explain what it releases into the air.); act (было: Imagine a thought experiment: You have a plant in a sealed glass jar. You provide light and water. Predict what gas will build up inside the jar and why.); changedCondition (было: Presence of oxygen (removed/sealed)); constants (было: Amount of light; Amount of water; Amount of CO2) — changedCondition did not match the act — the act now compares light and dark jars; kid language",
-              "2026-10-24T12:10:16.534Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+              "2026-10-24T12:10:16.534Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -354,7 +357,7 @@
             "conditions": [
               "Presence of sugar (stored reserves)"
             ],
-            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+            "source": "Facts cross-checked against OpenStax Biology 2e, sections 8.1 Overview of Photosynthesis and 8.3 Using Light Energy to Make Organic Molecules (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
           },
           "hook": {
             "question": "Do plants only 'work' when the sun is shining?",
@@ -449,7 +452,8 @@
             "notes": [
               "absolute word \"all\" in fact — check that it holds under the stated conditions",
               "2026-10-24T12:10:03.168Z изменено после одобрения: predict (было: Predict what a plant does at night when there is no light, and explain why.); act (было: Imagine a thought experiment: You have a plant that has been growing in bright light all day. You put it in a dark room at night. Predict if the plant's cells will still have energy. Explain your reasoning.); changedCondition (было: Presence of light); constants (было: Amount of water; Amount of CO2; Presence of stored sugar) — act without the methodology prefix; kid language",
-              "2026-10-24T12:10:16.534Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+              "2026-10-24T12:10:16.534Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -461,7 +465,7 @@
             "conditions": [
               "Presence of stored sugar"
             ],
-            "source": "OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+            "source": "Facts cross-checked against OpenStax Biology 2e, sections 8.1 Overview of Photosynthesis and 8.3 Using Light Energy to Make Organic Molecules (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
           },
           "hook": {
             "question": "Can a plant grow in total darkness forever?",
@@ -555,7 +559,8 @@
             "notes": [
               "voice question repeats the hook/action (60% word overlap) — transfer needs a new situation",
               "2026-10-24T12:10:03.168Z изменено после одобрения: predict (было: Predict what happens if you put a potato in a dark cupboard. Explain why it can still sprout.); act (было: Imagine a thought experiment: You have two plants. One is kept in a dark room with a large potato nearby. The other is kept in a dark room with no stored reserves. Predict which will sprout first and why.); changedCondition (было: Presence of stored reserves); constants (было: Amount of water; Amount of CO2; Lack of light) — act made no sense (a plant next to a potato) — now a big store of food vs a tiny one, both in the dark; predict linked to the hook",
-              "2026-10-24T12:10:16.534Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+              "2026-10-24T12:10:16.534Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         }
@@ -568,7 +573,7 @@
     "reviewedAt": "2026-10-24T10:42:03.660Z",
     "notes": [
       "Generated by gemma4:12b-mlx; nothing is shown to a child before an adult approves each card (fact → question → key).",
-      "Source for verification: OpenStax Biology 2e, 8.1 Overview of Photosynthesis; 8.3 Using Light Energy to Make Organic Molecules (CC BY 4.0) — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+      "Source for verification: Facts cross-checked against OpenStax Biology 2e, sections 8.1 Overview of Photosynthesis and 8.3 Using Light Energy to Make Organic Molecules (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
     ]
   },
   "origin": {

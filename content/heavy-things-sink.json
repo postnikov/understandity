@@ -30,7 +30,7 @@
               "The body is in still water",
               "The body is not dissolving"
             ],
-            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+            "source": "Facts cross-checked against OpenStax University Physics Volume 1, sections 14.1 Fluids, Density, and Pressure and 14.4 Archimedes' Principle and Buoyancy (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
           },
           "hook": {
             "question": "Can a giant ship made of heavy steel float while a tiny pebble sinks?",
@@ -123,7 +123,8 @@
             "reviewedAt": "2026-10-24T10:42:03.646Z",
             "notes": [
               "2026-10-24T12:06:39.348Z изменено после одобрения: predict (было: Predict what happens if we keep the material the same but change the size. Tell me why.); act (было: Imagine a large block of wood and a small piece of wood. If you keep the material the same but change the size, does the smaller piece sink?); changedCondition (было: The size (volume) of the wood); constants (было: The type of material; The liquid it is placed in) — predict was not about the hook (ship vs pebble); kid language",
-              "2026-10-24T12:08:10.737Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+              "2026-10-24T12:08:10.737Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -136,7 +137,7 @@
               "Ordinary fresh water",
               "The body is fully submerged"
             ],
-            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+            "source": "Facts cross-checked against OpenStax University Physics Volume 1, sections 14.1 Fluids, Density, and Pressure and 14.4 Archimedes' Principle and Buoyancy (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
           },
           "hook": {
             "question": "Why does a small stone sink but a big piece of wood float?",
@@ -230,7 +231,8 @@
             "notes": [
               "explanation is 37 words (expected 40–60)",
               "2026-10-24T12:06:39.348Z изменено после одобрения: hook (было: Why does a stone sink but a piece of wood floats?); predict (было: Predict which will sink if we know the stone's density is 2 g/cm3. Explain your reasoning.); act (было: Think of a stone with a density of 2 g/cm3 and a piece of wood with a density of 0.6 g/cm3. Predict which sinks.); changedCondition (было: The density of the object); constants (было: The liquid (water); The comparison to 1 g/cm3) — predict gave the density number before Discover; kid language",
-              "2026-10-24T12:08:10.737Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+              "2026-10-24T12:08:10.737Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -243,7 +245,7 @@
               "The body is uniform",
               "The body does not soak up water"
             ],
-            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+            "source": "Facts cross-checked against OpenStax University Physics Volume 1, sections 14.1 Fluids, Density, and Pressure and 14.4 Archimedes' Principle and Buoyancy (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
           },
           "hook": {
             "question": "If you cut a sinking stone in half, will the halves still sink?",
@@ -340,7 +342,8 @@
               "2026-10-24T12:06:39.348Z изменено после одобрения: predict (было: Predict what happens to the sinking behavior of the halves. Explain why.); act (было: Imagine a stone that sinks. If you cut it in half, does the density change?); changedCondition (было: The size of the object); constants (было: The material of the stone; The liquid) — transfer repeated the hook — a new case (candle slices) with its key; kid language",
               "2026-10-24T12:06:39.348Z на переодобрение (course module, by designer copy review): question/transfer (было: If a large sinking stone is cut into two smaller pieces, will they still sink? Why?); key.expectedCause (было: Yes, they will still sink because the density remains the same.); key.acceptable (было: Yes, because cutting it doesn't change the density of the material.); key.typicalMistake (было: No, because they are smaller now.); key.followUp (было: Does the weight of the stone change when it is cut?) — transfer repeated the hook — a new case (candle slices) with its key; kid language",
               "2026-10-24T12:08:10.737Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)"
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -353,7 +356,7 @@
               "The body is hollow",
               "The body does not soak up water"
             ],
-            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+            "source": "Facts cross-checked against OpenStax University Physics Volume 1, sections 14.1 Fluids, Density, and Pressure and 14.4 Archimedes' Principle and Buoyancy (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
           },
           "hook": {
             "question": "How can a massive steel ship float while a small piece of steel sinks?",
@@ -448,7 +451,8 @@
               "explanation is 35 words (expected 40–60)",
               "voice question repeats the hook/action (70% word overlap) — transfer needs a new situation",
               "2026-10-24T12:06:39.348Z изменено после одобрения: predict (было: Predict what happens if the ship's hull fills with water. Explain why.); act (было: Imagine a hollow plastic bottle. If you fill it with water, does its average density change?); changedCondition (было: The contents of the bottle); constants (было: The size of the bottle; The liquid outside) — kid language; act made a real safe action",
-              "2026-10-24T12:08:10.737Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+              "2026-10-24T12:08:10.737Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -461,7 +465,7 @@
               "The body is uniform",
               "The body does not soak up water"
             ],
-            "source": "OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+            "source": "Facts cross-checked against OpenStax University Physics Volume 1, sections 14.1 Fluids, Density, and Pressure and 14.4 Archimedes' Principle and Buoyancy (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
           },
           "hook": {
             "question": "Can you predict which objects will float without seeing them?",
@@ -559,7 +563,8 @@
               "2026-10-24T12:06:39.348Z изменено после одобрения: predict (было: Predict which objects will float and explain your reasoning for each.); act (было: Think of Object A (400 g, 500 cm3) and Object B (150 g, 100 cm3). Predict which floats.); changedCondition (было: The mass and volume of the objects); constants (было: The liquid (water); The comparison to 1 g/cm3) — transfer used the same numbers as act — new objects with their key; kid language",
               "2026-10-24T12:06:39.348Z на переодобрение (course module, by designer copy review): question/transfer (было: Object A has a mass of 400 g and a volume of 500 cm3. Object B has a mass of 150 g and a volume of 100 cm3. Which one floats and why?); key.expectedCause (было: Object A floats because its density is 0.8 g/cm3 (less than 1). Object B sinks because its density is 1.5 g/cm3 (greater than 1).); key.acceptable (было: A floats because 400/500 is 0.8. B sinks because 150/100 is 1.5.); key.typicalMistake (было: Object B floats because it is lighter.); key.followUp (было: How would the result change if Object A's volume was only 300 cm3?) — transfer used the same numbers as act — new objects with their key; kid language",
               "2026-10-24T12:08:10.737Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)"
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         }
@@ -572,7 +577,7 @@
     "reviewedAt": "2026-10-24T10:42:03.652Z",
     "notes": [
       "Generated by gemma4:12b-mlx; nothing is shown to a child before an adult approves each card (fact → question → key).",
-      "Source for verification: OpenStax University Physics Volume 1, 14.1 Fluids, Density, and Pressure; 14.4 Archimedes' Principle and Buoyancy (CC BY 4.0) — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+      "Source for verification: Facts cross-checked against OpenStax University Physics Volume 1, sections 14.1 Fluids, Density, and Pressure and 14.4 Archimedes' Principle and Buoyancy (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
     ]
   },
   "origin": {

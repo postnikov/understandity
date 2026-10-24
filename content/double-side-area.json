@@ -28,7 +28,7 @@
               "Flat shapes",
               "Consistent unit size"
             ],
-            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+            "source": "Facts cross-checked against OpenStax Prealgebra 2e, section 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
           },
           "hook": {
             "question": "If you have a 3x3 square made of 9 tiles, what happens if you double the length of every side?",
@@ -121,7 +121,8 @@
             "reviewedAt": "2026-10-24T10:42:03.636Z",
             "notes": [
               "2026-10-24T12:11:02.421Z изменено после одобрения: predict (было: Predict how many tiles you would need for the new shape and explain why.); changedCondition (было: Side length from 3 to 6); constants (было: Shape type (square); Unit size (sticky note)) — kid language",
-              "2026-10-24T12:11:14.519Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+              "2026-10-24T12:11:14.519Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -134,7 +135,7 @@
               "Both sides scaled by the same factor",
               "Flat shape"
             ],
-            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+            "source": "Facts cross-checked against OpenStax Prealgebra 2e, section 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
           },
           "hook": {
             "question": "Why does a 6x6 square hold four times as much as a 3x3 square?",
@@ -228,7 +229,8 @@
             "notes": [
               "voice question repeats the hook/action (64% word overlap) — transfer needs a new situation",
               "2026-10-24T12:11:02.421Z изменено после одобрения: predict (было: Predict what happens to the area if you triple the sides of a 3x3 square. Explain your reasoning.); changedCondition (было: Scaling factor from 2x to 3x); constants (было: Shape type (square); Initial size (3x3)) — kid language",
-              "2026-10-24T12:11:14.519Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+              "2026-10-24T12:11:14.519Z изменено после одобрения: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -241,7 +243,7 @@
               "Only one dimension is scaled",
               "Flat shape"
             ],
-            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+            "source": "Facts cross-checked against OpenStax Prealgebra 2e, section 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
           },
           "hook": {
             "question": "What happens if you double the length of a rectangle but keep the width exactly the same?",
@@ -338,7 +340,8 @@
               "2026-10-24T12:11:02.421Z изменено после одобрения: predict (было: Predict if the area will double, triple, or quadruple. Explain why.); changedCondition (было: Length changed from 3 to 6); constants (было: Width (2); Shape type (rectangle)) — predict and transfer offered answer options (double/triple/quadruple) — the transfer has no options now, key unchanged",
               "2026-10-24T12:11:02.421Z на переодобрение (course module, by designer copy review): question/transfer (было: You have a rectangular rug that is 2 meters by 3 meters. If you buy a new rug that is 2 meters by 6 meters, did the area double or quadruple? Why?) — predict and transfer offered answer options (double/triple/quadruple) — the transfer has no options now, key unchanged",
               "2026-10-24T12:11:14.519Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)"
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -351,7 +354,7 @@
               "Flat shapes",
               "Same thickness/coverage"
             ],
-            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+            "source": "Facts cross-checked against OpenStax Prealgebra 2e, section 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
           },
           "hook": {
             "question": "You make a square garden with every side twice as long. Do you need more fence or more grass seed — and how much more of each?",
@@ -448,7 +451,8 @@
               "2026-10-24T12:11:02.421Z изменено после одобрения: hook (было: If you double the sides of a square garden, do you need 2 times as much fence or 4 times as much grass seed?); predict (было: Predict which one needs more and explain why.); changedCondition (было: Side length doubled); constants (было: Shape type (square)) — hook and transfer gave the answer (2× fence, 4× seed) — new case (picture frame and paint) with its key",
               "2026-10-24T12:11:02.421Z на переодобрение (course module, by designer copy review): question/transfer (было: If you have a square garden and you double the length of each side, why do you need four times as much grass seed but only twice as much fencing?); key.expectedCause (было: Because the fence is a perimeter (length) and only grows in one direction, while the grass covers the area which grows in two directions.); key.acceptable (было: Fence is a line (perimeter) and grass is a surface (area).; Perimeter only doubles, but area quadruples because it grows in two directions.); key.typicalMistake (было: Because the fence is smaller than the grass.); key.followUp (было: What if the garden was a circle? Would the same rule apply?) — hook and transfer gave the answer (2× fence, 4× seed) — new case (picture frame and paint) with its key",
               "2026-10-24T12:11:14.519Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)"
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         },
@@ -461,7 +465,7 @@
               "Both sides scaled by the same factor",
               "Flat shapes"
             ],
-            "source": "OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+            "source": "Facts cross-checked against OpenStax Prealgebra 2e, section 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
           },
           "hook": {
             "question": "You are an architect designing a square plaza. If you want to make the plaza 5 times wider and 5 times longer, how many times larger will the area be?",
@@ -557,7 +561,8 @@
               "2026-10-24T12:11:02.421Z изменено после одобрения: predict (было: Predict the multiplier for the area and explain the reason.); changedCondition (было: Scaling factor from 2x to 5x); constants (было: Shape type (square); Initial size (1x1)) — transfer repeated the hook — new case (poster) with its key; kid language",
               "2026-10-24T12:11:02.421Z на переодобрение (course module, by designer copy review): question/transfer (было: If you have a square plaza and you make both the length and the width 5 times longer, how many times larger will the area become? Explain why.); key.expectedCause (было: The area will be 25 times larger because both the length and width were multiplied by 5 (5 times 5).); key.acceptable (было: It becomes 25 times larger because it grows in two directions.); key.typicalMistake (было: It will be 5 times larger because the sides are 5 times longer.); key.followUp (было: What if the plaza was a 3D cube? Would the volume also be 25 times larger?) — transfer repeated the hook — new case (poster) with its key; kid language",
               "2026-10-24T12:11:14.519Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)"
+              "re-approved by Max 2026-10-24 14:19 (c-dbc642f0)",
+              "2026-10-24T12:50:01.000Z изменено после одобрения: подпись источника — OpenStax под CC BY-NC-SA 4.0, заметки своими словами (было: прежняя подпись с неверной лицензией)"
             ]
           }
         }
@@ -570,7 +575,7 @@
     "reviewedAt": "2026-10-24T10:42:03.643Z",
     "notes": [
       "Generated by gemma4:12b-mlx; nothing is shown to a child before an adult approves each card (fact → question → key).",
-      "Source for verification: OpenStax Prealgebra 2e, 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY 4.0) — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
+      "Source for verification: Facts cross-checked against OpenStax Prealgebra 2e, section 9.4 Use Properties of Rectangles, Triangles, and Trapezoids (CC BY-NC-SA 4.0); notes written in our own words, no OpenStax text included — https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids"
     ]
   },
   "origin": {
