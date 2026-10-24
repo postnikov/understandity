@@ -122,6 +122,28 @@
           "beep"
         ]
       },
+      "by-language": {
+        "enabled": true,
+        "locality": "local",
+        "label": "Voice by language",
+        "models": [
+          "auto"
+        ],
+        "options": {
+          "routes": {
+            "en": {
+              "provider": "kokoro",
+              "model": "mlx-community/Kokoro-82M-bf16",
+              "voice": "af_heart"
+            },
+            "ru": {
+              "provider": "mlx-qwen3",
+              "model": "mlx-community/Qwen3-TTS-12Hz-1.7B-CustomVoice-8bit",
+              "voice": "Aiden"
+            }
+          }
+        }
+      },
       "kokoro": {
         "enabled": true,
         "locality": "local",
@@ -325,9 +347,8 @@
         "model": "large-v3-turbo"
       },
       "tts": {
-        "provider": "mlx-qwen3",
-        "model": "mlx-community/Qwen3-TTS-12Hz-1.7B-CustomVoice-8bit",
-        "voice": "Aiden"
+        "provider": "by-language",
+        "model": "auto"
       },
       "image": {
         "provider": "fake",

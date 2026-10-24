@@ -12,6 +12,7 @@ import { sttWhisper } from '../../../engines/stt-whisper-cpp/src/index.js';
 import { sttElevenLabs } from '../../../engines/stt-elevenlabs/src/index.js';
 import { ttsSay } from '../../../engines/tts-macos-say/src/index.js';
 import { ttsMlx } from '../../../engines/tts-mlx-qwen3/src/index.js';
+import { ttsKokoro } from '../../../engines/tts-kokoro/src/index.js';
 import { imageComfy } from '../../../engines/image-comfyui/src/index.js';
 
 /**
@@ -29,6 +30,7 @@ export const PROVIDERS: ProviderModule<Modality>[] = [
   ttsFake,
   ttsSay,
   ttsMlx,
+  ttsKokoro,
   ttsElevenLabs,
   imageFake,
   imageComfy,

@@ -16,6 +16,7 @@ import {
   type SettingsInput,
   type SettingsIssue,
 } from '@understandity/contracts';
+import { createTtsRouter, routesOf } from './tts-router.js';
 
 type AnyAdapter = EngineAdapter<Modality>;
 
@@ -33,6 +34,23 @@ export class EngineHub {
       const providerConfig = config.providers[mod.modality][mod.providerId];
       if (!providerConfig) continue;
       this.adapters.set(key(mod.modality, mod.providerId), mod.create(providerConfig, { providerId: mod.providerId }) as AnyAdapter);
+    }
+    // Router providers (voice by language) are built from config on top of the wired engines.
+    for (const [providerId, providerConfig] of Object.entries(config.providers.tts)) {
+      const routes = routesOf(providerConfig);
+      if (!routes || this.adapters.has(key('tts', providerId))) continue;
+      this.adapters.set(
+        key('tts', providerId),
+        createTtsRouter({
+          providerId,
+          config: providerConfig,
+          routes,
+          engines: config,
+          adapter: (m, p) => this.adapters.get(key(m, p)),
+          dispatcher,
+          settings: () => this.settings,
+        }) as AnyAdapter,
+      );
     }
     for (const modality of MODALITIES) {
       dispatcher.setUnloader(modality, async (owner) => {
