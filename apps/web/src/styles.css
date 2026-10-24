@@ -472,3 +472,4 @@ a.ccard:hover .ccard__go { text-decoration: underline; }
 .intro__make .make-head h2 { font-size: 22px; }
 .intro__make .seg-group--worlds .seg { padding: 8px 10px; }
 .intro__make .seg span { font-size: 10px; }
+@media (max-width: 900px) { .landing .intro { grid-template-columns: 1fr; } .landing .intro .mantra { margin-top: var(--s-4); } }
