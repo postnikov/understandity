@@ -40,11 +40,12 @@ function hero(course: Course): string {
   const first = showable[0] ?? cardsOf(course)[0] ?? null;
   const art = sceneArt({ course, card: first, index: 0, world: app.world, labels: course.language.startsWith('en') });
   const all = cardsOf(course);
+  // The lead speaks to the kid: the first card's hook, not the course outcome written for adults.
   return `<section class="home-hero">
     <div class="home-copy">
       <div class="eyebrow">${d.home.adventure} ${esc(subjectLabel(course.subject))}</div>
       <h1>${heroTitle(course.title)}</h1>
-      <p class="lead">${esc(course.outcome)}</p>
+      <p class="lead">${esc(first?.hook.question ?? course.outcome)}</p>
       <div class="home-actions">
         ${
           showable.length
