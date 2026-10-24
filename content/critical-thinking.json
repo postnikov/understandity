@@ -53,24 +53,6 @@
               "scene": "In a castle vault, four sealed chests bear a dragon, a moon, a blue ribbon and an orange ribbon. A wizard's rule says every dragon chest has a blue ribbon inside. The apprentice must open only the chests that could expose a lie.",
               "illustration": "Four chests in a stone vault; a dragon chest glows, an orange ribbon chest sits next to it, a wizard points at two of them.",
               "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "At school, a young hero finds four cards on a desk. The club rule says a triangle card has a blue back. She flips only the cards that could prove the rule wrong, while her friends reach for the blue one.",
-              "illustration": "Bright classroom desk with four cards; the hero holds up the triangle, an orange card glows, friends look surprised.",
-              "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "An astronaut stands before four canisters marked with a triangle, a circle, a blue label, and an orange label. The rule is that every triangle-marked canister has a blue interior.",
-              "illustration": "An astronaut holding a triangle-marked canister and an orange-marked canister.",
-              "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A hacker stares at four data-chips marked with a triangle, a circle, a blue light, and an orange light. The rule is that every triangle-marked chip has a blue core.",
-              "illustration": "A hacker holding a triangle-marked chip and an orange-marked chip.",
-              "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-cyberpunk.png"
             }
           ],
           "question": {
@@ -165,24 +147,6 @@
               "scene": "A royal stable has a horse that taps answers to a wizard's riddles. A curtain hides the wizard, but his voice still asks. The apprentice wonders whether the horse follows magic or the wizard's tiny movements.",
               "illustration": "Horse hoof tapping, a curtain between horse and robed wizard, castle stable behind.",
               "image": "/media/critical-thinking/c2-right-answer-wrong-channel-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "At a school festival, a clever horse taps answers for a young hero. A screen hides the quizmaster, who still reads questions aloud. The hero predicts whether the horse needs the hidden signals.",
-              "illustration": "Festival stage, horse, screen hiding a quizmaster, bright sparkles, hero watching.",
-              "image": "/media/critical-thinking/c2-right-answer-wrong-channel-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "A robot horse stands before a commander hidden behind a screen; the commander speaks a riddle, and the horse taps a button in response.",
-              "illustration": "A robot horse standing before a screen with a button.",
-              "image": "/media/critical-thinking/c2-right-answer-wrong-channel-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A cybernetic horse stands before a hacker hidden behind a screen; the hacker speaks a riddle, and the horse taps a button in response.",
-              "illustration": "A cybernetic horse standing before a screen with a button.",
-              "image": "/media/critical-thinking/c2-right-answer-wrong-channel-cyberpunk.png"
             }
           ],
           "question": {
@@ -274,24 +238,6 @@
               "scene": "Dragon riders return to a castle with scorch marks on their wings. A wizard notices the riders who never came back are missing from the map, and asks where they were hit.",
               "illustration": "Castle tower, dragons landing with marked wings, empty perches with faint outlines.",
               "image": "/media/critical-thinking/c3-only-survivors-are-visible-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A school robotics club tests drones. The young hero sees marks only on four returned drones and asks to see the four lost ones, whose engines were damaged.",
-              "illustration": "Workshop table with drones; four on the table, four ghost-like outlines, hero pointing at engines.",
-              "image": "/media/critical-thinking/c3-only-survivors-are-visible-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "A technician reviews a log of four returned drones with cargo-bay damage, while four lost drones with engine damage are excluded from the report.",
-              "illustration": "A technician looking at a log showing four drones with damaged cargo bays.",
-              "image": "/media/critical-thinking/c3-only-survivors-are-visible-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A technician reviews a log of four returned drones with cargo-bay damage, while four lost drones with engine damage are excluded from the report.",
-              "illustration": "A technician looking at a log showing four drones with damaged cargo bays.",
-              "image": "/media/critical-thinking/c3-only-survivors-are-visible-cyberpunk.png"
             }
           ],
           "question": {
@@ -385,24 +331,6 @@
               "scene": "A castle gate uses a crystal that glows for disguised goblins. It never misses one, but sometimes glows for ordinary villagers. With a thousand visitors and one goblin, the guard must judge a glow.",
               "illustration": "Castle gate, glowing crystal, crowd of villagers, one hooded figure.",
               "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A school scanner flags a prank item in bags. It never misses one, but sometimes flags innocent bags. The young hero sees that with one prank bag in a thousand, a flag is mostly a false alarm.",
-              "illustration": "Bright school entrance, scanner arch flashing, long line of students with bags.",
-              "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "A guard uses a sensor that glows for disguised aliens; it never misses one but occasionally glows for humans in a crowd of a thousand.",
-              "illustration": "A guard holding a glowing sensor in front of a crowd of people.",
-              "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A guard uses a sensor that glows for disguised aliens; it never misses one but occasionally glows for humans in a crowd of a thousand.",
-              "illustration": "A guard holding a glowing sensor in front of a crowd of people.",
-              "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-cyberpunk.png"
             }
           ],
           "question": {
@@ -496,24 +424,6 @@
               "scene": "Three heralds in three towns shout the same news of a dragon. The young scribe learns all three heard it from one traveller, so she goes to find the traveller.",
               "illustration": "Three towers with heralds, thin lines all leading to one cloaked traveller.",
               "image": "/media/critical-thinking/c5-three-sources-or-one-echo-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "Three school club posters announce the same surprise event. The hero finds all three copied one message from a single student and goes to ask who wrote it.",
-              "illustration": "Three bright posters, arrows converging on one student with a note.",
-              "image": "/media/critical-thinking/c5-three-sources-or-one-echo-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "Three drones broadcast the same news of a solar flare, all of which were copied from a single original transmission.",
-              "illustration": "Three drones broadcasting a signal from one central source.",
-              "image": "/media/critical-thinking/c5-three-sources-or-one-echo-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "Three drones broadcast the same news of a solar flare, all of which were copied from a single original transmission.",
-              "illustration": "Three drones broadcasting a signal from one central source.",
-              "image": "/media/critical-thinking/c5-three-sources-or-one-echo-cyberpunk.png"
             }
           ],
           "question": {

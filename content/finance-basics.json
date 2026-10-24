@@ -52,24 +52,6 @@
               "scene": "A teenage apprentice places tokens with a castle treasury that credits ten percent yearly and leaves the interest in the same account. The apprentice compares the starting hoard with the balance after two years; the rule, not magic, produces the growth.",
               "illustration": "A teenage apprentice at a castle treasury desk, plain unmarked tokens grouped in trays for successive stages, with the newest tokens a different metal colour; no diagrams or writing.",
               "image": "/media/finance-basics/c1-the-magic-of-compounding-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A teenage club treasurer deposits tokens with the school treasury under the same yearly ten-percent rule. Interest stays and earns interest during the second year; nobody adds more money.",
-              "illustration": "A teenage club treasurer in a sunlit classroom counting plain unmarked tokens in adjacent trays, newer tokens distinguished by colour; natural objects, no charts or writing.",
-              "image": "/media/finance-basics/c1-the-magic-of-compounding-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "A teenage astronaut deposits a hundred tokens with a station treasury at ten percent annually, credited at year-end. Interest stays in the account and also earns interest next year; no additional tokens are deposited.",
-              "illustration": "A teenage astronaut inside a bright space-station treasury, comparing trays of plain unmarked tokens; newer tokens have a contrasting metal colour. No screens or diagrams.",
-              "image": "/media/finance-basics/c1-the-magic-of-compounding-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A teenage courier deposits a hundred tokens with a city treasury at ten percent yearly. Year-end interest remains and earns interest in the second year, with no other transactions.",
-              "illustration": "A teenage courier at a neon-lit treasury counter comparing small trays of plain metallic tokens, newer tokens picked out by reflected cyan light. No screens, charts, or signs.",
-              "image": "/media/finance-basics/c1-the-magic-of-compounding-cyberpunk.png"
             }
           ],
           "question": {
@@ -164,24 +146,6 @@
               "scene": "A teenage apprentice returns to a castle market with the same hundred-token pouch. The unchanged basket now costs a hundred and ten in this fictional example, so the pouch no longer covers it.",
               "illustration": "A teenage apprentice at a market counter with a plain coin pouch and a basket of everyday provisions; a merchant waits, all packaging blank, no price tags.",
               "image": "/media/finance-basics/c2-the-shrinking-power-of-cash-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A teenage student returns to a market with a hundred tokens saved at home. The identical basket now costs a hundred and ten; its contents have not changed.",
-              "illustration": "A teenage student beside a familiar market basket, holding plain unmarked tokens in an open palm while considering the purchase; blank packaging, no price tags.",
-              "image": "/media/finance-basics/c2-the-shrinking-power-of-cash-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "A teenage station worker returns to a supply counter with the same hundred tokens saved at home. The unchanged basket now costs a hundred and ten in this fictional example, so it is no longer fully affordable.",
-              "illustration": "A teenage astronaut at a station supply counter, holding a plain token pouch beside a basket of everyday provisions. All packaging is blank; no price tags or screens.",
-              "image": "/media/finance-basics/c2-the-shrinking-power-of-cash-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A teenage courier returns to a night market with the same hundred tokens. The identical basket now costs a hundred and ten; its contents and the saved token count have not changed.",
-              "illustration": "A teenage courier at a neon night-market counter with a plain token pouch and a basket of ordinary supplies. Featureless packaging, no price tags or glowing lettering.",
-              "image": "/media/finance-basics/c2-the-shrinking-power-of-cash-cyberpunk.png"
             }
           ],
           "question": {
@@ -277,24 +241,6 @@
               "scene": "A teenage apprentice borrows a hundred tokens from a castle treasury at twenty percent for one year and deposits them at five percent. At year-end, the account holds a hundred and five but repayment needs a hundred and twenty.",
               "illustration": "A teenage apprentice between two treasury counters, a smaller pile of plain tokens on the deposit side and a larger pile representing repayment on the other; no scrolls, symbols, or writing.",
               "image": "/media/finance-basics/c3-the-cost-of-borrowing-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A teenage club treasurer compares a fictional hundred-token one-year loan at twenty percent with depositing it at five percent. The account gain and the cost owed to the lender must both be counted.",
-              "illustration": "A teenage club treasurer at a classroom desk comparing two separate piles of plain tokens, the repayment pile larger than the savings pile; no labels or screens.",
-              "image": "/media/finance-basics/c3-the-cost-of-borrowing-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "A teenage astronaut borrows a hundred tokens for one year at twenty percent and deposits them at five percent. With no other transactions, fees, or taxes, the account holds a hundred and five while repayment requires a hundred and twenty.",
-              "illustration": "A teenage astronaut at a station treasury counter comparing two trays of plain metallic tokens, the repayment pile visibly larger than the savings pile. Physical objects only; no display screens or writing.",
-              "image": "/media/finance-basics/c3-the-cost-of-borrowing-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A teenage courier compares a fictional hundred-token one-year loan at twenty percent with depositing it at five percent. The loan balance and the deposit balance both grow, but repayment needs more than the account holds.",
-              "illustration": "A teenage courier at a neon-lit counter with two piles of plain metallic tokens, the repayment pile larger than the savings pile. No screens, charts, labels, or numerals.",
-              "image": "/media/finance-basics/c3-the-cost-of-borrowing-cyberpunk.png"
             }
           ],
           "question": {
@@ -389,24 +335,6 @@
               "scene": "A teenage apprentice owns stakes in two differently named castle-market shops. All supplies for both cross one stone bridge, which is closed; their different owners do not remove the shared route.",
               "illustration": "Two distinct fantasy shops beside a river, both supply paths visibly leading to one closed stone bridge; a teenage apprentice studies the scene, no arrows or signs.",
               "image": "/media/finance-basics/c4-the-illusion-of-safety-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A teenage student compares investments in two market shops supplied across the same bridge. A month-long closure can disrupt both businesses even though they have different owners.",
-              "illustration": "An anime market street with two distinct shops, supply carts stopped at one closed bridge, a teenage observer; no logos, signs, arrows, or text.",
-              "image": "/media/finance-basics/c4-the-illusion-of-safety-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "A teenage astronaut holds stakes in two station supply shops, both receiving all goods across one access bridge. Closing that bridge exposes both investments to the same disruption, regardless of their different owners.",
-              "illustration": "Two distinct station supply shops, both delivery paths leading to one closed access bridge, with cargo carts waiting and a teenage astronaut observing. No symbols, arrows, or signs.",
-              "image": "/media/finance-basics/c4-the-illusion-of-safety-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A teenage courier owns stakes in two night-market shops supplied across the same city bridge. A closure can disrupt both businesses; their different owners do not remove the shared route.",
-              "illustration": "Two different neon-market shops with supply carts stopped before one closed bridge; a teenage courier watches from the foreground. Blank facades with reflected magenta and cyan light, no writing.",
-              "image": "/media/finance-basics/c4-the-illusion-of-safety-cyberpunk.png"
             }
           ],
           "question": {
@@ -502,24 +430,6 @@
               "scene": "A teenage apprentice has a hundred and twenty tokens in a treasury chest that cannot open until next month. An eighty-token repair is due today, and no other cash or borrowing is available.",
               "illustration": "A teenage apprentice beside a locked treasury chest with visible plain tokens behind a small glass window, a broken cart wheel awaiting repair nearby; no calendar, clock face, or writing.",
               "image": "/media/finance-basics/c5-wealth-vs-spendable-cash-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A teenage club member has a hundred and twenty tokens locked away until next month, while an eighty-token repair is due today. The amount is enough but the release date prevents payment.",
-              "illustration": "A teenage club member beside a locked transparent token box and a broken bicycle wheel, considering the repair; no timer, numbers, or signs.",
-              "image": "/media/finance-basics/c5-wealth-vs-spendable-cash-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "A teenage astronaut has a hundred and twenty tokens in a treasury locker inaccessible until next month. An eighty-token cargo-cart repair is due today, with no other cash, borrowing, or delay allowed.",
-              "illustration": "A teenage astronaut next to a locked transparent treasury locker containing plain tokens; a damaged cargo-cart wheel sits nearby. No bill, calendar, countdown, or display.",
-              "image": "/media/finance-basics/c5-wealth-vs-spendable-cash-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A teenage courier has a hundred and twenty tokens locked away until next month. An eighty-token delivery-bike repair is due today; the locked tokens cannot be accessed early and no borrowing or extension is available.",
-              "illustration": "A teenage courier beside a locked transparent token case and a broken delivery-bike wheel in a neon repair shop. Plain metallic tokens, no timer, bill, lettering, or signs.",
-              "image": "/media/finance-basics/c5-wealth-vs-spendable-cash-cyberpunk.png"
             }
           ],
           "question": {

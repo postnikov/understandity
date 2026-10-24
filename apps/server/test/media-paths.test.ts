@@ -18,8 +18,8 @@ describe('scene pictures not drawn yet', () => {
     const hub = new EngineHub(fakeEnginesConfig(), PROVIDERS, createDispatcher());
     const app = createApp({ hub, course: loadCourse(), allowDrafts: false, contentDir: dir });
     const course = await (await app.request('/api/courses/heavy-things-sink')).json();
-    const worlds = course.concepts[0].cards[0].worlds as Array<{ world: string; image: string | null }>;
-    expect(worlds.find((w) => w.world === 'fantasy')!.image).toBe('/media/heavy-things-sink/c1-weight-vs-density-fantasy.png');
-    expect(worlds.find((w) => w.world === 'anime')!.image).toBeNull();
+    const cards = course.concepts.flatMap((k: { cards: unknown[] }) => k.cards) as Array<{ worlds: Array<{ image: string | null }> }>;
+    expect(cards[0]!.worlds[0]!.image).toBe('/media/heavy-things-sink/c1-weight-vs-density-fantasy.png');
+    expect(cards[1]!.worlds[0]!.image).toBeNull(); // its PNG is not in this temp content dir
   });
 });

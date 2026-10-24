@@ -1,0 +1,500 @@
+{
+  "id": "why-does-your-brain-trick-you",
+  "title": "Why does your brain trick you?",
+  "outcome": "The student will be able to explain how our brains use shortcuts to make quick decisions and why these can lead to mistakes.",
+  "language": "en",
+  "subject": "general",
+  "ageRange": [
+    12,
+    14
+  ],
+  "concepts": [
+    {
+      "id": "why-does-your-brain-trick-you",
+      "title": "Why does your brain trick you?",
+      "centralCause": "The brain uses mental shortcuts (heuristics) to process information quickly, which can lead to biased judgments when the situation is complex.",
+      "conditions": [
+        "The information is presented quickly",
+        "The brain is trying to save energy or time"
+      ],
+      "cards": [
+        {
+          "id": "c1-the-brain-s-shortcut-system",
+          "title": "The Brain's Shortcut System",
+          "fact": {
+            "statement": "Your brain uses shortcuts to make decisions quickly because thinking deeply takes too much energy.",
+            "conditions": [
+              "When you have to make a fast choice"
+            ],
+            "source": "Generated from model knowledge, not checked"
+          },
+          "hook": {
+            "question": "Why does your brain choose the easy path instead of the perfect one?",
+            "predictPrompt": "Predict what happens if you have unlimited time to think. Tell me why."
+          },
+          "explanation": "Think of your brain like a busy office. To keep things moving, it uses 'shortcuts' called heuristics. These are mental rules of thumb. For example, if you see a dark cloud, you assume it will rain. You don't wait to see a raindrop first. This saves your brain from getting tired by over-analyzing every tiny detail.",
+          "action": {
+            "instruction": "Imagine you are looking at a fruit basket. You have to pick a fruit in 1 second. Now, imagine you have 1 minute to look at every fruit. Predict which way you will choose more often and why.",
+            "changedCondition": "The time allowed to choose",
+            "constants": [
+              "The types of fruit available",
+              "The goal of picking a fruit"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "anime",
+              "scene": "A young hero is in a school library, trying to find a magic book quickly before a bell rings.",
+              "illustration": "A hero looking at many books with a clock ticking.",
+              "image": null
+            },
+            {
+              "world": "fantasy",
+              "scene": "A wizard is trying to identify a magical herb before a dragon wakes up.",
+              "illustration": "A wizard looking at herbs with a dragon shadow in the background.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c1-the-brain-s-shortcut-system",
+            "prompt": "If you see a person wearing a lab coat in a park, why might you assume they are a doctor?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c1-the-brain-s-shortcut-system",
+            "expectedCause": "The brain uses a shortcut by linking the lab coat to a doctor because it's a fast way to categorize people.",
+            "acceptable": [
+              "It's a mental shortcut to save time",
+              "The brain relies on a common association"
+            ],
+            "typicalMistake": "They are a doctor because they have a white coat.",
+            "followUp": "Does this shortcut always work, or can it be wrong?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "My brain sees the coat and quickly links it to a doctor to save time.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "They are a doctor because they are wearing a coat.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "Because they look like a doctor.",
+                "tutorMove": "Does this shortcut always work, or can it be wrong?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Are there any times when shortcuts are actually better than thinking deeply?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": []
+          }
+        },
+        {
+          "id": "c2-the-power-of-first-impressions",
+          "title": "The Power of First Impressions",
+          "fact": {
+            "statement": "People tend to rely too much on the first piece of information they see (Anchoring).",
+            "conditions": [
+              "When a number or idea is presented first"
+            ],
+            "source": "Generated from model knowledge, not checked"
+          },
+          "hook": {
+            "question": "Why does the first number you hear stay stuck in your head?",
+            "predictPrompt": "Predict what happens if you hear a second, much higher number. Tell me why."
+          },
+          "explanation": "This is called 'Anchoring.' Your brain grabs onto the first piece of information it sees and uses it as a starting point. Even if that first piece of information isn't very important, your brain uses it as a 'hook' to judge everything else that follows.",
+          "action": {
+            "instruction": "Imagine a shop sells a toy for $100. Then they show you a toy for $50. Now, imagine the shop shows you a toy for $10 first, then the $50 one. Predict which toy feels like a better deal.",
+            "changedCondition": "The first price shown",
+            "constants": [
+              "The final price of the second toy",
+              "The types of toys"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A wizard is trading magic crystals. He shows a huge crystal first to make the others look small.",
+              "illustration": "A wizard holding a giant crystal next to a small one.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A young hero is at a market, and a merchant shows a huge dragon-scale first to make other items look cheap.",
+              "illustration": "A merchant holding a large scale next to a small trinket.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c2-the-power-of-first-impressions",
+            "prompt": "If a store shows you a $1,000 watch first, then a $200 watch, why does the $200 watch seem like a bargain?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c2-the-power-of-first-impressions",
+            "expectedCause": "The $1,000 watch acts as an anchor, making the $200 watch seem cheaper by comparison.",
+            "acceptable": [
+              "The first number sets a starting point in your mind",
+              "Your brain compares the second price to the first one"
+            ],
+            "typicalMistake": "Because $200 is a smaller number than $1,000.",
+            "followUp": "Can you think of a time a salesperson might use this on you?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "The $1,000 watch sets an anchor, so the $200 one looks like a deal.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "Because it's a cheaper watch.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "Because the first one is more expensive.",
+                "tutorMove": "Can you think of a time a salesperson might use this on you?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "How can I stop my brain from getting anchored to the first number?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": []
+          }
+        },
+        {
+          "id": "c3-the-groupthink-trap",
+          "title": "The Groupthink Trap",
+          "fact": {
+            "statement": "People often agree with a group even when they have doubts (Conformity).",
+            "conditions": [
+              "When the person feels pressure to fit in"
+            ],
+            "source": "Generated from model knowledge, not checked"
+          },
+          "hook": {
+            "question": "Why do we sometimes say 'yes' when we actually mean 'no'?",
+            "predictPrompt": "Predict what happens if you are alone in a room. Tell me why."
+          },
+          "explanation": "Conformity happens because our brains want to belong. It feels safe to agree with the group because being 'different' can feel lonely or scary. Your brain chooses the easy path of fitting in rather than the harder path of standing out, especially when the group is large.",
+          "action": {
+            "instruction": "Imagine you are in a group of 10 people. Everyone says the sky is green. Now, imagine you are the only person in the room. Predict which situation makes you more likely to agree that the sky is green.",
+            "changedCondition": "The number of people in the group",
+            "constants": [
+              "The statement about the sky",
+              "The fact that the sky is not green"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "anime",
+              "scene": "A hero is in a school club where everyone is doing a silly dance, and the hero is hesitating to join.",
+              "illustration": "A group of students dancing while one stands alone.",
+              "image": null
+            },
+            {
+              "world": "fantasy",
+              "scene": "A group of knights all agree to attack a dragon, even though one knows it's a trap.",
+              "illustration": "A line of knights facing a dragon, one looking unsure.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c3-the-groupthink-trap",
+            "prompt": "If everyone in a classroom laughs at a joke that isn't funny, why might you laugh too?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c3-the-groupthink-trap",
+            "expectedCause": "You might laugh to fit in with the group and avoid feeling like an outsider.",
+            "acceptable": [
+              "Because of the pressure to conform",
+              "The brain wants to belong to the group"
+            ],
+            "typicalMistake": "Because the joke was actually funny.",
+            "followUp": "Is it ever okay to go against the group?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "I would laugh to fit in and not feel like the odd one out.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "Because I want to be funny.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "Because everyone else is doing it.",
+                "tutorMove": "Is it ever okay to go against the group?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "How can I be brave enough to say no when everyone else says yes?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": []
+          }
+        },
+        {
+          "id": "c4-the-confirmation-bias",
+          "title": "The Confirmation Bias",
+          "fact": {
+            "statement": "We tend to notice information that agrees with what we already believe.",
+            "conditions": [
+              "When we already have a strong opinion"
+            ],
+            "source": "Generated from model knowledge, not checked"
+          },
+          "hook": {
+            "question": "Why is it so easy to ignore facts that prove us wrong?",
+            "predictPrompt": "Predict what happens if you only look for information that supports your favorite team. Tell me why."
+          },
+          "explanation": "This is called Confirmation Bias. Your brain likes being right! It feels good to have a steady belief. To save energy, your brain ignores 'confusing' information that disagrees with your beliefs and highlights information that makes you feel like you were right all along.",
+          "action": {
+            "instruction": "Imagine you believe all dogs are mean. You see a dog wagging its tail. Now, imagine you believe all dogs are friendly. You see the same dog wagging its tail. Predict how your brain treats the same dog in both cases.",
+            "changedCondition": "Your starting belief",
+            "constants": [
+              "The dog's behavior",
+              "The observation of the tail wagging"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A wizard believes dragons are evil and only sees them breathing fire, ignoring them when they are sleeping.",
+              "illustration": "A wizard watching a dragon, with a thought bubble showing only fire.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A hero believes a rival is a villain and only notices when they act mean, ignoring when they are kind.",
+              "illustration": "A hero watching a rival, with a thought bubble showing only mean faces.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c4-the-confirmation-bias",
+            "prompt": "If you believe a certain fruit is delicious, why might you only remember the times you enjoyed it and forget the times it tasted bad?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c4-the-confirmation-bias",
+            "expectedCause": "Because of confirmation bias, your brain focuses on the info that fits your belief and ignores the rest.",
+            "acceptable": [
+              "Your brain is looking for proof that you are right",
+              "It's easier to remember things that agree with your opinion"
+            ],
+            "typicalMistake": "Because I just forgot the bad times.",
+            "followUp": "How can I make sure I'm seeing the whole truth?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "Confirmation bias makes me focus on the good times because they fit my belief.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "Because I just like the fruit more.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "Because I only remember the good parts.",
+                "tutorMove": "How can I make sure I'm seeing the whole truth?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "How can I stop my brain from ignoring the truth?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "absolute word \"only\" in voice question — check that it holds under the stated conditions"
+            ]
+          }
+        },
+        {
+          "id": "c5-mastering-your-mind",
+          "title": "Mastering Your Mind",
+          "fact": {
+            "statement": "Recognizing these biases helps you make smarter, more independent choices.",
+            "conditions": [
+              "When you pause to think before deciding"
+            ],
+            "source": "Generated from model knowledge, not checked"
+          },
+          "hook": {
+            "question": "How can you become the boss of your own brain?",
+            "predictPrompt": "Predict what happens if you stop and think for 10 seconds before making a big choice. Tell me why."
+          },
+          "explanation": "To beat these biases, you need to 'pause.' When you feel a sudden urge to agree with a group, or when you see a number that feels like a trap, stop. Ask yourself: 'Is my brain taking a shortcut here?' By slowing down, you give your conscious mind a chance to look at the facts instead of just following a mental shortcut.",
+          "action": {
+            "instruction": "Imagine you see a 'Limited Time Offer' sign for a toy you don't really need. Imagine you see a 'Sale' sign for a toy you do need. Predict which one requires you to pause and think more to avoid a bias.",
+            "changedCondition": "The type of sale",
+            "constants": [
+              "The act of looking at the sign",
+              "The decision to buy"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A hero stands before a magical door that tries to trick them with illusions. The hero closes their eyes and thinks clearly.",
+              "illustration": "A hero standing calmly before a glowing, magical door.",
+              "image": null
+            },
+            {
+              "world": "anime",
+              "scene": "A hero faces a choice in a high-stakes tournament and takes a deep breath to think before acting.",
+              "illustration": "A hero standing still with a determined expression.",
+              "image": null
+            }
+          ],
+          "question": {
+            "id": "q-c5-mastering-your-mind",
+            "prompt": "If you see a 'Buy One Get One Free' deal on a snack you don't usually eat, why is it important to pause and think before buying it?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c5-mastering-your-mind",
+            "expectedCause": "Pausing helps you realize that the 'free' deal is a shortcut to make you spend money on something you don't want.",
+            "acceptable": [
+              "It helps you see the facts instead of the shortcut",
+              "It stops you from making a quick, biased decision"
+            ],
+            "typicalMistake": "Because I want to save money.",
+            "followUp": "What's the best way to remember to pause?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "Pausing helps me see that the deal is a shortcut to make me buy something I don't need.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "Because I want to save money.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "Because it's a good idea to think.",
+                "tutorMove": "What's the best way to remember to pause?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Can you ever completely turn off these shortcuts?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "explanation is 62 words (expected 40–60)"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "review": {
+    "state": "needs_review",
+    "reviewer": null,
+    "reviewedAt": null,
+    "notes": [
+      "Generated by gemma4:12b-mlx on a learner's request (\"top cognitive biases\"); facts come from the model's own knowledge and were not checked by an adult.",
+      "Source for verification: Generated from model knowledge, not checked"
+    ]
+  },
+  "origin": {
+    "generator": "on-request",
+    "model": "gemma4:12b-mlx",
+    "createdAt": "2026-10-24T13:52:16.395Z",
+    "request": "top cognitive biases",
+    "engine": "local",
+    "audience": "child"
+  }
+}

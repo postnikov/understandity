@@ -52,24 +52,6 @@
               "scene": "A wizard tries to float a massive enchanted stone. He realizes the stone's magic depends on its density, not its weight.",
               "illustration": "A wizard looking at a large stone and a small stone floating in a magical pond.",
               "image": "/media/heavy-things-sink/c1-weight-vs-density-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A hero discovers a floating fortress. They realize it stays up because of its density compared to the sea.",
-              "illustration": "A floating fortress over a blue ocean.",
-              "image": "/media/heavy-things-sink/c1-weight-vs-density-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "An astronaut on a space station with artificial gravity places a large wooden block and a small wood chip into a tank of still water.",
-              "illustration": "A large wooden block and a small wood chip both floating on the surface of water in a tank.",
-              "image": "/media/heavy-things-sink/c1-weight-vs-density-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A hacker in a neon-lit lab drops a large wooden block and a small wood chip into a container of still water.",
-              "illustration": "A large wooden block and a small wood chip both floating on the surface of water.",
-              "image": "/media/heavy-things-sink/c1-weight-vs-density-cyberpunk.png"
             }
           ],
           "question": {
@@ -159,24 +141,6 @@
               "scene": "A dragon guards a treasure. Some gems sink to the bottom, others float on the surface.",
               "illustration": "A dragon guarding a chest with sinking and floating gems.",
               "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A character tests different magical stones in a lake to see which ones have a density higher than water.",
-              "illustration": "A character dropping stones into a lake.",
-              "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "A scientist on a lunar base observes a piece of stone and a piece of wood fully submerged in a tank of water.",
-              "illustration": "A stone sinking to the bottom of a water tank while a piece of wood floats on the surface.",
-              "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A robot in a high-tech laboratory observes a piece of stone and a piece of wood fully submerged in a tank of water.",
-              "illustration": "A stone sinking to the bottom of a water tank while a piece of wood floats on the surface.",
-              "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-cyberpunk.png"
             }
           ],
           "question": {
@@ -267,24 +231,6 @@
               "scene": "A sculptor cuts a sinking magical stone into two pieces. He notices they still sink.",
               "illustration": "A sculptor cutting a stone in half.",
               "image": "/media/heavy-things-sink/c3-cutting-the-stone-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A scientist splits a sinking crystal into two pieces to study its properties.",
-              "illustration": "A scientist splitting a crystal.",
-              "image": "/media/heavy-things-sink/c3-cutting-the-stone-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "An astronaut takes a sinking stone and cuts it in half, observing both pieces in a tank of water.",
-              "illustration": "Two halves of a stone both sinking to the bottom of a water tank.",
-              "image": "/media/heavy-things-sink/c3-cutting-the-stone-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A cyborg in a laboratory cuts a sinking stone in half and observes both pieces in a tank of water.",
-              "illustration": "Two halves of a stone both sinking to the bottom of a water tank.",
-              "image": "/media/heavy-things-sink/c3-cutting-the-stone-cyberpunk.png"
             }
           ],
           "question": {
@@ -378,24 +324,6 @@
               "scene": "A pirate ship floats on a magical sea because of the air trapped in its hull.",
               "illustration": "A pirate ship on the ocean.",
               "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A character builds a boat and realizes the air inside keeps it from sinking.",
-              "illustration": "A character building a boat.",
-              "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "An astronaut places an empty plastic bottle into a tank of water, then fills it with water and observes the difference.",
-              "illustration": "An empty plastic bottle floating on water next to a water-filled bottle sinking to the bottom.",
-              "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A hacker places an empty plastic bottle into a tank of water, then fills it with water and observes the difference.",
-              "illustration": "An empty plastic bottle floating on water next to a water-filled bottle sinking to the bottom.",
-              "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-cyberpunk.png"
             }
           ],
           "question": {
@@ -487,24 +415,6 @@
               "scene": "A wizard's apprentice must identify which magical stones will float in a pond of enchanted water.",
               "illustration": "An apprentice looking at two stones.",
               "image": "/media/heavy-things-sink/c5-the-density-challenge-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A student competes in a science challenge to predict which objects will float using only their measurements.",
-              "illustration": "A student looking at measurements of two objects.",
-              "image": "/media/heavy-things-sink/c5-the-density-challenge-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "An astronaut compares two objects, one with a density of 0.8 g/cm3 and one with 1.5 g/cm3, in a tank of water.",
-              "illustration": "One object floating on the surface of water and another object sinking to the bottom.",
-              "image": "/media/heavy-things-sink/c5-the-density-challenge-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A robot compares two objects, one with a density of 0.8 g/cm3 and one with 1.5 g/cm3, in a tank of water.",
-              "illustration": "One object floating on the surface of water and another object sinking to the bottom.",
-              "image": "/media/heavy-things-sink/c5-the-density-challenge-cyberpunk.png"
             }
           ],
           "question": {

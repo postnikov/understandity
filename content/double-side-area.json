@@ -50,24 +50,6 @@
               "scene": "A wizard is enchanting a magic tile. He needs to know how many tiles cover the floor of a square room.",
               "illustration": "A grid of 9 squares forming a large square.",
               "image": "/media/double-side-area/c1-counting-the-squares-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A robot builder is designing a square power core. They need to calculate the surface area for cooling plates.",
-              "illustration": "A square divided into 9 smaller squares.",
-              "image": "/media/double-side-area/c1-counting-the-squares-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "An astronaut places 9 square tiles in a 3x3 grid on a lunar base floor. They observe how many tiles are needed to cover a 6x6 area.",
-              "illustration": "A 3x3 grid of square tiles on a grey floor.",
-              "image": "/media/double-side-area/c1-counting-the-squares-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A hacker places 9 glowing neon tiles in a 3x3 grid on a metallic workbench. They observe how many tiles cover a 6x6 grid.",
-              "illustration": "A 3x3 grid of glowing neon squares on a workbench.",
-              "image": "/media/double-side-area/c1-counting-the-squares-cyberpunk.png"
             }
           ],
           "question": {
@@ -157,24 +139,6 @@
               "scene": "A dragon's hoard grows. A square gold coin is replaced by a square that is 3 times wider.",
               "illustration": "A 3x3 grid showing how 9 small squares fit into a 9x9 grid.",
               "image": "/media/double-side-area/c2-the-two-way-growth-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A mecha pilot expands the shield's reach. The square shield grows 3 times in both directions.",
-              "illustration": "A diagram showing a 3x3 grid expanding into a 9x9 grid.",
-              "image": "/media/double-side-area/c2-the-two-way-growth-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "An astronaut observes a square solar panel that is replaced by a square panel 3 times wider and 3 times longer.",
-              "illustration": "A small square solar panel next to a much larger square solar panel.",
-              "image": "/media/double-side-area/c2-the-two-way-growth-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A robot observes a square holographic display that is replaced by a square display 3 times wider and 3 times longer.",
-              "illustration": "A small square holographic display next to a much larger square display.",
-              "image": "/media/double-side-area/c2-the-two-way-growth-cyberpunk.png"
             }
           ],
           "question": {
@@ -265,24 +229,6 @@
               "scene": "A wizard's scroll is stretched. He makes it twice as long but it stays the same width.",
               "illustration": "A 2x3 rectangle becoming a 2x6 rectangle.",
               "image": "/media/double-side-area/c3-the-rectangle-exception-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A futuristic train car is extended. It gets longer but stays the same width.",
-              "illustration": "A 2x3 rectangle becoming a 2x6 rectangle.",
-              "image": "/media/double-side-area/c3-the-rectangle-exception-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "An astronaut stretches a rectangular fabric sheet, making it twice as long while the width remains the same.",
-              "illustration": "A rectangular fabric sheet being pulled to become twice as long.",
-              "image": "/media/double-side-area/c3-the-rectangle-exception-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A hacker stretches a rectangular data strip, making it twice as long while the width remains the same.",
-              "illustration": "A rectangular strip of data being stretched to twice its length.",
-              "image": "/media/double-side-area/c3-the-rectangle-exception-cyberpunk.png"
             }
           ],
           "question": {
@@ -375,24 +321,6 @@
               "scene": "A knight builds a fence around a square castle. The castle grows in size.",
               "illustration": "A square with a border (fence) and a filled interior (grass).",
               "image": "/media/double-side-area/c4-paint-vs-fences-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A city planner builds a square park. They need to know how much grass to lay down.",
-              "illustration": "A square with a border (fence) and a filled interior (grass).",
-              "image": "/media/double-side-area/c4-paint-vs-fences-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "An astronaut builds a fence around a square garden on a space station; the side length of the square garden doubles.",
-              "illustration": "A square garden with a fence around it, showing the fence and the grass inside.",
-              "image": "/media/double-side-area/c4-paint-vs-fences-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A drone builds a fence around a square garden in a neon city; the side length of the square garden doubles.",
-              "illustration": "A square garden with a fence around it, showing the fence and the grass inside.",
-              "image": "/media/double-side-area/c4-paint-vs-fences-cyberpunk.png"
             }
           ],
           "question": {
@@ -487,24 +415,6 @@
               "scene": "An architect designs a square plaza for a royal palace.",
               "illustration": "A 1x1 square compared to a 5x5 square.",
               "image": "/media/double-side-area/c5-the-master-architect-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A futuristic city planner designs a square plaza for a new robot district.",
-              "illustration": "A 1x1 square compared to a 5x5 square.",
-              "image": "/media/double-side-area/c5-the-master-architect-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "An astronaut designs a square landing pad where both the length and width are multiplied by 5.",
-              "illustration": "A small square landing pad next to a much larger square landing pad.",
-              "image": "/media/double-side-area/c5-the-master-architect-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A robot designs a square plaza in a neon city where both the length and width are multiplied by 5.",
-              "illustration": "A small square plaza next to a much larger square plaza.",
-              "image": "/media/double-side-area/c5-the-master-architect-cyberpunk.png"
             }
           ],
           "question": {

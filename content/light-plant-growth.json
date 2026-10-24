@@ -52,24 +52,6 @@
               "scene": "A forest spirit explains to a young apprentice how trees pull invisible magic from the breeze to build their trunks.",
               "illustration": "A tree with arrows pointing from the air and ground into the trunk.",
               "image": "/media/light-plant-growth/c1-the-invisible-builder-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A scientist in a high-tech lab uses a scanner to show a student the atoms moving from the air into a leaf.",
-              "illustration": "A magnifying glass over a leaf showing CO2 molecules.",
-              "image": "/media/light-plant-growth/c1-the-invisible-builder-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "An astronaut in a greenhouse module watches two identical plants; one is in a chamber with carbon dioxide and water, and the other is in a chamber without carbon dioxide.",
-              "illustration": "Two identical plants in separate glass chambers with the same water: the one with normal air is big and bushy, the one in air without carbon dioxide stays small.",
-              "image": "/media/light-plant-growth/c1-the-invisible-builder-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A hacker monitors two bio-engineered plants in a neon-lit lab, one receiving carbon dioxide and water and the other receiving no carbon dioxide.",
-              "illustration": "Two identical plants in separate glass containers with the same water: the one with normal air is big and bushy, the one in air without carbon dioxide stays small.",
-              "image": "/media/light-plant-growth/c1-the-invisible-builder-cyberpunk.png"
             }
           ],
           "question": {
@@ -162,24 +144,6 @@
               "scene": "A wizard uses a sun-crystal to power a magical forge that shapes trees.",
               "illustration": "A sun-crystal beaming light onto a plant.",
               "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A robot explains that light is like a battery for the plant's internal factory.",
-              "illustration": "A battery icon next to a sun and a plant.",
-              "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "A scientist on a space station observes two plants with the same water and air, one under a high-intensity grow lamp and the other in a dark storage locker.",
-              "illustration": "Two identical plants, one under a bright light and the other in total darkness.",
-              "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A robot technician places two plants in a neon-lit room, one under a bright grow lamp and the other in a dark corner.",
-              "illustration": "Two identical plants, one illuminated by a bright light and the other in total darkness.",
-              "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-cyberpunk.png"
             }
           ],
           "question": {
@@ -272,24 +236,6 @@
               "scene": "An alchemist shows a bubbling potion that turns sunlight into sweet nectar.",
               "illustration": "A leaf with a 'factory' icon inside it.",
               "image": "/media/light-plant-growth/c3-the-sugar-factory-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A girl discovers a hidden laboratory inside a leaf where sugar is being manufactured.",
-              "illustration": "A diagram showing CO2 + Water + Light -> Sugar + Oxygen.",
-              "image": "/media/light-plant-growth/c3-the-sugar-factory-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "An explorer places two sealed glass jars containing a plant and water in a station; one is placed in the light and the other in the dark.",
-              "illustration": "Two sealed glass jars, each with a plant and water, one in a bright light and the other in the dark.",
-              "image": "/media/light-plant-growth/c3-the-sugar-factory-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A street-doc places two sealed glass jars with a plant and water in a laboratory, one under a neon light and the other in a dark compartment.",
-              "illustration": "Two sealed glass jars, each with a plant and water, one in a bright light and the other in the dark.",
-              "image": "/media/light-plant-growth/c3-the-sugar-factory-cyberpunk.png"
             }
           ],
           "question": {
@@ -380,24 +326,6 @@
               "scene": "A forest guardian explains how trees breathe even while the moon watches.",
               "illustration": "A plant with a glowing heart representing energy.",
               "image": "/media/light-plant-growth/c4-the-night-shift-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A character watches a plant's internal energy flow during a night-time scene.",
-              "illustration": "A split screen: Day (Photosynthesis) and Night (Respiration).",
-              "image": "/media/light-plant-growth/c4-the-night-shift-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "A pilot observes a plant that sat in bright light all day and now sits in a dark cabin during the night cycle.",
-              "illustration": "A plant sitting in a dark room after being in bright light all day.",
-              "image": "/media/light-plant-growth/c4-the-night-shift-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A drone operator watches a plant that was in a bright light-chamber all day and is now in a dark storage unit at night.",
-              "illustration": "A plant sitting in a dark room after being in bright light all day.",
-              "image": "/media/light-plant-growth/c4-the-night-shift-cyberpunk.png"
             }
           ],
           "question": {
@@ -487,24 +415,6 @@
               "scene": "A gardener shows how a magical root stores energy for a long winter.",
               "illustration": "A potato with a 'storage' label.",
               "image": "/media/light-plant-growth/c5-the-survival-secret-fantasy.png"
-            },
-            {
-              "world": "anime",
-              "scene": "A student observes a potato sprouting in a dark room and learns about stored energy.",
-              "illustration": "A potato sprouting in a dark room.",
-              "image": "/media/light-plant-growth/c5-the-survival-secret-anime.png"
-            },
-            {
-              "world": "space",
-              "scene": "An explorer compares a large potato and a tiny seed in a dark storage locker on a spaceship.",
-              "illustration": "A large potato and a tiny seed sitting side-by-side in a dark cupboard.",
-              "image": "/media/light-plant-growth/c5-the-survival-secret-space.png"
-            },
-            {
-              "world": "cyberpunk",
-              "scene": "A hacker compares a large potato and a tiny seed inside a dark, high-tech storage crate.",
-              "illustration": "A large potato and a tiny seed sitting side-by-side in a dark cupboard.",
-              "image": "/media/light-plant-growth/c5-the-survival-secret-cyberpunk.png"
             }
           ],
           "question": {
