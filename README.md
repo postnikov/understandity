@@ -23,7 +23,7 @@ The kid picks a world (Fantasy or Anime in the demo courses) and can switch it o
 
 Answering by voice: press the mic, talk for up to 30 seconds, press **Done**. The screen shows **I heard: …** with **Yes, that is it** and **Record again**, because a recognition slip is not the kid's mistake. Silence gives "No answer received", never "did not understand". The tutor's reply appears as text while the model writes it, then a local voice reads it out. The kid can also type a question under the card or press **Just explain**.
 
-For each turn the tutor gets the card's fact and conditions, the adult-approved key (with an instruction not to reveal it before the kid tries), the typical mistake and a clarifying question. It answers in 2–4 short sentences with exactly one question, doesn't praise before the cause is checked, and never judges accent or wording. After two hints it stops asking and explains directly on a different example. It refuses to tutor a card an adult hasn't approved.
+For each turn the tutor gets the card's fact and conditions, the adult-approved key (with an instruction not to reveal it before the kid tries), the typical mistake and a clarifying question. It first judges the answer against the key by meaning: a right cause is confirmed out loud and followed by a new case; a bare prediction gets "why?"; a wrong cause gets a counterexample; "I don't know" gets a small hint. It answers in 2–4 short sentences with exactly one question, never states the key itself before the kid does, and never judges accent or wording. Only those guiding replies and **Just explain** count as hints; after two, it explains directly on a different example. It refuses to tutor a card an adult hasn't approved.
 
 ## Why local
 
@@ -170,9 +170,9 @@ Single runs on our Mac Studio with synthetic adult speech. Not a child's voice, 
 
 As of 24.10.2026, during the hackathon:
 
-- A full pass in the browser with a live microphone and the real engines is still pending. The loop has passed end to end on fake engines, and the local text and voice engines were each checked live on their own.
+- A pass with a live microphone in a real browser is a manual check that is still pending. The voice loop on the real engines (Whisper → Gemma → Qwen3-TTS) has passed end to end with synthetic speech, and the launcher smoke has passed on the demo MacBook.
 - Scene images are being generated. A scene without one shows the SVG scheme.
-- The tutor replies with text only. Structured evidence (prediction, cause, transfer, hints used) exists in the contracts and the UI but is not extracted yet.
+- Evidence per answer is minimal: the tutor model's own verdict against the key (cause, hints used, transfer on the new case). It is not double-checked, the prediction itself is not extracted, and nothing is tracked across cards.
 - Cards go in order; picking the next card from the kid's answer is not built.
 - The adult gate doesn't cover the explanation, the Try step and the scenes (see above).
 - There is no filter yet for what the model says to a child. It is required before real use with children.
