@@ -76,7 +76,7 @@ export function generateRoutes({ hub, contentDir, worlds = ['fantasy', 'anime'],
     const picked = pickEngine(body.engine);
     if (!picked) throw onlineUnavailable();
     const opt = picked.config.options;
-    const { course } = await generateCourse(
+    const { course, report } = await generateCourse(
       {
         topic: body.request,
         request: body.request,
@@ -99,6 +99,9 @@ export function generateRoutes({ hub, contentDir, worlds = ['fantasy', 'anime'],
     );
     job.step = 'saving';
     job.courseId = await save(course);
+    // Timing and format issues only — never the request text (it is the learner's).
+    const tries = report.attempts.map((a) => `${a.ms}ms${a.problems.length ? ` (${a.problems.join('; ')})` : ''}`).join(' → ');
+    console.log(`course on request: ${job.courseId} · ${report.provider}:${report.model} · ${report.totalMs}ms · ${tries}`);
     job.status = 'done';
   }
 

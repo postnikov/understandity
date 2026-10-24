@@ -252,8 +252,8 @@ export async function generateCourse(
       if (ev.type === 'delta' && at !== 'worlds') {
         seen += ev.text;
         if (at === 'outline' && seen.includes('"cards"')) step((at = 'cards'));
-        // The last card's worlds: the course is almost written.
-        if (at === 'cards' && (seen.match(/"worlds"/g)?.length ?? 0) >= req.cardCount) step((at = 'worlds'));
+        // Scenes of the last cards: the course is almost written (models sometimes write a card fewer).
+        if (at === 'cards' && (seen.match(/"worlds"/g)?.length ?? 0) >= Math.max(1, req.cardCount - 1)) step((at = 'worlds'));
       }
       yield ev;
     }
