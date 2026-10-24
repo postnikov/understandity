@@ -218,6 +218,7 @@ export function bindMake(root: HTMLElement) {
     if (!request) return;
     m.request = request;
     void run({ request, audience: m.audience, lang: 'en', engine: m.engine, world: m.world });
+    if (!location.hash.startsWith('#/make')) location.hash = '#/make';
   });
   root.querySelector('#make-another')?.addEventListener('click', () => {
     m.phase = 'form';
