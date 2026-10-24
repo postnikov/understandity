@@ -402,7 +402,8 @@ a.map-card:hover { border-color: var(--accent); }
 .make-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
 .make-steps li { border-top: 3px solid var(--decor); padding-top: var(--s-2); font-size: 12px; color: var(--fg-faint); }
 .make-steps li.done { border-top-color: #b8aaea; color: var(--fg); }
-.make-steps li.on { border-top-color: var(--accent); color: var(--accent); font-weight: 700; animation: blink 1.2s steps(1) infinite; }
+.make-steps li.on { border-top-color: var(--accent); color: var(--accent); font-weight: 700; animation: soft-pulse 1.4s ease-in-out infinite; }
+@keyframes soft-pulse { 50% { opacity: 0.55; } }
 .make-time { font-size: 13px; color: var(--fg-dim); }
 .make-time b { color: var(--accent); font-variant-numeric: tabular-nums; font-size: 16px; margin-right: var(--s-2); }
 .course-tabs--mine .label { color: var(--accent); }

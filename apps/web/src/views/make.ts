@@ -164,8 +164,11 @@ export function bindMake(root: HTMLElement) {
   });
   root.querySelector('#make-retry')?.addEventListener('click', () => m.last && void run(m.last));
   root.querySelector('#make-edit')?.addEventListener('click', () => {
-    m.phase = 'form';
-    rerender();
+    // Re-read the keys: without an Anthropic key the choice falls back to Local, so the next run can't hit 409 again.
+    void refreshKeys().then(() => {
+      m.phase = 'form';
+      rerender();
+    });
   });
 }
 
