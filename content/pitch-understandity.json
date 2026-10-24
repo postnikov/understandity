@@ -1,7 +1,7 @@
 {
   "id": "pitch-understandity",
   "title": "Why does Understandity ask you to explain?",
-  "outcome": "Explain how Understandity checks reasoning, guides spoken answers, works offline and separates a generated draft from a reviewed course.",
+  "outcome": "Explain how Understandity checks reasoning, guides spoken answers, works offline and why checking sources helps you assess a generated course.",
   "language": "en",
   "subject": "learning",
   "ageRange": [
@@ -17,7 +17,7 @@
         "Use a confirmed voice transcript before judging reasoning",
         "Ask for a cause and a new case without giving away the key",
         "Offline operation assumes installed local models and a prepared course",
-        "Prepared courses require adult approval; on-request drafts are marked unchecked",
+        "Courses open immediately; a generated draft can contain incorrect facts or answer keys",
         "The scripted comparison is not a study of learning outcomes with children"
       ],
       "cards": [
@@ -30,13 +30,13 @@
               "The final answer alone does not reveal how it was reached",
               "A new case uses the same underlying idea and gives no hints"
             ],
-            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; The adult gate), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Original summary by Codex; project measurements, not a learning-outcomes study."
+            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; Make your own course), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Product behavior updated from Max Postnikov's decision of 24 October 2026. Original summary by Codex; project measurements, not a learning-outcomes study."
           },
           "hook": {
             "question": "Two learners give the same correct answer. What could still be different?",
             "predictPrompt": "Predict what you could tell about their thinking from the answer alone, and explain your reason."
           },
-          "explanation": "A correct answer can be a lucky guess or a sentence remembered from earlier. Understandity asks you to explain the cause, then use it in an unfamiliar case. That gives the tutor more evidence than the answer alone. It is the teaching design, not proof of better results for children.",
+          "explanation": "A correct answer can be a lucky guess or a sentence remembered from earlier. Understandity asks you to explain the cause, then use it in an unfamiliar case. That gives the tutor more evidence than the answer alone. It is the teaching design, not proof of better results for children. Understanding is the key.",
           "action": {
             "instruction": "Thought experiment: a friend gives a correct answer. Compare what you learn when you accept it at once with what you learn when you also ask for the reason.",
             "changedCondition": "Whether the friend is asked for a reason",
@@ -113,7 +113,7 @@
             "reviewer": null,
             "reviewedAt": null,
             "notes": [
-              "2026-10-24T13:32:59+00:00 Codex editorial revision, not adult approval: Reworked the Sonnet opening; removed the implication that a cause or one transfer answer proves understanding with certainty.",
+              "2026-10-24T13:32:59+00:00 Codex editorial revision: Reworked the Sonnet opening; removed the implication that a cause or one transfer answer proves understanding with certainty.",
               "2026-10-24T13:33:43.434Z изменено: scenes for world(s) fantasy, anime written by gemma4:12b-mlx",
               "Codex checked the question, key and both world scenes against the source; image paths are planned deliverables for the designer, not rendered files. Review remains needs_review."
             ]
@@ -130,7 +130,7 @@
               "The new case needs the same cause but arrives without hints",
               "Changing worlds changes scenes, not facts"
             ],
-            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; The adult gate), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Original summary by Codex; project measurements, not a learning-outcomes study."
+            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; Make your own course), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Product behavior updated from Max Postnikov's decision of 24 October 2026. Original summary by Codex; project measurements, not a learning-outcomes study."
           },
           "hook": {
             "question": "Why does Understandity keep changing the example?",
@@ -213,7 +213,7 @@
             "reviewer": null,
             "reviewedAt": null,
             "notes": [
-              "2026-10-24T13:32:59+00:00 Codex editorial revision, not adult approval: Combined prediction, one-condition Try and transfer into one card to match the brief; removed unrelated paper-plane and plant-food claims.",
+              "2026-10-24T13:32:59+00:00 Codex editorial revision: Combined prediction, one-condition Try and transfer into one card to match the brief; removed unrelated paper-plane and plant-food claims.",
               "2026-10-24T13:33:43.434Z изменено: scenes for world(s) fantasy, anime written by gemma4:12b-mlx",
               "Codex checked the question, key and both world scenes against the source; image paths are planned deliverables for the designer, not rendered files. Review remains needs_review."
             ]
@@ -223,13 +223,13 @@
           "id": "c3-a-tutor-that-asks-why",
           "title": "A tutor that asks why",
           "fact": {
-            "statement": "The learner confirms the voice transcript before judgement; the tutor uses a reviewed key and is instructed to ask for missing reasoning rather than reveal that key.",
+            "statement": "The learner confirms the voice transcript before judgement; the tutor uses an answer key and is instructed to ask for missing reasoning rather than reveal that key.",
             "conditions": [
               "Judge the confirmed transcript, not a recognition error",
               "A bare prediction contains no causal explanation",
               "The key and the tutor can still contain errors; the reported comparison used scripted text, not children"
             ],
-            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; The adult gate), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Original summary by Codex; project measurements, not a learning-outcomes study."
+            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; Make your own course), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Product behavior updated from Max Postnikov's decision of 24 October 2026. Original summary by Codex; project measurements, not a learning-outcomes study."
           },
           "hook": {
             "question": "Why would a tutor ask another question when your prediction sounds right?",
@@ -312,9 +312,10 @@
             "reviewer": null,
             "reviewedAt": null,
             "notes": [
-              "2026-10-24T13:32:59+00:00 Codex editorial revision, not adult approval: Adapted the Sonnet transcript card into the brief's voice-and-tutor card; benchmark numbers retain their text-only, scripted-test limits.",
+              "2026-10-24T13:32:59+00:00 Codex editorial revision: Adapted the Sonnet transcript card into the brief's voice-and-tutor card; benchmark numbers retain their text-only, scripted-test limits.",
               "2026-10-24T13:33:43.434Z изменено: scenes for world(s) fantasy, anime written by gemma4:12b-mlx",
-              "Codex checked the question, key and both world scenes against the source; image paths are planned deliverables for the designer, not rendered files. Review remains needs_review."
+              "Codex checked the question, key and both world scenes against the source; image paths are planned deliverables for the designer, not rendered files. Review remains needs_review.",
+              "2026-10-24T13:44:30+00:00 Codex removed the unsupported implication that the tutor key has already been verified."
             ]
           }
         },
@@ -329,7 +330,7 @@
               "The Offline profile is selected",
               "Text dialogue logs remain on the computer"
             ],
-            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; The adult gate), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Original summary by Codex; project measurements, not a learning-outcomes study."
+            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; Make your own course), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Product behavior updated from Max Postnikov's decision of 24 October 2026. Original summary by Codex; project measurements, not a learning-outcomes study."
           },
           "hook": {
             "question": "Can a tutor answer you when Wi-Fi disappears?",
@@ -412,7 +413,7 @@
             "reviewer": null,
             "reviewedAt": null,
             "notes": [
-              "2026-10-24T13:32:59+00:00 Codex editorial revision, not adult approval: Added from the approved source to restore the missing offline/privacy topic. The 0.7-second number is a Mac Studio tutor turn, not end-to-end voice latency or a laptop guarantee.",
+              "2026-10-24T13:32:59+00:00 Codex editorial revision: Added from the source notes to restore the missing offline/privacy topic. The 0.7-second number is a Mac Studio tutor turn, not end-to-end voice latency or a laptop guarantee.",
               "2026-10-24T13:33:43.434Z изменено: scenes for world(s) fantasy, anime written by gemma4:12b-mlx",
               "Codex checked the question, key and both world scenes against the source; image paths are planned deliverables for the designer, not rendered files. Review remains needs_review."
             ]
@@ -420,78 +421,77 @@
         },
         {
           "id": "c5-who-checks-a-new-course",
-          "title": "Who checks a new course?",
+          "title": "Ready does not mean right",
           "fact": {
-            "statement": "Prepared courses require an adult to review each fact, question and key. Make your own course opens an unchecked draft immediately, so generation speed is not evidence that its claims are correct.",
+            "statement": "Make your own course opens a model draft immediately. Fast generation and convincing wording do not verify its facts or answer keys.",
             "conditions": [
-              "Prepared courses and on-request drafts follow different review paths",
-              "Models can invent incorrect facts or keys",
-              "On-request courses carry an unchecked label",
-              "Online generation requires the Online profile, a key and network access"
+              "A model can generate incorrect facts or answer keys",
+              "Immediate availability means generation has finished",
+              "Facts and keys should be compared with sources before relying on the course"
             ],
-            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; The adult gate), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Original summary by Codex; project measurements, not a learning-outcomes study."
+            "source": "Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; Make your own course), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Product behavior updated from Max Postnikov's decision of 24 October 2026. Original summary by Codex; project measurements, not a learning-outcomes study."
           },
           "hook": {
-            "question": "If a course appears in moments, who has checked its answers?",
-            "predictPrompt": "Predict what a finished generation tells you about the reliability of the lesson, and explain why."
+            "question": "A course appears in moments. What does that tell you about its facts?",
+            "predictPrompt": "Predict what you can conclude from a finished generation, and what you still need evidence for."
           },
-          "explanation": "A model can write a convincing lesson with a wrong fact or key. Prepared courses wait for an adult to check fact, question and key. Make your own course opens a draft immediately and labels it unchecked. It can generate locally, or online with a key. Finishing the draft does not verify its claims.",
+          "explanation": "Make your own course opens a model draft immediately. A model can write a convincing lesson with a wrong fact or answer key. Speed tells you the draft is ready, not that its claims are true. Before relying on it, compare its facts and keys with sources. Courses open without waiting for this comparison.",
           "action": {
-            "instruction": "Thought experiment: compare the same generated lesson before and after an adult checks its facts, questions and keys against sources. Keep the text unchanged for this comparison and explain what the review adds.",
-            "changedCondition": "Whether an adult has checked the draft against sources",
+            "instruction": "Thought experiment: compare the same generated lesson before and after you check its facts and answer keys against sources. Keep the text unchanged for this comparison and explain what evidence the source check adds.",
+            "changedCondition": "Whether the facts and answer keys have been compared with sources",
             "constants": [
               "Same generated text",
               "Same model and generation speed",
-              "Same intended learner"
+              "Same intended use"
             ],
             "thoughtExperiment": true
           },
           "worlds": [
             {
               "world": "fantasy",
-              "scene": "An adult and a young apprentice examine a freshly prepared lesson on a laptop beside open reference books. The adult is still comparing the material; there is no approval stamp.",
-              "illustration": "A side view of an adult comparing a laptop with open reference books while the learner waits. The review is in progress. Blank pages and screen; no check marks, seals, approval stamps or writing.",
+              "scene": "A young apprentice in a castle study compares a freshly generated lesson on a laptop with open reference books. The apprentice looks for supporting evidence in the books.",
+              "illustration": "A side view of one young learner comparing a laptop with open reference books. The learner is actively checking the material. Blank pages and screen; no other characters, check marks, seals or writing.",
               "image": "/media/pitch-understandity/c5-who-checks-a-new-course-fantasy.png"
             },
             {
               "world": "anime",
-              "scene": "An adult and a young hero examine a freshly prepared lesson on a laptop beside open reference books. The adult is still comparing the material; there is no approval stamp.",
-              "illustration": "A side view of an adult comparing a laptop with open reference books while the learner waits. The review is in progress. Blank pages and screen; no check marks, seals, approval stamps or writing.",
+              "scene": "A young hero in a school library compares a freshly generated lesson on a laptop with open reference books. The hero looks for supporting evidence in the books.",
+              "illustration": "A side view of one young learner comparing a laptop with open reference books. The learner is actively checking the material. Blank pages and screen; no other characters, check marks, seals or writing.",
               "image": "/media/pitch-understandity/c5-who-checks-a-new-course-anime.png"
             }
           ],
           "question": {
             "id": "q-c5-who-checks-a-new-course",
-            "prompt": "A parent asks Make your own course for a new topic and the lesson opens immediately. What can they conclude about its reliability, and what should they do before relying on it with a child?",
+            "prompt": "A study group makes a course about an unfamiliar topic. It opens immediately and sounds convincing. How should they decide whether to rely on it, and why?",
             "maxAnswerSec": 60
           },
           "key": {
             "questionId": "q-c5-who-checks-a-new-course",
-            "expectedCause": "Opening means generation finished, not that the facts are correct. This on-request course is an unchecked draft. The parent should verify its facts, questions and answer keys against sources before relying on it; the model can be wrong even when its wording is convincing.",
+            "expectedCause": "Compare the course facts and answer keys with sources before relying on them. Opening immediately means the model finished a draft; convincing wording and speed do not establish correctness, because a model can produce mistakes.",
             "acceptable": [
-              "The automatic unchecked label is not an adult approval",
-              "Prepared courses normally wait for adult approval, while this on-request draft opens immediately",
-              "A good-looking lesson or a faster model does not replace checking"
+              "Check whether the keys actually answer their questions and agree with the sources",
+              "Use sources with evidence rather than judging the wording alone",
+              "The course can already be opened; checking is a way to assess reliability, not an access requirement"
             ],
-            "typicalMistake": "Assuming immediate availability means an adult or an automatic fact checker has approved the course.",
-            "followUp": "What evidence of a factual check does opening the lesson give you?"
+            "typicalMistake": "Assuming a fast, convincing or finished course must be factually correct.",
+            "followUp": "What evidence of factual accuracy does finishing the draft give you?"
           },
           "rubric": {
             "criteria": [
               {
                 "level": "shows_cause",
-                "example": "It is ready as a draft, not verified. The parent needs to check the facts and the question-key pairs because the model can invent mistakes.",
+                "example": "They should compare its facts and keys with sources. The model finished quickly, but that does not show its claims are correct.",
                 "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
               },
               {
                 "level": "familiar_words_wrong_use",
-                "example": "If it opened, the system must have approved every fact.",
+                "example": "It opened and sounds convincing, so every answer must be correct.",
                 "tutorMove": "Return a counterexample and ask to compare again."
               },
               {
                 "level": "not_enough_yet",
                 "example": "They should be careful.",
-                "tutorMove": "What evidence of a factual check does opening the lesson give you?"
+                "tutorMove": "What evidence of factual accuracy does finishing the draft give you?"
               },
               {
                 "level": "channel_problem",
@@ -506,15 +506,15 @@
               "wording style"
             ]
           },
-          "askTutor": "Why does a prepared course wait for review while a requested draft opens now?",
+          "askTutor": "If the model sounds certain, why should I compare its answer with a source?",
           "review": {
             "state": "needs_review",
             "reviewer": null,
             "reviewedAt": null,
             "notes": [
-              "2026-10-24T13:32:59+00:00 Codex editorial revision, not adult approval: Added from the approved source to restore the missing adult-review/on-request topic. Does not claim that on-request drafts are blocked or already approved.",
               "2026-10-24T13:33:43.434Z изменено: scenes for world(s) fantasy, anime written by gemma4:12b-mlx",
-              "Codex checked the question, key and both world scenes against the source; image paths are planned deliverables for the designer, not rendered files. Review remains needs_review."
+              "Codex checked the question, key and both world scenes against the source; image paths are planned deliverables for the designer, not rendered files. Review remains needs_review.",
+              "2026-10-24T13:44:30+00:00 Codex manual rework: reliability now means checking facts and answer keys against sources; courses open immediately. Replaced both scenes with an independent learner. No generation calls."
             ]
           }
         }
@@ -526,9 +526,10 @@
     "reviewer": null,
     "reviewedAt": null,
     "notes": [
-      "Generated by claude-sonnet-5-5; nothing is shown to a child before an adult approves each card (fact → question → key).",
-      "Source for verification: Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; The adult gate), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Original summary by Codex; project measurements, not a learning-outcomes study.",
-      "2026-10-24T13:32:59+00:00 Codex restructured the Sonnet draft to cover all five brief topics; added offline and review cards from the source, removed unsupported examples, and kept every review state needs_review. No adult approval granted."
+      "Draft generated by claude-sonnet-5-5 and substantially edited by Codex; model output is not a guarantee of factual correctness.",
+      "Source for verification: Understandity project documentation, 24 October 2026: README.md (How a card works; Before and after; Why local; Architecture; Make your own course), docs/submission.md, docs/demo-script.md; main at 0e6deff, including af2eb49 and cd31813. Product behavior updated from Max Postnikov's decision of 24 October 2026. Original summary by Codex; project measurements, not a learning-outcomes study.",
+      "2026-10-24T13:32:59+00:00 Codex restructured the Sonnet draft to cover five product topics and removed unsupported examples.",
+      "2026-10-24T13:44:30+00:00 Codex manual rework per the updated product brief: courses open immediately, reliability depends on evidence, and the current slogan is Understanding is the key. Existing review metadata is retained for schema compatibility."
     ]
   },
   "origin": {

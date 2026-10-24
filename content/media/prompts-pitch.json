@@ -78,7 +78,7 @@
     "seed": 109,
     "preset": "landscape",
     "image": "/media/pitch-understandity/c5-who-checks-a-new-course-fantasy.png",
-    "prompt": "An adult and a young apprentice examine a freshly prepared lesson on a laptop beside open reference books. The adult is still comparing the material; there is no approval stamp. A side view of an adult comparing a laptop with open reference books while the learner waits. The review is in progress. Blank pages and screen; no check marks, seals, approval stamps or writing. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+    "prompt": "A young apprentice in a castle study compares a freshly generated lesson on a laptop with open reference books. The apprentice looks for supporting evidence in the books. A side view of one young learner comparing a laptop with open reference books. The learner is actively checking the material. Blank pages and screen; no other characters, check marks, seals or writing. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
   },
   {
     "course": "pitch-understandity",
@@ -87,6 +87,6 @@
     "seed": 110,
     "preset": "landscape",
     "image": "/media/pitch-understandity/c5-who-checks-a-new-course-anime.png",
-    "prompt": "An adult and a young hero examine a freshly prepared lesson on a laptop beside open reference books. The adult is still comparing the material; there is no approval stamp. A side view of an adult comparing a laptop with open reference books while the learner waits. The review is in progress. Blank pages and screen; no check marks, seals, approval stamps or writing. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+    "prompt": "A young hero in a school library compares a freshly generated lesson on a laptop with open reference books. The hero looks for supporting evidence in the books. A side view of one young learner comparing a laptop with open reference books. The learner is actively checking the material. Blank pages and screen; no other characters, check marks, seals or writing. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
   }
 ]
