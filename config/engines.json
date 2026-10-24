@@ -50,6 +50,7 @@
           "apiVersion": "2023-06-01",
           "effort": "low",
           "courseEffort": "medium",
+          "courseModel": "claude-sonnet-5-5",
           "minMaxTokens": 1024,
           "courseMaxTokens": 16000,
           "timeoutMs": 60000,

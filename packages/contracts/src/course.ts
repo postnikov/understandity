@@ -141,9 +141,16 @@ export const CourseSchema = z
     concepts: z.array(ConceptSchema).min(1),
     review: ReviewStatusSchema,
     origin: z.object({
-      generator: z.enum(['hand', 'fake', 'model']),
+      /** `on-request`: a learner's own request turned into a course on the spot; shown at once, marked as not checked. */
+      generator: z.enum(['hand', 'fake', 'model', 'on-request']),
       model: z.string().nullable().default(null),
       createdAt: z.string(),
+      /** What the learner asked for (on-request only). */
+      request: z.string().optional(),
+      /** `local` (offline model) or `online` (cloud model with the user's key); on-request only. */
+      engine: z.enum(['local', 'online']).optional(),
+      /** Who asked: `child` (12–14 voice) or `adult`; on-request only. */
+      audience: z.enum(['child', 'adult']).optional(),
     }),
   })
   .superRefine((course, ctx) => {
@@ -165,6 +172,11 @@ export function isShowable(card: Card, opts: { allowDrafts?: boolean } = {}): bo
   if (card.review.state === 'blocked') return false;
   if (card.review.state === 'approved') return true;
   return opts.allowDrafts === true;
+}
+
+/** A course made on a learner's request is shown without an adult gate (word of Max, 24.10); prepared courses are not. */
+export function showsDrafts(course: Pick<Course, 'origin'>): boolean {
+  return course.origin.generator === 'on-request';
 }
 
 export function findCard(course: Course, cardId: string): { concept: Concept; card: Card } | null {
