@@ -9,3 +9,6 @@ config/*.local.json
 # python sidecars
 __pycache__/
 .venv/
+# local secrets never go to git
+.env
+.env.*
