@@ -80,6 +80,7 @@ const en = {
     worth: 'A question worth asking',
     waiting: 'waiting for an adult check',
   },
+  subjects: { physics: 'physics', math: 'math', biology: 'biology' } as Record<string, string>,
   worlds: { fantasy: 'Fantasy', anime: 'Anime', cyberpunk: 'Cyberpunk', sport: 'Sport', lab: 'School lab' } as Record<string, string>,
   review: {
     state: { draft: 'Draft', needs_review: 'Needs check', approved: 'Approved', blocked: 'Blocked' },
@@ -288,6 +289,7 @@ const ru: Dict = {
     worth: 'Вопрос, который стоит задать',
     waiting: 'ждёт проверки взрослым',
   },
+  subjects: { physics: 'физика', math: 'математика', biology: 'биология' },
   worlds: { fantasy: 'Фэнтези', anime: 'Аниме', cyberpunk: 'Киберпанк', sport: 'Спорт', lab: 'Школьная лаборатория' },
   review: {
     state: { draft: 'Черновик', needs_review: 'Нужна проверка', approved: 'Одобрено', blocked: 'Заблокировано' },

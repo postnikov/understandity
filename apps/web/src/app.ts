@@ -25,6 +25,9 @@ export function setWorld(world: string) {
 
 export const esc = (v: unknown) => String(v ?? '').replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
+/** Subject label in the UI language; unknown subjects pass through as written in the course. */
+export const subjectLabel = (subject: string) => t().subjects[subject.toLowerCase()] ?? subject;
+
 export const worldLabel = (w: string) => t().worlds[w] ?? w.charAt(0).toUpperCase() + w.slice(1);
 
 /** Re-render hook set by the shell; views call it after state changes. */

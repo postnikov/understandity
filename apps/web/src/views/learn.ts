@@ -10,7 +10,7 @@ import {
   type TutorTurnReply,
 } from '@understandity/contracts';
 import { api, ApiFailure, isMock } from '../api.js';
-import { app, errorText, esc, rerender, setWorld, t, worldLabel } from '../app.js';
+import { app, errorText, esc, subjectLabel, rerender, setLang, setWorld, t, worldLabel } from '../app.js';
 import type { View } from '../main.js';
 import { SILENCE_PEAK, VoiceRecorder } from '../recorder.js';
 import { sceneArt } from '../scenes.js';
@@ -120,7 +120,7 @@ function sidebar(): string {
   const n = s.cards.length;
   return `<aside class="sidebar">
     <a class="back" href="#/">${d.back}</a>
-    <div class="eyebrow">${esc(s.course!.subject)} / ${two(s.index + 1)}</div>
+    <div class="eyebrow">${esc(subjectLabel(s.course!.subject))} / ${two(s.index + 1)}</div>
     <h2>${esc(s.course!.title)}</h2>
     <div class="course-progress"><span>${d.discoveries}</span><span>${s.visited.size} / ${n} ${d.explored}</span></div>
     <div class="progress-track">${s.cards.map((_, i) => `<i class="${s.visited.has(i) ? 'on' : ''}"></i>`).join('')}</div>
@@ -145,7 +145,7 @@ function sceneCol(c: Card): string {
   const scene = sceneOf(c);
   const art = sceneArt({ course: s.course, card: c, index: s.index, world: scene.world, labels: courseLang().startsWith('en') });
   return `<div class="scene-col">
-    <div class="scene">${art.html}<span class="art-stamp">${esc(worldLabel(scene.world))} / ${esc(s.course!.subject)}</span>
+    <div class="scene">${art.html}<span class="art-stamp">${esc(worldLabel(scene.world))} / ${esc(subjectLabel(s.course!.subject))}</span>
       <div class="art-caption"><span>${d.observe}</span></div></div>
     <div class="world-text"><span class="eyebrow eyebrow--plain">${esc(d.yourWorld(worldLabel(scene.world)))}</span><p>${esc(scene.scene)}</p></div>
   </div>`;
@@ -593,6 +593,9 @@ export const learnView: View = {
     try {
       const course = await api.course(courseId);
       s.course = course;
+      // A child reads one language on the lesson screen: the chrome follows the course (EN/RU switch still works).
+      const cl = course.language.slice(0, 2);
+      if ((cl === 'en' || cl === 'ru') && cl !== app.lang) setLang(cl);
       s.cards = course.concepts.flatMap((k) => k.cards).filter((c) => isShowable(c, { allowDrafts: app.allowDrafts }));
       if (s.index >= s.cards.length) s.index = 0;
       s.visited.add(s.index);

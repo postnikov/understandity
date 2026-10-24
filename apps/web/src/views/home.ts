@@ -1,6 +1,6 @@
 import { isShowable, type Card, type Course } from '@understandity/contracts';
 import { api, isMock, type CourseSummary } from '../api.js';
-import { app, errorText, esc, rerender, t } from '../app.js';
+import { app, errorText, esc, subjectLabel, rerender, t } from '../app.js';
 import type { View } from '../main.js';
 import { sceneArt } from '../scenes.js';
 
@@ -42,7 +42,7 @@ function hero(course: Course): string {
   const all = cardsOf(course);
   return `<section class="home-hero">
     <div class="home-copy">
-      <div class="eyebrow">${d.home.adventure} ${esc(course.subject)}</div>
+      <div class="eyebrow">${d.home.adventure} ${esc(subjectLabel(course.subject))}</div>
       <h1>${heroTitle(course.title)}</h1>
       <p class="lead">${esc(course.outcome)}</p>
       <div class="home-actions">
