@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.vite/
+*.log
+.DS_Store
+# runtime state and local overrides
+data/
+config/*.local.json
+# python sidecars
+__pycache__/
+.venv/
