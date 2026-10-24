@@ -66,8 +66,7 @@ export const homeView: View = {
   html() {
     const d = t();
     const courses = s.courses.map((c) => s.full.get(c.id)).filter((c): c is Course => !!c);
-    const prepared = courses.filter((c) => !isOnRequest(c));
-    const mine = courses.filter((c) => isOnRequest(c));
+    // One block (Max, 24.10): every course available here is just a course — ready-made and made on request alike.
     return `<main class="page home landing">
       <section class="intro">
         <div class="intro__copy">
@@ -81,8 +80,7 @@ export const homeView: View = {
       ${s.error ? `<p class="alert alert--err"><b>××</b><span>${esc(s.error)}</span></p>` : ''}
       ${s.loading && !courses.length ? `<p class="dim">${d.loading}</p>` : ''}
       ${!s.loading && !s.error && !courses.length ? `<p class="dim">${d.home.empty}</p>` : ''}
-      ${grid(d.make.yourCourses, d.home.yourCoursesHint, mine)}
-      ${grid(d.home.courses, d.home.coursesHint, prepared)}
+      ${grid(d.home.courses, d.home.coursesHint, courses)}
       ${isMock() ? `<p class="faint" style="font-size:12px;margin-top:var(--s-5)">${esc(d.mockHint)}</p>` : ''}
     </main>`;
   },
