@@ -120,14 +120,15 @@
           },
           "askTutor": "Why can't I just look for examples that fit the rule?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T13:33:00.000Z",
             "notes": [
               "absolute word \"only\" in key — check that it holds under the stated conditions",
               "absolute word \"only\" in fact — check that it holds under the stated conditions",
               "2026-10-24T13:10:34.344Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "2026-10-24T13:16:58.000Z изменено вручную (Fable, до проверки Max): hook no longer names the number of cards or calls blue a waste; predict asks for the cards and the breaking pair without a count"
+              "2026-10-24T13:16:58.000Z изменено вручную (Fable, до проверки Max): hook no longer names the number of cards or calls blue a waste; predict asks for the cards and the breaking pair without a count",
+              "approved by Max 2026-10-24 15:33 (c-94d2f23b)"
             ]
           }
         },
@@ -231,12 +232,13 @@
           },
           "askTutor": "So was Hans just cheating?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T13:33:00.000Z",
             "notes": [
               "absolute word \"only\" in voice question — check that it holds under the stated conditions",
-              "2026-10-24T13:10:34.344Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+              "2026-10-24T13:10:34.344Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "approved by Max 2026-10-24 15:33 (c-94d2f23b)"
             ]
           }
         },
@@ -339,14 +341,15 @@
           },
           "askTutor": "Does that mean the reviews are false?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T13:33:00.000Z",
             "notes": [
               "absolute word \"only\" in voice question — check that it holds under the stated conditions",
               "absolute word \"only\" in fact — check that it holds under the stated conditions",
               "2026-10-24T13:10:34.344Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "2026-10-24T13:16:58.000Z изменено вручную (Fable, до проверки Max): hook ends with a question instead of suggesting that unmarked parts are the ones to protect"
+              "2026-10-24T13:16:58.000Z изменено вручную (Fable, до проверки Max): hook ends with a question instead of suggesting that unmarked parts are the ones to protect",
+              "approved by Max 2026-10-24 15:33 (c-94d2f23b)"
             ]
           }
         },
@@ -449,14 +452,15 @@
           },
           "askTutor": "Why does the 1 in 2 case change so much?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T13:33:00.000Z",
             "notes": [
               "absolute word \"all\" in voice question — check that it holds under the stated conditions",
               "absolute word \"only\" in key — check that it holds under the stated conditions",
               "2026-10-24T13:10:34.344Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "2026-10-24T13:16:58.000Z изменено вручную (Fable, до проверки Max): hook no longer states that most flags are wrong; the answer (about 95 percent real) removed from the Try instruction"
+              "2026-10-24T13:16:58.000Z изменено вручную (Fable, до проверки Max): hook no longer states that most flags are wrong; the answer (about 95 percent real) removed from the Try instruction",
+              "approved by Max 2026-10-24 15:33 (c-94d2f23b)"
             ]
           }
         },
@@ -559,13 +563,14 @@
           },
           "askTutor": "How can I tell whether sources are really independent?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T13:33:00.000Z",
             "notes": [
               "absolute word \"all\" in voice question — check that it holds under the stated conditions",
               "2026-10-24T13:10:34.344Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "2026-10-24T13:16:58.000Z изменено вручную (Fable, до проверки Max): predict uses the 1835 reprints so the new case (AI assistants and one press release) stays new"
+              "2026-10-24T13:16:58.000Z изменено вручную (Fable, до проверки Max): predict uses the 1835 reprints so the new case (AI assistants and one press release) stays new",
+              "approved by Max 2026-10-24 15:33 (c-94d2f23b)"
             ]
           }
         }
@@ -573,12 +578,13 @@
     }
   ],
   "review": {
-    "state": "needs_review",
-    "reviewer": null,
-    "reviewedAt": null,
+    "state": "approved",
+    "reviewer": "adult",
+    "reviewedAt": "2026-10-24T13:33:00.000Z",
     "notes": [
       "Generated by claude-sonnet-5-5; nothing is shown to a child before an adult approves each card (fact → question → key).",
-      "Source for verification: Author's own notes for a critical-thinking micro-course (16-18); all numbers are teaching numbers, not measurements. Classic tasks attributed, no participant results used: Wason selection task (described 1968); Pfungst, Clever Hans (1911); Wald, aircraft damage memoranda (1943, CNA reprint 1980); the test problem is a teaching model (task attributed to Casscells et al., 1978); the 1835 Moon Hoax per Library of Congress. Adult reference only, no text copied: OpenStax Introductory Statistics 2e 1.2 and 3.5, Introduction to Philosophy 2.2 (CC BY-NC-SA 4.0) — https://www.cna.org/reports/1980/0204320000.pdf"
+      "Source for verification: Author's own notes for a critical-thinking micro-course (16-18); all numbers are teaching numbers, not measurements. Classic tasks attributed, no participant results used: Wason selection task (described 1968); Pfungst, Clever Hans (1911); Wald, aircraft damage memoranda (1943, CNA reprint 1980); the test problem is a teaching model (task attributed to Casscells et al., 1978); the 1835 Moon Hoax per Library of Congress. Adult reference only, no text copied: OpenStax Introductory Statistics 2e 1.2 and 3.5, Introduction to Philosophy 2.2 (CC BY-NC-SA 4.0) — https://www.cna.org/reports/1980/0204320000.pdf",
+      "approved by Max 2026-10-24 15:33 (c-94d2f23b)"
     ]
   },
   "origin": {

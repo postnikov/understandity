@@ -119,14 +119,15 @@
           },
           "askTutor": "Would the same rate always produce the same result if interest were credited at different times?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T13:33:00.000Z",
             "notes": [
               "explanation is 39 words (expected 40–60)",
               "2026-10-24T13:24:00Z Manual revision by Codex before Max review: Removed answer from the action; specified annual rate and timing in the transfer; replaced the anime doubling rule and magical multiplication with the same ten-percent account mechanism; explanation expanded.",
               "2026-10-24T13:26:24.118Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review."
+              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review.",
+              "approved by Max 2026-10-24 15:33 (c-b3acb545)"
             ]
           }
         },
@@ -230,15 +231,16 @@
           },
           "askTutor": "Can some prices fall even while overall inflation is positive?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T13:33:00.000Z",
             "notes": [
               "explanation is 38 words (expected 40–60)",
               "voice question repeats the hook/action (73% word overlap) — transfer needs a new situation",
               "2026-10-24T13:24:00Z Manual revision by Codex before Max review: Transfer now tests a rising nominal balance against faster price growth; clarified general inflation versus one price; removed misleading follow-up and diagrams suggesting heavier goods.",
               "2026-10-24T13:26:24.118Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review."
+              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review.",
+              "approved by Max 2026-10-24 15:33 (c-b3acb545)"
             ]
           }
         },
@@ -342,14 +344,15 @@
           },
           "askTutor": "Why could real credit-card interest differ from this one-year model?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T13:33:00.000Z",
             "notes": [
               "voice question repeats the hook/action (78% word overlap) — transfer needs a new situation",
               "2026-10-24T13:24:00Z Manual revision by Codex before Max review: Replaced false general claim that borrowing always costs more than saving with the stated rate condition; removed a leading danger question; specified repayment period and aligned transfer, key, and rubric.",
               "2026-10-24T13:26:24.118Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review."
+              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review.",
+              "approved by Max 2026-10-24 15:33 (c-b3acb545)"
             ]
           }
         },
@@ -453,15 +456,16 @@
           },
           "askTutor": "Why can a diversified investment still lose value?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T13:33:00.000Z",
             "notes": [
               "explanation is 36 words (expected 40–60)",
               "absolute word \"All\" in key — check that it holds under the stated conditions",
               "2026-10-24T13:24:00Z Manual revision by Codex before Max review: Corrected diversification definition and may-versus-must error; removed guaranteed losses from acceptable answers; wrong-use rubric now rejects a specific false claim rather than an outcome that could be true.",
               "2026-10-24T13:26:24.118Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review."
+              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review.",
+              "approved by Max 2026-10-24 15:33 (c-b3acb545)"
             ]
           }
         },
@@ -565,14 +569,15 @@
           },
           "askTutor": "How can someone own valuable things and still lack money for an urgent bill?",
           "review": {
-            "state": "needs_review",
-            "reviewer": null,
-            "reviewedAt": null,
+            "state": "approved",
+            "reviewer": "adult",
+            "reviewedAt": "2026-10-24T13:33:00.000Z",
             "notes": [
               "explanation is 33 words (expected 40–60)",
               "2026-10-24T13:24:00Z Manual revision by Codex before Max review: Defined liquidity and the payment deadline; transfer now specifies cash-only payment and sale timing; kept all wealth/availability claims conditional; action changes only release date.",
               "2026-10-24T13:26:24.118Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
-              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review."
+              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review.",
+              "approved by Max 2026-10-24 15:33 (c-b3acb545)"
             ]
           }
         }
@@ -580,14 +585,15 @@
     }
   ],
   "review": {
-    "state": "needs_review",
-    "reviewer": null,
-    "reviewedAt": null,
+    "state": "approved",
+    "reviewer": "adult",
+    "reviewedAt": "2026-10-24T13:33:00.000Z",
     "notes": [
       "Generated by gemma4:12b-mlx; nothing is shown to a child before an adult approves each card (fact → question → key).",
       "Source for verification: Original teaching notes by Codex, 2026-10-24. Fictional amounts and rates; no market data or financial recommendations. Principles checked against CFPB (compound interest, credit-card interest, emergency funds), ECB (inflation), and Investor.gov (diversification); no source text copied. — https://www.consumerfinance.gov/ask-cfpb/how-does-compound-interest-work-en-1683/",
       "2026-10-24T13:24:00Z Original Gemma draft retained in origin; Codex revised factual conditions, hooks, single-variable actions, transfer questions, keys, rubrics, and fantasy/anime scenes. All numbers are fictional. All cards remain needs_review. Source tightened to 335 words after generation; no-interim-payments assumption made explicit.",
-      "2026-10-24T13:27:00Z Codex verified all five question/key pairs and the single changed condition per action. Twenty world scenes and image briefs reviewed; maxAnswerSec=60 throughout. Image paths are reserved for designer, not evidence of rendered PNGs. Adult approval is still required."
+      "2026-10-24T13:27:00Z Codex verified all five question/key pairs and the single changed condition per action. Twenty world scenes and image briefs reviewed; maxAnswerSec=60 throughout. Image paths are reserved for designer, not evidence of rendered PNGs. Adult approval is still required.",
+      "approved by Max 2026-10-24 15:33 (c-b3acb545)"
     ]
   },
   "origin": {
