@@ -1,0 +1,26 @@
+{
+  "session": "dev-understandity-demo",
+  "serverPort": 8787,
+  "webPort": 5173,
+  "startupTimeoutSec": 240,
+  "requestTimeoutSec": 120,
+  "python": "python3.11",
+  "nodeMinMajor": 22,
+  "mlxAudioVersion": "0.5.4",
+  "providers": {
+    "text": "ollama",
+    "stt": "whisper-cpp",
+    "tts": "mlx-qwen3",
+    "image": "fake"
+  },
+  "warmup": {
+    "text": "Важна не масса, а плотность.",
+    "language": "ru",
+    "requiredWords": [
+      "важна",
+      "не",
+      "масса",
+      "плотность"
+    ]
+  }
+}
