@@ -51,13 +51,13 @@
               "world": "fantasy",
               "scene": "A wizard tries to float a massive enchanted stone. He realizes the stone's magic depends on its density, not its weight.",
               "illustration": "A wizard looking at a large stone and a small stone floating in a magical pond.",
-              "image": null
+              "image": "/media/heavy-things-sink/c1-weight-vs-density-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A hero discovers a floating fortress. They realize it stays up because of its density compared to the sea.",
               "illustration": "A floating fortress over a blue ocean.",
-              "image": null
+              "image": "/media/heavy-things-sink/c1-weight-vs-density-anime.png"
             }
           ],
           "question": {
@@ -142,13 +142,13 @@
               "world": "fantasy",
               "scene": "A dragon guards a treasure. Some gems sink to the bottom, others float on the surface.",
               "illustration": "A dragon guarding a chest with sinking and floating gems.",
-              "image": null
+              "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A character tests different magical stones in a lake to see which ones have a density higher than water.",
               "illustration": "A character dropping stones into a lake.",
-              "image": null
+              "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-anime.png"
             }
           ],
           "question": {
@@ -235,13 +235,13 @@
               "world": "fantasy",
               "scene": "A sculptor cuts a sinking magical stone into two pieces. He notices they still sink.",
               "illustration": "A sculptor cutting a stone in half.",
-              "image": null
+              "image": "/media/heavy-things-sink/c3-cutting-the-stone-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A scientist splits a sinking crystal into two pieces to study its properties.",
               "illustration": "A scientist splitting a crystal.",
-              "image": null
+              "image": "/media/heavy-things-sink/c3-cutting-the-stone-anime.png"
             }
           ],
           "question": {
@@ -328,13 +328,13 @@
               "world": "fantasy",
               "scene": "A pirate ship floats on a magical sea because of the air trapped in its hull.",
               "illustration": "A pirate ship on the ocean.",
-              "image": null
+              "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A character builds a boat and realizes the air inside keeps it from sinking.",
               "illustration": "A character building a boat.",
-              "image": null
+              "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-anime.png"
             }
           ],
           "question": {
@@ -422,13 +422,13 @@
               "world": "fantasy",
               "scene": "A wizard's apprentice must identify which magical stones will float in a pond of enchanted water.",
               "illustration": "An apprentice looking at two stones.",
-              "image": null
+              "image": "/media/heavy-things-sink/c5-the-density-challenge-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A student competes in a science challenge to predict which objects will float using only their measurements.",
               "illustration": "A student looking at measurements of two objects.",
-              "image": null
+              "image": "/media/heavy-things-sink/c5-the-density-challenge-anime.png"
             }
           ],
           "question": {
