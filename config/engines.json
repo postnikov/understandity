@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "providers": {
+    "text": {
+      "fake": {
+        "locality": "local",
+        "label": "Fake tutor (no model)",
+        "models": ["fake-tutor"]
+      },
+      "ollama": {
+        "enabled": false,
+        "locality": "local",
+        "label": "Ollama (MLX)",
+        "endpoint": "http://127.0.0.1:11434",
+        "models": ["gemma4:12b-mlx", "qwen3.8:27b-mlx"],
+        "options": { "minVersion": "0.40.8", "numCtx": 2048, "think": false, "keepAlive": "10m" }
+      },
+      "gemini-api": {
+        "enabled": false,
+        "locality": "cloud",
+        "label": "Gemini API (cloud fallback)",
+        "endpoint": "https://generativelanguage.googleapis.com",
+        "models": ["gemini-flash-latest"],
+        "secretEnv": "GEMINI_API_KEY",
+        "options": { "note": "stub; model id to be confirmed by the module owner" }
+      }
+    },
+    "stt": {
+      "fake": {
+        "locality": "local",
+        "label": "Fake transcriber",
+        "models": ["fake-stt"]
+      },
+      "gemma-audio": {
+        "enabled": false,
+        "locality": "local",
+        "label": "Gemma audio input (Ollama OpenAI-compatible)",
+        "endpoint": "http://127.0.0.1:11434",
+        "models": ["gemma4:12b-mlx"],
+        "options": { "path": "/v1/chat/completions", "maxClipSec": 30, "reasoningEffort": "none" }
+      },
+      "whisper-cpp": {
+        "enabled": false,
+        "locality": "local",
+        "label": "whisper.cpp",
+        "models": ["large-v3-turbo"],
+        "options": {
+          "binary": "whisper-cli",
+          "modelFile": "~/.cache/whisper-cpp/ggml-large-v3-turbo.bin",
+          "language": "auto",
+          "ffmpeg": "ffmpeg",
+          "sampleRateHz": 16000
+        }
+      }
+    },
+    "tts": {
+      "fake": {
+        "locality": "local",
+        "label": "Fake voice (beeps)",
+        "models": ["fake-tts"],
+        "voices": ["beep"]
+      },
+      "mlx-qwen3": {
+        "enabled": false,
+        "locality": "local",
+        "label": "Qwen3-TTS via MLX sidecar",
+        "endpoint": "http://127.0.0.1:8790",
+        "models": ["mlx-community/Qwen3-TTS-12Hz-1.7B-CustomVoice-8bit"],
+        "voices": ["Aiden"],
+        "options": { "revision": "41d3337e8b7f2843a75841595fc14e4b9a7a4b96", "sampleRateHz": 24000 }
+      },
+      "macos-say": {
+        "enabled": false,
+        "locality": "local",
+        "label": "macOS system voice (emergency)",
+        "models": ["say"],
+        "voices": ["Milena", "Mónica", "Montse", "Samantha"]
+      },
+      "elevenlabs": {
+        "enabled": false,
+        "locality": "cloud",
+        "label": "ElevenLabs (cloud, prepared author text only)",
+        "endpoint": "https://api.elevenlabs.io",
+        "models": ["eleven_multilingual_v2"],
+        "secretEnv": "ELEVENLABS_API_KEY",
+        "options": { "note": "stub; never receives child answers" }
+      }
+    },
+    "image": {
+      "fake": {
+        "locality": "local",
+        "label": "Fake illustrator (SVG scheme)",
+        "models": ["fake-image"]
+      },
+      "comfyui": {
+        "enabled": false,
+        "locality": "local",
+        "label": "ComfyUI · Z-Image Turbo",
+        "endpoint": "http://127.0.0.1:8189",
+        "models": ["z_image_turbo_bf16"],
+        "options": {
+          "hfRevision": "6fc90a3b1b653e935a0d175e260736de25b84df5",
+          "textEncoder": "qwen_3_4b.safetensors",
+          "vae": "ae.safetensors",
+          "steps": 9
+        }
+      }
+    }
+  },
+  "defaults": {
+    "profile": "offline",
+    "language": "ru",
+    "world": "fantasy",
+    "engines": {
+      "text": { "provider": "fake", "model": "fake-tutor" },
+      "stt": { "provider": "fake", "model": "fake-stt" },
+      "tts": { "provider": "fake", "model": "fake-tts", "voice": "beep" },
+      "image": { "provider": "fake", "model": "fake-image" }
+    }
+  }
+}

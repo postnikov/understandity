@@ -1,0 +1,20 @@
+{
+  "name": "@understandity/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@understandity/engine-image-fake": "*",
+    "@understandity/engine-stt-fake": "*",
+    "@understandity/engine-text-fake": "*",
+    "@understandity/engine-text-gemini-api": "*",
+    "@understandity/engine-tts-elevenlabs": "*",
+    "@understandity/engine-tts-fake": "*"
+  }
+}
