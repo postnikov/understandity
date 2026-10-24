@@ -12,6 +12,14 @@ import type {
 } from '@understandity/contracts';
 import { mockCourses } from './mock.js';
 
+export interface KeyStatus {
+  id: string;
+  label: string;
+  env: string;
+  set: boolean;
+  source: 'env' | 'file' | null;
+}
+
 export class ApiFailure extends Error {
   constructor(
     readonly code: string,
@@ -147,6 +155,13 @@ export const api = {
     ).then((r) => ('card' in r && !('concepts' in r) ? r.card : (r as Course | Card))),
 
   engines: () => fetch('/api/engines').then((r) => json<EnginesResponse>(r)),
+  /** API keys: the server answers only set / not set and the source; a value is sent once and never comes back. */
+  keys: () => fetch('/api/keys').then((r) => json<KeyStatus[]>(r)),
+  setKey: (id: string, value: string) =>
+    fetch(`/api/keys/${encodeURIComponent(id)}`, { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ value }) }).then((r) =>
+      json<KeyStatus[]>(r),
+    ),
+  clearKey: (id: string) => fetch(`/api/keys/${encodeURIComponent(id)}`, { method: 'DELETE' }).then((r) => json<KeyStatus[]>(r)),
   saveSettings: (s: Settings) =>
     fetch('/api/settings', { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify(s) }).then(async (r) => {
       const body = (await r.json()) as { ok: boolean; settings: Settings; issues: SettingsIssue[]; error?: { message: string } };

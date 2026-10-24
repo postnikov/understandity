@@ -29,11 +29,16 @@ export class EngineHub {
     readonly config: EnginesConfig,
     modules: ProviderModule<Modality>[],
     readonly dispatcher: ResourceDispatcher,
+    /** Is the env var of an API key set (env or Settings). Defaults to the process environment. */
+    private readonly keySet: (envName: string) => boolean = (name) => !!process.env[name],
   ) {
     for (const mod of modules) {
       const providerConfig = config.providers[mod.modality][mod.providerId];
       if (!providerConfig) continue;
-      this.adapters.set(key(mod.modality, mod.providerId), mod.create(providerConfig, { providerId: mod.providerId }) as AnyAdapter);
+      // Cloud adapters are built armed: whether they may run is decided here per call (Online profile + key),
+      // while config/engines.json keeps them disabled so the offline launcher never sees an enabled cloud.
+      const adapterConfig = providerConfig.locality === 'cloud' && providerConfig.secretEnv ? { ...providerConfig, enabled: true } : providerConfig;
+      this.adapters.set(key(mod.modality, mod.providerId), mod.create(adapterConfig, { providerId: mod.providerId }) as AnyAdapter);
     }
     // Router providers (voice by language) are built from config on top of the wired engines.
     for (const [providerId, providerConfig] of Object.entries(config.providers.tts)) {
@@ -68,9 +73,16 @@ export class EngineHub {
     return this.settings;
   }
 
+  resetToDefaults(): void {
+    this.settings = defaultSettings(this.config);
+  }
+
   updateSettings(input: SettingsInput): { ok: boolean; settings: Settings; issues: SettingsIssue[] } {
     const next = SettingsSchema.parse(input);
-    const issues = validateSettings(next, this.config);
+    const issues = validateSettings(next, this.effective(next.profile));
+    if (next.profile === 'online' && !this.anyKey()) {
+      issues.push({ modality: null, code: 'provider_disabled', message: 'Online needs at least one API key (Engines → API keys)' });
+    }
     for (const modality of MODALITIES) {
       const sel = next.engines[modality];
       if (this.config.providers[modality][sel.provider] && !this.adapters.has(key(modality, sel.provider))) {
@@ -95,6 +107,13 @@ export class EngineHub {
         provider: sel.provider,
       });
     }
+    if (providerConfig.locality === 'cloud' && providerConfig.secretEnv && !this.keySet(providerConfig.secretEnv)) {
+      throw new EngineError('unavailable', `${modality}: ${providerConfig.secretEnv} is not set (Engines → API keys)`, {
+        modality,
+        provider: sel.provider,
+        retryable: false,
+      });
+    }
     return { adapter: adapter as unknown as AdapterByModality[M], model: sel.model, voice: sel.voice };
   }
 
@@ -105,6 +124,29 @@ export class EngineHub {
     return this.dispatcher.run({ modality, owner: `${adapter.provider}:${model}`, label }, (signal) => fn(adapter, model, signal), {
       timeoutMs: 120_000,
     });
+  }
+
+  /**
+   * Config as the current rules see it: a cloud provider counts as enabled only in the Online profile and only
+   * with its key set. In Offline everything cloud stays disabled, exactly as in config/engines.json.
+   */
+  effective(profile: Settings['profile']): EnginesConfig {
+    const providers = Object.fromEntries(
+      MODALITIES.map((m) => [
+        m,
+        Object.fromEntries(
+          Object.entries(this.config.providers[m]).map(([id, cfg]) => [
+            id,
+            cfg.locality === 'cloud' && cfg.secretEnv ? { ...cfg, enabled: cfg.enabled || (profile === 'online' && this.keySet(cfg.secretEnv)) } : cfg,
+          ]),
+        ),
+      ]),
+    ) as EnginesConfig['providers'];
+    return { ...this.config, providers };
+  }
+
+  anyKey(): boolean {
+    return MODALITIES.some((m) => Object.values(this.config.providers[m]).some((c) => c.locality === 'cloud' && !!c.secretEnv && this.keySet(c.secretEnv)));
   }
 
   async summaries(): Promise<ProviderSummary[]> {
@@ -120,7 +162,7 @@ export class EngineHub {
           provider: providerId,
           label: cfg.label ?? providerId,
           locality: cfg.locality,
-          enabled: cfg.enabled,
+          enabled: this.effective(this.settings.profile).providers[modality][providerId]!.enabled,
           offlineSafe: isOfflineSafe(cfg),
           health,
           models,

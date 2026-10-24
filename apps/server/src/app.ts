@@ -13,6 +13,7 @@ import {
   type EnginesResponse,
 } from '@understandity/contracts';
 import type { EngineHub } from './engines.js';
+import type { KeyStore } from './keys.js';
 import { tutorTurn, type CourseLookup } from './tutor.js';
 import { courseRoutes, defaultContentDir, scanCourses } from './routes/course.js';
 
@@ -40,9 +41,11 @@ export interface AppDeps {
   allowDrafts: boolean;
   /** Folder with course JSON files and `media/` (pre-rendered scene images). */
   contentDir?: string;
+  /** API keys entered in Settings; values never leave the server. */
+  keys?: KeyStore;
 }
 
-export function createApp({ hub, course, allowDrafts, contentDir = defaultContentDir() }: AppDeps) {
+export function createApp({ hub, course, allowDrafts, contentDir = defaultContentDir(), keys }: AppDeps) {
   const root = new Hono();
   const app = new Hono();
   const lookup: CourseLookup = async (id) => (await scanCourses(contentDir)).get(id)?.course ?? (id === course.id ? course : null);
@@ -70,6 +73,21 @@ export function createApp({ hub, course, allowDrafts, contentDir = defaultConten
   });
 
   app.get('/settings', (c) => c.json(hub.getSettings()));
+
+  // API keys: status only (set / not set, env or file) — a value is accepted, never returned.
+  app.get('/keys', (c) => c.json(keys?.status() ?? []));
+  app.put('/keys/:id', async (c) => {
+    if (!keys) throw new EngineError('unsupported', 'key storage is not enabled');
+    const body = (await c.req.json().catch(() => ({}))) as { value?: unknown };
+    return c.json(keys.set(c.req.param('id'), body.value));
+  });
+  app.delete('/keys/:id', (c) => {
+    if (!keys) throw new EngineError('unsupported', 'key storage is not enabled');
+    const status = keys.clear(c.req.param('id'));
+    // Losing the last key while Online would leave the app pointing at the cloud: fall back to the Offline defaults.
+    if (hub.getSettings().profile === 'online' && !hub.anyKey()) hub.resetToDefaults();
+    return c.json(status);
+  });
 
   app.put('/settings', async (c) => {
     const res = hub.updateSettings(await c.req.json());

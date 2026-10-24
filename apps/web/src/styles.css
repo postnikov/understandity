@@ -370,3 +370,9 @@ a.map-card:hover { border-color: var(--accent); }
   .course { padding: var(--s-4); }
 }
 .provlist li .nm { min-width: 0; flex: 0 1 auto; }
+
+/* API keys on the engines screen */
+.keys { display: flex; flex-direction: column; gap: var(--s-2); max-width: 46em; }
+.key-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2); }
+.key-row b { min-width: 11em; }
+.key-row input { flex: 1 1 14em; min-width: 0; }

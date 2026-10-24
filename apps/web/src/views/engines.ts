@@ -1,5 +1,5 @@
 import { MODALITIES, type EnginesResponse, type Modality, type ProviderSummary, type Settings } from '@understandity/contracts';
-import { api } from '../api.js';
+import { api, type KeyStatus } from '../api.js';
 import { app, errorText, esc, rerender, t } from '../app.js';
 import type { View } from '../main.js';
 
@@ -14,12 +14,21 @@ const s = {
   msg: null as string | null,
   error: null as string | null,
   saving: false,
+  keys: [] as KeyStatus[],
+  keyMsg: null as string | null,
 };
 
-type Block = 'cloud_offline' | 'disabled' | 'not_wired' | null;
+/** Which saved key arms a cloud provider (provider id → key id). */
+const keyIdOf = (p: ProviderSummary) => (p.provider === 'gemini-api' ? 'gemini' : p.provider);
+const keySetFor = (p: ProviderSummary) => s.keys.some((k) => k.id === keyIdOf(p) && k.set);
+const anyKey = () => s.keys.some((k) => k.set);
+
+type Block = 'cloud_offline' | 'disabled' | 'not_wired' | 'no_key' | null;
 function blockOf(p: ProviderSummary, profile: Settings['profile']): Block {
   // The Offline reason goes first: it is the one a parent needs to read, whatever the config says.
   if (profile === 'offline' && !p.offlineSafe) return 'cloud_offline';
+  // A cloud engine is armed by its key in the Online profile, even before the profile is applied.
+  if (p.locality === 'cloud') return keySetFor(p) ? (p.health === null ? 'not_wired' : null) : 'no_key';
   if (!p.enabled) return 'disabled';
   if (p.health === null) return 'not_wired';
   return null;
@@ -29,7 +38,7 @@ function blockText(b: Block, modality: Modality): string {
   const d = t().engines;
   // What leaves the machine depends on the engine: speech recognition sends the child's audio, the rest send text.
   const cloud = modality === 'stt' ? d.cloudBlockedAudio : d.cloudBlocked;
-  return b === 'cloud_offline' ? cloud : b === 'disabled' ? d.disabled : b === 'not_wired' ? d.notWired : '';
+  return b === 'cloud_offline' ? cloud : b === 'no_key' ? d.noKey : b === 'disabled' ? d.disabled : b === 'not_wired' ? d.notWired : '';
 }
 
 /**
@@ -122,11 +131,12 @@ function html(): string {
     <div class="profiles">
       ${(['offline', 'online'] as const)
         .map(
-          (p) => `<button class="profile ${draft.profile === p ? 'on' : ''}" data-profile="${p}" aria-pressed="${draft.profile === p}">
+          (p) => `<button class="profile ${draft.profile === p ? 'on' : ''}" data-profile="${p}" aria-pressed="${draft.profile === p}" ${p === 'online' && !anyKey() ? `disabled title="${esc(d.onlineNeedsKey)}"` : ''}>
           <b>${p === 'offline' ? '🔒 ' + d.offlineTitle : d.onlineTitle}</b><span>${p === 'offline' ? d.offlineText : esc(onlineText(draft, s.engines!))}</span></button>`,
         )
         .join('')}
     </div>
+    ${!anyKey() ? `<p class="dim">${esc(d.onlineNeedsKey)}</p>` : ''}
     <div class="sec-head"><h2>${t().nav.engines}</h2></div>
     <div class="engines">${MODALITIES.map(modalityCard).join('')}</div>
     <div class="savebar">
@@ -135,10 +145,36 @@ function html(): string {
       ${s.msg ? `<span class="chip chip--ok">${esc(s.msg)}</span>` : ''}
       ${s.issues.length ? `<ul class="issues">${s.issues.map((i) => `<li>×× ${esc(i)}</li>`).join('')}</ul>` : ''}
     </div>
+    ${keysSection()}
   </main>`;
 }
 
+function keysSection(): string {
+  const d = t().engines;
+  const rows = s.keys
+    .map((k) => {
+      const state = k.source === 'env' ? d.keyEnv : k.set ? d.keySet : d.keyUnset;
+      return `<div class="key-row">
+        <b>${esc(k.label)}</b>
+        <span class="chip ${k.set ? 'chip--ok' : ''}">${esc(state)}</span>
+        ${
+          k.source === 'env'
+            ? `<span class="dim">${esc(k.env)}</span>`
+            : `<input type="password" autocomplete="off" spellcheck="false" data-key-input="${esc(k.id)}" placeholder="${esc(k.env)}" aria-label="${esc(k.label)}">
+               <button class="btn btn--ghost" data-key-save="${esc(k.id)}">${d.keySave}</button>
+               ${k.set ? `<button class="btn btn--ghost" data-key-clear="${esc(k.id)}">${d.keyClear}</button>` : ''}`
+        }
+      </div>`;
+    })
+    .join('');
+  return `<div class="sec-head"><h2>${d.keysTitle}</h2></div>
+    <p class="dim" style="max-width:46em">${esc(d.keysLead)}</p>
+    <div class="keys">${rows}</div>
+    ${s.keyMsg ? `<p class="dim">${esc(s.keyMsg)}</p>` : ''}`;
+}
+
 async function load() {
+  s.keys = await api.keys().catch(() => []);
   s.engines = await api.engines();
   app.engines = s.engines;
   s.draft = structuredClone(s.engines.settings);
@@ -188,6 +224,35 @@ export const enginesView: View = {
     root.querySelectorAll<HTMLSelectElement>('[data-voice]').forEach((sel) =>
       sel.addEventListener('change', () => {
         draft.engines[sel.dataset.voice as Modality].voice = sel.value;
+        rerender();
+      }),
+    );
+    root.querySelectorAll<HTMLButtonElement>('[data-key-save]').forEach((b) =>
+      b.addEventListener('click', async () => {
+        const id = b.dataset.keySave!;
+        const input = root.querySelector<HTMLInputElement>(`[data-key-input="${id}"]`);
+        const value = input?.value.trim() ?? '';
+        if (input) input.value = ''; // the value leaves the page once and is not kept in the DOM
+        if (!value) return;
+        try {
+          s.keys = await api.setKey(id, value);
+          s.keyMsg = t().engines.keySaved;
+          await load();
+        } catch (err) {
+          s.keyMsg = errorText(err);
+        }
+        rerender();
+      }),
+    );
+    root.querySelectorAll<HTMLButtonElement>('[data-key-clear]').forEach((b) =>
+      b.addEventListener('click', async () => {
+        try {
+          s.keys = await api.clearKey(b.dataset.keyClear!);
+          s.keyMsg = t().engines.keyCleared;
+          await load();
+        } catch (err) {
+          s.keyMsg = errorText(err);
+        }
         rerender();
       }),
     );

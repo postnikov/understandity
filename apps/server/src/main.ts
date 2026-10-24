@@ -1,7 +1,9 @@
 import { serve } from '@hono/node-server';
 import { createDispatcher } from '@understandity/dispatcher';
 import { createApp } from './app.js';
-import { loadCourse, loadEnginesConfig } from './config.js';
+import { REPO_ROOT, loadCourse, loadEnginesConfig } from './config.js';
+import { KeyStore } from './keys.js';
+import { resolve } from 'node:path';
 import { EngineHub } from './engines.js';
 import { PROVIDERS } from './providers.js';
 import { warmup } from './warmup.js';
@@ -10,8 +12,10 @@ import { warmup } from './warmup.js';
 const HOST = '127.0.0.1';
 const PORT = Number(process.env.UNDERSTANDITY_PORT ?? 8787);
 
-const hub = new EngineHub(loadEnginesConfig(), PROVIDERS, createDispatcher());
-const app = createApp({ hub, course: loadCourse(), allowDrafts: process.env.UNDERSTANDITY_ALLOW_DRAFTS === '1' });
+// Keys first: saved keys are exported into this process before any engine is asked for one.
+const keys = new KeyStore(process.env.UNDERSTANDITY_KEYS_FILE ?? resolve(REPO_ROOT, 'data/keys.local.json'));
+const hub = new EngineHub(loadEnginesConfig(), PROVIDERS, createDispatcher(), (name) => keys.isSet(name));
+const app = createApp({ hub, course: loadCourse(), allowDrafts: process.env.UNDERSTANDITY_ALLOW_DRAFTS === '1', keys });
 
 serve({ fetch: app.fetch, hostname: HOST, port: PORT }, (info) => {
   console.log(`understandity server on http://${HOST}:${info.port} · profile=${hub.getSettings().profile}`);
