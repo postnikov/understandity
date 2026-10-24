@@ -72,7 +72,7 @@ async function waitJob(app: ReturnType<typeof setup>['app'], jobId: string) {
 }
 
 describe('POST /api/courses/generate', () => {
-  it('world: space → scenes and picture prompts only for space; no world → the default pair', async () => {
+  it('world: space → scenes and picture prompts only for space; no world → fantasy only (route default)', async () => {
     const log: string[] = [];
     const prompts: string[] = [];
     // The model answers with the asked world plus a stray one: the route must keep space only.

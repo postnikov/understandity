@@ -35,7 +35,7 @@ export const GenerateRequestSchema = z.object({
   audience: z.enum(['child', 'adult']).default('child'),
   lang: LanguageSchema.default('en'),
   engine: z.enum(['local', 'online']).default('local'),
-  /** One world chosen before generation (Max, 24.10 16:06): scenes and picture prompts only for it. Absent → `worlds` default. */
+  /** One world chosen before generation (Max, 24.10 16:06): scenes and picture prompts only for it. Absent → `worlds` default (fantasy only). */
   world: z.enum(['fantasy', 'anime', 'space', 'cyberpunk']).optional(),
 });
 export type GenerateRequest = z.infer<typeof GenerateRequestSchema>;
@@ -57,7 +57,8 @@ export interface GenerateRoutesOptions {
 
 const num = (v: unknown) => (typeof v === 'number' ? v : undefined);
 
-export function generateRoutes({ hub, contentDir, worlds = ['fantasy', 'anime'], cardCount = 5 }: GenerateRoutesOptions) {
+// One world per course (Max, 24.10): without a chosen world a course gets Fantasy only.
+export function generateRoutes({ hub, contentDir, worlds = ['fantasy'], cardCount = 5 }: GenerateRoutesOptions) {
   const app = new Hono();
   const jobs = new Map<string, GenerateJob>();
   let queue: Promise<unknown> = Promise.resolve();

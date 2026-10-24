@@ -1,6 +1,6 @@
 /**
  * npm run course:generate -- --concept "…" --source content/sources/x.md --lang en --out content/x.json
- *   [--provider ollama] [--model gemma4:12b-mlx] [--cards 5] [--worlds fantasy,anime] [--age 12-14]
+ *   [--provider ollama] [--model gemma4:12b-mlx] [--cards 5] [--worlds fantasy] [--age 12-14]
  *   [--id x] [--subject physics] [--unload] [--force]
  *
  * Source file: Markdown with optional front matter `source:` (label), `url:`, `subject:`; the body is the
@@ -41,7 +41,7 @@ async function main() {
       provider: { type: 'string', default: 'ollama' },
       model: { type: 'string' },
       cards: { type: 'string', default: '5' },
-      worlds: { type: 'string', default: 'fantasy,anime' },
+      worlds: { type: 'string', default: 'fantasy' }, // one world per course (Max, 24.10)
       age: { type: 'string', default: '12-14' },
       id: { type: 'string' },
       subject: { type: 'string' },
