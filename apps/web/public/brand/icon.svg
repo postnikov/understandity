@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2236.52" height="2236.52" viewBox="0 0 2236.52 2236.52" role="img" aria-label="Voice">
+  <title>Voice</title>
+  <desc>Wordmark outlines set from JetBrains Mono ExtraBold, SIL OFL 1.1. The font is not embedded.</desc>
+  <g id="mark">
+    <path d="M357.84 753.26L631.59 753.26L966.18 1118.26L631.59 1483.26L357.84 1483.26L662.01 1118.26Z" fill="#6D55C8" fill-opacity="0.55"/>
+    <rect x="1148.68" y="966.18" width="182.5" height="304.17" fill="#6D55C8"/>
+    <rect x="1422.43" y="753.26" width="182.5" height="730" fill="#6D55C8"/>
+    <rect x="1696.18" y="874.93" width="182.5" height="486.67" fill="#6D55C8"/>
+  </g>
+</svg>

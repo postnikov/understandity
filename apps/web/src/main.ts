@@ -38,7 +38,8 @@ function bar(): string {
   const profile = app.engines?.settings.profile ?? null;
   const link = (name: string, label: string) => `<a href="#/${name}" class="${routeName === name ? 'on' : ''}">${label}</a>`;
   return `<header class="bar"><div class="bar__in">
-    <a class="wordmark" href="#/" aria-label="Understandity">Under<i>stand</i>ity<span class="cursor" aria-hidden="true"></span></a>
+    <a class="brand" href="#/" aria-label="Understandity"><img src="/brand/lockup.svg" alt="Understandity"></a>
+    <span class="tagline">${d.tagline}</span>
     <nav class="nav">${link('', d.nav.home)}${link('review', d.nav.review)}${link('engines', d.nav.engines)}</nav>
     <span class="bar__sp"></span>
     ${isMock() ? `<span class="chip chip--amber" title="${esc(d.mockHint)}">${d.mock}</span>` : ''}
