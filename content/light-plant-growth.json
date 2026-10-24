@@ -51,13 +51,13 @@
               "world": "fantasy",
               "scene": "A forest spirit explains to a young apprentice how trees pull invisible magic from the breeze to build their trunks.",
               "illustration": "A tree with arrows pointing from the air and ground into the trunk.",
-              "image": null
+              "image": "/media/light-plant-growth/c1-the-invisible-builder-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A scientist in a high-tech lab uses a scanner to show a student the atoms moving from the air into a leaf.",
               "illustration": "A magnifying glass over a leaf showing CO2 molecules.",
-              "image": null
+              "image": "/media/light-plant-growth/c1-the-invisible-builder-anime.png"
             }
           ],
           "question": {
@@ -143,13 +143,13 @@
               "world": "fantasy",
               "scene": "A wizard uses a sun-crystal to power a magical forge that shapes trees.",
               "illustration": "A sun-crystal beaming light onto a plant.",
-              "image": null
+              "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A robot explains that light is like a battery for the plant's internal factory.",
               "illustration": "A battery icon next to a sun and a plant.",
-              "image": null
+              "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-anime.png"
             }
           ],
           "question": {
@@ -236,13 +236,13 @@
               "world": "fantasy",
               "scene": "An alchemist shows a bubbling potion that turns sunlight into sweet nectar.",
               "illustration": "A leaf with a 'factory' icon inside it.",
-              "image": null
+              "image": "/media/light-plant-growth/c3-the-sugar-factory-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A girl discovers a hidden laboratory inside a leaf where sugar is being manufactured.",
               "illustration": "A diagram showing CO2 + Water + Light -> Sugar + Oxygen.",
-              "image": null
+              "image": "/media/light-plant-growth/c3-the-sugar-factory-anime.png"
             }
           ],
           "question": {
@@ -329,13 +329,13 @@
               "world": "fantasy",
               "scene": "A forest guardian explains how trees breathe even while the moon watches.",
               "illustration": "A plant with a glowing heart representing energy.",
-              "image": null
+              "image": "/media/light-plant-growth/c4-the-night-shift-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A character watches a plant's internal energy flow during a night-time scene.",
               "illustration": "A split screen: Day (Photosynthesis) and Night (Respiration).",
-              "image": null
+              "image": "/media/light-plant-growth/c4-the-night-shift-anime.png"
             }
           ],
           "question": {
@@ -422,13 +422,13 @@
               "world": "fantasy",
               "scene": "A gardener shows how a magical root stores energy for a long winter.",
               "illustration": "A potato with a 'storage' label.",
-              "image": null
+              "image": "/media/light-plant-growth/c5-the-survival-secret-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A student observes a potato sprouting in a dark room and learns about stored energy.",
               "illustration": "A potato sprouting in a dark room.",
-              "image": null
+              "image": "/media/light-plant-growth/c5-the-survival-secret-anime.png"
             }
           ],
           "question": {
