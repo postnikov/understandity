@@ -53,7 +53,10 @@ describe('config/engines.json', () => {
           expect(p.secretEnv, id).toMatch(/^[A-Z_]+$/);
           expect(p.enabled, `${id} must be off by default`).toBe(false);
         }
-        expect(JSON.stringify(p.options)).not.toMatch(/sk[-_]|key=|token/i);
+        // no credential fields and no secret-looking values; legitimate settings like maxTokens are fine
+        const opts = JSON.stringify(p.options ?? {});
+        expect(opts, id).not.toMatch(/"(api[_-]?key|secret|password|authorization|bearer|access[_-]?token|refresh[_-]?token|token)"\s*:/i);
+        expect(opts, id).not.toMatch(/\b(?:sk|re|ghp|xai)[-_][A-Za-z0-9]{8,}|\bAIza[0-9A-Za-z_-]{20,}/);
       }
   });
 
@@ -147,9 +150,12 @@ describe('every adapter honours the base contract', () => {
     });
   }
 
-  it('cloud placeholders fail explicitly, not silently', async () => {
+  it('disabled cloud provider fails explicitly, not silently', async () => {
     const tts = createElevenLabsTts(config.providers.tts.elevenlabs!, { providerId: 'elevenlabs' });
-    await expect(tts.synthesize({ model: 'eleven_multilingual_v2', text: 'hi', language: 'en' })).rejects.toMatchObject({ code: 'not_implemented' });
+    const err = await tts.synthesize({ model: 'eleven_multilingual_v2', text: 'hi', language: 'en' }).then(() => null, (e: { code?: string }) => e);
+    expect(err).not.toBeNull();
+    // placeholder says not_implemented, the real adapter with enabled:false says unavailable — both are explicit
+    expect(['not_implemented', 'unavailable']).toContain(err?.code);
     expect(tts.capabilities().sendsTextToCloud).toBe(true);
   });
 });
