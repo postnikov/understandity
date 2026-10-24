@@ -98,10 +98,19 @@ def make_plan(config, policy):
         require(selected['provider'] == name, f'{modality}: canonical demo defaults have changed; review scripts/demo/demo.json')
         require(selected['model'] in provider['models'], f'{modality}: default model is not configured')
         engines[modality] = {**selected, 'voice': selected.get('voice')}
-    tts = config['providers']['tts'][engines['tts']['provider']]
-    require(tts.get('voices'), 'MLX voice is not configured')
-    require(engines['tts']['voice'] in tts['voices'], 'Default MLX voice is unavailable')
-    require(policy['warmup']['language'] in tts['options'].get('languages', []), 'Warmup language is unsupported')
+    # Voice by language: the routes must be exactly the ones this launcher was reviewed for.
+    routes = config['providers']['tts'][engines['tts']['provider']]['options'].get('routes') or {}
+    require({lang: r.get('provider') for lang, r in routes.items()} == policy['voiceRoutes'],
+            'Voice routes differ from scripts/demo/demo.json; review the demo policy')
+    for lang, route in routes.items():
+        target = config['providers']['tts'].get(route['provider'])
+        require(target and target.get('enabled', True), f'tts route {lang} → {route["provider"]} is not enabled')
+        require(not target.get('secretEnv'), f'tts route {lang} → {route["provider"]} requires a secret')
+        require(route['model'] in target['models'], f'tts route {lang}: model is not configured')
+        require(route.get('voice') in target.get('voices', []), f'tts route {lang}: voice is not configured')
+        require(lang in target['options'].get('languages', []), f'tts route {lang}: language is unsupported by {route["provider"]}')
+    for item in policy['warmup']:
+        require(item['language'] in routes, f'Warmup language has no voice route: {item["language"]}')
     return {**config['defaults'], 'profile': 'offline', 'engines': engines}
 
 
@@ -129,9 +138,9 @@ def verify_wav(raw):
         raise DemoError('Invalid WAV voice output') from error
 
 
-def verify_transcript(value, policy):
+def verify_transcript(value, item):
     words = set(re.findall(r'\w+', value.get('text', '').lower()))
-    require(set(policy['warmup']['requiredWords']) <= words, 'Synthetic speech was not transcribed completely (including negation)')
+    require(set(item['requiredWords']) <= words, 'Synthetic speech was not transcribed completely (including negation)')
 
 
 class Demo:
@@ -192,7 +201,9 @@ class Demo:
         require((self.venv / 'bin/python').is_file(), 'Prepare the Python 3.11 MLX sidecar .venv first')
         code = ('import sys,importlib.metadata as m; '
                 'assert sys.version_info[:2] == (3,11); '
-                f'assert m.version("mlx-audio") == {self.policy["mlxAudioVersion"]!r}')
+                f'assert m.version("mlx-audio") == {self.policy["mlxAudioVersion"]!r}; '
+                'import importlib.util as u; '
+                + ''.join(f'assert u.find_spec({name!r}), {name!r}; ' for name in self.policy['venvModules']))
         self.command([str(self.venv / 'bin/python'), '-c', code], capture_output=True)
         stt = self.config['providers']['stt']['gemma-audio']
         whisper = self.config['providers']['stt']['whisper-cpp']['options']
@@ -206,6 +217,11 @@ class Demo:
         for folder in (snapshot, snapshot / 'speech_tokenizer'):
             weights = list(folder.glob('*.safetensors'))
             require(weights and all(p.is_file() and p.stat().st_size > 0 for p in weights), 'Missing MLX/tokenizer weights or dangling symlinks')
+        kokoro = self.config['providers']['tts']['kokoro']
+        k_snapshot = Path(kokoro['options']['cacheDir']).expanduser() / ('models--' + kokoro['models'][0].replace('/', '--')) / 'snapshots' / kokoro['options']['revision']
+        for relative in ['config.json', 'kokoro-v1_0.safetensors'] + [f'voices/{v}.safetensors' for v in kokoro['voices']]:
+            path = k_snapshot / relative
+            require(path.is_file() and path.stat().st_size > 0, f'Incomplete pinned Kokoro snapshot: {relative}')
         ollama = self.config['providers']['text']['ollama']
         actual = request(ollama['endpoint'] + '/api/version')['version']
         parts = lambda s: tuple(int(v) for v in s.split('.')[:3])
@@ -213,7 +229,7 @@ class Demo:
         tags = request(ollama['endpoint'] + '/api/tags')['models']
         require(any(m.get('name') == self.plan['engines']['text']['model'] for m in tags), 'Gemma model is missing from Ollama')
         self.ensure_empty_ollama()
-        ports = [self.policy['serverPort'], self.policy['webPort'], urlparse(tts['endpoint']).port]
+        ports = [self.policy['serverPort'], self.policy['webPort'], urlparse(tts['endpoint']).port, urlparse(kokoro['endpoint']).port]
         require(len(set(ports)) == len(ports), 'Demo listener ports overlap')
         for port in ports:
             with socket.socket() as sock:
@@ -265,18 +281,21 @@ class Demo:
         require(answer.get('message', {}).get('content', '').strip(), 'Gemma warmup returned no text')
         self.ensure_empty_ollama()
         result['gemmaSec'] = round(time.monotonic() - start, 3)
-        speech = {'text': self.policy['warmup']['text'], 'language': self.policy['warmup']['language']}
-        for number in (1, 2):
-            self.ensure_empty_ollama()
+        # Each voice route in policy order (English/Kokoro first): two syntheses, then a Whisper round trip.
+        for item in self.policy['warmup']:
+            lang = item['language']
+            speech = {'text': item['text'], 'language': lang}
+            for number in (1, 2):
+                self.ensure_empty_ollama()
+                start = time.monotonic()
+                raw = request(self.api + '/tts', 'POST', speech, binary=True, timeout=self.policy['requestTimeoutSec'])
+                result[f'tts_{lang}_{number}Sec'] = round(time.monotonic() - start, 3)
+                result[f'audio_{lang}_DurationSec'] = verify_wav(raw)
             start = time.monotonic()
-            raw = request(self.api + '/tts', 'POST', speech, binary=True, timeout=self.policy['requestTimeoutSec'])
-            result[f'tts{number}Sec'] = round(time.monotonic() - start, 3)
-            result['audioDurationSec'] = verify_wav(raw)
-        start = time.monotonic()
-        transcript = request(self.api + '/stt?lang=' + speech['language'], 'POST', raw, mime='audio/wav', timeout=self.policy['requestTimeoutSec'])
-        verify_transcript(transcript, self.policy)
-        require(transcript.get('model') == self.plan['engines']['stt']['model'], 'STT response did not come from the configured model')
-        result['sttSec'] = round(time.monotonic() - start, 3)
+            transcript = request(self.api + '/stt?lang=' + lang, 'POST', raw, mime='audio/wav', timeout=self.policy['requestTimeoutSec'])
+            verify_transcript(transcript, item)
+            require(transcript.get('model') == self.plan['engines']['stt']['model'], 'STT response did not come from the configured model')
+            result[f'stt_{lang}_Sec'] = round(time.monotonic() - start, 3)
         result['syntheticSpeechRoundTrip'] = True
         return result
 
@@ -295,6 +314,9 @@ class Demo:
             tts = self.config['providers']['tts']['mlx-qwen3']
             self.spawn('tts', [str(self.venv / 'bin/python'), str(self.repo / 'sidecars/tts-mlx/server.py')])
             require(self.wait_url(tts['endpoint'] + '/health')['status'] == 'ok', 'Pinned MLX snapshot is unavailable')
+            kokoro = self.config['providers']['tts']['kokoro']
+            self.spawn('tts-kokoro', [str(self.venv / 'bin/python'), str(self.repo / 'sidecars/tts-mlx/kokoro_server.py')])
+            require(self.wait_url(kokoro['endpoint'] + '/health')['status'] == 'ok', 'Pinned Kokoro snapshot or its English G2P model is unavailable')
             self.spawn('server', [str(self.repo / 'node_modules/.bin/tsx'), 'apps/server/src/main.ts'])
             self.wait_url(self.api + '/settings')
             applied = request(self.api + '/settings', 'PUT', self.plan)

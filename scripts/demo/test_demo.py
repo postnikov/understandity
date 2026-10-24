@@ -32,12 +32,16 @@ def fixture_config():
         'text': {'ollama': provider('gemma-fixture', endpoint='http://127.0.0.1:11434', options={'minVersion': '0.40.8'})},
         'stt': {'gemma-audio': provider('gemma-fixture', endpoint='http://127.0.0.1:11434', options={'ffmpeg': 'ffmpeg'}),
                 'whisper-cpp': provider('whisper-fixture', options={'binary': 'whisper-cli', 'modelFile': '/missing-fixture'})},
-        'tts': {'mlx-qwen3': provider('fixture/voice', voices=['Fixture'], endpoint='http://127.0.0.1:8790', options={'languages': ['ru']})},
+        'tts': {
+            'by-language': provider('auto', options={'routes': {
+                'en': {'provider': 'kokoro', 'model': 'fixture/kokoro', 'voice': 'af_fixture'},
+                'ru': {'provider': 'mlx-qwen3', 'model': 'fixture/voice', 'voice': 'Fixture'}}}),
+            'kokoro': provider('fixture/kokoro', voices=['af_fixture'], endpoint='http://127.0.0.1:8791', options={'languages': ['en']}),
+            'mlx-qwen3': provider('fixture/voice', voices=['Fixture'], endpoint='http://127.0.0.1:8790', options={'languages': ['ru']})},
         'image': {'fake': provider('fixture-svg')},
     }
     providers['text']['cloud'] = provider('cloud-fixture', enabled=False, locality='cloud', endpoint='https://example.invalid')
-    engines = {m: {'provider': p, 'model': providers[m][p]['models'][0]} for m, p in {'text': 'ollama', 'stt': 'whisper-cpp', 'tts': 'mlx-qwen3', 'image': 'fake'}.items()}
-    engines['tts']['voice'] = 'Fixture'
+    engines = {m: {'provider': p, 'model': providers[m][p]['models'][0]} for m, p in {'text': 'ollama', 'stt': 'whisper-cpp', 'tts': 'by-language', 'image': 'fake'}.items()}
     return {'version': 1, 'providers': providers, 'defaults': {'profile': 'offline', 'language': 'ru', 'world': 'fantasy', 'engines': engines}}
 
 
@@ -62,7 +66,7 @@ class PolicyTests(unittest.TestCase):
         self.assertEqual(plan['profile'], 'offline')
         self.assertEqual(plan['engines']['text']['model'], 'gemma-fixture')
         self.assertEqual(plan['engines']['stt']['model'], 'whisper-fixture')
-        self.assertEqual(plan['engines']['tts']['voice'], 'Fixture')
+        self.assertEqual(plan['engines']['tts']['provider'], 'by-language')
         self.assertEqual(self.config, original)
 
     def test_enabled_cloud_is_rejected_even_when_unselected(self):
@@ -80,6 +84,16 @@ class PolicyTests(unittest.TestCase):
         with self.assertRaisesRegex(demo.DemoError, 'not enabled'):
             demo.make_plan(self.config, self.policy)
 
+    def test_unexpected_voice_route_is_refused_not_replaced(self):
+        self.config['providers']['tts']['by-language']['options']['routes']['en']['provider'] = 'mlx-qwen3'
+        with self.assertRaisesRegex(demo.DemoError, 'Voice routes differ'):
+            demo.make_plan(self.config, self.policy)
+
+    def test_voice_route_needs_its_configured_voice_and_language(self):
+        self.config['providers']['tts']['kokoro']['voices'] = ['other']
+        with self.assertRaisesRegex(demo.DemoError, 'voice is not configured'):
+            demo.make_plan(self.config, self.policy)
+
     def test_selected_provider_cannot_require_credentials(self):
         self.config['providers']['text']['ollama']['secretEnv'] = 'FAKE_TEST_KEY'
         with self.assertRaisesRegex(demo.DemoError, 'requires a secret'):
@@ -91,9 +105,10 @@ class PolicyTests(unittest.TestCase):
             demo.make_plan(self.config, self.policy)
 
     def test_transcript_must_preserve_negation(self):
-        demo.verify_transcript({'text': 'Важна не масса, а плотность!'}, self.policy)
+        ru = next(w for w in self.policy['warmup'] if w['language'] == 'ru')
+        demo.verify_transcript({'text': 'Важна не масса, а плотность!'}, ru)
         with self.assertRaises(demo.DemoError):
-            demo.verify_transcript({'text': 'Важна масса, а плотность.'}, self.policy)
+            demo.verify_transcript({'text': 'Важна масса, а плотность.'}, ru)
 
     def test_wav_must_be_real_nonempty_audio(self):
         self.assertEqual(demo.verify_wav(fixture_wav()), 0.1)
@@ -219,12 +234,14 @@ class LifecycleTests(unittest.TestCase):
                 return fixture_wav()
             if '/stt?' in url:
                 self.assertEqual(kwargs['mime'], 'audio/wav')
-                return {'text': 'Важна не масса, а плотность.', 'model': 'whisper-fixture'}
+                text = 'Density matters, not the mass alone.' if url.endswith('lang=en') else 'Важна не масса, а плотность.'
+                return {'text': text, 'model': 'whisper-fixture'}
             self.fail('Unexpected request: ' + url)
         with patch.object(demo, 'request', side_effect=local_http):
             result = self.instance.warmup()
         self.assertTrue(result['syntheticSpeechRoundTrip'])
-        self.assertEqual(calls, ['chat', 'ps', 'ps', 'tts', 'ps', 'tts', 'stt?lang=ru'])
+        # English (Kokoro) is warmed first, then Russian (Qwen3); each with its own Whisper round trip.
+        self.assertEqual(calls, ['chat', 'ps', 'ps', 'tts', 'ps', 'tts', 'stt?lang=en', 'ps', 'tts', 'ps', 'tts', 'stt?lang=ru'])
 
     @unittest.skipUnless(shutil.which('tmux'), 'tmux is required for the process ownership check')
     def test_real_tmux_session_stops_without_leaving_a_process(self):

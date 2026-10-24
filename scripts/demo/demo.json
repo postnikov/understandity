@@ -10,17 +10,36 @@
   "providers": {
     "text": "ollama",
     "stt": "whisper-cpp",
-    "tts": "mlx-qwen3",
+    "tts": "by-language",
     "image": "fake"
   },
-  "warmup": {
-    "text": "Важна не масса, а плотность.",
-    "language": "ru",
-    "requiredWords": [
-      "важна",
-      "не",
-      "масса",
-      "плотность"
-    ]
-  }
+  "warmup": [
+    {
+      "text": "Density matters, not the mass alone.",
+      "language": "en",
+      "requiredWords": [
+        "density",
+        "not",
+        "mass"
+      ]
+    },
+    {
+      "text": "Важна не масса, а плотность.",
+      "language": "ru",
+      "requiredWords": [
+        "важна",
+        "не",
+        "масса",
+        "плотность"
+      ]
+    }
+  ],
+  "voiceRoutes": {
+    "en": "kokoro",
+    "ru": "mlx-qwen3"
+  },
+  "venvModules": [
+    "misaki",
+    "en_core_web_sm"
+  ]
 }
