@@ -11,6 +11,7 @@ import {
 } from '@understandity/contracts';
 import type { EngineHub } from './engines.js';
 import { tutorTurn } from './tutor.js';
+import { courseRoutes } from './routes/course.js';
 
 const STATUS: Record<EngineErrorCode, 400 | 403 | 409 | 422 | 424 | 499 | 500 | 501 | 503 | 504> = {
   bad_input: 400,
@@ -87,6 +88,8 @@ export function createApp({ hub, course, allowDrafts }: AppDeps) {
     );
     return c.json(transcript);
   });
+
+  app.route('/courses', courseRoutes());
 
   app.post('/tutor', async (c) => c.json(await tutorTurn(hub, course, await c.req.json())));
 

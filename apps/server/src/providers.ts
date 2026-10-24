@@ -1,6 +1,7 @@
 import type { Modality, ProviderModule } from '@understandity/contracts';
 import { textFake } from '@understandity/engine-text-fake';
 import { textGeminiApi } from '@understandity/engine-text-gemini-api';
+import { textOllama } from '@understandity/engine-text-ollama';
 import { sttFake } from '@understandity/engine-stt-fake';
 import { ttsFake } from '@understandity/engine-tts-fake';
 import { ttsElevenLabs } from '@understandity/engine-tts-elevenlabs';
@@ -13,6 +14,7 @@ import { imageFake } from '@understandity/engine-image-fake';
 export const PROVIDERS: ProviderModule<Modality>[] = [
   textFake,
   textGeminiApi,
+  textOllama,
   sttFake,
   ttsFake,
   ttsElevenLabs,

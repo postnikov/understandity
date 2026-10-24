@@ -8,12 +8,22 @@
         "models": ["fake-tutor"]
       },
       "ollama": {
-        "enabled": false,
+        "enabled": true,
         "locality": "local",
         "label": "Ollama (MLX)",
         "endpoint": "http://127.0.0.1:11434",
         "models": ["gemma4:12b-mlx", "qwen3.8:27b-mlx"],
-        "options": { "minVersion": "0.40.8", "numCtx": 2048, "think": false, "keepAlive": "10m" }
+        "options": {
+          "minVersion": "0.40.8",
+          "think": false,
+          "keepAlive": "10m",
+          "probeTimeoutMs": 3000,
+          "contextWindow": 32768,
+          "languages": ["en", "ru", "es", "ca"],
+          "courseNumPredict": 6000,
+          "courseTimeoutMs": 240000,
+          "note": "numCtx is not sent: a whole course needs about 6k of context and changing num_ctx forces a model reload"
+        }
       },
       "gemini-api": {
         "enabled": false,
