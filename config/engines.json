@@ -35,6 +35,28 @@
           "note": "numCtx is not sent: a whole course needs about 6k of context and changing num_ctx forces a model reload"
         }
       },
+      "anthropic": {
+        "enabled": false,
+        "locality": "cloud",
+        "label": "Claude via Anthropic API (online)",
+        "endpoint": "https://api.anthropic.com",
+        "models": [
+          "claude-opus-5-5",
+          "claude-sonnet-5-5"
+        ],
+        "secretEnv": "ANTHROPIC_API_KEY",
+        "options": {
+          "apiVersion": "2023-06-01",
+          "effort": "low",
+          "courseEffort": "medium",
+          "minMaxTokens": 1024,
+          "courseMaxTokens": 16000,
+          "timeoutMs": 60000,
+          "courseTimeoutMs": 300000,
+          "fallbacks": "default",
+          "note": "enabled at runtime only with a key and the Online profile; no temperature: current models reject it"
+        }
+      },
       "gemini-api": {
         "enabled": false,
         "locality": "cloud",

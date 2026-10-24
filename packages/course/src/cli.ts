@@ -13,11 +13,12 @@ import { parseArgs } from 'node:util';
 import { EnginesConfigSchema, type ProviderModule } from '@understandity/contracts';
 import { createDispatcher } from '@understandity/dispatcher';
 import { textOllama } from '@understandity/engine-text-ollama';
+import { textAnthropic } from '../../../engines/text-anthropic/src/index.js';
 import { generateCourse } from './generator.js';
 import { slugify } from './generator.js';
 
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
-const PROVIDERS: Record<string, ProviderModule<'text'>> = { ollama: textOllama };
+const PROVIDERS: Record<string, ProviderModule<'text'>> = { ollama: textOllama, anthropic: textAnthropic };
 
 function parseSource(path: string): { notes: string; label: string | null; url: string | null; subject: string | null } {
   const raw = readFileSync(path, 'utf8');
@@ -57,7 +58,9 @@ async function main() {
   const providerConfig = config.providers.text[values.provider!];
   const mod = PROVIDERS[values.provider!];
   if (!providerConfig || !mod) throw new Error(`text provider "${values.provider}" is not configured or has no adapter in the CLI`);
-  if (!providerConfig.enabled) throw new Error(`text provider "${values.provider}" is disabled in config`);
+  // Cloud providers stay disabled in config (the offline demo refuses enabled cloud); the CLI may use one when its key is set.
+  const cloudWithKey = providerConfig.locality === 'cloud' && !!providerConfig.secretEnv && !!process.env[providerConfig.secretEnv];
+  if (!providerConfig.enabled && !cloudWithKey) throw new Error(`text provider "${values.provider}" is disabled in config and has no key`);
   const model = values.model ?? providerConfig.models[0]!;
   const text = mod.create(providerConfig, { providerId: values.provider! });
   const opt = providerConfig.options;
@@ -90,7 +93,7 @@ async function main() {
       text,
       model,
       dispatcher: createDispatcher(),
-      maxTokens: typeof opt.courseNumPredict === 'number' ? opt.courseNumPredict : undefined,
+      maxTokens: typeof opt.courseNumPredict === 'number' ? opt.courseNumPredict : typeof opt.courseMaxTokens === 'number' ? opt.courseMaxTokens : undefined,
       timeoutMs: typeof opt.courseTimeoutMs === 'number' ? opt.courseTimeoutMs : undefined,
     },
   );

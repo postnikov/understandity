@@ -248,6 +248,8 @@ export async function generateCourse(
             temperature: deps.temperature ?? 0.3,
             json: true,
             think: false,
+            // Lets cloud engines pick course-sized limits and effort; local engines ignore it.
+            context: { purpose: 'course' },
           },
           { signal: signal ?? deps.signal },
         ),
