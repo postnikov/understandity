@@ -538,5 +538,185 @@
     "preset": "landscape",
     "image": "/media/double-side-area/c5-the-master-architect-cyberpunk.png",
     "prompt": "A robot designs a square plaza in a neon city where both the length and width are multiplied by five. A small square plaza next to a much larger square plaza. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c1-test-where-the-rule-can-break",
+    "world": "space",
+    "seed": 161,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-space.png",
+    "prompt": "An astronaut stands before four canisters marked with a triangle, a circle, a blue label, and an orange label. The rule is that every triangle-marked canister has a blue interior. An astronaut holding a triangle-marked canister and an orange-marked canister. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c1-test-where-the-rule-can-break",
+    "world": "cyberpunk",
+    "seed": 162,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-cyberpunk.png",
+    "prompt": "A hacker stares at four data-chips marked with a triangle, a circle, a blue light, and an orange light. The rule is that every triangle-marked chip has a blue core. A hacker holding a triangle-marked chip and an orange-marked chip. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c2-right-answer-wrong-channel",
+    "world": "space",
+    "seed": 163,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c2-right-answer-wrong-channel-space.png",
+    "prompt": "A robot horse stands before a commander hidden behind a screen; the commander speaks a riddle, and the horse taps a button in response. A robot horse standing before a screen with a button. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c2-right-answer-wrong-channel",
+    "world": "cyberpunk",
+    "seed": 164,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c2-right-answer-wrong-channel-cyberpunk.png",
+    "prompt": "A cybernetic horse stands before a hacker hidden behind a screen; the hacker speaks a riddle, and the horse taps a button in response. A cybernetic horse standing before a screen with a button. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c3-only-survivors-are-visible",
+    "world": "space",
+    "seed": 165,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c3-only-survivors-are-visible-space.png",
+    "prompt": "A technician reviews a log of four returned drones with cargo-bay damage, while four lost drones with engine damage are excluded from the report. A technician looking at a log showing four drones with damaged cargo bays. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c3-only-survivors-are-visible",
+    "world": "cyberpunk",
+    "seed": 166,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c3-only-survivors-are-visible-cyberpunk.png",
+    "prompt": "A technician reviews a log of four returned drones with cargo-bay damage, while four lost drones with engine damage are excluded from the report. A technician looking at a log showing four drones with damaged cargo bays. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c4-a-flag-is-not-a-verdict",
+    "world": "space",
+    "seed": 167,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-space.png",
+    "prompt": "A guard uses a sensor that glows for disguised aliens; it never misses one but occasionally glows for humans in a crowd of a thousand. A guard holding a glowing sensor in front of a crowd of people. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c4-a-flag-is-not-a-verdict",
+    "world": "cyberpunk",
+    "seed": 168,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-cyberpunk.png",
+    "prompt": "A guard uses a sensor that glows for disguised aliens; it never misses one but occasionally glows for humans in a crowd of a thousand. A guard holding a glowing sensor in front of a crowd of people. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c5-three-sources-or-one-echo",
+    "world": "space",
+    "seed": 169,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c5-three-sources-or-one-echo-space.png",
+    "prompt": "Three drones broadcast the same news of a solar flare, all of which were copied from a single original transmission. Three drones broadcasting a signal from one central source. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c5-three-sources-or-one-echo",
+    "world": "cyberpunk",
+    "seed": 170,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c5-three-sources-or-one-echo-cyberpunk.png",
+    "prompt": "Three drones broadcast the same news of a solar flare, all of which were copied from a single original transmission. Three drones broadcasting a signal from one central source. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c1-test-where-the-rule-can-break",
+    "world": "fantasy",
+    "seed": 171,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-fantasy.png",
+    "prompt": "In a castle vault, four sealed chests bear a dragon, a moon, a blue ribbon and an orange ribbon. A wizard's rule says every dragon chest has a blue ribbon inside. The apprentice must open only the chests that could expose a lie. Four chests in a stone vault; a dragon chest glows, an orange ribbon chest sits next to it, a wizard points at two of them. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c1-test-where-the-rule-can-break",
+    "world": "anime",
+    "seed": 172,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-anime.png",
+    "prompt": "At school, a young hero finds four cards on a desk. The club rule says a triangle card has a blue back. She flips only the cards that could prove the rule wrong, while her friends reach for the blue one. Bright classroom desk with four cards; the hero holds up the triangle, an orange card glows, friends look surprised. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c2-right-answer-wrong-channel",
+    "world": "fantasy",
+    "seed": 173,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c2-right-answer-wrong-channel-fantasy.png",
+    "prompt": "A royal stable has a horse that taps answers to a wizard's riddles. A curtain hides the wizard, but his voice still asks. The apprentice wonders whether the horse follows magic or the wizard's tiny movements. Horse hoof tapping, a curtain between horse and robed wizard, castle stable behind. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c2-right-answer-wrong-channel",
+    "world": "anime",
+    "seed": 174,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c2-right-answer-wrong-channel-anime.png",
+    "prompt": "At a school festival, a clever horse taps answers for a young hero. A screen hides the quizmaster, who still reads questions aloud. The hero predicts whether the horse needs the hidden signals. Festival stage, horse, screen hiding a quizmaster, bright sparkles, hero watching. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c3-only-survivors-are-visible",
+    "world": "fantasy",
+    "seed": 175,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c3-only-survivors-are-visible-fantasy.png",
+    "prompt": "Dragon riders return to a castle with scorch marks on their wings. A wizard notices the riders who never came back are missing from the map, and asks where they were hit. Castle tower, dragons landing with marked wings, empty perches with faint outlines. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c3-only-survivors-are-visible",
+    "world": "anime",
+    "seed": 176,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c3-only-survivors-are-visible-anime.png",
+    "prompt": "A school robotics club tests drones. The young hero sees marks only on four returned drones and asks to see the four lost ones, whose engines were damaged. Workshop table with drones; four on the table, four ghost-like outlines, hero pointing at engines. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c4-a-flag-is-not-a-verdict",
+    "world": "fantasy",
+    "seed": 177,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-fantasy.png",
+    "prompt": "A castle gate uses a crystal that glows for disguised goblins. It never misses one, but sometimes glows for ordinary villagers. With a thousand visitors and one goblin, the guard must judge a glow. Castle gate, glowing crystal, crowd of villagers, one hooded figure. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c4-a-flag-is-not-a-verdict",
+    "world": "anime",
+    "seed": 178,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-anime.png",
+    "prompt": "A school scanner flags a prank item in bags. It never misses one, but sometimes flags innocent bags. The young hero sees that with one prank bag in a thousand, a flag is mostly a false alarm. Bright school entrance, scanner arch flashing, long line of students with bags. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c5-three-sources-or-one-echo",
+    "world": "fantasy",
+    "seed": 179,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c5-three-sources-or-one-echo-fantasy.png",
+    "prompt": "Three heralds in three towns shout the same news of a dragon. The young scribe learns all three heard it from one traveller, so she goes to find the traveller. Three towers with heralds, thin lines all leading to one cloaked traveller. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c5-three-sources-or-one-echo",
+    "world": "anime",
+    "seed": 180,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c5-three-sources-or-one-echo-anime.png",
+    "prompt": "Three school club posters announce the same surprise event. The hero finds all three copied one message from a single student and goes to ask who wrote it. Three bright posters, arrows converging on one student with a note. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
   }
 ]
