@@ -105,19 +105,30 @@ server    127.0.0.1:8787                 Hono on Node 22
 |---|---|---|---|---|
 | Text | Gemma 4 12B (`gemma4:12b-mlx`) via Ollama | local | default: tutor and course drafts | live: three courses generated |
 | Text | `qwen3.8:27b-mlx` via Ollama | local | alternative | configured |
+| Text | Claude Opus 5.5 (`claude-opus-5-5`), Claude Sonnet 5.5 as the spare, via the Anthropic API | cloud | Online only, with a key: tutor and course drafts | live: 4 calls on 24.10 |
 | Text | Gemini API | cloud | off | placeholder, not implemented |
 | Speech → text | Whisper large-v3-turbo via whisper.cpp | local | default | live |
 | Speech → text | Gemma 4 12B audio input via Ollama | local | alternative | live |
-| Speech → text | ElevenLabs Scribe v2 (sends the recording) | cloud | off | HTTP mocks only |
+| Speech → text | ElevenLabs Scribe v2 (sends the recording) | cloud | Online only, with a key | live: 1 call on 24.10 |
 | Text → speech | Kokoro-82M (bf16, MLX), voice `af_heart` | local | default for English (voice by language) | live and offline on the Mac Studio |
 | Text → speech | Qwen3-TTS 1.7B (8-bit MLX), voice Aiden | local | default for Russian (voice by language) | live |
 | Text → speech | macOS `say` | local | emergency, picked on the Engines screen | live |
-| Text → speech | ElevenLabs Multilingual v2 (sends the text) | cloud | off | HTTP mocks only |
+| Text → speech | ElevenLabs Multilingual v2 (sends the text) | cloud | Online only, with a key | live: 1 call on 24.10 |
 | Pictures | 30 scene pictures drawn in advance by Nano Banana Pro (cloud), shipped as files in `content/media` | files | default for Fantasy and Anime | in the repository |
 | Pictures | built-in SVG scene schemes, drawn in the browser | local | fallback when a scene has no picture | in use |
 | Pictures | ComfyUI with Z-Image Turbo, live | local | optional, not used by the lesson | HTTP mocks only |
 
-Cloud providers are `enabled: false` in the config, and the Offline profile refuses them even when enabled. Using one is explicit: switch to the Online profile, set `enabled: true`, put the key in the environment variable named by `secretEnv` (`GEMINI_API_KEY`, `ELEVENLABS_API_KEY`) and pick the provider on the Engines screen. For a stock ComfyUI, set `apiMode: native`, `secretEnv: null` and its endpoint in `config/engines.json`.
+### Online mode: bring your own keys
+
+Offline is the default and needs no key. To go online:
+
+1. Open **Engines → API keys** and paste a key for Anthropic, ElevenLabs or Gemini. It is saved on this computer only, in `data/keys.local.json` (git-ignored, readable only by you). The page never gets the key back, only "set" or "not set". A key in the environment variable (`ANTHROPIC_API_KEY`, `ELEVENLABS_API_KEY`, `GEMINI_API_KEY`) wins over the saved one.
+2. Pick the **Online** profile. It stays greyed out until at least one key is set.
+3. Pick the cloud engine for a modality (for example Claude for text) and press **Apply**. The Online card says plainly what leaves the computer with the engines picked now: speech recognition sends the child's recorded answers, the other engines send text.
+
+`config/engines.json` keeps every cloud provider `enabled: false`. The server arms one only in the Online profile and only when its key is set, so the Offline profile and the offline launcher never see an enabled cloud engine. Removing the last key while Online switches back to the Offline defaults. Courses can be drafted online too: `npm run course:generate -- --provider anthropic …` with `ANTHROPIC_API_KEY` set.
+
+For a stock ComfyUI, set `apiMode: native`, `secretEnv: null` and its endpoint in `config/engines.json`.
 
 ## Models and their licenses
 
@@ -222,7 +233,7 @@ As of 24.10.2026, during the hackathon:
 - The adult gate doesn't cover the explanation, the Try step and the scenes (see above).
 - There is no filter yet for what the model says to a child. It is required before real use with children.
 - No installer: models are installed by hand.
-- The Gemini API provider is a placeholder. ElevenLabs has never been called live. Live ComfyUI through the app has only been tested against HTTP mocks.
+- The Gemini API provider is a placeholder. Claude and ElevenLabs were checked live with a handful of calls each, not under load. Live ComfyUI through the app has only been tested against HTTP mocks.
 - Not tested with real children's voices. Minimum hardware is not measured.
 
 ## Add an engine
