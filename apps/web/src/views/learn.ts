@@ -107,7 +107,8 @@ function heading(c: Card): string {
     case 'explain':
       return c.title;
     case 'act':
-      return c.action.instruction;
+      // The instruction itself lives in the panel, next to the scene and the mic; the heading only frames the step.
+      return t().ocean.tryHeading;
     case 'transfer':
       return c.question.prompt;
     case 'feedback':
@@ -249,14 +250,22 @@ function panel(c: Card): { cls: string; html: string } {
           ${s.evidence ? `<div class="evidence">${evidenceChips(s.evidence)}</div>` : ''}
           ${panelBottom(nextBtn, `<button id="back-transfer" class="btn btn--ghost btn--block">${d.backToTransfer}</button>`)}`,
       };
-    default: {
-      const vars =
-        s.step === 'act'
-          ? `<dl class="vars"><dt>${d.changed}</dt><dd>${esc(c.action.changedCondition)}</dd>${c.action.constants.length ? `<dt>${d.same}</dt><dd>${esc(c.action.constants.join(' · '))}</dd>` : ''}</dl>`
-          : '';
+    case 'act':
+      // «Try it»: the child-facing instruction is the main text; what changes and what stays are a quiet hint.
       return {
         cls: '',
-        html: `<span class="pill accent">${MIC}${o.yourTurn}</span><h2>${o.sayIt}</h2><p class="copy">${esc(d.stepHint[s.step])}</p>${vars}${alert}${notice}
+        html: `<span class="pill accent">${SPARK}${o.tryPill}</span><p class="lead-text">${esc(c.action.instruction)}</p>
+          <p class="copy dim">${o.tryHint}</p>
+          <details class="vars-hint"><summary>${o.varsSummary}</summary><dl class="vars">
+            <dt>${o.whatChanges}</dt><dd>${esc(c.action.changedCondition)}</dd>
+            ${c.action.constants.length ? `<dt>${o.whatStays}</dt><dd>${esc(c.action.constants.join(' · '))}</dd>` : ''}
+          </dl></details>${alert}${notice}
+          ${panelBottom(`<button id="mic" class="btn btn--block btn--mic">${MIC}<span>${o.tryAnswer}</span></button>`, `<div class="row-split">${typing}<button id="skip" class="text-btn text-btn--dim">${d.voice.skip}</button></div>`)}`,
+      };
+    default: {
+      return {
+        cls: '',
+        html: `<span class="pill accent">${MIC}${o.yourTurn}</span><h2>${o.sayIt}</h2><p class="copy">${esc(d.stepHint[s.step])}</p>${alert}${notice}
           ${panelBottom(`<button id="mic" class="btn btn--block btn--mic">${MIC}<span>${d.voice.start}</span></button>`, `<div class="row-split">${typing}<button id="skip" class="text-btn text-btn--dim">${d.voice.skip}</button></div>`)}`,
       };
     }
