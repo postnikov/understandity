@@ -166,9 +166,12 @@ export class EngineHub {
     for (const modality of MODALITIES) {
       for (const [providerId, cfg] of Object.entries(this.config.providers[modality])) {
         const adapter = this.adapters.get(key(modality, providerId));
-        const [health, models] = adapter
+        const configured = cfg.models.map((id) => ({ id, installed: false }));
+        // An engine that is down (ComfyUI not running) or lists nothing still shows its configured models, marked not installed.
+        const [health, listed] = adapter
           ? await Promise.all([adapter.health().catch(errHealth), adapter.listModels().catch(() => [])])
-          : [null, cfg.models.map((id) => ({ id, installed: false }))];
+          : [null, configured];
+        const models = listed.length ? listed : configured;
         out.push({
           modality,
           provider: providerId,
