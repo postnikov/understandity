@@ -100,7 +100,12 @@ async function buildMockCourse(job: MockJob) {
   course.title = req.charAt(0).toUpperCase() + req.slice(1).replace(/[.?!]*$/, '?');
   course.outcome = `Mock course for «${req}» — real cards come from the generator (mod/gen).`;
   course.review = { state: 'needs_review', reviewer: null, reviewedAt: null, notes: [] };
-  for (const k of course.concepts) for (const card of k.cards) card.review = { state: 'needs_review', reviewer: null, reviewedAt: null, notes: [] };
+  for (const k of course.concepts)
+    for (const card of k.cards) {
+      card.review = { state: 'needs_review', reviewer: null, reviewedAt: null, notes: [] };
+      // Like the real generator: scenes come without pictures (image: null), the web draws the scheme.
+      for (const w of card.worlds) w.image = null;
+    }
   (course as unknown as { origin: Record<string, unknown> }).origin = {
     generator: 'on-request',
     request: req,

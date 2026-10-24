@@ -6,7 +6,7 @@ import { generationStatus, isGenMock, startGeneration, type Audience, type GenEn
  * «Make your own course» on the home screen: a request in plain words, who it is for, local or online model,
  * then honest progress by the server's `step`, and the finished course opens right away.
  */
-type Phase = 'form' | 'running' | 'failed';
+type Phase = 'form' | 'running' | 'failed' | 'ready';
 
 const m = {
   phase: 'form' as Phase,
@@ -20,6 +20,9 @@ const m = {
   error: null as { code: string; message: string } | null,
   last: null as GenRequest | null,
   token: 0,
+  /** Finished course and whether every scene already has its picture (worlds[].image). */
+  courseId: null as string | null,
+  picturesDone: false,
 };
 let tick: ReturnType<typeof setInterval> | null = null;
 
@@ -81,11 +84,50 @@ function failure(): string {
     ${e.code === 'online_unavailable' ? `<a class="text-btn" href="#/engines">${d.addKey}</a>` : ''}</div></div>`;
 }
 
+/** True when every scene of every card has a picture. The API has no picture progress, so this is all we know. */
+async function picturesReady(courseId: string): Promise<boolean> {
+  const course = await api.course(courseId).catch(() => null);
+  if (!course) return false;
+  const worlds = course.concepts.flatMap((k) => k.cards.flatMap((c) => c.worlds));
+  return worlds.length > 0 && worlds.every((w) => !!w.image);
+}
+
+/** While the ready screen is open, re-check the course now and then; switch to «Everything ready» when pictures land. */
+function watchPictures(token: number) {
+  const check = async () => {
+    if (token !== m.token || m.phase !== 'ready' || m.picturesDone || !m.courseId) return;
+    if (await picturesReady(m.courseId)) {
+      m.picturesDone = true;
+      return rerender();
+    }
+    setTimeout(() => void check(), 5000);
+  };
+  setTimeout(() => void check(), 5000);
+}
+
+function ready(): string {
+  const d = t().make;
+  const href = `#/learn/${encodeURIComponent(m.courseId ?? '')}`;
+  return `<div class="make-ready" aria-live="polite">
+    <p class="make-req">«${esc(m.request)}»</p>
+    <ol class="make-steps make-steps--done">${STEPS.map((st) => `<li class="done">${d.steps[st]}</li>`).join('')}</ol>
+    ${
+      m.picturesDone
+        ? `<div class="ready-box ok"><b>${d.allReady}</b><span>${d.allReadyHint}</span></div>
+           <div class="make-actions"><a class="btn btn--xl" href="${href}" data-open>${d.startCourse} <span aria-hidden="true">→</span></a></div>`
+        : `<div class="ready-box"><b>${d.courseReady}</b><span>${d.picturesDrawing}</span><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+           <div class="make-actions"><a class="btn btn--xl" href="${href}" data-open>${d.viewCourse} <span aria-hidden="true">→</span></a>
+             <a class="btn btn--ghost" href="${href}" data-open>${d.startNoPictures}</a></div>`
+    }
+    <button class="text-btn text-btn--dim" id="make-another">${d.another}</button>
+  </div>`;
+}
+
 export function makePanel(): string {
   const d = t().make;
   return `<section class="make" id="make">
     <div class="make-head"><div><div class="eyebrow">${d.kicker}</div><h2>${d.title}</h2></div><p class="dim">${d.lead}</p></div>
-    ${m.phase === 'running' ? progress() : m.phase === 'failed' ? failure() : form()}
+    ${m.phase === 'running' ? progress() : m.phase === 'failed' ? failure() : m.phase === 'ready' ? ready() : form()}
     ${isGenMock() ? `<p class="faint" style="font-size:11px;margin-top:var(--s-3)">${d.mock}</p>` : ''}
   </section>`;
 }
@@ -124,10 +166,13 @@ async function run(body: GenRequest) {
       const job = await generationStatus(jobId);
       if (job.status === 'failed') return fail(job.error?.code ?? 'internal', job.error?.message ?? '');
       if (job.status === 'done' && job.courseId) {
+        // No automatic jump (word of Max, 24.10 15:53): the course is ready, pictures may still be drawing.
         stopTick();
-        m.phase = 'form';
-        m.request = '';
-        location.hash = `#/learn/${encodeURIComponent(job.courseId)}`;
+        m.phase = 'ready';
+        m.courseId = job.courseId;
+        m.picturesDone = await picturesReady(job.courseId);
+        rerender();
+        watchPictures(token);
         return;
       }
       const changed = job.step !== m.step || m.queued !== (job.status === 'queued');
@@ -162,6 +207,12 @@ export function bindMake(root: HTMLElement) {
     m.request = request;
     void run({ request, audience: m.audience, lang: 'en', engine: m.engine });
   });
+  root.querySelector('#make-another')?.addEventListener('click', () => {
+    m.phase = 'form';
+    m.request = '';
+    m.courseId = null;
+    rerender();
+  });
   root.querySelector('#make-retry')?.addEventListener('click', () => m.last && void run(m.last));
   root.querySelector('#make-edit')?.addEventListener('click', () => {
     // Re-read the keys: without an Anthropic key the choice falls back to Local, so the next run can't hit 409 again.
@@ -176,3 +227,13 @@ export function bindMake(root: HTMLElement) {
 export function leaveMake() {
   if (m.phase !== 'running') stopTick();
 }
+
+/** Own screen for the generator (#/make): the home page only links here. */
+export const makeView: import('../main.js').View = {
+  async enter() {
+    await refreshKeys();
+  },
+  html: () => `<main class="page make-page"><a class="back-link" href="#/">${t().ocean.back}</a>${makePanel()}</main>`,
+  bind: (root) => bindMake(root),
+  leave: () => leaveMake(),
+};

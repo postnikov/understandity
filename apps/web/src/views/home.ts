@@ -1,78 +1,51 @@
-import { isShowable, type Card, type Course } from '@understandity/contracts';
+import { isShowable, type Course } from '@understandity/contracts';
 import { api, isMock, type CourseSummary } from '../api.js';
-import { app, errorText, esc, subjectLabel, rerender, t } from '../app.js';
+import { app, errorText, esc, subjectLabel, t } from '../app.js';
 import type { View } from '../main.js';
 import { sceneArt } from '../scenes.js';
 import { isOnRequest } from '../generate.js';
-import { bindMake, leaveMake, makePanel, refreshKeys } from './make.js';
 
-/** Home (Ocean lab): one big question per course, its scene, and the path of discoveries (cards). */
+/**
+ * Home = landing (word of Max, 24.10 15:49): what this is and for whom, a clear «Make your own course» button,
+ * and every course as a card that opens it. The course hero and the generator live on their own screens.
+ */
 const s = {
   loading: true,
   error: null as string | null,
   courses: [] as CourseSummary[],
   full: new Map<string, Course>(),
-  selected: localStorage.getItem('understandity.course') ?? '',
 };
-
-const MIC = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true"><rect x="9" y="2" width="6" height="13"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8"/></svg>`;
 
 const cardsOf = (c: Course) => c.concepts.flatMap((k) => k.cards);
 /** Courses made on request are shown right away as drafts (contract, word of Max); prepared courses need approval. */
 const showableOf = (c: Course) =>
   app.gateOff ? cardsOf(c) : cardsOf(c).filter((card) => isShowable(card, { allowDrafts: app.allowDrafts || isOnRequest(c) }));
 
-/** Course title with the last word in the accent colour, as in the prototype hero. */
-function heroTitle(title: string): string {
-  const m = /^(.*?)(\S+)$/.exec(title.trim());
-  return m ? `${esc(m[1])}<em>${esc(m[2])}</em>` : esc(title);
-}
-
-function discovery(course: Course, card: Card, i: number, learnIndex: number): string {
-  const open = learnIndex >= 0;
-  const art = sceneArt({ course, card, index: i, world: app.world, labels: false, fit: 'meet' });
-  const n = String(i + 1).padStart(2, '0');
-  const inner = `<div class="map-art">${art.html}</div><div class="map-body"><span class="n">${n}</span><span>${esc(card.title)}</span></div>`;
-  return open
-    ? `<a class="map-card" href="#/learn/${encodeURIComponent(course.id)}/${learnIndex}">${inner}</a>`
-    : `<div class="map-card locked" title="${esc(t().home.waiting)}">${inner}<span class="lock">${esc(t().home.waiting)}</span></div>`;
-}
-
-function hero(course: Course): string {
+function courseCard(course: Course): string {
   const d = t();
   const showable = showableOf(course);
   const first = showable[0] ?? cardsOf(course)[0] ?? null;
-  const art = sceneArt({ course, card: first, index: 0, world: app.world, labels: course.language.startsWith('en') });
-  const all = cardsOf(course);
-  // The lead speaks to the kid: the first card's hook, not the course outcome written for adults.
-  return `<section class="home-hero">
-    <div class="home-copy">
-      <div class="eyebrow">${d.home.adventure} ${esc(subjectLabel(course.subject))}</div>
-      ${isOnRequest(course) && !app.gateOff ? `<span class="chip chip--amber ai-mark">${d.make.aiMark}</span>` : ''}
-      <h1>${heroTitle(course.title)}</h1>
-      <p class="lead">${esc(first?.hook.question ?? course.outcome)}</p>
-      <div class="home-actions">
-        ${
-          showable.length
-            ? `<a class="btn btn--xl" href="#/learn/${encodeURIComponent(course.id)}">${d.home.go} <span aria-hidden="true">→</span></a><span class="dim">${d.home.curiosity}</span>`
-            : `<p class="alert"><b>!</b><span>${d.home.notReady}</span></p>`
-        }
-      </div>
-      <p class="home-meta">${all.length} ${d.home.discoveries} <i>·</i> ${d.home.ages} ${course.ageRange[0]}–${course.ageRange[1]} <i>·</i> ${d.home.byTalking}
-        ${app.gateOff ? '' : `<i>·</i> <a href="#/review/${encodeURIComponent(course.id)}">${d.home.check}</a>`}</p>
-    </div>
-    <div class="hero-art">${art.html}
-      <span class="art-stamp">${d.home.worth}</span>
-      ${first ? `<div class="art-caption"><span>${esc(first.title)}</span></div>` : ''}
-    </div>
-  </section>`;
+  const art = sceneArt({ course, card: first, index: 0, world: app.world, labels: false });
+  const n = cardsOf(course).length;
+  const mine = isOnRequest(course);
+  const body = `<div class="ccard__art">${art.html}<span class="ccard__subject">${esc(subjectLabel(course.subject))}</span></div>
+    <div class="ccard__body">
+      <h3>${esc(course.title)}</h3>
+      ${first ? `<p class="ccard__q">${esc(first.hook.question)}</p>` : ''}
+      <div class="ccard__foot"><span class="dim">${n} ${d.home.discoveries}${mine && !app.gateOff ? ` · <span class="ai-mark-inline">${d.make.aiMark}</span>` : ''}</span>
+        ${showable.length ? `<span class="ccard__go">${d.home.open} →</span>` : `<span class="ccard__wait">${d.home.waiting}</span>`}</div>
+    </div>`;
+  return showable.length
+    ? `<a class="ccard" href="#/learn/${encodeURIComponent(course.id)}">${body}</a>`
+    : `<div class="ccard ccard--locked">${body}</div>`;
 }
 
-function tabs(label: string, list: CourseSummary[], mine: boolean): string {
-  if (!list.length || (!mine && list.length < 2 && !s.courses.some((c) => isOnRequest(s.full.get(c.id))))) return '';
-  return `<nav class="course-tabs ${mine ? 'course-tabs--mine' : ''}" aria-label="${esc(label)}"><span class="label">${label}</span>${list
-    .map((c) => `<button data-course="${esc(c.id)}" class="${c.id === s.selected ? 'on' : ''}" aria-pressed="${c.id === s.selected}">${mine ? '<i class="ai-dot" aria-hidden="true"></i>' : ''}${esc(c.title)}</button>`)
-    .join('')}</nav>`;
+function grid(label: string, hint: string, list: Course[]): string {
+  if (!list.length) return '';
+  return `<section class="courses-sec">
+    <div class="section-head"><span class="label">${label}</span><span class="dim">${hint}</span></div>
+    <div class="course-grid">${list.map(courseCard).join('')}</div>
+  </section>`;
 }
 
 export const homeView: View = {
@@ -80,15 +53,9 @@ export const homeView: View = {
     s.loading = true;
     s.error = null;
     try {
-      await refreshKeys();
       s.courses = await api.courses();
       const full = await Promise.all(s.courses.map((c) => api.course(c.id).catch(() => null)));
       full.forEach((c) => c && s.full.set(c.id, c));
-      if (!s.courses.some((c) => c.id === s.selected)) {
-        // Default: the first course a student can actually open.
-        const open = s.courses.find((c) => s.full.get(c.id) && showableOf(s.full.get(c.id)!).length);
-        s.selected = (open ?? s.courses[0])?.id ?? '';
-      }
     } catch (err) {
       s.error = errorText(err);
     }
@@ -96,42 +63,29 @@ export const homeView: View = {
   },
   html() {
     const d = t();
-    if (s.error) return `<main class="page"><p class="alert alert--err"><b>××</b><span>${esc(s.error)}</span></p></main>`;
-    if (s.loading && !s.courses.length) return `<main class="page"><p class="dim">${d.loading}</p></main>`;
-    if (!s.courses.length) return `<main class="page"><p class="dim">${d.home.empty}</p></main>`;
-    const course = s.full.get(s.selected) ?? null;
-    const showIds = course ? showableOf(course).map((c) => c.id) : [];
-    return `<main class="page home">
-      ${makePanel()}
-      ${tabs(d.home.pick, s.courses.filter((c) => !isOnRequest(s.full.get(c.id))), false)}
-      ${tabs(d.make.yourCourses, s.courses.filter((c) => isOnRequest(s.full.get(c.id))), true)}
-      ${course ? hero(course) : `<p class="dim">${d.loading}</p>`}
-      ${
-        course
-          ? `<section class="module-map">
-        <div class="section-head"><span class="label">${d.home.yourDiscoveries}</span><span class="dim">${d.home.nextLeads}</span></div>
-        <div class="card-grid">${cardsOf(course)
-          .filter((c) => app.gateOff || c.review.state !== 'blocked')
-          .map((c, i) => discovery(course, c, i, showIds.indexOf(c.id)))
-          .join('')}</div>
-        <p class="mic-line">${MIC}<span>${d.home.micLine}</span></p>
-      </section>`
-          : ''
-      }
+    const courses = s.courses.map((c) => s.full.get(c.id)).filter((c): c is Course => !!c);
+    const prepared = courses.filter((c) => !isOnRequest(c));
+    const mine = courses.filter((c) => isOnRequest(c));
+    return `<main class="page home landing">
+      <section class="intro">
+        <div class="intro__copy">
+          <div class="eyebrow">${d.home.kicker}</div>
+          <h1>${esc(d.home.landingTitle)}</h1>
+          <p class="lead">${esc(d.home.landingLead)}</p>
+          <div class="home-actions">
+            <a class="btn btn--xl" href="#/make">${d.home.makeCta} <span aria-hidden="true">→</span></a>
+            <span class="dim">${d.home.makeHint}</span>
+          </div>
+        </div>
+        <blockquote class="mantra">${esc(d.home.mantra)}<b>${esc(d.home.mantraEnd)}</b></blockquote>
+      </section>
+      ${s.error ? `<p class="alert alert--err"><b>××</b><span>${esc(s.error)}</span></p>` : ''}
+      ${s.loading && !courses.length ? `<p class="dim">${d.loading}</p>` : ''}
+      ${!s.loading && !s.error && !courses.length ? `<p class="dim">${d.home.empty}</p>` : ''}
+      ${grid(d.make.yourCourses, d.home.yourCoursesHint, mine)}
+      ${grid(d.home.courses, d.home.coursesHint, prepared)}
       ${isMock() ? `<p class="faint" style="font-size:12px;margin-top:var(--s-5)">${esc(d.mockHint)}</p>` : ''}
     </main>`;
   },
-  leave() {
-    leaveMake();
-  },
-  bind(root) {
-    bindMake(root);
-    root.querySelectorAll<HTMLButtonElement>('[data-course]').forEach((b) =>
-      b.addEventListener('click', () => {
-        s.selected = b.dataset.course!;
-        localStorage.setItem('understandity.course', s.selected);
-        rerender();
-      }),
-    );
-  },
+  bind() {},
 };
