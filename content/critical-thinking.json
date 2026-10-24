@@ -1,0 +1,589 @@
+{
+  "id": "critical-thinking",
+  "title": "Where did this evidence come from?",
+  "outcome": "You can name the process that produced a piece of evidence, then pick the one test that could prove a conclusion wrong.",
+  "language": "en",
+  "subject": "critical-thinking",
+  "ageRange": [
+    16,
+    18
+  ],
+  "concepts": [
+    {
+      "id": "critical-thinking",
+      "title": "Where did this evidence come from?",
+      "centralCause": "The way evidence was collected (what was picked, what could be seen, who passed it on) shapes what it can show. So first name that process, then look for the one check the conclusion could fail. This applies when you know, or can ask, how the evidence got to you.",
+      "conditions": [
+        "You can say how the evidence was gathered or passed on",
+        "The set of possibilities is known (as in the card puzzle)",
+        "A test is only useful if one of its possible results could contradict the conclusion",
+        "Shared origin means dependence, not falsehood"
+      ],
+      "cards": [
+        {
+          "id": "c1-test-where-the-rule-can-break",
+          "title": "Test where the rule can break",
+          "fact": {
+            "statement": "To check a rule, turn over only the cards that could show it false. A result that fits the rule but could never break it proves little.",
+            "conditions": [
+              "The rule is 'a triangle has a blue back'",
+              "Only four cards exist: triangle, circle, blue, orange",
+              "Only shapes and colours named exist"
+            ],
+            "source": "Author's own notes for a critical-thinking micro-course (16-18); all numbers are teaching numbers, not measurements. Classic tasks attributed, no participant results used: Wason selection task (described 1968); Pfungst, Clever Hans (1911); Wald, aircraft damage memoranda (1943, CNA reprint 1980); the test problem is a teaching model (task attributed to Casscells et al., 1978); the 1835 Moon Hoax per Library of Congress. Adult reference only, no text copied: OpenStax Introductory Statistics 2e 1.2 and 3.5, Introduction to Philosophy 2.2 (CC BY-NC-SA 4.0) — https://www.cna.org/reports/1980/0204320000.pdf"
+          },
+          "hook": {
+            "question": "Four cards lie on a table, each with a shape on one side and a colour on the other. Every shape is a triangle or a circle; every colour is blue or orange. You see: a triangle, a circle, a blue side, an orange side. Someone promises: if a card has a triangle on one side, the other side is blue. Which cards must you turn over to check the promise, and only those?",
+            "predictPrompt": "Name only the cards you need, and say what on their back would break the promise."
+          },
+          "explanation": "A rule fails only when it is broken. This rule breaks if a triangle has a non-blue back. So turn the triangle. Turn the orange card too, because a triangle behind it would break the rule. Blue is useless: a triangle on blue fits the rule, and a circle on blue breaks nothing.",
+          "action": {
+            "instruction": "Thought experiment: now orange becomes blue. Predict which cards you need, then compare with the first set.",
+            "changedCondition": "The orange card becomes blue",
+            "constants": [
+              "Same rule",
+              "Same four cards otherwise",
+              "Only these shapes and colours exist"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "In a castle vault, four sealed chests bear a dragon, a moon, a blue ribbon and an orange ribbon. A wizard's rule says every dragon chest has a blue ribbon inside. The apprentice must open only the chests that could expose a lie.",
+              "illustration": "Four chests in a stone vault; a dragon chest glows, an orange ribbon chest sits next to it, a wizard points at two of them.",
+              "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "At school, a young hero finds four cards on a desk. The club rule says a triangle card has a blue back. She flips only the cards that could prove the rule wrong, while her friends reach for the blue one.",
+              "illustration": "Bright classroom desk with four cards; the hero holds up the triangle, an orange card glows, friends look surprised.",
+              "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "An astronaut stands before four canisters marked with a triangle, a circle, a blue label, and an orange label. The rule is that every triangle-marked canister has a blue interior.",
+              "illustration": "An astronaut holding a triangle-marked canister and an orange-marked canister.",
+              "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A hacker stares at four data-chips marked with a triangle, a circle, a blue light, and an orange light. The rule is that every triangle-marked chip has a blue core.",
+              "illustration": "A hacker holding a triangle-marked chip and an orange-marked chip.",
+              "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-cyberpunk.png"
+            }
+          ],
+          "question": {
+            "id": "q-c1-test-where-the-rule-can-break",
+            "prompt": "A warehouse rule says fragile parcels are reinforced. You have records of: fragile, not fragile, reinforced, not reinforced. Which two do you open, and why?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c1-test-where-the-rule-can-break",
+            "expectedCause": "Open the fragile parcel and the not-reinforced parcel, because only those could break the rule (a fragile parcel that is not reinforced). Opening the reinforced or not-fragile ones cannot contradict the rule.",
+            "acceptable": [
+              "Says: look for a fragile one without reinforcement from both sides",
+              "Says: reinforced and not-fragile cannot show a violation"
+            ],
+            "typicalMistake": "Picking the reinforced parcel to find confirming examples, which cannot break the rule.",
+            "followUp": "What could you find inside the reinforced parcel that would break the rule?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "Open fragile and not reinforced. A fragile parcel without reinforcement would break the rule; a reinforced parcel can't.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "Open fragile and reinforced to see they match, so the rule is proved.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "Open the fragile one and some other one.",
+                "tutorMove": "What could you find inside the reinforced parcel that would break the rule?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Why can't I just look for examples that fit the rule?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "absolute word \"only\" in key — check that it holds under the stated conditions",
+              "absolute word \"only\" in fact — check that it holds under the stated conditions",
+              "2026-10-24T13:10:34.344Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T13:16:58.000Z изменено вручную (Fable, до проверки Max): hook no longer names the number of cards or calls blue a waste; predict asks for the cards and the breaking pair without a count"
+            ]
+          }
+        },
+        {
+          "id": "c2-right-answer-wrong-channel",
+          "title": "Right answer, wrong channel",
+          "fact": {
+            "statement": "A correct answer may come through a different channel than the one you assume. Remove or change one possible channel and see whether the answer changes.",
+            "conditions": [
+              "Hans tapped answers by reading tiny movements of the questioner, who knew them",
+              "A screen hides the questioner, the only person Hans could see",
+              "The question is still spoken"
+            ],
+            "source": "Author's own notes for a critical-thinking micro-course (16-18); all numbers are teaching numbers, not measurements. Classic tasks attributed, no participant results used: Wason selection task (described 1968); Pfungst, Clever Hans (1911); Wald, aircraft damage memoranda (1943, CNA reprint 1980); the test problem is a teaching model (task attributed to Casscells et al., 1978); the 1835 Moon Hoax per Library of Congress. Adult reference only, no text copied: OpenStax Introductory Statistics 2e 1.2 and 3.5, Introduction to Philosophy 2.2 (CC BY-NC-SA 4.0) — https://www.cna.org/reports/1980/0204320000.pdf"
+          },
+          "hook": {
+            "question": "A horse taps out correct answers. Does that prove he understands numbers?",
+            "predictPrompt": "A screen hides the questioner from Hans, but the question is still spoken. What happens to his answers, and why?"
+          },
+          "explanation": "Clever Hans, studied by Pfungst, tapped answers by reading tiny movements of the questioner, who knew the answer. A correct answer shows only that some channel carried it. Hide the one person Hans could see and keep the spoken question. If answers fail, the hidden cue was the channel.",
+          "action": {
+            "instruction": "Thought experiment: predict Hans's answers with the screen, then compare with no screen.",
+            "changedCondition": "A screen hides the questioner",
+            "constants": [
+              "The same questions",
+              "The question is still spoken",
+              "The same horse"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A royal stable has a horse that taps answers to a wizard's riddles. A curtain hides the wizard, but his voice still asks. The apprentice wonders whether the horse follows magic or the wizard's tiny movements.",
+              "illustration": "Horse hoof tapping, a curtain between horse and robed wizard, castle stable behind.",
+              "image": "/media/critical-thinking/c2-right-answer-wrong-channel-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "At a school festival, a clever horse taps answers for a young hero. A screen hides the quizmaster, who still reads questions aloud. The hero predicts whether the horse needs the hidden signals.",
+              "illustration": "Festival stage, horse, screen hiding a quizmaster, bright sparkles, hero watching.",
+              "image": "/media/critical-thinking/c2-right-answer-wrong-channel-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "A robot horse stands before a commander hidden behind a screen; the commander speaks a riddle, and the horse taps a button in response.",
+              "illustration": "A robot horse standing before a screen with a button.",
+              "image": "/media/critical-thinking/c2-right-answer-wrong-channel-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A cybernetic horse stands before a hacker hidden behind a screen; the hacker speaks a riddle, and the horse taps a button in response.",
+              "illustration": "A cybernetic horse standing before a screen with a button.",
+              "image": "/media/critical-thinking/c2-right-answer-wrong-channel-cyberpunk.png"
+            }
+          ],
+          "question": {
+            "id": "q-c2-right-answer-wrong-channel",
+            "prompt": "A bot labels pictures as wolf on snow and dog on grass. You swap only the background of one picture. If the label changes, what does that show, and what if it does not change?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c2-right-answer-wrong-channel",
+            "expectedCause": "A changed label shows the background mattered to the bot. An unchanged label proves nothing, because the bot might use something else or one picture is too little.",
+            "acceptable": [
+              "Says an unchanged label does not prove it uses the animal",
+              "Mentions only one thing was changed"
+            ],
+            "typicalMistake": "Saying that an unchanged label proves the bot really understands wolves.",
+            "followUp": "Why can't one unchanged label settle it?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "If the label flips, the background mattered. If it stays, we learn little, since other cues might still be used.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "If the label stays the same, the bot clearly knows wolves.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "The bot might be using the background.",
+                "tutorMove": "Why can't one unchanged label settle it?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "So was Hans just cheating?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "absolute word \"only\" in voice question — check that it holds under the stated conditions",
+              "2026-10-24T13:10:34.344Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx"
+            ]
+          }
+        },
+        {
+          "id": "c3-only-survivors-are-visible",
+          "title": "Only survivors are visible",
+          "fact": {
+            "statement": "If you only see what survived or returned, the evidence misses what stopped things from coming back. A lightly marked part may be vulnerable or rarely hit.",
+            "conditions": [
+              "Damage map from returning aircraft (Wald)",
+              "A made-up drone log: four returned with cargo-bay damage; adding four lost with engine damage",
+              "Only the log filter changes"
+            ],
+            "source": "Author's own notes for a critical-thinking micro-course (16-18); all numbers are teaching numbers, not measurements. Classic tasks attributed, no participant results used: Wason selection task (described 1968); Pfungst, Clever Hans (1911); Wald, aircraft damage memoranda (1943, CNA reprint 1980); the test problem is a teaching model (task attributed to Casscells et al., 1978); the 1835 Moon Hoax per Library of Congress. Adult reference only, no text copied: OpenStax Introductory Statistics 2e 1.2 and 3.5, Introduction to Philosophy 2.2 (CC BY-NC-SA 4.0) — https://www.cna.org/reports/1980/0204320000.pdf"
+          },
+          "hook": {
+            "question": "In 1943, statistician Abraham Wald studied how to estimate aircraft vulnerability from the damage on returning planes. Imagine a map showing damage only from those planes. The obvious plan would be to protect the parts with the most marks. Can that map alone tell you which parts most need protection? What could be missing?",
+            "predictPrompt": "A made-up log shows four returned drones with cargo-bay damage. What would you protect, and why?"
+          },
+          "explanation": "Wald noticed that damage maps came only from aircraft that returned. Hits that stopped a plane returning were missing. A lightly marked part may be vulnerable or rarely hit. In this thought experiment, adding four lost drones with engine damage changes the picture: the filter, not the drones, changed.",
+          "action": {
+            "instruction": "Thought experiment: first read the log with only four returned drones, then the log with all eight. Predict what you would protect each time.",
+            "changedCondition": "The log filter: returned only versus all eight drones",
+            "constants": [
+              "The same drone fleet",
+              "The same kind of damage recording"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "Dragon riders return to a castle with scorch marks on their wings. A wizard notices the riders who never came back are missing from the map, and asks where they were hit.",
+              "illustration": "Castle tower, dragons landing with marked wings, empty perches with faint outlines.",
+              "image": "/media/critical-thinking/c3-only-survivors-are-visible-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "A school robotics club tests drones. The young hero sees marks only on four returned drones and asks to see the four lost ones, whose engines were damaged.",
+              "illustration": "Workshop table with drones; four on the table, four ghost-like outlines, hero pointing at engines.",
+              "image": "/media/critical-thinking/c3-only-survivors-are-visible-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "A technician reviews a log of four returned drones with cargo-bay damage, while four lost drones with engine damage are excluded from the report.",
+              "illustration": "A technician looking at a log showing four drones with damaged cargo bays.",
+              "image": "/media/critical-thinking/c3-only-survivors-are-visible-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A technician reviews a log of four returned drones with cargo-bay damage, while four lost drones with engine damage are excluded from the report.",
+              "illustration": "A technician looking at a log showing four drones with damaged cargo bays.",
+              "image": "/media/critical-thinking/c3-only-survivors-are-visible-cyberpunk.png"
+            }
+          ],
+          "question": {
+            "id": "q-c3-only-survivors-are-visible",
+            "prompt": "An app shows reviews only from people who finished a course, and nine in ten give five stars. What does that describe, and what does it miss?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c3-only-survivors-are-visible",
+            "expectedCause": "It describes posted reviews from finishers, not everyone who started. People who quit are missing, so it cannot show how most starters felt.",
+            "acceptable": [
+              "Says survivors or finishers filter the sample",
+              "Says the quitters might disagree"
+            ],
+            "typicalMistake": "Saying nine in ten of all learners love the course.",
+            "followUp": "Who is missing from these reviews?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "Only finishers posted, so it describes them. People who quit are missing and may have a different view.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "Nine in ten people who tried the course liked it.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "The reviews might be biased.",
+                "tutorMove": "Who is missing from these reviews?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Does that mean the reviews are false?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "absolute word \"only\" in voice question — check that it holds under the stated conditions",
+              "absolute word \"only\" in fact — check that it holds under the stated conditions",
+              "2026-10-24T13:10:34.344Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T13:16:58.000Z изменено вручную (Fable, до проверки Max): hook ends with a question instead of suggesting that unmarked parts are the ones to protect"
+            ]
+          }
+        },
+        {
+          "id": "c4-a-flag-is-not-a-verdict",
+          "title": "A flag is not a verdict",
+          "fact": {
+            "statement": "When the target group is small, false alarms from the large non-target group can outnumber true hits. Changing how common the target is changes how much a flag means.",
+            "conditions": [
+              "Model: 1 in 1,000 has a condition, all tested, every real case is detected, 5 percent of the rest are wrongly flagged",
+              "Same group and test when the condition becomes 1 of 2"
+            ],
+            "source": "Author's own notes for a critical-thinking micro-course (16-18); all numbers are teaching numbers, not measurements. Classic tasks attributed, no participant results used: Wason selection task (described 1968); Pfungst, Clever Hans (1911); Wald, aircraft damage memoranda (1943, CNA reprint 1980); the test problem is a teaching model (task attributed to Casscells et al., 1978); the 1835 Moon Hoax per Library of Congress. Adult reference only, no text copied: OpenStax Introductory Statistics 2e 1.2 and 3.5, Introduction to Philosophy 2.2 (CC BY-NC-SA 4.0) — https://www.cna.org/reports/1980/0204320000.pdf"
+          },
+          "hook": {
+            "question": "In a fictional population, 1 in 1,000 people has a condition. Everyone is tested. The test detects every real case and wrongly flags 5 percent of people without the condition. One positive result is picked at random. How likely is it to be a real case?",
+            "predictPrompt": "In 1,000 people, 1 has the condition and 5 percent of the rest are wrongly flagged. Roughly how many flags are real, and why?"
+          },
+          "explanation": "In this model, the one real case is flagged. About 5 percent of the other 999 are also flagged, roughly 50 people. So about 1 real flag stands against about 50 false. The big non-target group produces many false alarms. This is a model, not a medical conclusion.",
+          "action": {
+            "instruction": "Thought experiment: now the condition is in 1 of 2 people, same group and same test. Predict the share of real flags, then compare with the first case.",
+            "changedCondition": "How common the condition is: 1 in 1,000 versus 1 in 2",
+            "constants": [
+              "Same group",
+              "Same test",
+              "Every real case is detected"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A castle gate uses a crystal that glows for disguised goblins. It never misses one, but sometimes glows for ordinary villagers. With a thousand visitors and one goblin, the guard must judge a glow.",
+              "illustration": "Castle gate, glowing crystal, crowd of villagers, one hooded figure.",
+              "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "A school scanner flags a prank item in bags. It never misses one, but sometimes flags innocent bags. The young hero sees that with one prank bag in a thousand, a flag is mostly a false alarm.",
+              "illustration": "Bright school entrance, scanner arch flashing, long line of students with bags.",
+              "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "A guard uses a sensor that glows for disguised aliens; it never misses one but occasionally glows for humans in a crowd of a thousand.",
+              "illustration": "A guard holding a glowing sensor in front of a crowd of people.",
+              "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A guard uses a sensor that glows for disguised aliens; it never misses one but occasionally glows for humans in a crowd of a thousand.",
+              "illustration": "A guard holding a glowing sensor in front of a crowd of people.",
+              "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-cyberpunk.png"
+            }
+          ],
+          "question": {
+            "id": "q-c4-a-flag-is-not-a-verdict",
+            "prompt": "In an archive, 10 of 1,000 files are damaged. A checker flags all 10 plus one in ten of the rest. How many flagged files are damaged and how many undamaged, and what does that tell you about a flag?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c4-a-flag-is-not-a-verdict",
+            "expectedCause": "10 damaged and 99 undamaged are flagged, because one in ten of the 990 undamaged files is flagged. So a flag is real only about 10 in 109 times: the large undamaged group makes many false alarms.",
+            "acceptable": [
+              "Roughly 99 or about 100 false flags",
+              "Says most flags are false alarms"
+            ],
+            "typicalMistake": "Saying a flagged file is almost surely damaged because the checker finds all damaged ones.",
+            "followUp": "Where do the 99 come from?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "10 damaged and 99 undamaged are flagged. One in ten of 990 undamaged files is about 99, so most flags are false alarms.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "The checker catches all damaged files, so every flag means damage.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "There would be some false flags.",
+                "tutorMove": "Where do the 99 come from?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Why does the 1 in 2 case change so much?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "absolute word \"all\" in voice question — check that it holds under the stated conditions",
+              "absolute word \"only\" in key — check that it holds under the stated conditions",
+              "2026-10-24T13:10:34.344Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T13:16:58.000Z изменено вручную (Fable, до проверки Max): hook no longer states that most flags are wrong; the answer (about 95 percent real) removed from the Try instruction"
+            ]
+          }
+        },
+        {
+          "id": "c5-three-sources-or-one-echo",
+          "title": "Three sources or one echo",
+          "fact": {
+            "statement": "Several sources that copy one origin add no new observation. Shared source means dependence, not that the claim is false.",
+            "conditions": [
+              "The reprints do not make their own check",
+              "They trace back to one source",
+              "Example: New York Sun, 1835"
+            ],
+            "source": "Author's own notes for a critical-thinking micro-course (16-18); all numbers are teaching numbers, not measurements. Classic tasks attributed, no participant results used: Wason selection task (described 1968); Pfungst, Clever Hans (1911); Wald, aircraft damage memoranda (1943, CNA reprint 1980); the test problem is a teaching model (task attributed to Casscells et al., 1978); the 1835 Moon Hoax per Library of Congress. Adult reference only, no text copied: OpenStax Introductory Statistics 2e 1.2 and 3.5, Introduction to Philosophy 2.2 (CC BY-NC-SA 4.0) — https://www.cna.org/reports/1980/0204320000.pdf"
+          },
+          "hook": {
+            "question": "Three outlets say the same thing. Why might that still be only one piece of evidence?",
+            "predictPrompt": "In 1835 the New York Sun printed a story about creatures on the Moon, and other papers reprinted it. Predict how your confidence should change if every report leads back to one story, and say what you would check before passing the news on."
+          },
+          "explanation": "In 1835 the New York Sun printed a story that others reprinted. Reprints without their own check add no observation. If sources share one origin, they depend on it. That does not make the claim false. It means you should check the origin, not count the copies.",
+          "action": {
+            "instruction": "Thought experiment: three notes say the same thing. First suppose all three copy one note, then suppose each was written after its own check. Predict how much extra support you get each time.",
+            "changedCondition": "Whether the three notes made their own check or copy one source",
+            "constants": [
+              "Same claim",
+              "Same number of notes"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "Three heralds in three towns shout the same news of a dragon. The young scribe learns all three heard it from one traveller, so she goes to find the traveller.",
+              "illustration": "Three towers with heralds, thin lines all leading to one cloaked traveller.",
+              "image": "/media/critical-thinking/c5-three-sources-or-one-echo-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "Three school club posters announce the same surprise event. The hero finds all three copied one message from a single student and goes to ask who wrote it.",
+              "illustration": "Three bright posters, arrows converging on one student with a note.",
+              "image": "/media/critical-thinking/c5-three-sources-or-one-echo-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "Three drones broadcast the same news of a solar flare, all of which were copied from a single original transmission.",
+              "illustration": "Three drones broadcasting a signal from one central source.",
+              "image": "/media/critical-thinking/c5-three-sources-or-one-echo-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "Three drones broadcast the same news of a solar flare, all of which were copied from a single original transmission.",
+              "illustration": "Three drones broadcasting a signal from one central source.",
+              "image": "/media/critical-thinking/c5-three-sources-or-one-echo-cyberpunk.png"
+            }
+          ],
+          "question": {
+            "id": "q-c5-three-sources-or-one-echo",
+            "prompt": "Three AI assistants all cite one press release saying a new battery lasts twice as long. How strong is this as three-way support, and what would you do next?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c5-three-sources-or-one-echo",
+            "expectedCause": "They share one source, so it is one piece of evidence repeated, not three independent checks. This does not prove the claim false. Next, look for the original data or an independent test.",
+            "acceptable": [
+              "Says dependence, not falsehood",
+              "Suggests checking the press release's evidence or an independent source"
+            ],
+            "typicalMistake": "Saying three agreeing assistants make it three times more certain, or that a shared source proves it false.",
+            "followUp": "Does a shared source mean the claim is wrong?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "All three rest on one press release, so it is one source echoed. That doesn't make it false, but I'd look for an independent test.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "Three assistants agree, so it must be true.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "They might all be copying.",
+                "tutorMove": "Does a shared source mean the claim is wrong?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "How can I tell whether sources are really independent?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "absolute word \"all\" in voice question — check that it holds under the stated conditions",
+              "2026-10-24T13:10:34.344Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T13:16:58.000Z изменено вручную (Fable, до проверки Max): predict uses the 1835 reprints so the new case (AI assistants and one press release) stays new"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "review": {
+    "state": "needs_review",
+    "reviewer": null,
+    "reviewedAt": null,
+    "notes": [
+      "Generated by claude-sonnet-5-5; nothing is shown to a child before an adult approves each card (fact → question → key).",
+      "Source for verification: Author's own notes for a critical-thinking micro-course (16-18); all numbers are teaching numbers, not measurements. Classic tasks attributed, no participant results used: Wason selection task (described 1968); Pfungst, Clever Hans (1911); Wald, aircraft damage memoranda (1943, CNA reprint 1980); the test problem is a teaching model (task attributed to Casscells et al., 1978); the 1835 Moon Hoax per Library of Congress. Adult reference only, no text copied: OpenStax Introductory Statistics 2e 1.2 and 3.5, Introduction to Philosophy 2.2 (CC BY-NC-SA 4.0) — https://www.cna.org/reports/1980/0204320000.pdf"
+    ]
+  },
+  "origin": {
+    "generator": "model",
+    "model": "claude-sonnet-5-5",
+    "createdAt": "2026-10-24T13:09:14.565Z"
+  }
+}

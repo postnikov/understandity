@@ -538,5 +538,365 @@
     "preset": "landscape",
     "image": "/media/double-side-area/c5-the-master-architect-cyberpunk.png",
     "prompt": "A robot designs a square plaza in a neon city where both the length and width are multiplied by five. A small square plaza next to a much larger square plaza. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c1-test-where-the-rule-can-break",
+    "world": "space",
+    "seed": 161,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-space.png",
+    "prompt": "An astronaut stands before four canisters marked with a triangle, a circle, a blue label, and an orange label. The rule is that every triangle-marked canister has a blue interior. An astronaut holding a triangle-marked canister and an orange-marked canister. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c1-test-where-the-rule-can-break",
+    "world": "cyberpunk",
+    "seed": 162,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-cyberpunk.png",
+    "prompt": "A hacker stares at four data-chips marked with a triangle, a circle, a blue light, and an orange light. The rule is that every triangle-marked chip has a blue core. A hacker holding a triangle-marked chip and an orange-marked chip. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c2-right-answer-wrong-channel",
+    "world": "space",
+    "seed": 163,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c2-right-answer-wrong-channel-space.png",
+    "prompt": "A robot horse stands before a commander hidden behind a screen; the commander speaks a riddle, and the horse taps a button in response. A robot horse standing before a screen with a button. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c2-right-answer-wrong-channel",
+    "world": "cyberpunk",
+    "seed": 164,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c2-right-answer-wrong-channel-cyberpunk.png",
+    "prompt": "A cybernetic horse stands before a hacker hidden behind a screen; the hacker speaks a riddle, and the horse taps a button in response. A cybernetic horse standing before a screen with a button. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c3-only-survivors-are-visible",
+    "world": "space",
+    "seed": 165,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c3-only-survivors-are-visible-space.png",
+    "prompt": "A technician reviews a log of four returned drones with cargo-bay damage, while four lost drones with engine damage are excluded from the report. A technician looking at a log showing four drones with damaged cargo bays. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c3-only-survivors-are-visible",
+    "world": "cyberpunk",
+    "seed": 166,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c3-only-survivors-are-visible-cyberpunk.png",
+    "prompt": "A technician reviews a log of four returned drones with cargo-bay damage, while four lost drones with engine damage are excluded from the report. A technician looking at a log showing four drones with damaged cargo bays. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c4-a-flag-is-not-a-verdict",
+    "world": "space",
+    "seed": 167,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-space.png",
+    "prompt": "A guard uses a sensor that glows for disguised aliens; it never misses one but occasionally glows for humans in a crowd of a thousand. A guard holding a glowing sensor in front of a crowd of people. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c4-a-flag-is-not-a-verdict",
+    "world": "cyberpunk",
+    "seed": 168,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-cyberpunk.png",
+    "prompt": "A guard uses a sensor that glows for disguised aliens; it never misses one but occasionally glows for humans in a crowd of a thousand. A guard holding a glowing sensor in front of a crowd of people. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c5-three-sources-or-one-echo",
+    "world": "space",
+    "seed": 169,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c5-three-sources-or-one-echo-space.png",
+    "prompt": "Three drones broadcast the same news of a solar flare, all of which were copied from a single original transmission. Three drones broadcasting a signal from one central source. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c5-three-sources-or-one-echo",
+    "world": "cyberpunk",
+    "seed": 170,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c5-three-sources-or-one-echo-cyberpunk.png",
+    "prompt": "Three drones broadcast the same news of a solar flare, all of which were copied from a single original transmission. Three drones broadcasting a signal from one central source. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c1-test-where-the-rule-can-break",
+    "world": "fantasy",
+    "seed": 171,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-fantasy.png",
+    "prompt": "In a castle vault, four sealed chests bear a dragon, a moon, a blue ribbon and an orange ribbon. A wizard's rule says every dragon chest has a blue ribbon inside. The apprentice must open only the chests that could expose a lie. Four chests in a stone vault; a dragon chest glows, an orange ribbon chest sits next to it, a wizard points at two of them. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c1-test-where-the-rule-can-break",
+    "world": "anime",
+    "seed": 172,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c1-test-where-the-rule-can-break-anime.png",
+    "prompt": "At school, a young hero finds four cards on a desk. The club rule says a triangle card has a blue back. She flips only the cards that could prove the rule wrong, while her friends reach for the blue one. Bright classroom desk with four cards; the hero holds up the triangle, an orange card glows, friends look surprised. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c2-right-answer-wrong-channel",
+    "world": "fantasy",
+    "seed": 173,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c2-right-answer-wrong-channel-fantasy.png",
+    "prompt": "A royal stable has a horse that taps answers to a wizard's riddles. A curtain hides the wizard, but his voice still asks. The apprentice wonders whether the horse follows magic or the wizard's tiny movements. Horse hoof tapping, a curtain between horse and robed wizard, castle stable behind. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c2-right-answer-wrong-channel",
+    "world": "anime",
+    "seed": 174,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c2-right-answer-wrong-channel-anime.png",
+    "prompt": "At a school festival, a clever horse taps answers for a young hero. A screen hides the quizmaster, who still reads questions aloud. The hero predicts whether the horse needs the hidden signals. Festival stage, horse, screen hiding a quizmaster, bright sparkles, hero watching. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c3-only-survivors-are-visible",
+    "world": "fantasy",
+    "seed": 175,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c3-only-survivors-are-visible-fantasy.png",
+    "prompt": "Dragon riders return to a castle with scorch marks on their wings. A wizard notices the riders who never came back are missing from the map, and asks where they were hit. Castle tower, dragons landing with marked wings, empty perches with faint outlines. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c3-only-survivors-are-visible",
+    "world": "anime",
+    "seed": 176,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c3-only-survivors-are-visible-anime.png",
+    "prompt": "A school robotics club tests drones. The young hero sees marks only on four returned drones and asks to see the four lost ones, whose engines were damaged. Workshop table with drones; four on the table, four ghost-like outlines, hero pointing at engines. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c4-a-flag-is-not-a-verdict",
+    "world": "fantasy",
+    "seed": 177,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-fantasy.png",
+    "prompt": "A castle gate uses a crystal that glows for disguised goblins. It never misses one, but sometimes glows for ordinary villagers. With a thousand visitors and one goblin, the guard must judge a glow. Castle gate, glowing crystal, crowd of villagers, one hooded figure. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c4-a-flag-is-not-a-verdict",
+    "world": "anime",
+    "seed": 178,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c4-a-flag-is-not-a-verdict-anime.png",
+    "prompt": "A school scanner flags a prank item in bags. It never misses one, but sometimes flags innocent bags. The young hero sees that with one prank bag in a thousand, a flag is mostly a false alarm. Bright school entrance, scanner arch flashing, long line of students with bags. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c5-three-sources-or-one-echo",
+    "world": "fantasy",
+    "seed": 179,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c5-three-sources-or-one-echo-fantasy.png",
+    "prompt": "Three heralds in three towns shout the same news of a dragon. The young scribe learns all three heard it from one traveller, so she goes to find the traveller. Three towers with heralds, thin lines all leading to one cloaked traveller. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "critical-thinking",
+    "card": "c5-three-sources-or-one-echo",
+    "world": "anime",
+    "seed": 180,
+    "preset": "landscape",
+    "image": "/media/critical-thinking/c5-three-sources-or-one-echo-anime.png",
+    "prompt": "Three school club posters announce the same surprise event. The hero finds all three copied one message from a single student and goes to ask who wrote it. Three bright posters, arrows converging on one student with a note. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c1-the-magic-of-compounding",
+    "world": "fantasy",
+    "seed": 181,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c1-the-magic-of-compounding-fantasy.png",
+    "prompt": "A teenage apprentice at a castle treasury desk, plain unmarked tokens grouped in trays for successive stages, with the newest tokens a different metal colour; no diagrams or writing. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c1-the-magic-of-compounding",
+    "world": "anime",
+    "seed": 182,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c1-the-magic-of-compounding-anime.png",
+    "prompt": "A teenage club treasurer in a sunlit classroom counting plain unmarked tokens in adjacent trays, newer tokens distinguished by colour; natural objects, no charts or writing. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c1-the-magic-of-compounding",
+    "world": "space",
+    "seed": 183,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c1-the-magic-of-compounding-space.png",
+    "prompt": "A teenage astronaut inside a bright space-station treasury, comparing trays of plain unmarked tokens; newer tokens have a contrasting metal colour. No screens or diagrams. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c1-the-magic-of-compounding",
+    "world": "cyberpunk",
+    "seed": 184,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c1-the-magic-of-compounding-cyberpunk.png",
+    "prompt": "A teenage courier at a neon-lit treasury counter comparing small trays of plain metallic tokens, newer tokens picked out by reflected cyan light. No screens, charts, or signs. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c2-the-shrinking-power-of-cash",
+    "world": "fantasy",
+    "seed": 185,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c2-the-shrinking-power-of-cash-fantasy.png",
+    "prompt": "A teenage apprentice at a market counter with a plain coin pouch and a basket of everyday provisions; a merchant waits, all packaging blank, no price tags. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c2-the-shrinking-power-of-cash",
+    "world": "anime",
+    "seed": 186,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c2-the-shrinking-power-of-cash-anime.png",
+    "prompt": "A teenage student beside a familiar market basket, holding plain unmarked tokens in an open palm while considering the purchase; blank packaging, no price tags. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c2-the-shrinking-power-of-cash",
+    "world": "space",
+    "seed": 187,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c2-the-shrinking-power-of-cash-space.png",
+    "prompt": "A teenage astronaut at a station supply counter, holding a plain token pouch beside a basket of everyday provisions. All packaging is blank; no price tags or screens. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c2-the-shrinking-power-of-cash",
+    "world": "cyberpunk",
+    "seed": 188,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c2-the-shrinking-power-of-cash-cyberpunk.png",
+    "prompt": "A teenage courier at a neon night-market counter with a plain token pouch and a basket of ordinary supplies. Featureless packaging, no price tags or glowing lettering. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c3-the-cost-of-borrowing",
+    "world": "fantasy",
+    "seed": 189,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c3-the-cost-of-borrowing-fantasy.png",
+    "prompt": "A teenage apprentice between two treasury counters, a smaller pile of plain tokens on the deposit side and a larger pile representing repayment on the other; no scrolls, symbols, or writing. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c3-the-cost-of-borrowing",
+    "world": "anime",
+    "seed": 190,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c3-the-cost-of-borrowing-anime.png",
+    "prompt": "A teenage club treasurer at a classroom desk comparing two separate piles of plain tokens, the repayment pile larger than the savings pile; no labels or screens. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c3-the-cost-of-borrowing",
+    "world": "space",
+    "seed": 191,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c3-the-cost-of-borrowing-space.png",
+    "prompt": "A teenage astronaut at a station treasury counter comparing two trays of plain metallic tokens, the repayment pile visibly larger than the savings pile. Physical objects only; no display screens or writing. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c3-the-cost-of-borrowing",
+    "world": "cyberpunk",
+    "seed": 192,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c3-the-cost-of-borrowing-cyberpunk.png",
+    "prompt": "A teenage courier at a neon-lit counter with two piles of plain metallic tokens, the repayment pile larger than the savings pile. No screens, charts, labels, or numerals. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c4-the-illusion-of-safety",
+    "world": "fantasy",
+    "seed": 193,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c4-the-illusion-of-safety-fantasy.png",
+    "prompt": "Two distinct fantasy shops beside a river, both supply paths visibly leading to one closed stone bridge; a teenage apprentice studies the scene, no arrows or signs. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c4-the-illusion-of-safety",
+    "world": "anime",
+    "seed": 194,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c4-the-illusion-of-safety-anime.png",
+    "prompt": "An anime market street with two distinct shops, supply carts stopped at one closed bridge, a teenage observer; no logos, signs, arrows, or text. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c4-the-illusion-of-safety",
+    "world": "space",
+    "seed": 195,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c4-the-illusion-of-safety-space.png",
+    "prompt": "Two distinct station supply shops, both delivery paths leading to one closed access bridge, with cargo carts waiting and a teenage astronaut observing. No symbols, arrows, or signs. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c4-the-illusion-of-safety",
+    "world": "cyberpunk",
+    "seed": 196,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c4-the-illusion-of-safety-cyberpunk.png",
+    "prompt": "Two different neon-market shops with supply carts stopped before one closed bridge; a teenage courier watches from the foreground. Blank facades with reflected magenta and cyan light, no writing. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c5-wealth-vs-spendable-cash",
+    "world": "fantasy",
+    "seed": 197,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c5-wealth-vs-spendable-cash-fantasy.png",
+    "prompt": "A teenage apprentice beside a locked treasury chest with visible plain tokens behind a small glass window, a broken cart wheel awaiting repair nearby; no calendar, clock face, or writing. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c5-wealth-vs-spendable-cash",
+    "world": "anime",
+    "seed": 198,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c5-wealth-vs-spendable-cash-anime.png",
+    "prompt": "A teenage club member beside a locked transparent token box and a broken bicycle wheel, considering the repair; no timer, numbers, or signs. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c5-wealth-vs-spendable-cash",
+    "world": "space",
+    "seed": 199,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c5-wealth-vs-spendable-cash-space.png",
+    "prompt": "A teenage astronaut next to a locked transparent treasury locker containing plain tokens; a damaged cargo-cart wheel sits nearby. No bill, calendar, countdown, or display. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "finance-basics",
+    "card": "c5-wealth-vs-spendable-cash",
+    "world": "cyberpunk",
+    "seed": 200,
+    "preset": "landscape",
+    "image": "/media/finance-basics/c5-wealth-vs-spendable-cash-cyberpunk.png",
+    "prompt": "A teenage courier beside a locked transparent token case and a broken delivery-bike wheel in a neon repair shop. Plain metallic tokens, no timer, bill, lettering, or signs. Fictional educational scene about money; tokens are featureless metal discs, without currency marks or engraved numerals. Natural objects and people only. No brands or financial products. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a financial idea to a student aged sixteen to eighteen. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
   }
 ]
