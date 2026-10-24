@@ -23,7 +23,7 @@ export interface CourseRequest {
    */
   request?: string;
   /** Overrides the course `origin` (on-request courses record the request and the engine). */
-  origin?: { generator: 'on-request'; request: string; engine: 'local' | 'online' };
+  origin?: { generator: 'on-request'; request: string; engine: 'local' | 'online'; audience: 'child' | 'adult' };
 }
 
 /** Coarse progress of one generation, for the UI. */

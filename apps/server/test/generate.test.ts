@@ -74,7 +74,7 @@ describe('POST /api/courses/generate', () => {
     expect(job).toMatchObject({ status: 'done', step: 'saving', courseId: 'do-heavy-things-always-sink' });
 
     const file = JSON.parse(readFileSync(join(contentDir, 'do-heavy-things-always-sink.json'), 'utf8'));
-    expect(file.origin).toMatchObject({ generator: 'on-request', request: 'how to solve quadratic equations', engine: 'local', model: 'fake-tutor' });
+    expect(file.origin).toMatchObject({ generator: 'on-request', request: 'how to solve quadratic equations', engine: 'local', audience: 'child', model: 'fake-tutor' });
     expect(file.review.state).toBe('needs_review');
     expect(file.concepts[0].cards).toHaveLength(5);
     expect(file.concepts[0].cards[0].fact.source).toBe(MODEL_KNOWLEDGE_SOURCE);
@@ -123,7 +123,9 @@ describe('POST /api/courses/generate', () => {
     expect(seen[0]).toContain('adult learner');
     expect(seen[0]).toContain('<<<REQUEST\nwhat is inflation\nREQUEST>>>');
     expect(seen[0]).toContain('No adult notes are given');
-    expect(JSON.parse(readFileSync(join(contentDir, `${job.courseId}.json`), 'utf8')).ageRange).toEqual([18, 99]);
+    const saved = JSON.parse(readFileSync(join(contentDir, `${job.courseId}.json`), 'utf8'));
+    expect(saved.ageRange).toEqual([18, 99]);
+    expect(saved.origin.audience).toBe('adult');
   });
 
   it('online without a key → 409 online_unavailable; with a key → Sonnet from config', async () => {

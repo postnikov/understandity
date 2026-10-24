@@ -149,6 +149,8 @@ export const CourseSchema = z
       request: z.string().optional(),
       /** `local` (offline model) or `online` (cloud model with the user's key); on-request only. */
       engine: z.enum(['local', 'online']).optional(),
+      /** Who asked: `child` (12–14 voice) or `adult`; on-request only. */
+      audience: z.enum(['child', 'adult']).optional(),
     }),
   })
   .superRefine((course, ctx) => {

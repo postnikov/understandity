@@ -18,6 +18,7 @@ import {
   defaultSettings,
   isOfflineSafe,
   isShowable,
+  showsDrafts,
   nextCycleStep,
   validateSettings,
   type Card,
@@ -84,6 +85,20 @@ describe('course schema', () => {
   it('demo course parses', () => {
     const course = CourseSchema.parse(raw);
     expect(course.concepts[0]!.cards.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it('origin: prepared courses parse as before; on-request carries request, engine, audience and skips the adult gate', () => {
+    const prepared = CourseSchema.parse(raw);
+    expect(prepared.origin.request).toBeUndefined();
+    expect(showsDrafts(prepared)).toBe(false);
+    const onRequest = CourseSchema.parse({
+      ...raw,
+      origin: { generator: 'on-request', model: 'gemma4:12b-mlx', createdAt: '2026-10-24T12:00:00Z', request: 'why do we have seasons', engine: 'local', audience: 'child' },
+    });
+    expect(onRequest.origin).toMatchObject({ generator: 'on-request', engine: 'local', audience: 'child' });
+    expect(showsDrafts(onRequest)).toBe(true);
+    expect(CourseSchema.safeParse({ ...raw, origin: { ...onRequest.origin, engine: 'cloud' } }).success).toBe(false);
+    expect(CourseSchema.safeParse({ ...raw, origin: { ...onRequest.origin, audience: 'teen' } }).success).toBe(false);
   });
 
   it('key must answer the question of the same card', () => {

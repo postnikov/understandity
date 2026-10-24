@@ -86,7 +86,7 @@ export function generateRoutes({ hub, contentDir, worlds = ['fantasy', 'anime'],
         worlds,
         cardCount,
         source: { label: MODEL_KNOWLEDGE_SOURCE, url: null },
-        origin: { generator: 'on-request', request: body.request, engine: body.engine },
+        origin: { generator: 'on-request', request: body.request, engine: body.engine, audience: body.audience },
       },
       {
         text: picked.adapter,
