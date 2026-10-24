@@ -5,11 +5,13 @@ import { join } from 'node:path';
  * Local dialog log for comparing tutor models later: one JSON line per event in
  * `data/logs/tutor-YYYY-MM-DD.jsonl` (git-ignored, files 0600). Only whitelisted fields — never keys, audio
  * or headers. Two event kinds share a `turnId`: `turn` (written when the tutor reply is complete) and
- * `voice` (written when the reply has been spoken). `UNDERSTANDITY_DIALOG_LOG=0` turns it off.
+ * `voice` (written when the reply has been spoken). Every line also carries the `sessionId` of one learning session
+ * (the web client opens a course → new session), `null` when the client sent none. `UNDERSTANDITY_DIALOG_LOG=0` turns it off.
  */
 export interface TurnEntry {
   type: 'turn';
   turnId: string;
+  sessionId: string | null;
   at: string;
   courseId: string;
   cardId: string;
@@ -37,6 +39,7 @@ export interface TurnEntry {
 export interface VoiceEntry {
   type: 'voice';
   turnId: string;
+  sessionId: string | null;
   at: string;
   provider: string | null;
   model: string | null;
@@ -47,8 +50,15 @@ export interface VoiceEntry {
 
 const TURN_ID = /^[0-9a-f-]{36}$/;
 export const isTurnId = (v: unknown): v is string => typeof v === 'string' && TURN_ID.test(v);
+/** Session ids are client-made UUIDs too; anything else is dropped, never written. */
+export const sessionIdOf = (v: unknown): string | null => (isTurnId(v) ? v : null);
+
+/** Recent turn → session links, so a `voice` line gets the session of its turn without the client resending it. */
+const SESSION_MEMORY = 512;
 
 export class DialogLog {
+  private readonly sessions = new Map<string, string | null>();
+
   constructor(
     readonly dir: string,
     private readonly enabled = true,
@@ -59,8 +69,17 @@ export class DialogLog {
     return join(this.dir, `tutor-${d}.jsonl`);
   }
 
+  /** Session of a logged turn (bounded memory of the latest turns). */
+  sessionOf(turnId: string): string | null {
+    return this.sessions.get(turnId) ?? null;
+  }
+
   write(entry: TurnEntry | VoiceEntry): void {
     if (!this.enabled) return;
+    if (entry.type === 'turn') {
+      this.sessions.set(entry.turnId, entry.sessionId);
+      if (this.sessions.size > SESSION_MEMORY) this.sessions.delete(this.sessions.keys().next().value!);
+    }
     try {
       mkdirSync(this.dir, { recursive: true, mode: 0o700 });
       appendFileSync(this.file(), `${JSON.stringify(entry)}\n`, { encoding: 'utf8', mode: 0o600 });

@@ -37,6 +37,8 @@ interface Msg {
 const s = {
   /** Speech recognition time of the last recorded answer, sent with the tutor turn for the dialog log. */
   lastSttMs: null as number | null,
+  /** One learning session = one opened course and the cards gone through; every logged turn carries it. */
+  sessionId: '',
   courseId: '',
   course: null as Course | null,
   cards: [] as Card[],
@@ -502,6 +504,7 @@ async function askTutor(text: string, kind: 'answer' | 'question' | 'explain_ple
     history: s.dialog.slice(-11, -1).map(({ role, text }) => ({ role, text })),
     // Only a spoken answer has a recognition time; a typed question does not.
     clientTimings: { sttMs: kind === 'answer' ? s.lastSttMs : null },
+    sessionId: s.sessionId,
   };
   s.lastSttMs = null;
   try {
@@ -598,6 +601,8 @@ export const learnView: View = {
   async enter([courseId, cardIndex]) {
     if (!courseId) return;
     const wanted = cardIndex !== undefined && /^\d+$/.test(cardIndex) ? Number(cardIndex) : null;
+    // A new session when another course opens (or none is loaded); moving between cards keeps it.
+    if (s.courseId !== courseId || !s.course || !s.sessionId) s.sessionId = crypto.randomUUID();
     if (s.courseId !== courseId || !s.course || (wanted !== null && wanted !== s.index)) {
       Object.assign(s, { courseId, course: null, cards: [], index: wanted ?? 0, step: 'hook', dialog: [], hintsUsed: 0, answers: 0, evidence: null, allDone: false, loadError: null, stepMark: 0, askOpen: false });
       s.visited = new Set<number>();

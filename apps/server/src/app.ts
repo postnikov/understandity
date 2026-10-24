@@ -16,7 +16,7 @@ import type { EngineHub } from './engines.js';
 import type { KeyStore } from './keys.js';
 import { randomUUID } from 'node:crypto';
 import { TutorTurnRequestSchema } from '@understandity/contracts';
-import { isTurnId, type DialogLog } from './dialog-log.js';
+import { isTurnId, sessionIdOf, type DialogLog } from './dialog-log.js';
 import type { TutorMeta, TutorOptions } from './tutor.js';
 import { tutorTurn, type CourseLookup } from './tutor.js';
 import { warmText } from './warmup.js';
@@ -135,13 +135,15 @@ export function createApp({ hub, course, allowDrafts, contentDir = defaultConten
     const turnId = randomUUID();
     let meta: TutorMeta | null = null;
     const parsed = TutorTurnRequestSchema.safeParse(body);
-    const raw = (body ?? {}) as { clientTimings?: { sttMs?: unknown } };
+    const raw = (body ?? {}) as { clientTimings?: { sttMs?: unknown }; sessionId?: unknown };
+    // Outside the contract like clientTimings: the learning session id, only for the log.
+    const sessionId = sessionIdOf(raw.sessionId);
     const sttMs = typeof raw.clientTimings?.sttMs === 'number' && raw.clientTimings.sttMs >= 0 ? Math.round(raw.clientTimings.sttMs) : null;
     const log = (reply: { text: string; hintGiven: boolean; next: string; model: string } | null, error: string | null) => {
       if (!dialogLog || !parsed.success) return;
       const r = parsed.data;
       dialogLog.write({
-        type: 'turn', turnId, at: new Date().toISOString(), courseId: r.courseId, cardId: r.cardId, step: r.step, kind: r.kind,
+        type: 'turn', turnId, sessionId, at: new Date().toISOString(), courseId: r.courseId, cardId: r.cardId, step: r.step, kind: r.kind,
         world: r.world, language: r.language, student: r.studentText, tutor: reply?.text ?? null, verdict: meta?.verdict ?? null,
         hintGiven: reply?.hintGiven ?? null, next: reply?.next ?? null, provider: meta?.provider ?? null, model: reply?.model ?? meta?.model ?? null,
         profile: hub.getSettings().profile, sttMs, firstPhraseMs: meta?.firstPhraseMs ?? null, tutorMs: meta?.totalMs ?? null, error,
@@ -195,12 +197,12 @@ export function createApp({ hub, course, allowDrafts, contentDir = defaultConten
       );
     } catch (err) {
       if (dialogLog && isTurnId(turnId)) {
-        dialogLog.write({ type: 'voice', turnId, at: new Date().toISOString(), provider: adapter.provider, model: null, ttsMs: Date.now() - t0, audioSec: null, error: EngineError.is(err) ? err.code : 'internal' });
+        dialogLog.write({ type: 'voice', turnId, sessionId: dialogLog.sessionOf(turnId), at: new Date().toISOString(), provider: adapter.provider, model: null, ttsMs: Date.now() - t0, audioSec: null, error: EngineError.is(err) ? err.code : 'internal' });
       }
       throw err;
     }
     if (dialogLog && isTurnId(turnId)) {
-      dialogLog.write({ type: 'voice', turnId, at: new Date().toISOString(), provider: adapter.provider, model: result.model, ttsMs: Date.now() - t0, audioSec: result.durationSec, error: null });
+      dialogLog.write({ type: 'voice', turnId, sessionId: dialogLog.sessionOf(turnId), at: new Date().toISOString(), provider: adapter.provider, model: result.model, ttsMs: Date.now() - t0, audioSec: result.durationSec, error: null });
     }
     return c.body(result.audio as Uint8Array<ArrayBuffer>, 200, {
       'content-type': result.mimeType,
