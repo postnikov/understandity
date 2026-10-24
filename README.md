@@ -28,7 +28,7 @@ For each turn the tutor gets the card's fact and conditions, the adult-approved 
 ## What expertise is inside, and where it comes from
 
 - **Teaching method.** Curiosity first: every card opens with a "wow" question. Then the kid's own world, and understanding over memorization: predict, find the cause, change one thing, explain a new case. On top sits Max Postnikov's rule that understanding can't be delegated: the kid explains out loud, and the tutor never gives the key away. The method comes from how Max teaches complex topics in his AI Anti-Magic course: start with curiosity, then check that understanding actually happened. The six-step learning cycle was drafted with an AI agent from these principles and approved by Max.
-- **Subject knowledge.** OpenStax textbooks (CC BY 4.0): University Physics Volume 1, Biology 2e, Prealgebra 2e. The short source notes in `content/sources/` were written by an AI agent from the cited sections. The model takes facts only from them, and an adult approved every card's fact → question → key before the demo.
+- **Subject knowledge.** Facts cross-checked against OpenStax University Physics Volume 1, Biology 2e and Prealgebra 2e (CC BY-NC-SA 4.0); source notes and course text are in our own words; no OpenStax text is included. The short source notes in `content/sources/` were written by an AI agent and checked against the cited sections. The model takes facts only from them, and an adult approved every card's fact → question → key before the demo.
 - **Tutoring rules.** Each card carries a typical mistake, a clarifying question and a rubric. The tutor judges the answer by meaning against the key, confirms a right cause, asks "why?" after a bare prediction, answers a wrong cause with a counterexample and gives a small hint after "I don't know"; after two hints it explains directly on a different example. It never grades accent, speed or wording, and a recognition slip never counts as the kid's mistake. The rules live in `apps/server/src/tutor-prompt.ts`.
 - **Why an adult checks the facts.** While planning, we had local models draft five school courses, and every one had mistakes in facts or answer keys. Turning on the models' "thinking" mode didn't fix it.
 
@@ -200,6 +200,10 @@ npm run course:generate -- --concept "…" --source content/sources/<id>.md --la
 - Heavy models run one at a time: the CLI refuses to start while another model is loaded in Ollama (check with `ollama ps`).
 - `--out` overwrites an existing file without asking. Use a new file name.
 
+### Dialog logs
+
+Every tutor turn is logged locally to `data/logs/tutor-YYYY-MM-DD.jsonl` (git-ignored): the child's confirmed answer, the tutor's reply and verdict, provider and model, and timings for speech recognition, first words and voice. No keys or audio. Turn it off with `UNDERSTANDITY_DIALOG_LOG=0`.
+
 ## Tests
 
 ```sh
@@ -270,7 +274,7 @@ Apache License 2.0, see [LICENSE](LICENSE). Model weights are not part of this r
 
 ## Credits
 
-- **OpenStax**, CC BY 4.0: the course sources come from [University Physics Volume 1](https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure) (14.1, 14.4), [Biology 2e](https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis) (8.1, 8.3) and [Prealgebra 2e](https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids) (9.4). The notes in `content/sources/` are short summaries written for this project, with links to these sections.
+- **OpenStax**, CC BY-NC-SA 4.0: facts were cross-checked against [University Physics Volume 1](https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure) (14.1, 14.4), [Biology 2e](https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis) (8.1, 8.3) and [Prealgebra 2e](https://openstax.org/books/prealgebra-2e/pages/9-4-use-properties-of-rectangles-triangles-and-trapezoids) (9.4). Source notes and course text are in our own words; no OpenStax text is included. The notes in `content/sources/` link to these sections.
 - **JetBrains Mono** (SIL Open Font License 1.1), bundled through `@fontsource/jetbrains-mono`.
 
 Author: Max Postnikov.
