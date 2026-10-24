@@ -15,7 +15,8 @@
     "test:watch": "vitest",
     "typecheck": "tsc -p tsconfig.json",
     "build": "npm run build -w @understandity/web",
-    "course:generate": "tsx packages/course/src/cli.ts"
+    "course:generate": "tsx packages/course/src/cli.ts",
+    "course:worlds": "tsx packages/course/src/worlds-cli.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

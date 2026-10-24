@@ -268,5 +268,95 @@
     "preset": "landscape",
     "image": "/media/double-side-area/c5-the-master-architect-anime.png",
     "prompt": "Straight top-down view of a futuristic plaza that is a perfect square, covered with exactly twenty-five identical big glowing teal floor panels: five panels across and five panels down, with clear dark seams between them. Beside the plaza, a small cute robot holds up one single panel of the same size for comparison. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c1-weight-vs-density",
+    "world": "space",
+    "seed": 131,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c1-weight-vs-density-space.png",
+    "prompt": "An astronaut on a space station with artificial gravity places a large wooden block and a small wood chip into a tank of still water. A large wooden block and a small wood chip both floating on the surface of water in a tank. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c1-weight-vs-density",
+    "world": "cyberpunk",
+    "seed": 132,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c1-weight-vs-density-cyberpunk.png",
+    "prompt": "A hacker in a neon-lit lab drops a large wooden block and a small wood chip into a container of still water. A large wooden block and a small wood chip both floating on the surface of water. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c2-the-rule-of-1-g-cm3",
+    "world": "space",
+    "seed": 133,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-space.png",
+    "prompt": "A scientist on a lunar base observes a piece of stone and a piece of wood fully submerged in a tank of water. A stone sinking to the bottom of a water tank while a piece of wood floats on the surface. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c2-the-rule-of-1-g-cm3",
+    "world": "cyberpunk",
+    "seed": 134,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c2-the-rule-of-1-g-cm3-cyberpunk.png",
+    "prompt": "A robot in a high-tech laboratory observes a piece of stone and a piece of wood fully submerged in a tank of water. A stone sinking to the bottom of a water tank while a piece of wood floats on the surface. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c3-cutting-the-stone",
+    "world": "space",
+    "seed": 135,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c3-cutting-the-stone-space.png",
+    "prompt": "An astronaut takes a sinking stone and cuts it in half, observing both pieces in a tank of water. Two halves of a stone both sinking to the bottom of a water tank. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c3-cutting-the-stone",
+    "world": "cyberpunk",
+    "seed": 136,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c3-cutting-the-stone-cyberpunk.png",
+    "prompt": "A cyborg in a laboratory cuts a sinking stone in half and observes both pieces in a tank of water. Two halves of a stone both sinking to the bottom of a water tank. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c4-the-secret-of-the-ship",
+    "world": "space",
+    "seed": 137,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-space.png",
+    "prompt": "An astronaut places an empty plastic bottle into a tank of water, then fills it with water and observes the difference. An empty plastic bottle floating on water next to a water-filled bottle sinking to the bottom. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c4-the-secret-of-the-ship",
+    "world": "cyberpunk",
+    "seed": 138,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c4-the-secret-of-the-ship-cyberpunk.png",
+    "prompt": "A hacker places an empty plastic bottle into a tank of water, then fills it with water and observes the difference. An empty plastic bottle floating on water next to a water-filled bottle sinking to the bottom. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c5-the-density-challenge",
+    "world": "space",
+    "seed": 139,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c5-the-density-challenge-space.png",
+    "prompt": "An astronaut compares two objects, in a tank of water. One object floating on the surface of water and another object sinking to the bottom. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "heavy-things-sink",
+    "card": "c5-the-density-challenge",
+    "world": "cyberpunk",
+    "seed": 140,
+    "preset": "landscape",
+    "image": "/media/heavy-things-sink/c5-the-density-challenge-cyberpunk.png",
+    "prompt": "A robot compares two objects, in a tank of water. One object floating on the surface of water and another object sinking to the bottom. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
   }
 ]

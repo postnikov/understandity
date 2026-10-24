@@ -107,7 +107,7 @@ describe('acceptance helpers', () => {
     const { system, user } = buildPrompt(REQ);
     expect(system).toMatch(/English/);
     expect(user).toMatch(/exactly 3 connected cards/);
-    expect(user).toMatch(/fantasy, anime/);
+    expect(user).toMatch(/fantasy: wizards.*; anime: /);
     expect(user).toMatch(/change exactly one condition/);
     expect(user).toMatch(/no fire, freezer/);
   });
