@@ -32,6 +32,22 @@ function blockText(b: Block, modality: Modality): string {
   return b === 'cloud_offline' ? cloud : b === 'disabled' ? d.disabled : b === 'not_wired' ? d.notWired : '';
 }
 
+/**
+ * Honest Online text: names what actually leaves the machine with the engines picked right now
+ * (speech recognition sends the child's audio, text and voice engines send text).
+ */
+function onlineText(draft: Settings, eng: EnginesResponse): string {
+  const d = t().engines;
+  const parts: string[] = [];
+  for (const m of MODALITIES) {
+    const p = eng.providers.find((x) => x.modality === m && x.provider === draft.engines[m].provider);
+    if (p?.locality !== 'cloud') continue;
+    const what = m === 'stt' ? d.leavesAudio : m === 'tts' ? d.leavesTutorText : m === 'text' ? d.leavesDialogue : d.leavesImagePrompt;
+    parts.push(`${what} → ${p.label}`);
+  }
+  return parts.length ? `${d.onlineCloud} ${parts.join('; ')}.` : d.onlineLocal;
+}
+
 /** Switching to Offline: any cloud selection falls back to the configured default for that modality, visibly. */
 function enforceProfile(draft: Settings, eng: EnginesResponse): string[] {
   const moved: string[] = [];
@@ -107,7 +123,7 @@ function html(): string {
       ${(['offline', 'online'] as const)
         .map(
           (p) => `<button class="profile ${draft.profile === p ? 'on' : ''}" data-profile="${p}" aria-pressed="${draft.profile === p}">
-          <b>${p === 'offline' ? '🔒 ' + d.offlineTitle : d.onlineTitle}</b><span>${p === 'offline' ? d.offlineText : d.onlineText}</span></button>`,
+          <b>${p === 'offline' ? '🔒 ' + d.offlineTitle : d.onlineTitle}</b><span>${p === 'offline' ? d.offlineText : esc(onlineText(draft, s.engines!))}</span></button>`,
         )
         .join('')}
     </div>
