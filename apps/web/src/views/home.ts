@@ -3,6 +3,8 @@ import { api, isMock, type CourseSummary } from '../api.js';
 import { app, errorText, esc, subjectLabel, rerender, t } from '../app.js';
 import type { View } from '../main.js';
 import { sceneArt } from '../scenes.js';
+import { isOnRequest } from '../generate.js';
+import { bindMake, leaveMake, makePanel, refreshKeys } from './make.js';
 
 /** Home (Ocean lab): one big question per course, its scene, and the path of discoveries (cards). */
 const s = {
@@ -16,7 +18,8 @@ const s = {
 const MIC = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true"><rect x="9" y="2" width="6" height="13"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8"/></svg>`;
 
 const cardsOf = (c: Course) => c.concepts.flatMap((k) => k.cards);
-const showableOf = (c: Course) => cardsOf(c).filter((card) => isShowable(card, { allowDrafts: app.allowDrafts }));
+/** Courses made on request are shown right away as drafts (contract, word of Max); prepared courses need approval. */
+const showableOf = (c: Course) => cardsOf(c).filter((card) => isShowable(card, { allowDrafts: app.allowDrafts || isOnRequest(c) }));
 
 /** Course title with the last word in the accent colour, as in the prototype hero. */
 function heroTitle(title: string): string {
@@ -44,6 +47,7 @@ function hero(course: Course): string {
   return `<section class="home-hero">
     <div class="home-copy">
       <div class="eyebrow">${d.home.adventure} ${esc(subjectLabel(course.subject))}</div>
+      ${isOnRequest(course) ? `<span class="chip chip--amber ai-mark">${d.make.aiMark}</span>` : ''}
       <h1>${heroTitle(course.title)}</h1>
       <p class="lead">${esc(first?.hook.question ?? course.outcome)}</p>
       <div class="home-actions">
@@ -63,11 +67,19 @@ function hero(course: Course): string {
   </section>`;
 }
 
+function tabs(label: string, list: CourseSummary[], mine: boolean): string {
+  if (!list.length || (!mine && list.length < 2 && !s.courses.some((c) => isOnRequest(s.full.get(c.id))))) return '';
+  return `<nav class="course-tabs ${mine ? 'course-tabs--mine' : ''}" aria-label="${esc(label)}"><span class="label">${label}</span>${list
+    .map((c) => `<button data-course="${esc(c.id)}" class="${c.id === s.selected ? 'on' : ''}" aria-pressed="${c.id === s.selected}">${mine ? '<i class="ai-dot" aria-hidden="true"></i>' : ''}${esc(c.title)}</button>`)
+    .join('')}</nav>`;
+}
+
 export const homeView: View = {
   async enter() {
     s.loading = true;
     s.error = null;
     try {
+      await refreshKeys();
       s.courses = await api.courses();
       const full = await Promise.all(s.courses.map((c) => api.course(c.id).catch(() => null)));
       full.forEach((c) => c && s.full.set(c.id, c));
@@ -89,13 +101,9 @@ export const homeView: View = {
     const course = s.full.get(s.selected) ?? null;
     const showIds = course ? showableOf(course).map((c) => c.id) : [];
     return `<main class="page home">
-      ${
-        s.courses.length > 1
-          ? `<nav class="course-tabs" aria-label="${esc(d.home.pick)}"><span class="label">${d.home.pick}</span>${s.courses
-              .map((c) => `<button data-course="${esc(c.id)}" class="${c.id === s.selected ? 'on' : ''}" aria-pressed="${c.id === s.selected}">${esc(c.title)}</button>`)
-              .join('')}</nav>`
-          : ''
-      }
+      ${makePanel()}
+      ${tabs(d.home.pick, s.courses.filter((c) => !isOnRequest(s.full.get(c.id))), false)}
+      ${tabs(d.make.yourCourses, s.courses.filter((c) => isOnRequest(s.full.get(c.id))), true)}
       ${course ? hero(course) : `<p class="dim">${d.loading}</p>`}
       ${
         course
@@ -112,7 +120,11 @@ export const homeView: View = {
       ${isMock() ? `<p class="faint" style="font-size:12px;margin-top:var(--s-5)">${esc(d.mockHint)}</p>` : ''}
     </main>`;
   },
+  leave() {
+    leaveMake();
+  },
   bind(root) {
+    bindMake(root);
     root.querySelectorAll<HTMLButtonElement>('[data-course]').forEach((b) =>
       b.addEventListener('click', () => {
         s.selected = b.dataset.course!;
