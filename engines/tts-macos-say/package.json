@@ -1,0 +1,12 @@
+{
+  "name": "@understandity/engine-tts-macos-say",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@understandity/contracts": "*"
+  }
+}
