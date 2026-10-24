@@ -12,7 +12,8 @@ import { scanCourses } from './course.js';
  * Course on request: a learner names what they do not understand,
  * the model writes a five-card course from its own knowledge, the course is saved to `content/<slug>.json`
  * and shown at once, marked as not checked by an adult.
- *   POST /api/courses/generate         {request, audience, lang, engine} → 202 {jobId} | 409 {code: "online_unavailable"}
+ *   POST /api/courses/generate         {request, audience, lang, engine} → 202 {jobId}
+ *                                      | 409 {code: "online_forbidden_in_offline_profile"} (Offline profile) | 409 {code: "online_unavailable"} (no key)
  *   GET  /api/courses/generate/:jobId  → {status, step?, courseId?, error?}
  * Jobs live in memory, one generation at a time; local engines also go through the heavy-task dispatcher.
  */
@@ -22,6 +23,12 @@ const ONLINE_PROVIDER = 'anthropic';
 /** Honest source line on every card: nobody verified these facts. */
 export const MODEL_KNOWLEDGE_SOURCE = 'Generated from model knowledge, not checked';
 const MAX_JOBS = 100;
+const OFFLINE_MESSAGE = 'Switch to the Online profile to use online models';
+class OfflineForbidden extends Error {
+  constructor() {
+    super(OFFLINE_MESSAGE);
+  }
+}
 
 export const GenerateRequestSchema = z.object({
   request: z.string().trim().min(3).max(500),
@@ -73,6 +80,8 @@ export function generateRoutes({ hub, contentDir, worlds = ['fantasy', 'anime'],
   async function run(job: GenerateJob, body: GenerateRequest) {
     job.status = 'running';
     job.step = 'outline';
+    // Switched to Offline while the job waited in the queue.
+    if (body.engine === 'online' && hub.getSettings().profile === 'offline') throw new OfflineForbidden();
     const picked = pickEngine(body.engine);
     if (!picked) throw onlineUnavailable();
     const opt = picked.config.options;
@@ -121,6 +130,10 @@ export function generateRoutes({ hub, contentDir, worlds = ['fantasy', 'anime'],
 
   app.post('/', async (c) => {
     const body = GenerateRequestSchema.parse(await c.req.json());
+    // HQ, 24.10: the Offline promise is "nothing leaves the machine" — a key alone does not unlock the cloud there.
+    if (body.engine === 'online' && hub.getSettings().profile === 'offline') {
+      return c.json({ code: 'online_forbidden_in_offline_profile', message: OFFLINE_MESSAGE }, 409);
+    }
     if (body.engine === 'online' && !hub.textEngine(ONLINE_PROVIDER)) {
       return c.json({ code: 'online_unavailable', message: onlineUnavailable().message }, 409);
     }
@@ -135,6 +148,10 @@ export function generateRoutes({ hub, contentDir, worlds = ['fantasy', 'anime'],
       .then(() => run(job, body))
       .catch((err: unknown) => {
         job.status = 'failed';
+        if (err instanceof OfflineForbidden) {
+          job.error = { code: 'online_forbidden_in_offline_profile', message: err.message };
+          return;
+        }
         const e = EngineError.is(err) ? err : new EngineError('internal', err instanceof Error ? err.message : String(err));
         const code = body.engine === 'online' && e.code === 'unavailable' && e.provider === ONLINE_PROVIDER ? 'online_unavailable' : e.code;
         job.error = { code, message: e.message };

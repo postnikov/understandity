@@ -43,13 +43,20 @@ function courseText(providerId: string, opts: { output?: string; gate?: Promise<
   };
 }
 
-function setup(opts: { text?: ProviderModule<'text'>; anthropic?: ProviderModule<'text'>; keys?: boolean } = {}) {
+function setup(opts: { text?: ProviderModule<'text'>; anthropic?: ProviderModule<'text'>; keys?: boolean | ((env: string) => boolean) } = {}) {
   const contentDir = mkdtempSync(join(tmpdir(), 'understandity-gen-'));
   const modules = PROVIDERS.filter((m) => !(m.modality === 'text' && (m.providerId === 'fake' || m.providerId === 'anthropic')));
   modules.push(opts.text ?? courseText('fake'), opts.anthropic ?? courseText('anthropic'));
-  const hub = new EngineHub(fakeEnginesConfig(), modules, createDispatcher(), () => opts.keys ?? false);
+  const keySet = typeof opts.keys === 'function' ? opts.keys : () => (opts.keys as boolean | undefined) ?? false;
+  const hub = new EngineHub(fakeEnginesConfig(), modules, createDispatcher(), keySet);
   const app = createApp({ hub, course: draftCourse(), allowDrafts: false, contentDir });
-  return { app, contentDir };
+  return { app, contentDir, hub };
+}
+
+/** Online profile with the text engine still local (as a user who only switched the profile). */
+function online(hub: EngineHub) {
+  const res = hub.updateSettings({ ...hub.getSettings(), profile: 'online' });
+  expect(res.issues).toEqual([]);
 }
 
 const post = (app: ReturnType<typeof setup>['app'], body: unknown) =>
@@ -128,13 +135,37 @@ describe('POST /api/courses/generate', () => {
     expect(saved.origin.audience).toBe('adult');
   });
 
-  it('online without a key → 409 online_unavailable; with a key → Sonnet from config', async () => {
-    const off = setup({ keys: false });
+  it('Offline profile forbids online generation even with a key → 409 online_forbidden_in_offline_profile', async () => {
+    const { app, contentDir } = setup({ keys: true });
+    const res = await post(app, { request: 'butterfly life cycle', audience: 'child', lang: 'en', engine: 'online' });
+    expect(res.status).toBe(409);
+    expect(await res.json()).toEqual({ code: 'online_forbidden_in_offline_profile', message: 'Switch to the Online profile to use online models' });
+    expect(readdirSync(contentDir)).toEqual([]);
+  });
+
+  it('a queued online job fails if the profile went Offline before it started', async () => {
+    let open!: () => void;
+    const gate = new Promise<void>((r) => (open = r));
+    const { app, hub } = setup({ keys: true, text: courseText('fake', { gate }) });
+    online(hub);
+    const local = (await (await post(app, { request: 'why ships float', engine: 'local' })).json()).jobId;
+    const cloud = (await (await post(app, { request: 'butterfly life cycle', engine: 'online' })).json()).jobId;
+    hub.updateSettings({ ...hub.getSettings(), profile: 'offline' });
+    open();
+    await waitJob(app, local);
+    expect(await waitJob(app, cloud)).toMatchObject({ status: 'failed', error: { code: 'online_forbidden_in_offline_profile' } });
+  });
+
+  it('online profile without an Anthropic key → 409 online_unavailable; with a key → Sonnet from config', async () => {
+    // Online profile on another key (ElevenLabs), no Anthropic key.
+    const off = setup({ keys: (env) => env === 'ELEVENLABS_API_KEY' });
+    online(off.hub);
     const res = await post(off.app, { request: 'butterfly life cycle', audience: 'child', lang: 'en', engine: 'online' });
     expect(res.status).toBe(409);
     expect(await res.json()).toMatchObject({ code: 'online_unavailable' });
 
     const on = setup({ keys: true });
+    online(on.hub);
     const job = await waitJob(on.app, (await (await post(on.app, { request: 'butterfly life cycle', audience: 'child', lang: 'en', engine: 'online' })).json()).jobId);
     expect(job.status).toBe('done');
     const file = JSON.parse(readFileSync(join(on.contentDir, `${job.courseId}.json`), 'utf8'));
