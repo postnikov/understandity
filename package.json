@@ -18,7 +18,9 @@
     "build": "npm run build -w @understandity/web",
     "course:generate": "tsx packages/course/src/cli.ts",
     "demo": "UNDERSTANDITY_WARMUP=1 npm run dev",
-    "course:worlds": "tsx packages/course/src/worlds-cli.ts"
+    "course:worlds": "tsx packages/course/src/worlds-cli.ts",
+    "logs:sessions": "tsx apps/server/src/logs/cli.ts sessions",
+    "logs:review": "tsx apps/server/src/logs/cli.ts review"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

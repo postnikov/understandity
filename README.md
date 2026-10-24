@@ -212,6 +212,10 @@ npm run course:generate -- --concept "…" --source content/sources/<id>.md --la
 
 Every tutor turn is logged locally to `data/logs/tutor-YYYY-MM-DD.jsonl` (git-ignored): the child's confirmed answer, the tutor's reply and verdict, provider and model, and timings for speech recognition, first words and voice. No keys or audio. Turn it off with `UNDERSTANDITY_DIALOG_LOG=0`.
 
+### Session logs for improving the tutor
+
+Opening a course starts a learning session: every log line carries its `sessionId`, with the course, card, step, world and Offline or Online profile. `npm run logs:sessions` lists sessions (date, course, turns, model); `npm run logs:review -- --session <id>` turns one session into a markdown review in `data/reviews/` (git-ignored): the dialog step by step with verdicts, the current tutor prompt, and a task for a strong model — what to change in the tutor prompt and in the model's behaviour. Sending it to a model is a future online-mode step; today nothing leaves the computer.
+
 ## Tests
 
 ```sh
