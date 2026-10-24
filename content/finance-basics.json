@@ -1,0 +1,598 @@
+{
+  "id": "finance-basics",
+  "title": "Money: what does the balance leave out?",
+  "outcome": "Explain why a money balance alone cannot tell you what it will earn, buy, repay, withstand, or pay for today.",
+  "language": "en",
+  "subject": "finance",
+  "ageRange": [
+    16,
+    18
+  ],
+  "concepts": [
+    {
+      "id": "finance-basics",
+      "title": "Money: what does the balance leave out?",
+      "centralCause": "What money can do depends on the rules for growth, prices, obligations, shared risks, and access, as well as the balance.",
+      "conditions": [
+        "Fictional teaching models, not financial advice or product offers.",
+        "All amounts are tokens; stated rates and prices are hypothetical.",
+        "Ignore fees and taxes; no deposits, withdrawals, or interim repayments unless a question says otherwise."
+      ],
+      "cards": [
+        {
+          "id": "c1-the-magic-of-compounding",
+          "title": "Can interest earn interest?",
+          "fact": {
+            "statement": "When earned interest stays in an account and also earns interest, the next period starts from a larger interest-earning balance.",
+            "conditions": [
+              "Positive fixed rate, credited once each year",
+              "Earlier interest remains and earns interest",
+              "No deposits, withdrawals, fees, or taxes"
+            ],
+            "source": "Original teaching notes: content/sources/finance-basics.md (Codex, 2026-10-24); hypothetical examples, no market measurements. Principle checked 2026-10-24: https://www.consumerfinance.gov/ask-cfpb/how-does-compound-interest-work-en-1683/"
+          },
+          "hook": {
+            "question": "In a fictional account, 100 tokens earn 10% each year, credited at year-end and kept in the account. Nothing else goes in or out. What will the balance be after two years?",
+            "predictPrompt": "Predict the balance and explain what amount earns interest in the second year."
+          },
+          "explanation": "Compound interest means that earlier interest also earns interest. In this model, 100 tokens become 110 after one year. The second year earns 10% of 110, which is 11 tokens, giving 121. Simple interest uses the original 100 each year instead. The rate is fictional, and fees and taxes are excluded.",
+          "action": {
+            "instruction": "Thought experiment: keep the same account but pay interest only on the original 100 tokens. Predict the two-year balance, then compare it with the original rule.",
+            "changedCondition": "Whether previously earned interest also earns interest",
+            "constants": [
+              "Initial 100 tokens",
+              "10% annual rate and two years",
+              "Interest stays in the account; no other transactions, fees, or taxes"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A teenage apprentice places tokens with a castle treasury that credits ten percent yearly and leaves the interest in the same account. The apprentice compares the starting hoard with the balance after two years; the rule, not magic, produces the growth.",
+              "illustration": "A teenage apprentice at a castle treasury desk, plain unmarked tokens grouped in trays for successive stages, with the newest tokens a different metal colour; no diagrams or writing.",
+              "image": "/media/finance-basics/c1-the-magic-of-compounding-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "A teenage club treasurer deposits tokens with the school treasury under the same yearly ten-percent rule. Interest stays and earns interest during the second year; nobody adds more money.",
+              "illustration": "A teenage club treasurer in a sunlit classroom counting plain unmarked tokens in adjacent trays, newer tokens distinguished by colour; natural objects, no charts or writing.",
+              "image": "/media/finance-basics/c1-the-magic-of-compounding-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "A teenage astronaut deposits a hundred tokens with a station treasury at ten percent annually, credited at year-end. Interest stays in the account and also earns interest next year; no additional tokens are deposited.",
+              "illustration": "A teenage astronaut inside a bright space-station treasury, comparing trays of plain unmarked tokens; newer tokens have a contrasting metal colour. No screens or diagrams.",
+              "image": "/media/finance-basics/c1-the-magic-of-compounding-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A teenage courier deposits a hundred tokens with a city treasury at ten percent yearly. Year-end interest remains and earns interest in the second year, with no other transactions.",
+              "illustration": "A teenage courier at a neon-lit treasury counter comparing small trays of plain metallic tokens, newer tokens picked out by reflected cyan light. No screens, charts, or signs.",
+              "image": "/media/finance-basics/c1-the-magic-of-compounding-cyberpunk.png"
+            }
+          ],
+          "question": {
+            "id": "q-c1-the-magic-of-compounding",
+            "prompt": "A school club receives 200 tokens and leaves them in a fictional account for two years. It earns 10% annually, credited at each year-end and kept there. There are no other transactions, fees, or taxes. What balance results, and why?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c1-the-magic-of-compounding",
+            "expectedCause": "242 tokens: the first year adds 20, making 220; the second adds 22 because the earlier interest also earns interest.",
+            "acceptable": [
+              "200 × 1.1 × 1.1 = 242, explained in words",
+              "Names both the larger second-year base and the 242-token result"
+            ],
+            "typicalMistake": "240 tokens, treating both years as interest on the original 200.",
+            "followUp": "What amount earns interest at the start of the second year?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "242: first 220, then interest on 220 adds 22, because last year's interest earns interest too.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "240, because two years at 10% means adding 20% of the original 200.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "242, but I cannot explain the extra two.",
+                "tutorMove": "What amount earns interest at the start of the second year?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Would the same rate always produce the same result if interest were credited at different times?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "explanation is 39 words (expected 40–60)",
+              "2026-10-24T13:24:00Z Manual revision by Codex before Max review: Removed answer from the action; specified annual rate and timing in the transfer; replaced the anime doubling rule and magical multiplication with the same ten-percent account mechanism; explanation expanded.",
+              "2026-10-24T13:26:24.118Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review."
+            ]
+          }
+        },
+        {
+          "id": "c2-the-shrinking-power-of-cash",
+          "title": "More tokens, less buying power?",
+          "fact": {
+            "statement": "A general rise in prices reduces purchasing power when the money available grows more slowly than the cost of the same purchases.",
+            "conditions": [
+              "Compare the same basket and quantities at two times",
+              "Purchasing power is relative to prices, not just the token count",
+              "One item becoming dearer alone does not establish economy-wide inflation"
+            ],
+            "source": "Original teaching notes: content/sources/finance-basics.md (Codex, 2026-10-24); hypothetical examples, no market measurements. Principle checked 2026-10-24: https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me-more/html/what_is_inflation.en.html"
+          },
+          "hook": {
+            "question": "You leave 100 tokens under a mattress. A basket of everyday items costs 100 tokens today and 110 next year; its contents stay the same. What will those unchanged tokens buy next year?",
+            "predictPrompt": "Predict whether the full basket is still affordable, and explain what changed."
+          },
+          "explanation": "Purchasing power means what money can buy. Inflation is a general rise in prices, although individual prices move differently. In this fictional basket, the same goods rise from 100 to 110 tokens. A mattress still holds 100, but that balance no longer buys the whole basket. The money has not physically disappeared.",
+          "action": {
+            "instruction": "Thought experiment: change only next year's basket price from 110 to 100 tokens. Keep its contents and the saved 100 tokens unchanged. Predict what becomes affordable, then compare.",
+            "changedCondition": "Next year's price of the same basket",
+            "constants": [
+              "100 tokens in cash",
+              "Identical basket contents and quantities",
+              "Same one-year interval"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A teenage apprentice returns to a castle market with the same hundred-token pouch. The unchanged basket now costs a hundred and ten in this fictional example, so the pouch no longer covers it.",
+              "illustration": "A teenage apprentice at a market counter with a plain coin pouch and a basket of everyday provisions; a merchant waits, all packaging blank, no price tags.",
+              "image": "/media/finance-basics/c2-the-shrinking-power-of-cash-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "A teenage student returns to a market with a hundred tokens saved at home. The identical basket now costs a hundred and ten; its contents have not changed.",
+              "illustration": "A teenage student beside a familiar market basket, holding plain unmarked tokens in an open palm while considering the purchase; blank packaging, no price tags.",
+              "image": "/media/finance-basics/c2-the-shrinking-power-of-cash-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "A teenage station worker returns to a supply counter with the same hundred tokens saved at home. The unchanged basket now costs a hundred and ten in this fictional example, so it is no longer fully affordable.",
+              "illustration": "A teenage astronaut at a station supply counter, holding a plain token pouch beside a basket of everyday provisions. All packaging is blank; no price tags or screens.",
+              "image": "/media/finance-basics/c2-the-shrinking-power-of-cash-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A teenage courier returns to a night market with the same hundred tokens. The identical basket now costs a hundred and ten; its contents and the saved token count have not changed.",
+              "illustration": "A teenage courier at a neon night-market counter with a plain token pouch and a basket of ordinary supplies. Featureless packaging, no price tags or glowing lettering.",
+              "image": "/media/finance-basics/c2-the-shrinking-power-of-cash-cyberpunk.png"
+            }
+          ],
+          "question": {
+            "id": "q-c2-the-shrinking-power-of-cash",
+            "prompt": "A club could buy one basket of supplies with 100 tokens last year. This year its savings have grown to 105, and the identical basket costs 110. Can it buy more or less of that basket than before? Explain despite the larger balance.",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c2-the-shrinking-power-of-cash",
+            "expectedCause": "Less: 105 tokens cannot buy the whole basket priced at 110, whereas 100 previously bought one. The balance rose more slowly than the basket cost, so purchasing power fell.",
+            "acceptable": [
+              "105/110 of a basket, about 0.955, compared with one before",
+              "Needs 5 more tokens to buy the unchanged basket; more tokens do not necessarily mean more purchasing power"
+            ],
+            "typicalMistake": "Savings rose, so the club must be able to buy more.",
+            "followUp": "Compare the club's balance with the basket price at each date."
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "Less: the club now has 105 but the same basket costs 110; previously its 100 bought the whole basket.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "More, because there are five extra tokens.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "Less, because inflation.",
+                "tutorMove": "Compare the club's balance with the basket price at each date."
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Can some prices fall even while overall inflation is positive?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "explanation is 38 words (expected 40–60)",
+              "voice question repeats the hook/action (73% word overlap) — transfer needs a new situation",
+              "2026-10-24T13:24:00Z Manual revision by Codex before Max review: Transfer now tests a rising nominal balance against faster price growth; clarified general inflation versus one price; removed misleading follow-up and diagrams suggesting heavier goods.",
+              "2026-10-24T13:26:24.118Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review."
+            ]
+          }
+        },
+        {
+          "id": "c3-the-cost-of-borrowing",
+          "title": "Whose interest is growing?",
+          "fact": {
+            "statement": "For equal amounts over the same period, a higher borrowing rate than deposit rate creates a shortfall when the deposit is used to repay the debt.",
+            "conditions": [
+              "Same borrowed and deposited principal",
+              "Both rates cover the same one-year interval",
+              "No fees, taxes, extra transactions, or interim payments; principal and interest are due at year-end"
+            ],
+            "source": "Original teaching notes: content/sources/finance-basics.md (Codex, 2026-10-24); hypothetical examples, no market measurements. Principle checked 2026-10-24: https://www.consumerfinance.gov/ask-cfpb/how-does-my-credit-card-company-calculate-the-amount-of-interest-i-owe-en-51/"
+          },
+          "hook": {
+            "question": "In a fictional one-year deal, someone borrows 100 tokens at 20% and deposits all of them at 5%. Nothing else is paid, added, or withdrawn; ignore fees and taxes. What remains after the loan is repaid?",
+            "predictPrompt": "Predict the deposit balance and the repayment amount, then explain the difference."
+          },
+          "explanation": "Deposit interest increases what you own; debt interest increases what you owe. Here, after one year, the deposit holds 105 tokens and repayment requires 120: a 15-token shortfall. This comparison assumes no interim payments or fees. Real credit cards can calculate interest daily, and payment and grace-period rules change the result.",
+          "action": {
+            "instruction": "Thought experiment: lower only the loan rate from 20% to 5%. Keep the deposit rate at 5% and all other conditions unchanged. Predict the year-end gap, then compare.",
+            "changedCondition": "Loan interest rate: 20% becomes 5%",
+            "constants": [
+              "100 tokens borrowed and deposited",
+              "5% deposit rate and one year",
+              "No interim payments, other transactions, fees, or taxes"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A teenage apprentice borrows a hundred tokens from a castle treasury at twenty percent for one year and deposits them at five percent. At year-end, the account holds a hundred and five but repayment needs a hundred and twenty.",
+              "illustration": "A teenage apprentice between two treasury counters, a smaller pile of plain tokens on the deposit side and a larger pile representing repayment on the other; no scrolls, symbols, or writing.",
+              "image": "/media/finance-basics/c3-the-cost-of-borrowing-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "A teenage club treasurer compares a fictional hundred-token one-year loan at twenty percent with depositing it at five percent. The account gain and the cost owed to the lender must both be counted.",
+              "illustration": "A teenage club treasurer at a classroom desk comparing two separate piles of plain tokens, the repayment pile larger than the savings pile; no labels or screens.",
+              "image": "/media/finance-basics/c3-the-cost-of-borrowing-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "A teenage astronaut borrows a hundred tokens for one year at twenty percent and deposits them at five percent. With no other transactions, fees, or taxes, the account holds a hundred and five while repayment requires a hundred and twenty.",
+              "illustration": "A teenage astronaut at a station treasury counter comparing two trays of plain metallic tokens, the repayment pile visibly larger than the savings pile. Physical objects only; no display screens or writing.",
+              "image": "/media/finance-basics/c3-the-cost-of-borrowing-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A teenage courier compares a fictional hundred-token one-year loan at twenty percent with depositing it at five percent. The loan balance and the deposit balance both grow, but repayment needs more than the account holds.",
+              "illustration": "A teenage courier at a neon-lit counter with two piles of plain metallic tokens, the repayment pile larger than the savings pile. No screens, charts, labels, or numerals.",
+              "image": "/media/finance-basics/c3-the-cost-of-borrowing-cyberpunk.png"
+            }
+          ],
+          "question": {
+            "id": "q-c3-the-cost-of-borrowing",
+            "prompt": "A school club borrows 200 tokens for a trip at 10% for one year, then holds the full amount in an account paying 5% for that year. No other transactions, fees, or taxes occur. At year-end, how much extra money is needed to repay principal and interest, and why?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c3-the-cost-of-borrowing",
+            "expectedCause": "10 extra tokens: repayment is 220, while the deposit contains 210. The 20-token borrowing cost exceeds the 10-token deposit earnings.",
+            "acceptable": [
+              "A 10-token shortfall, not a 10-token profit",
+              "Compares 200 + 20 owed with 200 + 10 owned"
+            ],
+            "typicalMistake": "The deposit earned 10 tokens, so the club made a 10-token profit.",
+            "followUp": "Which amounts belong on the owned side and the owed side at year-end?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "It needs ten more: it has 210 but owes 220, so the deposit gain does not cover the debt interest.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "It earned ten, so there is a ten-token profit.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "Ten extra tokens.",
+                "tutorMove": "Which amounts belong on the owned side and the owed side at year-end?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Why could real credit-card interest differ from this one-year model?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "voice question repeats the hook/action (78% word overlap) — transfer needs a new situation",
+              "2026-10-24T13:24:00Z Manual revision by Codex before Max review: Replaced false general claim that borrowing always costs more than saving with the stated rate condition; removed a leading danger question; specified repayment period and aligned transfer, key, and rubric.",
+              "2026-10-24T13:26:24.118Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review."
+            ]
+          }
+        },
+        {
+          "id": "c4-the-illusion-of-safety",
+          "title": "Different names, same risk?",
+          "fact": {
+            "statement": "Spreading money across investments with different exposures can reduce concentration risk; different names sharing one dependency remain exposed to that common shock.",
+            "conditions": [
+              "Exposure means dependence on a factor that can affect financial results",
+              "Different labels alone do not establish different exposures",
+              "Diversification does not guarantee a profit or prevent every loss"
+            ],
+            "source": "Original teaching notes: content/sources/finance-basics.md (Codex, 2026-10-24); hypothetical examples, no market measurements. Principle checked 2026-10-24: https://www.investor.gov/introduction-investing/getting-started/asset-allocation"
+          },
+          "hook": {
+            "question": "You split fictional investments between two differently named shops. Both receive all their supplies across the same bridge, which closes for a month. What risk have you spread, and what risk remains?",
+            "predictPrompt": "Predict how the closure could affect both shops, and explain why their names matter or do not matter."
+          },
+          "explanation": "Diversification spreads investments across different exposures: the things that can affect their results. Two shop names do not create two independent supply routes. If both depend on one bridge, its closure can hurt both. Removing that shared dependence reduces this particular concentration risk, but does not guarantee profits or protection from every other loss.",
+          "action": {
+            "instruction": "Thought experiment: change only the second shop's supply route so it no longer uses the closed bridge. Keep the first shop and everything else unchanged. Predict which exposure changes, then compare.",
+            "changedCondition": "Whether the second shop's supply route uses that bridge",
+            "constants": [
+              "Same two shops and investment amounts",
+              "Same bridge closure and duration",
+              "First shop still relies on the bridge"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A teenage apprentice owns stakes in two differently named castle-market shops. All supplies for both cross one stone bridge, which is closed; their different owners do not remove the shared route.",
+              "illustration": "Two distinct fantasy shops beside a river, both supply paths visibly leading to one closed stone bridge; a teenage apprentice studies the scene, no arrows or signs.",
+              "image": "/media/finance-basics/c4-the-illusion-of-safety-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "A teenage student compares investments in two market shops supplied across the same bridge. A month-long closure can disrupt both businesses even though they have different owners.",
+              "illustration": "An anime market street with two distinct shops, supply carts stopped at one closed bridge, a teenage observer; no logos, signs, arrows, or text.",
+              "image": "/media/finance-basics/c4-the-illusion-of-safety-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "A teenage astronaut holds stakes in two station supply shops, both receiving all goods across one access bridge. Closing that bridge exposes both investments to the same disruption, regardless of their different owners.",
+              "illustration": "Two distinct station supply shops, both delivery paths leading to one closed access bridge, with cargo carts waiting and a teenage astronaut observing. No symbols, arrows, or signs.",
+              "image": "/media/finance-basics/c4-the-illusion-of-safety-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A teenage courier owns stakes in two night-market shops supplied across the same city bridge. A closure can disrupt both businesses; their different owners do not remove the shared route.",
+              "illustration": "Two different neon-market shops with supply carts stopped before one closed bridge; a teenage courier watches from the foreground. Blank facades with reflected magenta and cyan light, no writing.",
+              "image": "/media/finance-basics/c4-the-illusion-of-safety-cyberpunk.png"
+            }
+          ],
+          "question": {
+            "id": "q-c4-the-illusion-of-safety",
+            "prompt": "An imaginary investment basket holds shares in several ski resorts in one region. A snowless winter arrives. Does the number of resort names show that weather risk was spread? Explain what could happen, without assuming a guaranteed loss.",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c4-the-illusion-of-safety",
+            "expectedCause": "No. The resorts share exposure to snow conditions, so one snowless winter could hurt several investments together. Different names do not remove this common risk; exact losses or share-price changes are not established.",
+            "acceptable": [
+              "Other revenue, artificial snow, or insurance could change the outcome; shared exposure still needs checking",
+              "This basket may spread resort-specific risks while remaining concentrated in regional weather risk"
+            ],
+            "typicalMistake": "Several names automatically remove weather risk, so one winter cannot hurt them together.",
+            "followUp": "What dependency could several differently named resorts still share?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "Several resorts can be hurt together by the same lack of snow. Different names do not spread that weather exposure, though a loss is not certain.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "Different names guarantee safety from a snowless winter.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "It is risky.",
+                "tutorMove": "What dependency could several differently named resorts still share?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "Why can a diversified investment still lose value?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "explanation is 36 words (expected 40–60)",
+              "absolute word \"All\" in key — check that it holds under the stated conditions",
+              "2026-10-24T13:24:00Z Manual revision by Codex before Max review: Corrected diversification definition and may-versus-must error; removed guaranteed losses from acceptable answers; wrong-use rubric now rejects a specific false claim rather than an outcome that could be true.",
+              "2026-10-24T13:26:24.118Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review."
+            ]
+          }
+        },
+        {
+          "id": "c5-wealth-vs-spendable-cash",
+          "title": "Wealth you cannot spend today?",
+          "fact": {
+            "statement": "To cover an immediate expense, a reserve must be available in the required form before the payment deadline; its total value alone is insufficient.",
+            "conditions": [
+              "A payment amount, accepted payment form, and deadline are specified",
+              "Locked funds cannot be released early in this fictional model",
+              "No other cash, borrowing, or extension of the deadline"
+            ],
+            "source": "Original teaching notes: content/sources/finance-basics.md (Codex, 2026-10-24); hypothetical examples, no market measurements. Principle checked 2026-10-24: https://www.consumerfinance.gov/an-essential-guide-to-building-an-emergency-fund/"
+          },
+          "hook": {
+            "question": "A fictional account holds 120 tokens but cannot be accessed until next month. An unexpected repair costs 80 tokens and must be paid today. With no other cash or borrowing, can the account cover today's bill?",
+            "predictPrompt": "Predict whether the payment can happen on time, and explain which condition decides it."
+          },
+          "explanation": "Liquidity means how readily an asset becomes spendable money. An emergency reserve serves its purpose when money is available before an unexpected bill is due. In this model, 120 locked tokens cannot cover an 80-token bill today. They still have value; their release date creates the problem, assuming no other cash or borrowing.",
+          "action": {
+            "instruction": "Thought experiment: change only the account's release date from next month to today, before the bill is due. Keep the balance and bill unchanged. Predict what payment becomes possible, then compare.",
+            "changedCondition": "When the locked funds become accessible",
+            "constants": [
+              "120-token account balance",
+              "80-token repair payable today in tokens",
+              "No other cash, borrowing, fees, or deadline change"
+            ],
+            "thoughtExperiment": true
+          },
+          "worlds": [
+            {
+              "world": "fantasy",
+              "scene": "A teenage apprentice has a hundred and twenty tokens in a treasury chest that cannot open until next month. An eighty-token repair is due today, and no other cash or borrowing is available.",
+              "illustration": "A teenage apprentice beside a locked treasury chest with visible plain tokens behind a small glass window, a broken cart wheel awaiting repair nearby; no calendar, clock face, or writing.",
+              "image": "/media/finance-basics/c5-wealth-vs-spendable-cash-fantasy.png"
+            },
+            {
+              "world": "anime",
+              "scene": "A teenage club member has a hundred and twenty tokens locked away until next month, while an eighty-token repair is due today. The amount is enough but the release date prevents payment.",
+              "illustration": "A teenage club member beside a locked transparent token box and a broken bicycle wheel, considering the repair; no timer, numbers, or signs.",
+              "image": "/media/finance-basics/c5-wealth-vs-spendable-cash-anime.png"
+            },
+            {
+              "world": "space",
+              "scene": "A teenage astronaut has a hundred and twenty tokens in a treasury locker inaccessible until next month. An eighty-token cargo-cart repair is due today, with no other cash, borrowing, or delay allowed.",
+              "illustration": "A teenage astronaut next to a locked transparent treasury locker containing plain tokens; a damaged cargo-cart wheel sits nearby. No bill, calendar, countdown, or display.",
+              "image": "/media/finance-basics/c5-wealth-vs-spendable-cash-space.png"
+            },
+            {
+              "world": "cyberpunk",
+              "scene": "A teenage courier has a hundred and twenty tokens locked away until next month. An eighty-token delivery-bike repair is due today; the locked tokens cannot be accessed early and no borrowing or extension is available.",
+              "illustration": "A teenage courier beside a locked transparent token case and a broken delivery-bike wheel in a neon repair shop. Plain metallic tokens, no timer, bill, lettering, or signs.",
+              "image": "/media/finance-basics/c5-wealth-vs-spendable-cash-cyberpunk.png"
+            }
+          ],
+          "question": {
+            "id": "q-c5-wealth-vs-spendable-cash",
+            "prompt": "A school club has no cash but owns sound equipment worth 200 tokens. An 80-token bill is due tomorrow, payable in tokens. The earliest equipment buyer can pay is next week. Without borrowing or a deadline extension, can the equipment fund the bill on time? Why?",
+            "maxAnswerSec": 60
+          },
+          "key": {
+            "questionId": "q-c5-wealth-vs-spendable-cash",
+            "expectedCause": "No. The equipment's value exceeds the bill, but the sale proceeds arrive after the deadline. Owning a valuable asset does not make tokens available tomorrow.",
+            "acceptable": [
+              "A timing or liquidity shortage, even though the equipment is worth more than the bill",
+              "The equipment remains valuable; the problem is when it can be converted to tokens"
+            ],
+            "typicalMistake": "Yes, because equipment worth 200 tokens is more than an 80-token bill.",
+            "followUp": "When do tokens from the equipment sale become available, compared with the due date?"
+          },
+          "rubric": {
+            "criteria": [
+              {
+                "level": "shows_cause",
+                "example": "No: the equipment could cover the amount but the buyer pays next week, after tomorrow's deadline.",
+                "tutorMove": "Confirm the cause, then give a new case without hints (transfer)."
+              },
+              {
+                "level": "familiar_words_wrong_use",
+                "example": "Yes, 200 is more than 80, so the bill is covered.",
+                "tutorMove": "Return a counterexample and ask to compare again."
+              },
+              {
+                "level": "not_enough_yet",
+                "example": "No, the club cannot pay.",
+                "tutorMove": "When do tokens from the equipment sale become available, compared with the due date?"
+              },
+              {
+                "level": "channel_problem",
+                "example": "Transcript is garbled or cut off.",
+                "tutorMove": "Re-ask what was heard before judging; never grade accent or speed."
+              }
+            ],
+            "ignore": [
+              "accent",
+              "voice timbre",
+              "speech speed",
+              "wording style"
+            ]
+          },
+          "askTutor": "How can someone own valuable things and still lack money for an urgent bill?",
+          "review": {
+            "state": "needs_review",
+            "reviewer": null,
+            "reviewedAt": null,
+            "notes": [
+              "explanation is 33 words (expected 40–60)",
+              "2026-10-24T13:24:00Z Manual revision by Codex before Max review: Defined liquidity and the payment deadline; transfer now specifies cash-only payment and sale timing; kept all wealth/availability claims conditional; action changes only release date.",
+              "2026-10-24T13:26:24.118Z изменено: scenes for world(s) space, cyberpunk written by gemma4:12b-mlx",
+              "2026-10-24T13:27:00Z Manual revision by Codex: space/cyberpunk keep financial tokens, timing and stated conditions; no multiplying physical energy or oxygen. Removed written amounts, diagrams, bills and timers from illustration briefs. Set maxAnswerSec=60 and four reserved image paths; PNG rendering belongs to designer. Earlier automatic warnings describe the pre-edit draft and were reviewed; status remains needs_review."
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "review": {
+    "state": "needs_review",
+    "reviewer": null,
+    "reviewedAt": null,
+    "notes": [
+      "Generated by gemma4:12b-mlx; nothing is shown to a child before an adult approves each card (fact → question → key).",
+      "Source for verification: Original teaching notes by Codex, 2026-10-24. Fictional amounts and rates; no market data or financial recommendations. Principles checked against CFPB (compound interest, credit-card interest, emergency funds), ECB (inflation), and Investor.gov (diversification); no source text copied. — https://www.consumerfinance.gov/ask-cfpb/how-does-compound-interest-work-en-1683/",
+      "2026-10-24T13:24:00Z Original Gemma draft retained in origin; Codex revised factual conditions, hooks, single-variable actions, transfer questions, keys, rubrics, and fantasy/anime scenes. All numbers are fictional. All cards remain needs_review. Source tightened to 335 words after generation; no-interim-payments assumption made explicit.",
+      "2026-10-24T13:27:00Z Codex verified all five question/key pairs and the single changed condition per action. Twenty world scenes and image briefs reviewed; maxAnswerSec=60 throughout. Image paths are reserved for designer, not evidence of rendered PNGs. Adult approval is still required."
+    ]
+  },
+  "origin": {
+    "generator": "model",
+    "model": "gemma4:12b-mlx",
+    "createdAt": "2026-10-24T13:23:12.036Z"
+  }
+}
