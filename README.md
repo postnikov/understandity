@@ -111,7 +111,7 @@ server    127.0.0.1:8787                 Hono on Node 22
 |---|---|---|---|---|
 | Text | Gemma 4 12B (`gemma4:12b-mlx`) via Ollama | local | default: tutor and course drafts | live: three courses generated |
 | Text | `qwen3.8:27b-mlx` via Ollama | local | alternative | configured |
-| Text | Claude Opus 5.5 (`claude-opus-5-5`), Claude Sonnet 5.5 as the spare, via the Anthropic API | cloud | Online only, with a key: tutor and course drafts | live: 4 calls on 24.10 |
+| Text | Claude Sonnet 5.5 (`claude-sonnet-5-5`) by default for a faster first word, Claude Opus 5.5 selectable, via the Anthropic API | cloud | Online only, with a key: tutor and course drafts | live: 4 calls on 24.10 |
 | Text | Gemini API | cloud | off | placeholder, not implemented |
 | Speech → text | Whisper large-v3-turbo via whisper.cpp | local | default | live |
 | Speech → text | Gemma 4 12B audio input via Ollama | local | alternative | live |
