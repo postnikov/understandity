@@ -25,9 +25,11 @@ function blockOf(p: ProviderSummary, profile: Settings['profile']): Block {
   return null;
 }
 
-function blockText(b: Block): string {
+function blockText(b: Block, modality: Modality): string {
   const d = t().engines;
-  return b === 'cloud_offline' ? d.cloudBlocked : b === 'disabled' ? d.disabled : b === 'not_wired' ? d.notWired : '';
+  // What leaves the machine depends on the engine: speech recognition sends the child's audio, the rest send text.
+  const cloud = modality === 'stt' ? d.cloudBlockedAudio : d.cloudBlocked;
+  return b === 'cloud_offline' ? cloud : b === 'disabled' ? d.disabled : b === 'not_wired' ? d.notWired : '';
 }
 
 /** Switching to Offline: any cloud selection falls back to the configured default for that modality, visibly. */
@@ -64,7 +66,7 @@ function modalityCard(m: Modality): string {
     <label class="field"><span class="label">${d.provider}</span><span class="select"><select data-prov="${m}">${providers
       .map((p) => {
         const b = blockOf(p, draft.profile);
-        return `<option value="${esc(p.provider)}" ${p.provider === sel.provider ? 'selected' : ''} ${b ? 'disabled' : ''}>${esc(p.label)} · ${p.locality === 'cloud' ? d.cloud : d.local}${b ? ` — ${esc(blockText(b))}` : ''}</option>`;
+        return `<option value="${esc(p.provider)}" ${p.provider === sel.provider ? 'selected' : ''} ${b ? 'disabled' : ''}>${esc(p.label)} · ${p.locality === 'cloud' ? d.cloud : d.local}${b ? ` — ${esc(blockText(b, p.modality))}` : ''}</option>`;
       })
       .join('')}</select></span></label>
     <label class="field"><span class="label">${d.model}</span><span class="select"><select data-model="${m}">${(cur?.models ?? [])
@@ -82,7 +84,7 @@ function modalityCard(m: Modality): string {
     <ul class="provlist">${providers
       .map((p) => {
         const b = blockOf(p, draft.profile);
-        return `<li class="${b ? 'off' : ''}"><span class="hdot ${b ? '' : (p.health?.state ?? '')}"></span><span class="nm">${esc(p.label)}</span>${b ? ` <span class="why-off ${b === 'cloud_offline' ? 'cloud' : ''}">· ${esc(blockText(b))}</span>` : ''}</li>`;
+        return `<li class="${b ? 'off' : ''}"><span class="hdot ${b ? '' : (p.health?.state ?? '')}"></span><span class="nm">${esc(p.label)}</span>${b ? ` <span class="why-off ${b === 'cloud_offline' ? 'cloud' : ''}">· ${esc(blockText(b, p.modality))}</span>` : ''}</li>`;
       })
       .join('')}</ul>
   </section>`;

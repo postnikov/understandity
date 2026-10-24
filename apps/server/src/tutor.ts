@@ -68,7 +68,7 @@ export async function tutorTurn(
         model,
         messages,
         maxTokens: 160,
-        context: { kind, studentText: req.studentText, followUp: card.key.followUp, expectedCause: card.key.expectedCause, cardId: card.id },
+        context: { kind, language: req.language, studentText: req.studentText, followUp: card.key.followUp, expectedCause: card.key.expectedCause, cardId: card.id },
       },
       { signal: signal ?? opts.signal },
     );

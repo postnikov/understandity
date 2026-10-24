@@ -17,23 +17,29 @@ const sleep = (ms: number, signal?: AbortSignal) =>
   });
 
 function pickReply(ctx: Record<string, unknown>): string {
+  const ru = String(ctx.language ?? 'en').startsWith('ru');
   const kind = String(ctx.kind ?? 'answer');
   const said = String(ctx.studentText ?? '').toLowerCase();
-  const followUp = typeof ctx.followUp === 'string' ? ctx.followUp : 'А что при этом произошло с объёмом?';
+  const followUp =
+    typeof ctx.followUp === 'string' ? ctx.followUp : ru ? 'А что при этом произошло с объёмом?' : 'And what happened to the volume?';
   const expected = typeof ctx.expectedCause === 'string' ? ctx.expectedCause : '';
   if (kind === 'explain_please') {
-    return `Хорошо, коротко: ${expected || 'важна не масса сама по себе, а масса на единицу объёма — плотность.'} Попробуешь применить это к новой задаче?`;
+    return ru
+      ? `Хорошо, коротко: ${expected || 'важна не масса сама по себе, а масса на единицу объёма — плотность.'} Попробуешь применить это к новой задаче?`
+      : `Sure, in short: ${expected || 'what matters is not mass alone but mass per unit of volume — density.'} Want to try it on a new case?`;
   }
   if (kind === 'question') {
-    return 'Хороший вопрос. Корабль железный, но внутри у него много воздуха: считаем плотность всего корпуса вместе с воздухом. Как думаешь, что будет, если корпус пробить?';
+    return ru
+      ? 'Хороший вопрос. Корабль железный, но внутри у него много воздуха: считаем плотность всего корпуса вместе с воздухом. Как думаешь, что будет, если корпус пробить?'
+      : 'Good question. A ship is made of steel, but it holds a lot of air: we count the density of the whole hull with the air inside. What happens if the hull gets a hole?';
   }
-  if (/плотност|на один кубик|на единицу объ|отношени/.test(said)) {
-    return 'Ты назвал причину — сравнил массу и объём. Теперь новая ситуация без подсказки: что будет с куском пластилина, если раскатать его в тонкую лодочку?';
+  if (/плотност|на один кубик|на единицу объ|отношени|density|per cube|per unit/.test(said)) {
+    return ru
+      ? 'Ты назвал причину — сравнил массу и объём. Теперь новая ситуация без подсказки: что будет с куском пластилина, если раскатать его в тонкую лодочку?'
+      : 'You named the cause — you compared mass and volume. Now a new case without hints: what happens to a lump of clay if you shape it into a thin boat?';
   }
-  if (/легче|тяжел|тяжёл|масс/.test(said)) {
-    return `Ты заметил массу. ${followUp}`;
-  }
-  return 'Я услышал не всё. Скажи ещё раз: что произойдёт и почему?';
+  if (/легче|тяжел|тяжёл|масс|light|heav|mass|weigh/.test(said)) return `${ru ? 'Ты заметил массу.' : 'You noticed the mass.'} ${followUp}`;
+  return ru ? 'Я услышал не всё. Скажи ещё раз: что произойдёт и почему?' : 'I did not catch all of it. Say it again: what will happen and why?';
 }
 
 export const createFakeText: AdapterFactory<'text'> = (config, { providerId }): TextAdapter => ({
