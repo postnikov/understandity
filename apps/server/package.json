@@ -1,0 +1,23 @@
+{
+  "name": "@understandity/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "start": "tsx src/main.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.5",
+    "@understandity/contracts": "*",
+    "@understandity/course": "*",
+    "@understandity/dispatcher": "*",
+    "@understandity/engine-image-fake": "*",
+    "@understandity/engine-stt-fake": "*",
+    "@understandity/engine-text-fake": "*",
+    "@understandity/engine-text-gemini-api": "*",
+    "@understandity/engine-tts-elevenlabs": "*",
+    "@understandity/engine-tts-fake": "*",
+    "hono": "^4.13.13"
+  }
+}

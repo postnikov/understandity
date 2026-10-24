@@ -1,0 +1,123 @@
+import {
+  EngineError,
+  MODALITIES,
+  SettingsSchema,
+  defaultSettings,
+  isOfflineSafe,
+  validateSettings,
+  type AdapterByModality,
+  type EngineAdapter,
+  type EnginesConfig,
+  type Modality,
+  type ProviderModule,
+  type ProviderSummary,
+  type ResourceDispatcher,
+  type Settings,
+  type SettingsInput,
+  type SettingsIssue,
+} from '@understandity/contracts';
+
+type AnyAdapter = EngineAdapter<Modality>;
+
+/** Holds adapters for every provider that is both configured and wired, plus the active settings. */
+export class EngineHub {
+  private readonly adapters = new Map<string, AnyAdapter>();
+  private settings: Settings;
+
+  constructor(
+    readonly config: EnginesConfig,
+    modules: ProviderModule<Modality>[],
+    readonly dispatcher: ResourceDispatcher,
+  ) {
+    for (const mod of modules) {
+      const providerConfig = config.providers[mod.modality][mod.providerId];
+      if (!providerConfig) continue;
+      this.adapters.set(key(mod.modality, mod.providerId), mod.create(providerConfig, { providerId: mod.providerId }) as AnyAdapter);
+    }
+    for (const modality of MODALITIES) {
+      dispatcher.setUnloader(modality, async (owner) => {
+        const [provider, ...rest] = owner.split(':');
+        const adapter = this.adapters.get(key(modality, provider ?? ''));
+        await adapter?.unload?.(rest.join(':'));
+      });
+    }
+    this.settings = defaultSettings(config);
+    const issues = validateSettings(this.settings, config);
+    if (issues.length) throw new Error(`config/engines.json defaults are invalid: ${issues.map((i) => i.message).join('; ')}`);
+  }
+
+  getSettings(): Settings {
+    return this.settings;
+  }
+
+  updateSettings(input: SettingsInput): { ok: boolean; settings: Settings; issues: SettingsIssue[] } {
+    const next = SettingsSchema.parse(input);
+    const issues = validateSettings(next, this.config);
+    for (const modality of MODALITIES) {
+      const sel = next.engines[modality];
+      if (this.config.providers[modality][sel.provider] && !this.adapters.has(key(modality, sel.provider))) {
+        issues.push({ modality, code: 'unknown_provider', message: `${modality}: provider "${sel.provider}" has no adapter wired yet` });
+      }
+    }
+    if (issues.length === 0) this.settings = next;
+    return { ok: issues.length === 0, settings: this.settings, issues };
+  }
+
+  /** Active adapter for a modality. Refuses cloud providers in the Offline profile even if settings were bypassed. */
+  get<M extends Modality>(modality: M): { adapter: AdapterByModality[M]; model: string; voice: string | null } {
+    const sel = this.settings.engines[modality];
+    const providerConfig = this.config.providers[modality][sel.provider];
+    const adapter = this.adapters.get(key(modality, sel.provider));
+    if (!providerConfig || !adapter) {
+      throw new EngineError('unavailable', `${modality}: provider "${sel.provider}" is not available`, { modality, provider: sel.provider });
+    }
+    if (this.settings.profile === 'offline' && !isOfflineSafe(providerConfig)) {
+      throw new EngineError('offline_forbidden', `${modality}: "${sel.provider}" is forbidden in the Offline profile`, {
+        modality,
+        provider: sel.provider,
+      });
+    }
+    return { adapter: adapter as unknown as AdapterByModality[M], model: sel.model, voice: sel.voice };
+  }
+
+  /** Run through the dispatcher when the adapter is heavy, directly otherwise. */
+  async run<M extends Modality, T>(modality: M, label: string, fn: (a: AdapterByModality[M], model: string, signal?: AbortSignal) => Promise<T>) {
+    const { adapter, model } = this.get(modality);
+    if (!adapter.heavy) return fn(adapter, model);
+    return this.dispatcher.run({ modality, owner: `${adapter.provider}:${model}`, label }, (signal) => fn(adapter, model, signal), {
+      timeoutMs: 120_000,
+    });
+  }
+
+  async summaries(): Promise<ProviderSummary[]> {
+    const out: ProviderSummary[] = [];
+    for (const modality of MODALITIES) {
+      for (const [providerId, cfg] of Object.entries(this.config.providers[modality])) {
+        const adapter = this.adapters.get(key(modality, providerId));
+        const [health, models] = adapter
+          ? await Promise.all([adapter.health().catch(errHealth), adapter.listModels().catch(() => [])])
+          : [null, cfg.models.map((id) => ({ id, installed: false }))];
+        out.push({
+          modality,
+          provider: providerId,
+          label: cfg.label ?? providerId,
+          locality: cfg.locality,
+          enabled: cfg.enabled,
+          offlineSafe: isOfflineSafe(cfg),
+          health,
+          models,
+          capabilities: adapter ? (adapter.capabilities() as Record<string, unknown>) : null,
+        });
+      }
+    }
+    return out;
+  }
+}
+
+function key(modality: Modality, provider: string) {
+  return `${modality}/${provider}`;
+}
+
+function errHealth(err: unknown) {
+  return { state: 'down' as const, detail: err instanceof Error ? err.message : String(err), checkedAt: new Date().toISOString() };
+}
