@@ -4,6 +4,7 @@ import { createApp } from './app.js';
 import { loadCourse, loadEnginesConfig } from './config.js';
 import { EngineHub } from './engines.js';
 import { PROVIDERS } from './providers.js';
+import { warmup } from './warmup.js';
 
 // Loopback only: the demo runs offline and nothing should be reachable from the network.
 const HOST = '127.0.0.1';
@@ -14,4 +15,5 @@ const app = createApp({ hub, course: loadCourse(), allowDrafts: process.env.UNDE
 
 serve({ fetch: app.fetch, hostname: HOST, port: PORT }, (info) => {
   console.log(`understandity server on http://${HOST}:${info.port} · profile=${hub.getSettings().profile}`);
+  if (process.env.UNDERSTANDITY_WARMUP === '1') void warmup(hub);
 });
