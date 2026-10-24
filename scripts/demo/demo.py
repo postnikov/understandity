@@ -233,6 +233,8 @@ class Demo:
         require(len(set(ports)) == len(ports), 'Demo listener ports overlap')
         for port in ports:
             with socket.socket() as sock:
+                # TIME_WAIT left by an open browser tab reconnecting is not an owner; a real listener still fails.
+                sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                 try:
                     sock.bind(('127.0.0.1', port))
                 except OSError as error:

@@ -209,6 +209,17 @@ class LifecycleTests(unittest.TestCase):
         self.assertEqual(len(calls), 1)
         self.assertTrue(calls[0][0].endswith('/api/ps'))
 
+    def test_port_check_rejects_a_real_listener(self):
+        with socket.socket() as listener:
+            listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            listener.bind(('127.0.0.1', 0))
+            listener.listen()
+            port = listener.getsockname()[1]
+            with socket.socket() as probe:
+                probe.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                with self.assertRaises(OSError):
+                    probe.bind(('127.0.0.1', port))
+
     def test_foreign_tmux_session_is_never_stopped(self):
         calls = []
         def owner(args, **_kwargs):
