@@ -358,5 +358,95 @@
     "preset": "landscape",
     "image": "/media/heavy-things-sink/c5-the-density-challenge-cyberpunk.png",
     "prompt": "A robot compares two objects, in a tank of water. One object floating on the surface of water and another object sinking to the bottom. Half-above, half-below-water split view: the calm water surface cuts across the middle of the frame, crystal-clear water below so the bottom is visible. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c1-the-invisible-builder",
+    "world": "space",
+    "seed": 141,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c1-the-invisible-builder-space.png",
+    "prompt": "An astronaut in a greenhouse module watches two identical plants; one is in a chamber with carbon dioxide and water, and the other is in a chamber without carbon dioxide. Two identical plants in separate glass chambers with the same water: the one with normal air is big and bushy, the one in air without carbon dioxide stays small. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c1-the-invisible-builder",
+    "world": "cyberpunk",
+    "seed": 142,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c1-the-invisible-builder-cyberpunk.png",
+    "prompt": "A hacker monitors two bio-engineered plants in a neon-lit lab, one receiving carbon dioxide and water and the other receiving no carbon dioxide. Two identical plants in separate glass containers with the same water: the one with normal air is big and bushy, the one in air without carbon dioxide stays small. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c2-light-is-the-engine-not-the-fuel",
+    "world": "space",
+    "seed": 143,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-space.png",
+    "prompt": "A scientist on a space station observes two plants with the same water and air, one under a high-intensity grow lamp and the other in a dark storage locker. Two identical plants, one under a bright light and the other in total darkness. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c2-light-is-the-engine-not-the-fuel",
+    "world": "cyberpunk",
+    "seed": 144,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c2-light-is-the-engine-not-the-fuel-cyberpunk.png",
+    "prompt": "A robot technician places two plants in a neon-lit room, one under a bright grow lamp and the other in a dark corner. Two identical plants, one illuminated by a bright light and the other in total darkness. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c3-the-sugar-factory",
+    "world": "space",
+    "seed": 145,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c3-the-sugar-factory-space.png",
+    "prompt": "An explorer places two sealed glass jars containing a plant and water in a station; one is placed in the light and the other in the dark. Two sealed glass jars, each with a plant and water, one in a bright light and the other in the dark. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c3-the-sugar-factory",
+    "world": "cyberpunk",
+    "seed": 146,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c3-the-sugar-factory-cyberpunk.png",
+    "prompt": "A street-doc places two sealed glass jars with a plant and water in a laboratory, one under a neon light and the other in a dark compartment. Two sealed glass jars, each with a plant and water, one in a bright light and the other in the dark. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c4-the-night-shift",
+    "world": "space",
+    "seed": 147,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c4-the-night-shift-space.png",
+    "prompt": "A pilot observes a plant that sat in bright light all day and now sits in a dark cabin during the night cycle. A plant sitting in a dark room after being in bright light all day. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c4-the-night-shift",
+    "world": "cyberpunk",
+    "seed": 148,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c4-the-night-shift-cyberpunk.png",
+    "prompt": "A drone operator watches a plant that was in a bright light-chamber all day and is now in a dark storage unit at night. A plant sitting in a dark room after being in bright light all day. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c5-the-survival-secret",
+    "world": "space",
+    "seed": 149,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c5-the-survival-secret-space.png",
+    "prompt": "An explorer compares a large potato and a tiny seed in a dark storage locker on a spaceship. A large potato and a tiny seed sitting side-by-side in a dark cupboard. Bright cinematic sci-fi space illustration, sleek spacecraft and station interiors, deep cosmic blues with warm orange highlights, soft glow of control lights, clean futuristic shapes, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+  },
+  {
+    "course": "light-plant-growth",
+    "card": "c5-the-survival-secret",
+    "world": "cyberpunk",
+    "seed": 150,
+    "preset": "landscape",
+    "image": "/media/light-plant-growth/c5-the-survival-secret-cyberpunk.png",
+    "prompt": "A hacker compares a large potato and a tiny seed inside a dark, high-tech storage crate. A large potato and a tiny seed sitting side-by-side in a dark cupboard. Vivid cyberpunk illustration, rainy neon megacity at night, glowing magenta and cyan light, glossy wet reflections, stylish young character with subtle tech implants, blank glowing panels without writing, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
   }
 ]
