@@ -14,6 +14,10 @@ import {
 } from '@understandity/contracts';
 import type { EngineHub } from './engines.js';
 import type { KeyStore } from './keys.js';
+import { randomUUID } from 'node:crypto';
+import { TutorTurnRequestSchema } from '@understandity/contracts';
+import { isTurnId, type DialogLog } from './dialog-log.js';
+import type { TutorMeta, TutorOptions } from './tutor.js';
 import { tutorTurn, type CourseLookup } from './tutor.js';
 import { courseRoutes, defaultContentDir, scanCourses } from './routes/course.js';
 
@@ -43,9 +47,11 @@ export interface AppDeps {
   contentDir?: string;
   /** API keys entered in Settings; values never leave the server. */
   keys?: KeyStore;
+  /** Local JSONL log of every tutor turn and spoken reply (data/logs). */
+  dialogLog?: DialogLog;
 }
 
-export function createApp({ hub, course, allowDrafts, contentDir = defaultContentDir(), keys }: AppDeps) {
+export function createApp({ hub, course, allowDrafts, contentDir = defaultContentDir(), keys, dialogLog }: AppDeps) {
   const root = new Hono();
   const app = new Hono();
   const lookup: CourseLookup = async (id) => (await scanCourses(contentDir)).get(id)?.course ?? (id === course.id ? course : null);
@@ -116,7 +122,34 @@ export function createApp({ hub, course, allowDrafts, contentDir = defaultConten
 
   app.route('/courses', courseRoutes({ contentDir }));
 
-  app.post('/tutor', async (c) => c.json(await tutorTurn(hub, lookup, await c.req.json(), { allowDrafts })));
+  /** One tutor turn plus its log line; the reply gains a `turnId` the client passes to `/api/tts?turn=`. */
+  async function loggedTurn(body: unknown, extra: Pick<TutorOptions, 'onDelta' | 'signal'> = {}) {
+    const turnId = randomUUID();
+    let meta: TutorMeta | null = null;
+    const parsed = TutorTurnRequestSchema.safeParse(body);
+    const raw = (body ?? {}) as { clientTimings?: { sttMs?: unknown } };
+    const sttMs = typeof raw.clientTimings?.sttMs === 'number' && raw.clientTimings.sttMs >= 0 ? Math.round(raw.clientTimings.sttMs) : null;
+    const log = (reply: { text: string; hintGiven: boolean; next: string; model: string } | null, error: string | null) => {
+      if (!dialogLog || !parsed.success) return;
+      const r = parsed.data;
+      dialogLog.write({
+        type: 'turn', turnId, at: new Date().toISOString(), courseId: r.courseId, cardId: r.cardId, step: r.step, kind: r.kind,
+        world: r.world, language: r.language, student: r.studentText, tutor: reply?.text ?? null, verdict: meta?.verdict ?? null,
+        hintGiven: reply?.hintGiven ?? null, next: reply?.next ?? null, provider: meta?.provider ?? null, model: reply?.model ?? meta?.model ?? null,
+        profile: hub.getSettings().profile, sttMs, firstPhraseMs: meta?.firstPhraseMs ?? null, tutorMs: meta?.totalMs ?? null, error,
+      });
+    };
+    try {
+      const reply = await tutorTurn(hub, lookup, body as never, { allowDrafts, ...extra, onMeta: (m) => (meta = m) });
+      log(reply, null);
+      return { ...reply, turnId };
+    } catch (err) {
+      log(null, EngineError.is(err) ? err.code : 'internal');
+      throw err;
+    }
+  }
+
+  app.post('/tutor', async (c) => c.json(await loggedTurn(await c.req.json())));
 
   /** SSE: `delta` {text} while the engine streams, then one `done` TutorTurnReply, or one `error` {error}. */
   app.post('/tutor/stream', async (c) => {
@@ -126,8 +159,7 @@ export function createApp({ hub, course, allowDrafts, contentDir = defaultConten
       sse.onAbort(() => ctrl.abort());
       let chain = Promise.resolve();
       try {
-        const reply = await tutorTurn(hub, lookup, body, {
-          allowDrafts,
+        const reply = await loggedTurn(body, {
           signal: ctrl.signal,
           onDelta: (text) => {
             chain = chain.then(() => sse.writeSSE({ event: 'delta', data: JSON.stringify({ text }) }));
@@ -145,10 +177,23 @@ export function createApp({ hub, course, allowDrafts, contentDir = defaultConten
 
   app.post('/tts', async (c) => {
     const body = TtsHttpRequestSchema.parse(await c.req.json());
-    const { voice } = hub.get('tts');
-    const result = await hub.run('tts', 'speak', (tts, model, signal) =>
-      tts.synthesize({ model, text: body.text, language: body.language ?? hub.getSettings().language, voice: voice ?? undefined }, { signal }),
-    );
+    const turnId = c.req.query('turn');
+    const { voice, adapter } = hub.get('tts');
+    const t0 = Date.now();
+    let result;
+    try {
+      result = await hub.run('tts', 'speak', (tts, model, signal) =>
+        tts.synthesize({ model, text: body.text, language: body.language ?? hub.getSettings().language, voice: voice ?? undefined }, { signal }),
+      );
+    } catch (err) {
+      if (dialogLog && isTurnId(turnId)) {
+        dialogLog.write({ type: 'voice', turnId, at: new Date().toISOString(), provider: adapter.provider, model: null, ttsMs: Date.now() - t0, audioSec: null, error: EngineError.is(err) ? err.code : 'internal' });
+      }
+      throw err;
+    }
+    if (dialogLog && isTurnId(turnId)) {
+      dialogLog.write({ type: 'voice', turnId, at: new Date().toISOString(), provider: adapter.provider, model: result.model, ttsMs: Date.now() - t0, audioSec: result.durationSec, error: null });
+    }
     return c.body(result.audio as Uint8Array<ArrayBuffer>, 200, {
       'content-type': result.mimeType,
       'x-duration-sec': String(result.durationSec),

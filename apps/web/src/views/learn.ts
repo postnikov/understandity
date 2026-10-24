@@ -29,9 +29,13 @@ interface Msg {
   audio?: string;
   evidence?: Evidence | null;
   model?: string;
+  /** Server id of the tutor turn; the voice request carries it so the dialog log joins text and voice. */
+  turnId?: string;
 }
 
 const s = {
+  /** Speech recognition time of the last recorded answer, sent with the tutor turn for the dialog log. */
+  lastSttMs: null as number | null,
   courseId: '',
   course: null as Course | null,
   cards: [] as Card[],
@@ -413,7 +417,9 @@ async function stopRecording() {
   s.voice = 'transcribing';
   rerender();
   try {
+    const sttStart = performance.now();
     const tr = await api.transcribe(rec.blob, courseLang(), voicePrompt(c, s.step));
+    s.lastSttMs = Math.round(performance.now() - sttStart);
     if (!tr.text.trim()) {
       s.voice = 'silence';
     } else {
@@ -457,7 +463,7 @@ function acceptReply(reply: TutorTurnReply, _msg: Msg) {
 
 function fetchVoice(msg: Msg): Promise<string | null> {
   return api
-    .speak(msg.text, courseLang())
+    .speak(msg.text, courseLang(), msg.turnId)
     .then((b) => (msg.audio = URL.createObjectURL(b)))
     .catch(() => null);
 }
@@ -493,7 +499,10 @@ async function askTutor(text: string, kind: 'answer' | 'question' | 'explain_ple
     kind,
     hintsUsed: s.hintsUsed,
     history: s.dialog.slice(-11, -1).map(({ role, text }) => ({ role, text })),
+    // Only a spoken answer has a recognition time; a typed question does not.
+    clientTimings: { sttMs: kind === 'answer' ? s.lastSttMs : null },
   };
+  s.lastSttMs = null;
   try {
     if (isMock()) {
       const reply = await api.tutor(req);
@@ -521,6 +530,7 @@ async function askTutor(text: string, kind: 'answer' | 'question' | 'explain_ple
     msg.text = reply.text;
     msg.evidence = reply.evidence;
     msg.model = reply.model;
+    msg.turnId = (reply as { turnId?: string }).turnId;
     acceptReply(reply, msg);
     s.voice = 'speaking';
     rerender();

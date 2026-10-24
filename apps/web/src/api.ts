@@ -206,8 +206,8 @@ export const api = {
     }
     throw new ApiFailure('internal', 'tutor stream ended without an answer');
   },
-  speak: async (text: string, language: string): Promise<Blob> => {
-    const r = await post('/api/tts', { text, language });
+  speak: async (text: string, language: string, turnId?: string): Promise<Blob> => {
+    const r = await post(`/api/tts${turnId ? `?turn=${encodeURIComponent(turnId)}` : ''}`, { text, language });
     if (!r.ok) await json(r);
     return r.blob();
   },

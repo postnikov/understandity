@@ -16,11 +16,23 @@ import type { EngineHub } from './engines.js';
 /** Resolves a course by id at call time, so approved key edits from the adult gate reach the tutor at once. */
 export type CourseLookup = (courseId: string) => Promise<Course | null>;
 
+export interface TutorMeta {
+  verdict: Verdict | null;
+  provider: string;
+  model: string;
+  /** From the start of the turn to the first words the child sees (the VERDICT line is not counted). */
+  firstPhraseMs: number | null;
+  totalMs: number;
+  kind: 'answer' | 'question' | 'explain_please';
+}
+
 export interface TutorOptions {
   /** Same rule as the child screen: unreviewed cards are not tutored unless drafts are explicitly allowed. */
   allowDrafts: boolean;
   /** Called with every text delta while the engine streams. */
   onDelta?: (text: string) => void;
+  /** Called once with what the dialog log needs and the reply does not carry. */
+  onMeta?: (meta: TutorMeta) => void;
   signal?: AbortSignal;
 }
 
@@ -120,8 +132,15 @@ export async function tutorTurn(
     { role: 'user' as const, content: req.studentText },
   ];
 
-  const filter = verdictFilter(opts.onDelta);
+  const t0 = Date.now();
+  let firstPhraseMs: number | null = null;
+  let provider = '';
+  const filter = verdictFilter((delta) => {
+    if (firstPhraseMs === null && delta.trim()) firstPhraseMs = Date.now() - t0;
+    opts.onDelta?.(delta);
+  });
   const result = await hub.run('text', `tutor ${card.id}`, async (text, model, signal): Promise<TextResult> => {
+    provider = text.provider;
     const events = text.stream(
       {
         model,
@@ -139,6 +158,7 @@ export async function tutorTurn(
   });
 
   const { text, verdict } = filter.finish(result.text);
+  opts.onMeta?.({ verdict, provider, model: result.model, firstPhraseMs, totalMs: Date.now() - t0, kind });
   const hintGiven = countsAsHint(kind, verdict);
   const hintsAfter = req.hintsUsed + (hintGiven ? 1 : 0);
   const next: NextMove = kind === 'explain_please' ? 'direct_explanation' : kind === 'question' ? 'ask_why' : NEXT[verdict ?? 'none'];
