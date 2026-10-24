@@ -24,6 +24,7 @@ export function tutorPrompt(card: Card, req: Pick<TutorTurnRequest, 'language' |
     `Key — what a causal answer contains (never reveal before the student tries): ${card.key.expectedCause}`,
     card.key.acceptable.length ? `Also acceptable: ${card.key.acceptable.join('; ')}` : '',
     `Typical mistake: ${card.key.typicalMistake}`,
+    'Every example you give must be physically true under the card conditions; stick to the card conditions (for example solid, uniform objects) unless the student asks about something else.',
     `A good clarifying question: ${card.key.followUp}`,
     '',
     'OUTPUT FORMAT: the first line is exactly one of',
@@ -36,14 +37,16 @@ export function tutorPrompt(card: Card, req: Pick<TutorTurnRequest, 'language' |
     lines.push(
       "Judge the student's LAST message against the key, by meaning, not by words. Ignore grammar, accent and recognition slips.",
       '- correct: they name the cause in their own words, even simply (e.g. "same stuff, so it still sinks" counts).',
-      '- partial: right prediction or part of the cause, but the cause is missing or incomplete.',
+      '- partial: right prediction or part of the cause, but the cause is missing or incomplete. A correct prediction with no reason is ALWAYS partial, never unsure.',
       '- wrong: the reasoning uses a wrong cause (often the typical mistake).',
-      '- unsure: "I don\'t know", a guess without a reason, off-topic or too unclear to judge.',
+      '- unsure: "I don\'t know", no prediction at all, off-topic or too unclear to judge.',
+      'Examples of judging (shape only): "It will still sink." → partial (prediction, no reason). "I think it floats." → partial if floating is the right outcome, otherwise wrong. "Because it is lighter." → wrong. "No idea." → unsure.',
+      'Unless the verdict is correct, never state the key or the cause yourself — the student must say it.',
       '',
       'Reply by verdict:',
       '- correct: start by confirming plainly that they are right and repeat their cause back in one sentence in their own words. Do not ask them to explain it again. Then give one NEW situation (different objects) and ask them to predict it. No hints.',
-      '- partial: say exactly which part is right, then ask one question about the missing part only.',
-      '- wrong: do not say "wrong" or "no". Give one short counterexample to their exact reasoning, then one question.',
+      '- partial: start by saying exactly which part is right (e.g. "Yes, it still sinks."), then ask one question about the missing part only — usually "why?".',
+      '- wrong: do not say "wrong" or "no". Give one short counterexample to their exact reasoning, built from the same kind of objects as in the question (not new, famous or tricky objects), then ask the clarifying question in your own words.',
       "- unsure: that's fine — give one small fact as a hint (not the answer) and ask a simpler question.",
     );
   } else if (kind === 'question') {

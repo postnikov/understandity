@@ -116,6 +116,8 @@ describe('tutor prompt', () => {
     expect(p).toMatch(/VERDICT: correct/);
     expect(p).toMatch(/confirming plainly that they are right/);
     expect(p).toMatch(/by meaning, not by words/);
+    expect(p).toMatch(/correct prediction with no reason is ALWAYS partial/);
+    expect(p).toMatch(/never state the key or the cause yourself/);
     expect(p).toContain(card.key.expectedCause);
   });
 });
