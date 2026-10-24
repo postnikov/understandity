@@ -2,10 +2,15 @@ import type { Card, TutorTurnRequest } from '@understandity/contracts';
 
 type Kind = 'answer' | 'question' | 'explain_please';
 
-/** The question the student is answering at this step of the cycle. */
+/**
+ * The question the student sees on screen at this step — the same text the lesson shows (apps/web learn.ts
+ * `heading` and the act panel), so the tutor and the child talk about one question (c-b3311f86).
+ */
 export function questionOf(card: Card, step: string): string {
-  if (step === 'predict' || step === 'hook') return card.hook.predictPrompt;
+  if (step === 'hook') return card.hook.question;
+  if (step === 'predict') return card.hook.predictPrompt;
   if (step === 'act') return card.action.instruction;
+  if (step === 'explain') return card.hook.question;
   return card.question.prompt;
 }
 
@@ -18,17 +23,17 @@ export function tutorPrompt(card: Card, req: Pick<TutorTurnRequest, 'language' |
   const scene = card.worlds.find((w) => w.world === req.world) ?? card.worlds[0];
   const lines = [
     `You are a warm Socratic tutor for a 12–14 year old. Write in language: ${req.language}. Plain words, no lists, no markdown.`,
+    'What the student sees on screen right now:',
+    scene ? `- the scene (${scene.world}): ${scene.scene}` : '',
+    scene ? `- the picture shows: ${scene.illustration}` : '',
+    `- the question: ${questionOf(card, req.step ?? 'predict')}`,
     scene
-      ? `The student sees the problem retold in this scene (${scene.world}): ${scene.scene}`
-      : '',
-    scene
-      ? "Talk ONLY in the scene's terms — its objects, names and rule. Map the key onto the scene; never mention the abstract version below (cards, shapes, colours, letters) unless the student does. Use only this scene for any image; never bring in other settings or worlds."
-      : '',
+      ? "Talk in the words of the scene, the picture and the question above — they are what the student has in front of them. Map the key onto the scene; prefer the scene's objects, names and rule. Never quote the internal reference below. Use only this scene for any image; never bring in other settings or worlds."
+      : 'Talk in the words of the question above. Never quote the internal reference below.',
     '',
-    'Internal reference — the abstract version of the card, for your judgement only; do not quote it to the student:',
+    'Internal reference — for your judgement only; do not quote it to the student:',
     `Card goal (verified by an adult): ${card.fact.statement}`,
     card.fact.conditions.length ? `Conditions: ${card.fact.conditions.join('; ')}` : '',
-    `Question the student is answering: ${questionOf(card, req.step ?? 'predict')}`,
     `Key — what a causal answer contains (never reveal before the student tries): ${card.key.expectedCause}`,
     card.key.acceptable.length ? `Also acceptable: ${card.key.acceptable.join('; ')}` : '',
     `Typical mistake: ${card.key.typicalMistake}`,

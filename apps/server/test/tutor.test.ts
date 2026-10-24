@@ -131,7 +131,7 @@ describe('tutor prompt: one scene, in its own terms (c-549b9524)', () => {
     const p = tutorPrompt(card, { language: 'en', world: 'anime', step: 'predict' }, 'answer');
     expect(p).toContain('ANIME-SCENE school pool');
     expect(p).not.toContain('FANTASY-SCENE');
-    expect(p).toMatch(/Talk ONLY in the scene's terms/);
+    expect(p).toMatch(/Talk in the words of the scene, the picture and the question/);
     expect(p).toMatch(/never bring in other settings or worlds/);
     // The abstract card is reference only, never part of how to reply.
     const replyRules = p.slice(p.indexOf('Reply by verdict:'));
@@ -139,5 +139,24 @@ describe('tutor prompt: one scene, in its own terms (c-549b9524)', () => {
     expect(p.indexOf('Internal reference')).toBeLessThan(p.indexOf(card.fact.statement));
     // Unknown world → the card's first scene.
     expect(tutorPrompt(card, { language: 'en', world: 'space', step: 'predict' }, 'answer')).toContain('FANTASY-SCENE dragon chests');
+  });
+});
+
+describe('tutor prompt: what is on screen (c-b3311f86)', () => {
+  it('carries the picture description, the scene and the exact on-screen question of the step', async () => {
+    const course = JSON.parse((await import('node:fs')).readFileSync(resolve(REPO_ROOT, 'content/critical-thinking.json'), 'utf8'));
+    const card = course.concepts[0].cards[0];
+    const scene = card.worlds[0];
+    const hook = tutorPrompt(card, { language: 'en', world: scene.world, step: 'hook' }, 'answer');
+    expect(hook).toContain(`the picture shows: ${scene.illustration}`);
+    expect(hook).toContain(scene.scene);
+    // Wonder shows hook.question big — the prompt carries that text, before the internal reference.
+    expect(hook).toContain(`the question: ${card.hook.question}`);
+    expect(hook.indexOf(card.hook.question)).toBeLessThan(hook.indexOf('Internal reference'));
+    expect(hook).not.toContain(card.hook.predictPrompt);
+    // Each step: the question line is what that step shows.
+    expect(tutorPrompt(card, { language: 'en', world: scene.world, step: 'predict' }, 'answer')).toContain(`the question: ${card.hook.predictPrompt}`);
+    expect(tutorPrompt(card, { language: 'en', world: scene.world, step: 'act' }, 'answer')).toContain(`the question: ${card.action.instruction}`);
+    expect(tutorPrompt(card, { language: 'en', world: scene.world, step: 'transfer' }, 'answer')).toContain(`the question: ${card.question.prompt}`);
   });
 });
