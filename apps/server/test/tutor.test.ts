@@ -121,3 +121,23 @@ describe('tutor prompt', () => {
     expect(p).toContain(card.key.expectedCause);
   });
 });
+
+describe('tutor prompt: one scene, in its own terms (c-549b9524)', () => {
+  it('carries only the shown world scene and the rule to talk in its terms', async () => {
+    const course = JSON.parse((await import('node:fs')).readFileSync(resolve(REPO_ROOT, 'content/heavy-things-sink.json'), 'utf8'));
+    const base = course.concepts[0].cards[0];
+    // A card that still has two worlds (an old generated course): only the requested one may reach the model.
+    const card = { ...base, worlds: [{ ...base.worlds[0], world: 'fantasy', scene: 'FANTASY-SCENE dragon chests' }, { ...base.worlds[0], world: 'anime', scene: 'ANIME-SCENE school pool' }] };
+    const p = tutorPrompt(card, { language: 'en', world: 'anime', step: 'predict' }, 'answer');
+    expect(p).toContain('ANIME-SCENE school pool');
+    expect(p).not.toContain('FANTASY-SCENE');
+    expect(p).toMatch(/Talk ONLY in the scene's terms/);
+    expect(p).toMatch(/never bring in other settings or worlds/);
+    // The abstract card is reference only, never part of how to reply.
+    const replyRules = p.slice(p.indexOf('Reply by verdict:'));
+    expect(replyRules).not.toContain(card.fact.statement);
+    expect(p.indexOf('Internal reference')).toBeLessThan(p.indexOf(card.fact.statement));
+    // Unknown world → the card's first scene.
+    expect(tutorPrompt(card, { language: 'en', world: 'space', step: 'predict' }, 'answer')).toContain('FANTASY-SCENE dragon chests');
+  });
+});

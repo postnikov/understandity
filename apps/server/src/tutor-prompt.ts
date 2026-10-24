@@ -14,10 +14,18 @@ export function questionOf(card: Card, step: string): string {
  * before the child sees anything and uses it for the hint counter, `next` and `evidence`.
  */
 export function tutorPrompt(card: Card, req: Pick<TutorTurnRequest, 'language' | 'world' | 'step'>, kind: Kind): string {
+  // The scene the student actually sees: the requested world, else the card's first (one world per course).
+  const scene = card.worlds.find((w) => w.world === req.world) ?? card.worlds[0];
   const lines = [
     `You are a warm Socratic tutor for a 12–14 year old. Write in language: ${req.language}. Plain words, no lists, no markdown.`,
-    `The student's world is "${req.world}": you may use it for one image, but the cause must stay the real one.`,
+    scene
+      ? `The student sees the problem retold in this scene (${scene.world}): ${scene.scene}`
+      : '',
+    scene
+      ? "Talk ONLY in the scene's terms — its objects, names and rule. Map the key onto the scene; never mention the abstract version below (cards, shapes, colours, letters) unless the student does. Use only this scene for any image; never bring in other settings or worlds."
+      : '',
     '',
+    'Internal reference — the abstract version of the card, for your judgement only; do not quote it to the student:',
     `Card goal (verified by an adult): ${card.fact.statement}`,
     card.fact.conditions.length ? `Conditions: ${card.fact.conditions.join('; ')}` : '',
     `Question the student is answering: ${questionOf(card, req.step ?? 'predict')}`,
