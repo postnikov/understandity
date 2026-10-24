@@ -49,13 +49,13 @@
               "world": "fantasy",
               "scene": "A wizard is enchanting a magic tile. He needs to know how many tiles cover the floor of a square room.",
               "illustration": "A grid of 9 squares forming a large square.",
-              "image": null
+              "image": "/media/double-side-area/c1-counting-the-squares-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A robot builder is designing a square power core. They need to calculate the surface area for cooling plates.",
               "illustration": "A square divided into 9 smaller squares.",
-              "image": null
+              "image": "/media/double-side-area/c1-counting-the-squares-anime.png"
             }
           ],
           "question": {
@@ -140,13 +140,13 @@
               "world": "fantasy",
               "scene": "A dragon's hoard grows. A square gold coin is replaced by a square that is 3 times wider.",
               "illustration": "A 3x3 grid showing how 9 small squares fit into a 9x9 grid.",
-              "image": null
+              "image": "/media/double-side-area/c2-the-two-way-growth-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A mecha pilot expands the shield's reach. The square shield grows 3 times in both directions.",
               "illustration": "A diagram showing a 3x3 grid expanding into a 9x9 grid.",
-              "image": null
+              "image": "/media/double-side-area/c2-the-two-way-growth-anime.png"
             }
           ],
           "question": {
@@ -233,13 +233,13 @@
               "world": "fantasy",
               "scene": "A wizard's scroll is stretched. He makes it twice as long but it stays the same width.",
               "illustration": "A 2x3 rectangle becoming a 2x6 rectangle.",
-              "image": null
+              "image": "/media/double-side-area/c3-the-rectangle-exception-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A futuristic train car is extended. It gets longer but stays the same width.",
               "illustration": "A 2x3 rectangle becoming a 2x6 rectangle.",
-              "image": null
+              "image": "/media/double-side-area/c3-the-rectangle-exception-anime.png"
             }
           ],
           "question": {
@@ -326,13 +326,13 @@
               "world": "fantasy",
               "scene": "A knight builds a fence around a square castle. The castle grows in size.",
               "illustration": "A square with a border (fence) and a filled interior (grass).",
-              "image": null
+              "image": "/media/double-side-area/c4-paint-vs-fences-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A city planner builds a square park. They need to know how much grass to lay down.",
               "illustration": "A square with a border (fence) and a filled interior (grass).",
-              "image": null
+              "image": "/media/double-side-area/c4-paint-vs-fences-anime.png"
             }
           ],
           "question": {
@@ -422,13 +422,13 @@
               "world": "fantasy",
               "scene": "An architect designs a square plaza for a royal palace.",
               "illustration": "A 1x1 square compared to a 5x5 square.",
-              "image": null
+              "image": "/media/double-side-area/c5-the-master-architect-fantasy.png"
             },
             {
               "world": "anime",
               "scene": "A futuristic city planner designs a square plaza for a new robot district.",
               "illustration": "A 1x1 square compared to a 5x5 square.",
-              "image": null
+              "image": "/media/double-side-area/c5-the-master-architect-anime.png"
             }
           ],
           "question": {

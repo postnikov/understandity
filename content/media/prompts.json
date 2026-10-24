@@ -213,7 +213,7 @@
     "seed": 124,
     "preset": "landscape",
     "image": "/media/double-side-area/c2-the-two-way-growth-anime.png",
-    "prompt": "A mecha pilot in a cockpit projects a glowing square energy shield; next to a small square shield appears a large square shield made of a three-by-three grid of the same small squares, glowing grid lines, growing both wider and taller. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+    "prompt": "A mecha pilot in a cockpit looks at two glowing blue energy shields floating side by side: on the left one single small square tile, on the right a big perfect square built from exactly nine of the same small square tiles, three across and three down. The big square is three times as wide and three times as tall as the small tile. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
   },
   {
     "course": "double-side-area",
@@ -258,7 +258,7 @@
     "seed": 129,
     "preset": "landscape",
     "image": "/media/double-side-area/c5-the-master-architect-fantasy.png",
-    "prompt": "Aerial view of a grand square plaza of a royal palace, paved with identical square stones in a five-by-five grid; in the foreground an architect holds up a single glowing paving stone of the same size for comparison. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+    "prompt": "Bird's-eye view of a colorful fairy-tale royal palace with golden domes around a courtyard plaza that is a perfect square. The plaza is paved with only twenty-five huge square marble slabs in soft pastel colors, laid five across and five down, a small chessboard-like square with clear seams. Next to the plaza a cheerful architect in a bright cloak holds up one single glowing slab of the same size for comparison. Vibrant colorful storybook fantasy painting, rich saturated jewel tones, soft magical glow, warm light, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
   },
   {
     "course": "double-side-area",
@@ -267,6 +267,6 @@
     "seed": 130,
     "preset": "landscape",
     "image": "/media/double-side-area/c5-the-master-architect-anime.png",
-    "prompt": "Aerial view of a square plaza in a futuristic robot district, covered with a five-by-five grid of identical glowing floor panels; in the foreground a small robot holds up one single panel for comparison. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
+    "prompt": "Straight top-down view of a futuristic plaza that is a perfect square, covered with exactly twenty-five identical big glowing teal floor panels: five panels across and five panels down, with clear dark seams between them. Beside the plaza, a small cute robot holds up one single panel of the same size for comparison. Bright colorful anime illustration, clean cel shading, crisp line art, vivid saturated palette, expressive young character, clear simple composition with one obvious focal point, made to explain a science idea to a curious 12-year-old. No text, no letters, no numbers, no symbols, no labels, no captions, no signs, no watermark."
   }
 ]
